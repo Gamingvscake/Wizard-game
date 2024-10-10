@@ -26,7 +26,7 @@ public class Fireball : MonoBehaviour
     public Camera playerCam;
     public Transform attackPoint;
 
-    //Graphics
+    //Graphics teehee
     public TextMeshProUGUI manaDisplay;
 
     //Bug fixing
