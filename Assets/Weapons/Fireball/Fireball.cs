@@ -71,6 +71,7 @@ public class Fireball : MonoBehaviour
         }
     }
 
+    //Test comment for git
     private void Cast()
     {
         readyToCast = false;
