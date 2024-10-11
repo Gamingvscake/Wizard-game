@@ -26,7 +26,7 @@ public class Fireball : MonoBehaviour
     public Camera playerCam;
     public Transform attackPoint;
 
-    //Graphics teehee
+    //Graphics
     public TextMeshProUGUI manaDisplay;
 
     //Bug fixing
@@ -71,7 +71,6 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    //Test comment for git
     private void Cast()
     {
         readyToCast = false;
