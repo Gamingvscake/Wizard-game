@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using TMPro;
 
-public class Fireball : MonoBehaviour
+public class SpellController : MonoBehaviour
 {
     //Fireball object
     public GameObject fireball;
@@ -28,16 +28,21 @@ public class Fireball : MonoBehaviour
 
     //Graphics
     public TextMeshProUGUI manaDisplay;
+    WeaponSwapControl WSC;
 
     //Bug fixing
     public bool allowInvoke = true;
 
+
     private void Awake()
     {
         //Fills mana
-        spellsCasted = 100;
-        spellsLeft = spellsCasted;
         readyToCast = true;
+        playerCam = GetComponentInParent<Camera>();
+        WSC = GetComponentInParent<WeaponSwapControl>();
+        manaDisplay = WSC.DisplayMana;
+        spellsCasted = WSC.MaxMana;
+        spellsLeft = WSC.Mana;
     }
 
     private void Update()
@@ -45,8 +50,7 @@ public class Fireball : MonoBehaviour
         MyInput();
 
         //Set mana display
-        if (manaDisplay != null)
-            manaDisplay.SetText(spellsLeft / spellsPerTap + " / " + manaSize / spellsPerTap);
+        WSC.UpdateManaDisplay(spellsLeft, spellsPerTap, manaSize);
     }
 
     private void MyInput()
@@ -101,24 +105,24 @@ public class Fireball : MonoBehaviour
         currentSpell.transform.forward = directionWithoutSpread.normalized;
 
         //Add forces to spell
-        currentSpell.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * castForce, ForceMode.Impulse);
-        currentSpell.GetComponent<Rigidbody>().AddForce(playerCam.transform.up * upwardForce, ForceMode.Impulse);
+        currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * castForce, ForceMode.Impulse);
+        currentSpell.GetComponentInChildren<Rigidbody>().AddForce(playerCam.transform.up * upwardForce, ForceMode.Impulse);
 
 
         spellsLeft--;
+        WSC.Mana--;
         spellsCasted++;
-
+        print(spellsCasted);
         //Invoke resetCast function if not already invoked
-        if (allowInvoke)
+        //Stop spells from spamming
+        if (spellsCasted < spellsPerTap && spellsLeft > 0)
+        {
+            Invoke("Cast", castSpeed);
+        }
+        else if (allowInvoke)
         {
             Invoke("ResetCast", castSpeed);
             allowInvoke = false;
-        }
-
-        //Stop spells from spamming
-        if (casting && spellsCasted < spellsPerTap && spellsLeft > 0)
-        {
-            Invoke("Cast", castSpeed);
         }
     }
 
@@ -137,7 +141,7 @@ public class Fireball : MonoBehaviour
 
     private void ReloadFinished()
     {
-        spellsLeft = manaSize;
+        spellsLeft = WSC.MaxMana;
         reloading = false;
     }
 

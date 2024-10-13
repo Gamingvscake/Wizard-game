@@ -19,7 +19,11 @@ public class DamageScript : MonoBehaviour
     }
     private void Start()
     {
-        item = this.gameObject;
+        item = transform.parent.gameObject;
+    }
+    private void Update()
+    {
+        Destroy(item, DeleteDelay + 1);
     }
     private void NewMethod()
     {
