@@ -83,10 +83,11 @@ MonoBehaviour:
   castTime: 0.1
   spread: 0
   reloadTime: 2
-  castSpeed: 0.5
+  castSpeed: 0.1
   manaSize: 100
   spellsPerTap: 1
-  allowButtonHold: 0
+  manaPerSecond: 1
+  allowButtonHold: 1
   spellsLeft: 0
   spellsCasted: 0
   casting: 0

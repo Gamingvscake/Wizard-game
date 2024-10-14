@@ -3851,7 +3851,6 @@ Transform:
   - {fileID: 559689299}
   - {fileID: 348316710}
   - {fileID: 1578777825}
-  - {fileID: 260511360}
   - {fileID: 1233395109}
   - {fileID: 170039858}
   - {fileID: 997948860}
@@ -4050,6 +4049,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 487600, guid: 0137f721b82b567438eb74a52f479f35, type: 3}
   m_PrefabInstance: {fileID: 1123941335}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1468087445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1468087447}
+  - component: {fileID: 1468087446}
+  m_Layer: 0
+  m_Name: CauldronWorking
+  m_TagString: Cauldron
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1468087446
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468087445}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1468087447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468087445}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.937859, y: -0.0034918785, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 260511360}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1484847419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 451196, guid: d3afa6c03e4ec924aa1fb5b97a490374, type: 3}
@@ -4626,6 +4679,14 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7266040769822686499, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: DisplayMana
+      value: 
+      objectReference: {fileID: 1869619460}
+    - target: {fileID: 7266040769822686499, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: StaffSpawnPoint
+      value: 
+      objectReference: {fileID: 127140672}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4635,45 +4696,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4459864851551516607, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1869619459}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1614345678}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
 --- !u!4 &1614345676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
   m_PrefabInstance: {fileID: 1614345675}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1614345677 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-  m_PrefabInstance: {fileID: 1614345675}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1614345678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614345677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af2c28a046e0b804e8c3ffa1706e18ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxNumberOfStaffs: 2
-  MaxNumberOfSpells: 2
-  StaffSpawnPoint: {fileID: 127140672}
-  EquippedStaffs:
-  - {fileID: 3228822451976501643, guid: e50d520e18af2784b92b6a332aa42240, type: 3}
-  - {fileID: 3228822451976501643, guid: 3a6e4f6c2f19e2748ab1c238d8be06fe, type: 3}
-  EquippedSpells: []
-  CurrentEquippedStaff: {fileID: 0}
-  CurrentEquippedSpell: {fileID: 0}
-  Mana: 0
-  MaxMana: 100
-  DisplayMana: {fileID: 1869619460}
 --- !u!1001 &1620370429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5858,7 +5887,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1319194375}
+    m_TransformParent: {fileID: 1468087447}
     m_Modifications:
     - target: {fileID: 183876, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
       propertyPath: m_Name
@@ -5866,15 +5895,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 444700, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.118009
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 444700, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.4540806
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 444700, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.525478
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 444700, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6202,3 +6231,4 @@ SceneRoots:
   - {fileID: 1319194375}
   - {fileID: 972470792}
   - {fileID: 1559923346}
+  - {fileID: 1468087447}

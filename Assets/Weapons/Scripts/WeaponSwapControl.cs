@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class WeaponSwapControl : MonoBehaviour
 {

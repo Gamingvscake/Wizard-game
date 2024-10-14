@@ -85,7 +85,7 @@ MonoBehaviour:
   reloadTime: 2
   castSpeed: 0.5
   manaSize: 100
-  spellsPerTap: 100
+  spellsPerTap: 3
   allowButtonHold: 0
   spellsLeft: 0
   spellsCasted: 0

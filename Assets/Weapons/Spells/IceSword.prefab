@@ -80,9 +80,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 50
-  DeleteOnImpact: 1
+  DeleteOnImpact: 0
   DeleteDelay: 1
   damageType: 2
+  StickInTarget: 1
+  rb: {fileID: 2846807516539312182}
 --- !u!54 &2846807516539312182
 Rigidbody:
   m_ObjectHideFlags: 0

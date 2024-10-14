@@ -9,6 +9,8 @@ public class DamageScript : MonoBehaviour
     public bool DeleteOnImpact;
     public float DeleteDelay;
     public DamageType damageType;
+    public bool StickInTarget;
+    public Rigidbody rb;
     public enum DamageType 
     { 
         Neutral,
@@ -25,17 +27,26 @@ public class DamageScript : MonoBehaviour
     {
         Destroy(item, DeleteDelay + 1);
     }
-    private void NewMethod()
+    private void Delete()
     {
-        Destroy(item, DeleteDelay);
+        if (DeleteOnImpact)
+        {
+            Destroy(item);
+        }
+        else
+        {
+            Destroy(item, DeleteDelay);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (StickInTarget)
         {
-            if (DeleteOnImpact)
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            this.gameObject.GetComponent<Collider>().enabled = false;
+            if (collision.collider.tag == "Enemy")
             {
-                Destroy(item);
+                Delete();
             }
             else
             {
@@ -44,7 +55,14 @@ public class DamageScript : MonoBehaviour
         }
         else
         {
-            Destroy(item, DeleteDelay);
+            if (collision.collider.tag == "Enemy")
+            {
+                Delete();
+            }
+            else
+            {
+                Destroy(item, DeleteDelay);
+            }
         }
     }
 }
