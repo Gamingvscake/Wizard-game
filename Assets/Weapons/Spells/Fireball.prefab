@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4003069929083282487}
   - component: {fileID: 1078419521698714951}
   - component: {fileID: 320220629901350226}
+  - component: {fileID: 7252858173483688238}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: PlayerAttack
@@ -124,6 +125,10 @@ MonoBehaviour:
   DeleteOnImpact: 1
   DeleteDelay: 1
   damageType: 1
+  StickInTarget: 0
+  rb: {fileID: 0}
+  SplashRadius: {fileID: 7252858173483688238}
+  thisCollider: {fileID: 7771348225126068956}
 --- !u!54 &1078419521698714951
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -213,6 +218,27 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!135 &7252858173483688238
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657111126582139896}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7188116084076457725
 GameObject:
   m_ObjectHideFlags: 0

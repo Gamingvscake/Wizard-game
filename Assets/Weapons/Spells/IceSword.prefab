@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2846807516539312182}
   - component: {fileID: 4672510041259368783}
   - component: {fileID: 2409871464015803031}
+  - component: {fileID: 4977253481838395862}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: PlayerAttack
@@ -85,6 +86,8 @@ MonoBehaviour:
   damageType: 2
   StickInTarget: 1
   rb: {fileID: 2846807516539312182}
+  SplashRadius: {fileID: 4977253481838395862}
+  thisCollider: {fileID: 4949307685771792805}
 --- !u!54 &2846807516539312182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,6 +219,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &4977253481838395862
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737571423428036014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7188116084076457725
 GameObject:
   m_ObjectHideFlags: 0

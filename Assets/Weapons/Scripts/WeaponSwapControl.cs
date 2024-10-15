@@ -17,6 +17,8 @@ public class WeaponSwapControl : MonoBehaviour
     public int Mana;
     public int MaxMana;
     public TextMeshProUGUI DisplayMana;
+    public TextMeshProUGUI DisplayPoints;
+    public int points;
     private void Start()
     {
         Mana = MaxMana;
@@ -30,6 +32,8 @@ public class WeaponSwapControl : MonoBehaviour
     private void Update()
     {
         StaffSwap();
+        DisplayPoints.SetText(points.ToString());
+        print(Mana);
     }
     private void StaffSwap()
     {

@@ -5,7 +5,8 @@ using UnityEngine;
 public class DamageSource : MonoBehaviour
 {
     public bool DrainEnemy;
-
+    public int maxDamage;
+    public int minDamage;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && !PlayerInflicts.IFrames)
@@ -17,8 +18,8 @@ public class DamageSource : MonoBehaviour
             else
             {
                 PlayerInflicts.TakingNormalDamage = true;
-                PlayerInflicts.MaxDamage = 36;
-                PlayerInflicts.MinDamage = 12;
+                PlayerInflicts.MaxDamage = maxDamage;
+                PlayerInflicts.MinDamage = minDamage;
             }
 
             PlayerInflicts.IFrames = true;

@@ -91,6 +91,6 @@ public class PlayerInflicts : MonoBehaviour
             {
                 StartHealthRegen();
             }
-            Debug.Log(regenTimer.ToString());
+            //Debug.Log(regenTimer.ToString());
     }
 }

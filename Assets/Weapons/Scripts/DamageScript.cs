@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DamageScript : MonoBehaviour
@@ -11,6 +12,9 @@ public class DamageScript : MonoBehaviour
     public DamageType damageType;
     public bool StickInTarget;
     public Rigidbody rb;
+    public SphereCollider SplashRadius;
+    public Collider thisCollider;
+    CauldronScript cs;
     public enum DamageType 
     { 
         Neutral,
@@ -22,6 +26,8 @@ public class DamageScript : MonoBehaviour
     private void Start()
     {
         item = transform.parent.gameObject;
+        cs = GameObject.Find("FirstPersonController").GetComponent<CauldronScript>();
+        SplashRadius.enabled = false;
     }
     private void Update()
     {
@@ -38,12 +44,18 @@ public class DamageScript : MonoBehaviour
             Destroy(item, DeleteDelay);
         }
     }
+    private void SplashDelay()
+    {
+        SplashRadius.enabled = false;
+    }
     private void OnCollisionEnter(Collision collision)
     {
+        SplashRadius.radius += cs.SplashSize;
+        SplashRadius.enabled = true;
         if (StickInTarget)
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            this.gameObject.GetComponent<Collider>().enabled = false;
+            thisCollider.enabled = false;
             if (collision.collider.tag == "Enemy")
             {
                 Delete();
@@ -52,6 +64,7 @@ public class DamageScript : MonoBehaviour
             {
                 Destroy(item, DeleteDelay);
             }
+            Invoke("SplashDelay", 0.1f);
         }
         else
         {
@@ -63,6 +76,7 @@ public class DamageScript : MonoBehaviour
             {
                 Destroy(item, DeleteDelay);
             }
+            Invoke("SplashDelay", 0.1f);
         }
     }
 }

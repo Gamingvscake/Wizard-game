@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class EnemyHealthScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemyHealthScript : MonoBehaviour
     public Slider HealthSlider;
     public DamageResistance damageRes;
     public DamageWeakness damageWeak;
+    public WeaponSwapControl wsc;
+    CauldronScript cs;
     public enum DamageResistance
     {
         Neutral,
@@ -30,6 +33,8 @@ public class EnemyHealthScript : MonoBehaviour
     {
         HealthSlider.maxValue = MaxHealth;
         Health = MaxHealth;
+        wsc = GameObject.Find("FirstPersonController").GetComponent<WeaponSwapControl>();
+        cs = GameObject.Find("FirstPersonController").GetComponent<CauldronScript>();
     }
     private void Update()
     {
@@ -37,6 +42,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (Health <= 0)
         {
             Health = MaxHealth;
+            wsc.points += 1000;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -46,15 +52,40 @@ public class EnemyHealthScript : MonoBehaviour
             DamageScript temp = collision.gameObject.GetComponent<DamageScript>();
             if ((int)temp.damageType == (int)damageRes)
             {
-                Health -= (temp.Damage / 2);
+                Health -= ((temp.Damage+cs.Damage2) / 2);
+                wsc.points += 100;
             }
             else if ((int)temp.damageType == (int)damageWeak)
             {
-                Health -= (temp.Damage * 2);
+                Health -= ((temp.Damage + cs.Damage2) * 2);
+                wsc.points += 100;
             }
             else
             {
-                Health -= temp.Damage;
+                Health -= (temp.Damage + cs.Damage2);
+                wsc.points += 100;
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PlayerAttack" || other.tag == "EnvironmentAttack")
+        {
+            DamageScript temp = other.gameObject.GetComponent<DamageScript>();
+            if ((int)temp.damageType == (int)damageRes)
+            {
+                Health -= ((temp.Damage + cs.Damage2) / 2);
+                wsc.points += 100;
+            }
+            else if ((int)temp.damageType == (int)damageWeak)
+            {
+                Health -= ((temp.Damage + cs.Damage2) * 2);
+                wsc.points += 100;
+            }
+            else
+            {
+                Health -= (temp.Damage + cs.Damage2);
+                wsc.points += 100;
             }
         }
     }

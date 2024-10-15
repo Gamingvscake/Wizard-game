@@ -142,6 +142,7 @@ public class SpellController : MonoBehaviour
     private void ReloadFinished()
     {
         spellsLeft = WSC.MaxMana;
+        WSC.Mana = WSC.MaxMana;
         reloading = false;
     }
 }
