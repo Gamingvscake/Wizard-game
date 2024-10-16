@@ -124,11 +124,13 @@ MonoBehaviour:
   Damage: 25
   DeleteOnImpact: 1
   DeleteDelay: 1
-  damageType: 1
+  damageType: 2
   StickInTarget: 0
   rb: {fileID: 0}
   SplashRadius: {fileID: 7252858173483688238}
   thisCollider: {fileID: 7771348225126068956}
+  cs: {fileID: 0}
+  dswsc: {fileID: 0}
 --- !u!54 &1078419521698714951
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,9 +14,11 @@ public class DamageScript : MonoBehaviour
     public Rigidbody rb;
     public SphereCollider SplashRadius;
     public Collider thisCollider;
-    CauldronScript cs;
+    public CauldronScript cs;
+    public WeaponSwapControl dswsc;
     public enum DamageType 
     { 
+        DONTUSE,
         Neutral,
         Fire,
         Water,
@@ -26,7 +28,6 @@ public class DamageScript : MonoBehaviour
     private void Start()
     {
         item = transform.parent.gameObject;
-        cs = GameObject.Find("FirstPersonController").GetComponent<CauldronScript>();
         SplashRadius.enabled = false;
     }
     private void Update()

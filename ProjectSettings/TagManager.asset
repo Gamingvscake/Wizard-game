@@ -8,6 +8,8 @@ TagManager:
   - EnvironmentalAttack
   - Enemy
   - Cauldron
+  - Removeable
+  - Buyable
   layers:
   - Default
   - TransparentFX

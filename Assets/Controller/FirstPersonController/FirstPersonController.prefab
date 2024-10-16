@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 4459864850019384740}
   - component: {fileID: 7266040769822686499}
   - component: {fileID: 5744877315656657287}
+  - component: {fileID: 5024756054901411381}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -1048,16 +1049,18 @@ MonoBehaviour:
   MaxNumberOfSpells: 2
   StaffSpawnPoint: {fileID: 4711088958980356357}
   EquippedStaffs:
-  - {fileID: 3228822451976501643, guid: e50d520e18af2784b92b6a332aa42240, type: 3}
   - {fileID: 3228822451976501643, guid: 3a6e4f6c2f19e2748ab1c238d8be06fe, type: 3}
   EquippedSpells: []
   CurrentEquippedStaff: {fileID: 0}
   CurrentEquippedSpell: {fileID: 0}
+  StarterStaff: {fileID: 3228822451976501643, guid: 3a6e4f6c2f19e2748ab1c238d8be06fe, type: 3}
+  tempstaff: 0
   Mana: 0
   MaxMana: 100
   DisplayMana: {fileID: 3838503862688684099}
   DisplayPoints: {fileID: 5808603509231714695}
   points: 0
+  wsccs: {fileID: 5744877315656657287}
 --- !u!114 &5744877315656657287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,6 +1080,25 @@ MonoBehaviour:
   CauldronScreen: {fileID: 258490646904507261}
   InCauldronScreen: 0
   fpc: {fileID: 4459864850019384740}
+--- !u!114 &5024756054901411381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6399e5236662246a9996a347df64d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InInteractableRange: 0
+  Buyable: 0
+  Removeable: 0
+  timer: 0
+  Maxtimer: 3
+  InterVaris: {fileID: 0}
+  iwsc: {fileID: 7266040769822686499}
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0

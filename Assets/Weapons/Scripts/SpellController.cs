@@ -29,6 +29,7 @@ public class SpellController : MonoBehaviour
     //Graphics
     public TextMeshProUGUI manaDisplay;
     WeaponSwapControl WSC;
+    public CauldronScript sccs;
 
     //Bug fixing
     public bool allowInvoke = true;
@@ -43,6 +44,7 @@ public class SpellController : MonoBehaviour
         manaDisplay = WSC.DisplayMana;
         spellsCasted = WSC.MaxMana;
         spellsLeft = WSC.Mana;
+        sccs = WSC.wsccs;
     }
 
     private void Update()
@@ -101,6 +103,8 @@ public class SpellController : MonoBehaviour
 
         //Instantiate projectile
         GameObject currentSpell = Instantiate(fireball, attackPoint.position, Quaternion.identity);
+        currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
+        currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
         //Rotate spell to shoot direction
         currentSpell.transform.forward = directionWithoutSpread.normalized;
 

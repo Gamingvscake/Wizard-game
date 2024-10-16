@@ -15,6 +15,7 @@ public class EnemyHealthScript : MonoBehaviour
     CauldronScript cs;
     public enum DamageResistance
     {
+        NONE,
         Neutral,
         Fire,
         Water,
@@ -23,6 +24,7 @@ public class EnemyHealthScript : MonoBehaviour
     }
     public enum DamageWeakness
     {
+        NONE,
         Neutral,
         Fire,
         Water,
@@ -33,8 +35,6 @@ public class EnemyHealthScript : MonoBehaviour
     {
         HealthSlider.maxValue = MaxHealth;
         Health = MaxHealth;
-        wsc = GameObject.Find("FirstPersonController").GetComponent<WeaponSwapControl>();
-        cs = GameObject.Find("FirstPersonController").GetComponent<CauldronScript>();
     }
     private void Update()
     {
@@ -50,6 +50,8 @@ public class EnemyHealthScript : MonoBehaviour
         if (collision.collider.tag == "PlayerAttack" || collision.collider.tag == "EnvironmentAttack")
         {
             DamageScript temp = collision.gameObject.GetComponent<DamageScript>();
+            wsc = temp.dswsc;
+            cs = temp.cs;
             if ((int)temp.damageType == (int)damageRes)
             {
                 Health -= ((temp.Damage+cs.Damage2) / 2);
@@ -72,6 +74,8 @@ public class EnemyHealthScript : MonoBehaviour
         if (other.tag == "PlayerAttack" || other.tag == "EnvironmentAttack")
         {
             DamageScript temp = other.gameObject.GetComponent<DamageScript>();
+            wsc = temp.dswsc;
+            cs = temp.cs;
             if ((int)temp.damageType == (int)damageRes)
             {
                 Health -= ((temp.Damage + cs.Damage2) / 2);
