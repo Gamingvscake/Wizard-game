@@ -8,18 +8,18 @@ using UnityEngine.UI;
 public class UIDisplay : MonoBehaviour
 {
 
-    public TMP_Text HealthText;
+    public Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        slider.maxValue = PlayerInflicts.PlayerCurrentHealth;
+        slider.value = PlayerInflicts.PlayerCurrentHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HealthText.text = PlayerInflicts.PlayerCurrentHealth.ToString();
-
+        slider.value = PlayerInflicts.PlayerCurrentHealth;
     }
 }
