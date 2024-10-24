@@ -1055,6 +1055,7 @@ MonoBehaviour:
   CurrentEquippedSpell: {fileID: 0}
   StarterStaff: {fileID: 3228822451976501643, guid: 3a6e4f6c2f19e2748ab1c238d8be06fe, type: 3}
   tempstaff: 0
+  tempobject: {fileID: 0}
   Mana: 0
   MaxMana: 100
   DisplayMana: {fileID: 3838503862688684099}
