@@ -5425,6 +5425,18 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1679382828855310229, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679382828855310229, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622051282374932297, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 25d2a1aa404c29e4d8367fb2e6358cad, type: 3}
     - target: {fileID: 2806773486289738624, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
@@ -5432,6 +5444,10 @@ PrefabInstance:
     - target: {fileID: 2881584243091558163, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000463644740902531, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Name
+      value: White Circle
       objectReference: {fileID: 0}
     - target: {fileID: 4086374669776492162, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_FillAmount
@@ -5501,13 +5517,29 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5590000700875571562, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Name
+      value: Damaged BG
+      objectReference: {fileID: 0}
     - target: {fileID: 5683006169045566561, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6404271483313457536, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 167.9
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823095635055484321, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1d2af473a962cde4da65051f54a261ca, type: 3}
+    - target: {fileID: 6823095635055484321, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 838a81511eb3b9b4b83500e641ce7ea0, type: 2}
+    - target: {fileID: 6973727284414277725, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 7587967937600323841, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_AnchorMax.x
