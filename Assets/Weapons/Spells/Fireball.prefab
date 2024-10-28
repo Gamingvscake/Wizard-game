@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1078419521698714951}
   - component: {fileID: 320220629901350226}
   - component: {fileID: 7252858173483688238}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fireball
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698623644289190983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fireball
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}

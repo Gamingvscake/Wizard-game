@@ -6,12 +6,10 @@ using static UnityEditor.PlayerSettings;
 public class WeaponSwapControl : MonoBehaviour
 {
     public int MaxNumberOfStaffs;
-    public int MaxNumberOfSpells;
     public Transform StaffSpawnPoint;
     public GameObject[] EquippedStaffs;
-    public GameObject[] EquippedSpells;
+    public GameObject[] TempStaffs;
     public GameObject CurrentEquippedStaff;
-    public GameObject CurrentEquippedSpell;
     public GameObject StarterStaff;
     public int tempstaff;
     public GameObject tempobject;
@@ -21,10 +19,12 @@ public class WeaponSwapControl : MonoBehaviour
     public TextMeshProUGUI DisplayPoints;
     public int points;
     public CauldronScript wsccs;
+    public PlayerInflicts wscPI;
     private void Start()
     {
         Mana = MaxMana;
         EquippedStaffs = new GameObject[MaxNumberOfStaffs];
+        TempStaffs = new GameObject[MaxNumberOfStaffs];
         EquippedStaffs[0] = StarterStaff;
         if(tempobject == null)
         {
@@ -84,5 +84,18 @@ public class WeaponSwapControl : MonoBehaviour
     {
         if (DisplayMana != null)
             DisplayMana.SetText(spellsLeft / spellsPerTap + " / " + manaSize / spellsPerTap);
+    }
+    public void UpdateStaffArray()
+    {
+        for (int i = 0; i < EquippedStaffs.Length; i++)
+        {
+            TempStaffs[i] = EquippedStaffs[i];
+        }
+        EquippedStaffs = new GameObject[MaxNumberOfStaffs];
+        for (int i = 0;i < TempStaffs.Length; i++)
+        {
+            EquippedStaffs[i] = TempStaffs[i];
+        }
+        TempStaffs = new GameObject[MaxNumberOfStaffs];
     }
 }

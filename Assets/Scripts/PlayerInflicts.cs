@@ -8,6 +8,7 @@ public class PlayerInflicts : MonoBehaviour
     [Header("Health Settings")]
     public int PlayerMaxHealth;
     public static int PlayerCurrentHealth;
+    public int curHealth;
 
     [Header("Regen Settings")]
     public static float HealthRegenDelay = 3f;
@@ -61,7 +62,10 @@ public class PlayerInflicts : MonoBehaviour
         }
         isRegenerating = false;
     }
-
+    public void LifeStealDo(int amount)
+    {
+        PlayerCurrentHealth += amount;
+    }
     void Update()
     {
         if (TakingNormalDamage && !DamageDealt)

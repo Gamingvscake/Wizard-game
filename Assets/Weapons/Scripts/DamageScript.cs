@@ -16,6 +16,7 @@ public class DamageScript : MonoBehaviour
     public Collider thisCollider;
     public CauldronScript cs;
     public WeaponSwapControl dswsc;
+    public PlayerInflicts dsPI;
     public enum DamageType 
     { 
         DONTUSE,
@@ -59,6 +60,7 @@ public class DamageScript : MonoBehaviour
             thisCollider.enabled = false;
             if (collision.collider.tag == "Enemy")
             {
+                dsPI.LifeStealDo(cs.LifeSteal);
                 Delete();
             }
             else

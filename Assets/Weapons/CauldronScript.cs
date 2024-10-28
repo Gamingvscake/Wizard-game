@@ -13,10 +13,13 @@ public class CauldronScript : MonoBehaviour
     public GameObject CauldronScreen;
     public bool InCauldronScreen;
     public FirstPersonController fpc;
+    public int LifeSteal;
+    public GameObject CurScreen;
     private void Start()
     {
         wsc = GetComponent<WeaponSwapControl>();
         CauldronScreen.SetActive(false);
+        CurScreen.SetActive(false);
     }
     private void Update()
     {
@@ -30,6 +33,7 @@ public class CauldronScript : MonoBehaviour
             else
             {
                 InCauldronScreen = false;
+                CurScreen.SetActive(false);
                 CauldronScreen.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -49,6 +53,7 @@ public class CauldronScript : MonoBehaviour
         {
             InCauldronRange = false;
             InCauldronScreen = false;
+            CurScreen.SetActive(false);
             CauldronScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -58,6 +63,7 @@ public class CauldronScript : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        CurScreen.SetActive(true);
         CauldronScreen.SetActive(true);
     }
     private enum UpgradeType 
@@ -65,7 +71,11 @@ public class CauldronScript : MonoBehaviour
         HealthUp,
         DamageUp,
         SplashUp,
-        SpeedUp 
+        SpeedUp,
+        LifeSteal,
+        StaminaUp,
+        ManaUp,
+        WeaponSlotUp
     }
     public void BUTTONWORK(int UT)
     {
@@ -102,6 +112,45 @@ public class CauldronScript : MonoBehaviour
                 wsc.points -= 1000;
             }
         }
+        else if (UT == (int)UpgradeType.LifeSteal)
+        {
+            if (wsc.points >= 1000)
+            {
+                LifeSteal += 1;
+                wsc.points -= 1000;
+            }
+        }
+        else if (UT == (int)UpgradeType.StaminaUp)
+        {
+            if (wsc.points >= 1000)
+            {
+                fpc.sprintDuration += 1;
+                wsc.points -= 1000;
+            }
+        }
+        else if (UT == (int)UpgradeType.ManaUp)
+        {
+            if (wsc.points >= 1000)
+            {
+                wsc.MaxMana += 10;
+                wsc.points -= 1000;
+            }
+        }
+        else if (UT == (int)UpgradeType.WeaponSlotUp)
+        {
+            if (wsc.points >= 1000)
+            {
+                wsc.MaxNumberOfStaffs += 1;
+                wsc.UpdateStaffArray();
+                wsc.points -= 1000;
+            }
+        }
         else print("INT outside of Enum Range");
+    }
+    public void NextPage(GameObject GO)
+    {
+        CurScreen.SetActive(false);
+        CurScreen = GO;
+        CurScreen.SetActive(true);
     }
 }

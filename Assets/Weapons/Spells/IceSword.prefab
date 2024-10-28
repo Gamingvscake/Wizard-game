@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4672510041259368783}
   - component: {fileID: 2409871464015803031}
   - component: {fileID: 4977253481838395862}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -251,9 +251,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698623644289190983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IceSword
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

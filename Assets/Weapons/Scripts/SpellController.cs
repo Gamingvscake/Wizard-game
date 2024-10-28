@@ -30,6 +30,7 @@ public class SpellController : MonoBehaviour
     public TextMeshProUGUI manaDisplay;
     WeaponSwapControl WSC;
     public CauldronScript sccs;
+    public PlayerInflicts scPI;
 
     //Bug fixing
     public bool allowInvoke = true;
@@ -41,10 +42,14 @@ public class SpellController : MonoBehaviour
         readyToCast = true;
         playerCam = GetComponentInParent<Camera>();
         WSC = GetComponentInParent<WeaponSwapControl>();
+        scPI = WSC.wscPI;
+        manaSize = WSC.MaxMana;
         manaDisplay = WSC.DisplayMana;
         spellsCasted = WSC.MaxMana;
         spellsLeft = WSC.Mana;
         sccs = WSC.wsccs;
+        Physics.IgnoreLayerCollision(6,6);
+        Physics.IgnoreLayerCollision(6,3);
     }
 
     private void Update()
@@ -58,8 +63,8 @@ public class SpellController : MonoBehaviour
     private void MyInput()
     {
         //Check if you are allowed to hold cast
-        if (allowButtonHold) casting = (Input.GetAxis("RTFire1") > 0.1f);
-        else casting = (Input.GetAxis("RTFire1") > 0.1f);
+        if (allowButtonHold) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
+        else casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
 
         //if (allowButtonHold) casting = Input.GetKey(KeyCode.Mouse0);
         //else casting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -108,6 +113,7 @@ public class SpellController : MonoBehaviour
         GameObject currentSpell = Instantiate(fireball, attackPoint.position, Quaternion.identity);
         currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
         currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
+        currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
         //Rotate spell to shoot direction
         currentSpell.transform.forward = directionWithoutSpread.normalized;
 
