@@ -35,8 +35,6 @@ public class FirstPersonController : MonoBehaviour
     public Color crosshairColor = Color.white;
 
     // Internal Variables
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
     private Image crosshairObject;
 
     #region Camera Zoom Variables
@@ -48,7 +46,6 @@ public class FirstPersonController : MonoBehaviour
     public float zoomStepTime = 5f;
 
     // Internal Variables
-    private bool isZoomed = false;
 
     #endregion
     #endregion
@@ -209,7 +206,6 @@ public class FirstPersonController : MonoBehaviour
         {
             if(isSprinting)
             {
-                isZoomed = false;
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV, sprintFOVStepTime * Time.deltaTime);
 
                 // Drain sprint remaining while sprinting
