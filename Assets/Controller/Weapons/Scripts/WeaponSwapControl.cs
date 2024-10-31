@@ -43,39 +43,44 @@ public class WeaponSwapControl : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y > 0)
         {
-            if (EquippedStaffs.Length != 1)
+            if (EquippedStaffs[tempstaff += 1] != null)
             {
-                Destroy(tempobject);
-                if (tempstaff != MaxNumberOfStaffs - 1)
+                if (EquippedStaffs.Length != 1)
                 {
-                    tempstaff++;
-                }
-                CurrentEquippedStaff = EquippedStaffs[tempstaff];
-                if (CurrentEquippedStaff != null)
-                {
-                    tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
-                    tempobject.GetComponent<SpellController>().enabled = true;
-                }
-                if (tempstaff > MaxNumberOfStaffs)
-                {
-                    tempstaff = EquippedStaffs.Length;
+                    Destroy(tempobject);
+                    if (tempstaff != MaxNumberOfStaffs - 1)
+                    {
+                        tempstaff++;
+                    }
+                    CurrentEquippedStaff = EquippedStaffs[tempstaff];
+                    if (CurrentEquippedStaff != null)
+                    {
+                        tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
+                        tempobject.GetComponent<SpellController>().enabled = true;
+                    }
+                    if (tempstaff > MaxNumberOfStaffs)
+                    {
+                        tempstaff = EquippedStaffs.Length;
+                    }
                 }
             }
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
-            if (EquippedStaffs.Length != 1)
-            {
-                Destroy(tempobject);
-                if (tempstaff != 0)
+            if (EquippedStaffs[tempstaff -= 1] != null) {
+                if (EquippedStaffs.Length != 1)
                 {
-                    tempstaff--;
-                }
-                CurrentEquippedStaff = EquippedStaffs[tempstaff];
-                if (CurrentEquippedStaff != null)
-                {
-                    tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
-                    tempobject.GetComponent<SpellController>().enabled = true;
+                    Destroy(tempobject);
+                    if (tempstaff != 0)
+                    {
+                        tempstaff--;
+                    }
+                    CurrentEquippedStaff = EquippedStaffs[tempstaff];
+                    if (CurrentEquippedStaff != null)
+                    {
+                        tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
+                        tempobject.GetComponent<SpellController>().enabled = true;
+                    }
                 }
             }
         }
