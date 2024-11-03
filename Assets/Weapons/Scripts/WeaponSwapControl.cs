@@ -67,7 +67,7 @@ public class WeaponSwapControl : MonoBehaviour
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
-            if (EquippedStaffs[tempstaff -= 1] != null) {
+            if (EquippedStaffs[tempstaff -= 1] != null || tempstaff != 0) {
                 if (EquippedStaffs.Length != 1)
                 {
                     Destroy(tempobject);

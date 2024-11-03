@@ -13,6 +13,7 @@ public class EnemyHealthScript : MonoBehaviour
     public DamageWeakness damageWeak;
     public WeaponSwapControl wsc;
     CauldronScript cs;
+    public EnemySpawnScript enemySpawn;
     public enum DamageResistance
     {
         NONE,
@@ -41,8 +42,9 @@ public class EnemyHealthScript : MonoBehaviour
         HealthSlider.value = Health;
         if (Health <= 0)
         {
-            Health = MaxHealth;
             wsc.points += 1000;
+            enemySpawn.amountOfEnemies -= 1;
+            Destroy(this.gameObject);
         }
     }
     private void OnCollisionEnter(Collision collision)

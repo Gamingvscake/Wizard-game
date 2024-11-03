@@ -90,6 +90,7 @@ MonoBehaviour:
   thisCollider: {fileID: 4949307685771792805}
   cs: {fileID: 0}
   dswsc: {fileID: 0}
+  dsPI: {fileID: 0}
 --- !u!54 &2846807516539312182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 7188116084076457725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.789, y: 2.01, z: 0.7751665}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

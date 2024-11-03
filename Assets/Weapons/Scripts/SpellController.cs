@@ -110,7 +110,7 @@ public class SpellController : MonoBehaviour
         //Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
 
         //Instantiate projectile
-        GameObject currentSpell = Instantiate(fireball, attackPoint.position, Quaternion.identity);
+        GameObject currentSpell = Instantiate(fireball, attackPoint.position, attackPoint.rotation);
         currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
         currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
         currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
