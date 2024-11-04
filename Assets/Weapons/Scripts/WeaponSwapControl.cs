@@ -20,12 +20,15 @@ public class WeaponSwapControl : MonoBehaviour
     public int points;
     public CauldronScript wsccs;
     public PlayerInflicts wscPI;
+    public EnemySpawnScript ESS;
     private void Start()
     {
         Mana = MaxMana;
         EquippedStaffs = new GameObject[MaxNumberOfStaffs];
         TempStaffs = new GameObject[MaxNumberOfStaffs];
         EquippedStaffs[0] = StarterStaff;
+        ESS = GameObject.Find("Spawning").GetComponent<EnemySpawnScript>();
+        ESS.Players.Add(this.transform);
         if(tempobject == null)
         {
             CurrentEquippedStaff = EquippedStaffs[0];
@@ -43,44 +46,39 @@ public class WeaponSwapControl : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y > 0)
         {
-            if (EquippedStaffs[tempstaff += 1] != null)
+            if (EquippedStaffs.Length != 1 || EquippedStaffs[tempstaff += 1] != null)
             {
-                if (EquippedStaffs.Length != 1)
+                Destroy(tempobject);
+                if (tempstaff != MaxNumberOfStaffs - 1)
                 {
-                    Destroy(tempobject);
-                    if (tempstaff != MaxNumberOfStaffs - 1)
-                    {
-                        tempstaff++;
-                    }
-                    CurrentEquippedStaff = EquippedStaffs[tempstaff];
-                    if (CurrentEquippedStaff != null)
-                    {
-                        tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
-                        tempobject.GetComponent<SpellController>().enabled = true;
-                    }
-                    if (tempstaff > MaxNumberOfStaffs)
-                    {
-                        tempstaff = EquippedStaffs.Length;
-                    }
+                    tempstaff++;
+                }
+                CurrentEquippedStaff = EquippedStaffs[tempstaff];
+                if (CurrentEquippedStaff != null)
+                {
+                    tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
+                    tempobject.GetComponent<SpellController>().enabled = true;
+                }
+                if (tempstaff > MaxNumberOfStaffs)
+                {
+                    tempstaff = EquippedStaffs.Length;
                 }
             }
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
-            if (EquippedStaffs[tempstaff -= 1] != null || tempstaff != 0) {
-                if (EquippedStaffs.Length != 1)
+            if (EquippedStaffs.Length != 1 || EquippedStaffs[tempstaff -=1] != null)
+            {
+                Destroy(tempobject);
+                if (tempstaff != 0)
                 {
-                    Destroy(tempobject);
-                    if (tempstaff != 0)
-                    {
-                        tempstaff--;
-                    }
-                    CurrentEquippedStaff = EquippedStaffs[tempstaff];
-                    if (CurrentEquippedStaff != null)
-                    {
-                        tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
-                        tempobject.GetComponent<SpellController>().enabled = true;
-                    }
+                    tempstaff--;
+                }
+                CurrentEquippedStaff = EquippedStaffs[tempstaff];
+                if (CurrentEquippedStaff != null)
+                {
+                    tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
+                    tempobject.GetComponent<SpellController>().enabled = true;
                 }
             }
         }

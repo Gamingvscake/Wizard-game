@@ -18,6 +18,8 @@ public class EnemySpawnScript : MonoBehaviour
     float tempSTimer;
     bool tempcanspawn;
     bool roundup = true;
+    public List<Transform> Players;
+    public Transform[] EntryPoints;
     private void Start()
     {
         amountOfEnemiesLeft = starterAmountOfEnemies;
@@ -46,6 +48,8 @@ public class EnemySpawnScript : MonoBehaviour
                 {
                     GameObject temp = Instantiate(enemy, spawnpoints[Random.Range(0, spawnpoints.Length)]);
                     temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
+                    temp.GetComponent<EnemyMovementScript>().Players = Players;
+                    temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
                     amountOfEnemies += 1;
                     tempSTimer = 0;
                     tempcanspawn = false;

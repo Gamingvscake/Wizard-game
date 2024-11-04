@@ -10,6 +10,7 @@ TagManager:
   - Cauldron
   - Removeable
   - Buyable
+  - EnterPoint
   layers:
   - Default
   - TransparentFX
