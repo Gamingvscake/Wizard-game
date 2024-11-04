@@ -10,12 +10,13 @@ public class UIDisplay : MonoBehaviour
     void Start()
     {
         slider.maxValue = UIPI.PlayerMaxHealth;
-        slider.value = PlayerInflicts.PlayerCurrentHealth;
+        slider.value = UIPI.PlayerCurrentHealth;
+        UIPI = transform.root.GetComponent<PlayerInflicts>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = PlayerInflicts.PlayerCurrentHealth;
+        slider.value = UIPI.PlayerCurrentHealth;
     }
 }

@@ -7,27 +7,26 @@ public class PlayerInflicts : MonoBehaviour
 
     [Header("Health Settings")]
     public int PlayerMaxHealth;
-    public static int PlayerCurrentHealth;
-    public int curHealth;
+    public int PlayerCurrentHealth;
 
     [Header("Regen Settings")]
-    public static float HealthRegenDelay = 3f;
-    public static float HealthRegenRate = 10f;
+    public float HealthRegenDelay = 3f;
+    public float HealthRegenRate = 10f;
 
     [Header("Misc")]
     public int IFrameTime;
-    public static int MaxDamage; 
-    public static int MinDamage; //Max and Min Damage are altered by the DamageSource script, these do not need to be altered from here
+    public int MaxDamage; 
+    public int MinDamage; //Max and Min Damage are altered by the DamageSource script, these do not need to be altered from here
     private bool DamageDealt;
 
 
 
-    public static float regenTimer;
-    public static bool isRegenerating;
+    public float regenTimer;
+    public bool isRegenerating;
 
-    public static bool IFrames = false;
-    public static bool TakingNormalDamage = false;
-    public static bool TakingDrainingDamage = false;
+    public bool IFrames = false;
+    public bool TakingNormalDamage = false;
+    public bool TakingDrainingDamage = false;
 
     void Start()
     {

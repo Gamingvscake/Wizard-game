@@ -86,7 +86,6 @@ MonoBehaviour:
   castSpeed: 0.1
   manaSize: 100
   spellsPerTap: 1
-  manaPerSecond: 1
   allowButtonHold: 1
   spellsLeft: 0
   spellsCasted: 0
@@ -96,6 +95,8 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
   manaDisplay: {fileID: 0}
+  sccs: {fileID: 0}
+  scPI: {fileID: 0}
   allowInvoke: 1
 --- !u!1001 &4899252406918837699
 PrefabInstance:

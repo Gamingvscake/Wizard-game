@@ -246,63 +246,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 426458, guid: ea0930fcd2181ba48bde8ca2ce528df3, type: 3}
   m_PrefabInstance: {fileID: 947866281}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &63047518
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.12
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9370098
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.34930322
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 40.889
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
-      propertyPath: m_Name
-      value: Wizard Staves
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9d1a97ccc5baec043b01fb9934e9100c, type: 3}
 --- !u!1 &68751595
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +629,7 @@ MonoBehaviour:
   DrainEnemy: 0
   maxDamage: 36
   minDamage: 12
+  UIPI: {fileID: 0}
 --- !u!65 &156628275
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6525,6 +6469,5 @@ SceneRoots:
   - {fileID: 2278903625655746698}
   - {fileID: 1106362682}
   - {fileID: 1449087812}
-  - {fileID: 63047518}
   - {fileID: 2137690621}
   - {fileID: 1993466930}

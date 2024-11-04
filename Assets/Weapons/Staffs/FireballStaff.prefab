@@ -96,6 +96,7 @@ MonoBehaviour:
   attackPoint: {fileID: 2626075607143133344}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
+  scPI: {fileID: 0}
   allowInvoke: 1
 --- !u!1001 &765272831053224751
 PrefabInstance:

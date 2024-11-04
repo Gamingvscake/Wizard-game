@@ -7,25 +7,34 @@ public class DamageSource : MonoBehaviour
     public bool DrainEnemy;
     public int maxDamage;
     public int minDamage;
+    public PlayerInflicts UIPI;
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && !PlayerInflicts.IFrames)
+        if (other.CompareTag("Player"))
         {
-            if (DrainEnemy)
+            if (UIPI == null)
             {
-                PlayerInflicts.TakingDrainingDamage = true;
-            }
-            else
-            {
-                PlayerInflicts.TakingNormalDamage = true;
-                PlayerInflicts.MaxDamage = maxDamage;
-                PlayerInflicts.MinDamage = minDamage;
+                UIPI = other.GetComponent<PlayerInflicts>();
             }
 
-            PlayerInflicts.IFrames = true;
-            PlayerInflicts.regenTimer = PlayerInflicts.HealthRegenDelay;
-            PlayerInflicts.isRegenerating = false;
+            if (UIPI != null && !UIPI.IFrames)
+            {
+                if (DrainEnemy)
+                {
+                    UIPI.TakingDrainingDamage = true;
+                }
+                else
+                {
+                    UIPI.TakingNormalDamage = true;
+                    UIPI.MaxDamage = maxDamage;
+                    UIPI.MinDamage = minDamage;
+                }
 
+                UIPI.IFrames = true;
+                UIPI.regenTimer = UIPI.HealthRegenDelay;
+                UIPI.isRegenerating = false;
+            }
         }
     }
 }
