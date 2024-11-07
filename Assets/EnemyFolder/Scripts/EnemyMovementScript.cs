@@ -25,13 +25,13 @@ public class EnemyMovementScript : MonoBehaviour
         {
             Transform temp = GetClosestEnemy(entryPoints);
             transform.LookAt(temp);
-            transform.position = Vector3.MoveTowards(transform.position, temp.position, speed);
+            transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
         }
         else if (!OutOfBounds)
         {
             Transform temp = GetClosestEnemy(PlayerNotList);
             transform.LookAt(temp);
-            transform.position = Vector3.MoveTowards(transform.position, temp.position, speed);
+            transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
             if (Vector3.Distance(transform.position, temp.position) <= 1)
             {
                 AttackBox.SetActive(true);
