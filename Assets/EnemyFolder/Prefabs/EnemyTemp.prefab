@@ -419,7 +419,7 @@ MonoBehaviour:
   Players: []
   PlayerNotList: []
   OutOfBounds: 1
-  speed: 1
+  speed: 2
   AttackBox: {fileID: 38274629496478806}
 --- !u!54 &578138067553967179
 Rigidbody:

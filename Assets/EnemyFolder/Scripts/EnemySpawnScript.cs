@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawnScript : MonoBehaviour
@@ -20,6 +21,8 @@ public class EnemySpawnScript : MonoBehaviour
     bool roundup = true;
     public List<Transform> Players;
     public Transform[] EntryPoints;
+    public EnemyMovementScript enemyMovementScript;
+
     private void Start()
     {
         amountOfEnemiesLeft = starterAmountOfEnemies;
@@ -66,6 +69,12 @@ public class EnemySpawnScript : MonoBehaviour
         {
             inTheRound = false;
             roundup = true;
+        }
+
+        //Modified enemy stats based on round
+        if (rounds >= 5)
+        {
+            enemyMovementScript.speed = 2;
         }
     }
 }

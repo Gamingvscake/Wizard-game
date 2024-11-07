@@ -10,6 +10,7 @@ public class EnemyMovementScript : MonoBehaviour
     public bool OutOfBounds = true;
     public float speed;
     public GameObject AttackBox;
+
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
@@ -39,6 +40,7 @@ public class EnemyMovementScript : MonoBehaviour
             else AttackBox.SetActive(false);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == ("EnterPoint"))
