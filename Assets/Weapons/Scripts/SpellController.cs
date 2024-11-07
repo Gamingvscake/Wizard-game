@@ -125,7 +125,7 @@ public class SpellController : MonoBehaviour
         spellsLeft--;
         WSC.Mana--;
         spellsCasted++;
-        print(spellsCasted);
+        //print(spellsCasted);
         //Invoke resetCast function if not already invoked
         //Stop spells from spamming
         if (spellsCasted < spellsPerTap && spellsLeft > 0)

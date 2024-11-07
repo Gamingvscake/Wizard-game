@@ -40,7 +40,7 @@ public class WeaponSwapControl : MonoBehaviour
     {
         StaffSwap();
         DisplayPoints.SetText(points.ToString());
-        print(Mana);
+        //print(Mana);
     }
     private void StaffSwap()
     {
