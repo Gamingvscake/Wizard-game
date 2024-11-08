@@ -636,6 +636,8 @@ MonoBehaviour:
   maxDamage: 36
   minDamage: 12
   UIPI: {fileID: 0}
+  Attacking: 0
+  Attacked: 0
 --- !u!65 &156628275
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6942,6 +6944,7 @@ MonoBehaviour:
   - {fileID: 1326677799}
   - {fileID: 1404994556}
   - {fileID: 479240157}
+  enemyMovementScript: {fileID: 0}
 --- !u!1 &2017670068
 GameObject:
   m_ObjectHideFlags: 0

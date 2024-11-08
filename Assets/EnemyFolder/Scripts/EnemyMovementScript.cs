@@ -10,11 +10,14 @@ public class EnemyMovementScript : MonoBehaviour
     public bool OutOfBounds = true;
     public float speed;
     public GameObject AttackBox;
+    private Animator animator; // Animator component reference
+    public DamageSource DMGScript;
 
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
         AttackBox.SetActive(false);
+        animator = GetComponent<Animator>();
         for (int i = 0; i < Players.Count; i++)
         {
             PlayerNotList[i] = Players[i];
@@ -28,7 +31,7 @@ public class EnemyMovementScript : MonoBehaviour
             transform.LookAt(temp);
             transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
         }
-        else if (!OutOfBounds)
+        else if (!OutOfBounds && !DMGScript.Attacking)
         {
             Transform temp = GetClosestEnemy(PlayerNotList);
             transform.LookAt(temp);
@@ -49,6 +52,7 @@ public class EnemyMovementScript : MonoBehaviour
             transform.position = other.GetComponent<HolderScript>().EnterPoint;
         }
     }
+
     private Transform GetClosestEnemy(Transform[] enemies)
     {
         Transform bestTarget = null;

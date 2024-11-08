@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageSource : MonoBehaviour
@@ -8,6 +7,12 @@ public class DamageSource : MonoBehaviour
     public int maxDamage;
     public int minDamage;
     public PlayerInflicts UIPI;
+    public bool Attacking; // Boolean for whether or not the enemy is attacking
+    public bool Attacked;  // Boolean for when attack animation is done, check is still colliding
+    private bool playerExitedDuringAttack = false; // Tracks if the player exited during the attack
+
+    public Animator animator; // Animator component reference
+    private Coroutine attackCoroutine; // Reference to the attack coroutine
 
     private void OnTriggerStay(Collider other)
     {
@@ -20,21 +25,60 @@ public class DamageSource : MonoBehaviour
 
             if (UIPI != null && !UIPI.IFrames)
             {
-                if (DrainEnemy)
+                if (!Attacking)
                 {
-                    UIPI.TakingDrainingDamage = true;
+                    // Initiate attack and stop movement
+                    Attacking = true;
+                    animator.SetTrigger("Attacking");
+
+                    // Start the coroutine to wait for the animation to complete
+                    attackCoroutine = StartCoroutine(CompleteAttack());
                 }
-                else
+                else if (Attacked && !playerExitedDuringAttack)
                 {
+                    // Apply damage after attack animation completes
                     UIPI.TakingNormalDamage = true;
                     UIPI.MaxDamage = maxDamage;
                     UIPI.MinDamage = minDamage;
-                }
+                    UIPI.IFrames = true;
+                    UIPI.regenTimer = UIPI.HealthRegenDelay;
+                    UIPI.isRegenerating = false;
 
-                UIPI.IFrames = true;
-                UIPI.regenTimer = UIPI.HealthRegenDelay;
-                UIPI.isRegenerating = false;
+                    // Reset flags after applying damage
+                    ResetAttackFlags();
+                }
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // If the player exits before the attack is completed, mark exit
+            playerExitedDuringAttack = true;
+        }
+    }
+
+    private IEnumerator CompleteAttack()
+    {
+        // Wait for the attack animation to complete
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        Attacked = true; // Set to true after animation completes
+
+        // If the player has exited during the attack, reset flags
+        if (playerExitedDuringAttack)
+        {
+            ResetAttackFlags();
+        }
+    }
+
+    private void ResetAttackFlags()
+    {
+        // Resets all flags to prepare for the next attack cycle
+        Attacking = false;
+        Attacked = false;
+        playerExitedDuringAttack = false;
     }
 }
