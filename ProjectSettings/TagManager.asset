@@ -11,6 +11,7 @@ TagManager:
   - Removeable
   - Buyable
   - EnterPoint
+  - Anvil
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class WeaponSwapControl : MonoBehaviour
 {
@@ -21,6 +20,7 @@ public class WeaponSwapControl : MonoBehaviour
     public CauldronScript wsccs;
     public PlayerInflicts wscPI;
     public EnemySpawnScript ESS;
+    public AnvilScript wscas;
     private void Start()
     {
         Mana = MaxMana;
@@ -44,7 +44,7 @@ public class WeaponSwapControl : MonoBehaviour
     }
     private void StaffSwap()
     {
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0&& tempstaff != MaxNumberOfStaffs - 1)
         {
             if (EquippedStaffs.Length != 1 || EquippedStaffs[tempstaff += 1] != null)
             {
@@ -65,7 +65,7 @@ public class WeaponSwapControl : MonoBehaviour
                 }
             }
         }
-        else if (Input.mouseScrollDelta.y < 0)
+        else if (Input.mouseScrollDelta.y < 0 && tempstaff!=0)
         {
             if (EquippedStaffs.Length != 1 || EquippedStaffs[tempstaff -=1] != null)
             {
@@ -100,5 +100,14 @@ public class WeaponSwapControl : MonoBehaviour
             EquippedStaffs[i] = TempStaffs[i];
         }
         TempStaffs = new GameObject[MaxNumberOfStaffs];
+    }
+    public void UpgradeStaff()
+    {
+        Destroy(tempobject);
+        EquippedStaffs[tempstaff] = tempobject.GetComponent<SpellController>().upgradedStaff;
+        CurrentEquippedStaff = EquippedStaffs[tempstaff];
+
+        tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
+        tempobject.GetComponent<SpellController>().enabled = true;
     }
 }

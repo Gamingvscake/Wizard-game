@@ -21,7 +21,9 @@ public class EnemyHealthScript : MonoBehaviour
         Fire,
         Water,
         Earth,
-        Air
+        Air,
+        Light,
+        Dark
     }
     public enum DamageWeakness
     {
@@ -30,7 +32,9 @@ public class EnemyHealthScript : MonoBehaviour
         Fire,
         Water,
         Earth,
-        Air
+        Air,
+        Light,
+        Dark
     }
     private void Start()
     {
@@ -43,7 +47,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (Health <= 0)
         {
             wsc.points += 1000;
-            enemySpawn.amountOfEnemies -= 1;
+            if (enemySpawn != null)enemySpawn.amountOfEnemies -= 1;
             Destroy(this.gameObject);
         }
     }
@@ -52,23 +56,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (collision.collider.tag == "PlayerAttack" || collision.collider.tag == "EnvironmentAttack")
         {
             DamageScript temp = collision.gameObject.GetComponent<DamageScript>();
-            wsc = temp.dswsc;
-            cs = temp.cs;
-            if ((int)temp.damageType == (int)damageRes)
-            {
-                Health -= ((temp.Damage+cs.Damage2) / 2);
-                wsc.points += 100;
-            }
-            else if ((int)temp.damageType == (int)damageWeak)
-            {
-                Health -= ((temp.Damage + cs.Damage2) * 2);
-                wsc.points += 100;
-            }
-            else
-            {
-                Health -= (temp.Damage + cs.Damage2);
-                wsc.points += 100;
-            }
+            DODAMAGE(temp);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -76,23 +64,27 @@ public class EnemyHealthScript : MonoBehaviour
         if (other.tag == "PlayerAttack" || other.tag == "EnvironmentAttack")
         {
             DamageScript temp = other.gameObject.GetComponent<DamageScript>();
-            wsc = temp.dswsc;
-            cs = temp.cs;
-            if ((int)temp.damageType == (int)damageRes)
-            {
-                Health -= ((temp.Damage + cs.Damage2) / 2);
-                wsc.points += 100;
-            }
-            else if ((int)temp.damageType == (int)damageWeak)
-            {
-                Health -= ((temp.Damage + cs.Damage2) * 2);
-                wsc.points += 100;
-            }
-            else
-            {
-                Health -= (temp.Damage + cs.Damage2);
-                wsc.points += 100;
-            }
+            DODAMAGE(temp);
+        }
+    }
+    public void DODAMAGE(DamageScript temp)
+    {
+        wsc = temp.dswsc;
+        cs = temp.cs;
+        if ((int)temp.damageType == (int)damageRes)
+        {
+            Health -= ((temp.Damage + cs.Damage2) / 2);
+            wsc.points += 100;
+        }
+        else if ((int)temp.damageType == (int)damageWeak)
+        {
+            Health -= ((temp.Damage + cs.Damage2) * 2);
+            wsc.points += 100;
+        }
+        else
+        {
+            Health -= (temp.Damage + cs.Damage2);
+            wsc.points += 100;
         }
     }
 }

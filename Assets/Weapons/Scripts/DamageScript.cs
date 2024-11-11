@@ -21,7 +21,9 @@ public class DamageScript : MonoBehaviour
         Fire,
         Water,
         Earth,
-        Air
+        Air,
+        Light,
+        Dark
     }
     private void Start()
     {

@@ -78,12 +78,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 7188116084076457725, guid: dbfb3154a6656a249a9166db054a797b, type: 3}
+  upgradedStaff: {fileID: 3228822451976501643, guid: a3308475375e3804c99a62f67da2941e, type: 3}
   castForce: 20
   upwardForce: 0
   castTime: 0.1
   spread: 0
   reloadTime: 2
   castSpeed: 0.1
+  hitscanRange: 0
+  hitscanTrailDuration: 0
   manaSize: 100
   spellsPerTap: 1
   allowButtonHold: 1
@@ -92,11 +95,14 @@ MonoBehaviour:
   casting: 0
   readyToCast: 0
   reloading: 0
+  attackType: 0
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
+  scas: {fileID: 0}
   scPI: {fileID: 0}
+  lineRenderer: {fileID: 0}
   allowInvoke: 1
 --- !u!1001 &4899252406918837699
 PrefabInstance:
