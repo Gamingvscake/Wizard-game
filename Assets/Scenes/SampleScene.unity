@@ -5367,6 +5367,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 258490646904507261, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 339099001759086372, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -5570,6 +5574,10 @@ PrefabInstance:
     - target: {fileID: 4971276055718051421, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Name
       value: AnvilScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971276055718051421, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5262335558005367664, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Interactable

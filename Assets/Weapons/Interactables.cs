@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Interactables : MonoBehaviour
@@ -9,14 +10,33 @@ public class Interactables : MonoBehaviour
     public float timer, Maxtimer;
     public InteractableVariables InterVaris;
     public WeaponSwapControl iwsc;
+    public TextMeshProUGUI txt;
     bool CanBuy;
     bool HasBought;
     private void Start()
     {
         timer = Maxtimer;
+        txt.gameObject.SetActive(false);
     }
     private void Update()
     {
+        if (InInteractableRange)
+        {
+            if (InterVaris.BuyableObject != null)
+            {
+                txt.text = "Buy " + InterVaris.BuyableObject.name + " for " + InterVaris.Cost;
+                txt.gameObject.SetActive(true);
+            }
+            else
+            {
+                txt.text = "Buy barrier for " + InterVaris.Cost;
+                txt.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            txt.gameObject.SetActive(false);
+        }
         if (InInteractableRange && Input.GetKey(KeyCode.E))
         {
             if (InterVaris != null && InterVaris.Cost <= iwsc.points)
