@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using TMPro;
 using static UnityEditor.PlayerSettings;
+using UnityEngine.InputSystem.HID;
 
 public class SpellController : MonoBehaviour
 {
@@ -90,7 +91,7 @@ public class SpellController : MonoBehaviour
     {
         //Check if you are allowed to hold cast
         if (canSwing && allowButtonHold && sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
-        else if (canSwing && sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
+        else if (canSwing && sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKeyDown(KeyCode.Mouse0));
 
         //if (allowButtonHold) casting = Input.GetKey(KeyCode.Mouse0);
         //else casting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -173,7 +174,7 @@ public class SpellController : MonoBehaviour
             }
             else
             {
-                lineRenderer.SetPosition(1, ray.origin +(playerCam.transform.forward * hitscanRange));
+                lineRenderer.SetPosition(1, ray.origin + (playerCam.transform.forward * hitscanRange));
             }
             StartCoroutine(ShootHitScan());
         }
@@ -193,9 +194,18 @@ public class SpellController : MonoBehaviour
             temphitbox.Damage = tempds.Damage;
             meleeHitbox.SetActive(true);
         }
-        else if (attackType == AttackType.Area)
+        else if (attackType == AttackType.Turret)
         {
-
+            if (WSC.numberOfTurrets < WSC.maxNumberOfTurrets)
+            {
+                GameObject currentSpell = Instantiate(fireball,attackPoint.position, Quaternion.identity);
+                currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
+                currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
+                currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
+                currentSpell.GetComponentInChildren<TurretMoveScript>().castForce = castForce;
+                currentSpell.GetComponentInChildren<TurretMoveScript>().upwardForce = upwardForce;
+                WSC.numberOfTurrets += 1;
+            }
         }
         spellsLeft--;
         WSC.Mana--;

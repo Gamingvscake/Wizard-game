@@ -15,6 +15,7 @@ public class DamageScript : MonoBehaviour
     public WeaponSwapControl dswsc;
     public PlayerInflicts dsPI;
     public bool isMelee;
+    public bool isTurret;
     public enum DamageType 
     { 
         DONTUSE,
@@ -33,7 +34,7 @@ public class DamageScript : MonoBehaviour
     }
     private void Update()
     {
-        if (isMelee != true) Destroy(item, DeleteDelay + 1);
+        if (isMelee != true && isTurret != true) Destroy(item, DeleteDelay + 1);
     }
     private void Delete()
     {

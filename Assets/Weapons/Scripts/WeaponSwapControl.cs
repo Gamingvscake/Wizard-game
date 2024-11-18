@@ -21,6 +21,8 @@ public class WeaponSwapControl : MonoBehaviour
     public PlayerInflicts wscPI;
     public EnemySpawnScript ESS;
     public AnvilScript wscas;
+    public int maxNumberOfTurrets;
+    public int numberOfTurrets;
     private void Start()
     {
         Mana = MaxMana;
