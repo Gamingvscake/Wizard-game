@@ -17,11 +17,14 @@ public class SpellController : MonoBehaviour
     public float castTime, spread, reloadTime, castSpeed, hitscanRange, hitscanTrailDuration;
     public int manaSize, spellsPerTap;
     public bool allowButtonHold;
-
+    public float maxtimer;
+    private float temptimer;
     public int spellsLeft, spellsCasted;
 
     //Bool stuff
     public bool casting, readyToCast, reloading;
+    private bool canSwing;
+
     public enum AttackType
     {
         Projectile,
@@ -36,7 +39,7 @@ public class SpellController : MonoBehaviour
     //References
     public Camera playerCam;
     public Transform attackPoint;
-
+    public GameObject meleeHitbox;
     //Graphics
     public TextMeshProUGUI manaDisplay;
     WeaponSwapControl WSC;
@@ -46,6 +49,7 @@ public class SpellController : MonoBehaviour
     public LineRenderer lineRenderer;
     //Bug fixing
     public bool allowInvoke = true;
+
 
 
     private void Awake()
@@ -64,6 +68,9 @@ public class SpellController : MonoBehaviour
         scas.spellCon = this.gameObject.GetComponent<SpellController>();
         Physics.IgnoreLayerCollision(6,6);
         Physics.IgnoreLayerCollision(6,3);
+        meleeHitbox.SetActive(false);
+        temptimer = maxtimer;
+        canSwing = false;
     }
 
     private void Update()
@@ -71,13 +78,19 @@ public class SpellController : MonoBehaviour
         MyInput();
         //Set mana display
         WSC.UpdateManaDisplay(spellsLeft, spellsPerTap, manaSize);
+        if (maxtimer > 0)
+        {
+            if (temptimer < maxtimer) temptimer += Time.deltaTime;
+            if (temptimer >= maxtimer) canSwing = true;
+        }
+        else if (maxtimer <= 0)canSwing = true;
     }
 
     private void MyInput()
     {
         //Check if you are allowed to hold cast
-        if (allowButtonHold && sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
-        else if (sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
+        if (canSwing && allowButtonHold && sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
+        else if (canSwing && sccs.InCauldronScreen == false) casting = ((Input.GetAxis("RTFire1") > 0.1f) || Input.GetKey(KeyCode.Mouse0));
 
         //if (allowButtonHold) casting = Input.GetKey(KeyCode.Mouse0);
         //else casting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -164,6 +177,22 @@ public class SpellController : MonoBehaviour
             }
             StartCoroutine(ShootHitScan());
         }
+        else if (attackType == AttackType.Melee)
+        {
+            GameObject currentSpell = Instantiate(fireball, attackPoint.position, attackPoint.rotation);
+            currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
+            currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
+            currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
+            DamageScript tempds = currentSpell.GetComponentInChildren<DamageScript>();
+            Destroy(currentSpell);
+            DamageScript temphitbox = meleeHitbox.GetComponentInChildren<DamageScript>();
+            temphitbox.cs = sccs;
+            temphitbox.dswsc = WSC;
+            temphitbox.dsPI = scPI;
+            temphitbox.damageType = tempds.damageType;
+            temphitbox.Damage = tempds.Damage;
+            meleeHitbox.SetActive(true);
+        }
         else if (attackType == AttackType.Area)
         {
 
@@ -171,6 +200,7 @@ public class SpellController : MonoBehaviour
         spellsLeft--;
         WSC.Mana--;
         spellsCasted++;
+        if (maxtimer > 0)canSwing = false;
         //print(spellsCasted);
         //Invoke resetCast function if not already invoked
         //Stop spells from spamming
@@ -193,8 +223,12 @@ public class SpellController : MonoBehaviour
     private void ResetCast()
     {
         //Allow shooting and invoking again
+        if (maxtimer > 0) canSwing = false;
         readyToCast = true;
         allowInvoke = true;
+        casting = false;
+        meleeHitbox.SetActive(false);
+        temptimer = 0;
     }
 
     private void Reload()

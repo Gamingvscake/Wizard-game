@@ -14,6 +14,7 @@ public class DamageScript : MonoBehaviour
     public CauldronScript cs;
     public WeaponSwapControl dswsc;
     public PlayerInflicts dsPI;
+    public bool isMelee;
     public enum DamageType 
     { 
         DONTUSE,
@@ -28,11 +29,11 @@ public class DamageScript : MonoBehaviour
     private void Start()
     {
         item = transform.parent.gameObject;
-        SplashRadius.enabled = false;
+        if (SplashRadius != null ) SplashRadius.enabled = false;
     }
     private void Update()
     {
-        Destroy(item, DeleteDelay + 1);
+        if (isMelee != true) Destroy(item, DeleteDelay + 1);
     }
     private void Delete()
     {
@@ -47,38 +48,41 @@ public class DamageScript : MonoBehaviour
     }
     private void SplashDelay()
     {
-        SplashRadius.enabled = false;
+        if (SplashRadius != null) SplashRadius.enabled = false;
     }
     private void OnCollisionEnter(Collision collision)
     {
-        SplashRadius.radius += cs.SplashSize;
-        SplashRadius.enabled = true;
-        if (StickInTarget)
+        if (SplashRadius != null)
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            thisCollider.enabled = false;
-            if (collision.collider.tag == "Enemy")
+            SplashRadius.radius += cs.SplashSize;
+            SplashRadius.enabled = true;
+            if (StickInTarget)
             {
-                dsPI.LifeStealDo(cs.LifeSteal);
-                Delete();
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                thisCollider.enabled = false;
+                if (collision.collider.tag == "Enemy")
+                {
+                    dsPI.LifeStealDo(cs.LifeSteal);
+                    Delete();
+                }
+                else
+                {
+                    Destroy(item, DeleteDelay);
+                }
+                Invoke("SplashDelay", 0.1f);
             }
             else
             {
-                Destroy(item, DeleteDelay);
+                if (collision.collider.tag == "Enemy")
+                {
+                    Delete();
+                }
+                else
+                {
+                    Destroy(item, DeleteDelay);
+                }
+                Invoke("SplashDelay", 0.1f);
             }
-            Invoke("SplashDelay", 0.1f);
-        }
-        else
-        {
-            if (collision.collider.tag == "Enemy")
-            {
-                Delete();
-            }
-            else
-            {
-                Destroy(item, DeleteDelay);
-            }
-            Invoke("SplashDelay", 0.1f);
         }
     }
 }
