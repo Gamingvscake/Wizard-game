@@ -51,6 +51,7 @@ public class Interactables : MonoBehaviour
                         InterVaris = null;
                         timer = Maxtimer;
                         InInteractableRange = false;
+                        Removeable = false;
                     }
                 }
                 if (Buyable)
