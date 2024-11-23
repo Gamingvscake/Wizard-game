@@ -110,7 +110,6 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             stickInUse = false;
         }
 
-        // Handle DPad input (debounced)
         if (canMove)
         {
             if (dpadUp)
@@ -134,6 +133,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
 
     private void MenuControls()
     {
+        //every menu selection option, decided based on the "text selected" (the selectionIndex value)
         if (BookOpen && Input.GetButtonDown("Jump"))
         {
             if (MainScreenOpen)
@@ -279,7 +279,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
 
     private void ChangeSelection(int direction)
     {
-        // Update selection index and wrap around
+        //update selection index and wrap around
 
         if (SettingsScreenOpen || GeneralSettingsOpen || AudioSettingsOpen || ControlsSettingsOpen)
         {
@@ -290,7 +290,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             selectionIndex = (selectionIndex + direction + 3) % 3; // Modulo ensures wrapping between 0–2
         }
 
-        UpdateTextOutlines(); // Update text highlights
+        UpdateTextOutlines(); //update text highlights
     }
 
     private void UpdateTextOutlines()
@@ -299,13 +299,13 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
         {
             if (i == selectionIndex)
             {
-                // Start pulsing effect
+                //start pulsing effect
                 StartCoroutine(PulseOutline(CurrentMenuTexts[i]));
                 CurrentMenuTexts[i].outlineColor = selectedOutlineColor;
             }
             else
             {
-                // Reset to default outline color and width
+                //reset to default outline color and width
                 CurrentMenuTexts[i].outlineColor = defaultOutlineColor;
                 CurrentMenuTexts[i].outlineWidth = 0f;
             }
@@ -316,7 +316,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
     {
         float timer = 0f;
 
-        while (text == CurrentMenuTexts[selectionIndex]) // Pulse only for the current selected text
+        while (text == CurrentMenuTexts[selectionIndex]) //pulse only for the current selected text
         {
             timer += Time.deltaTime * pulseSpeed;
             float outlineWidth = Mathf.Lerp(0.1f, maxOutlineWidth, Mathf.PingPong(timer, 1));
@@ -327,7 +327,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
 
     private IEnumerator MoveCameraAfterDelay()
     {
-        // Wait for the specified delay
+        //wait for the specified delay
         yield return new WaitForSeconds(cameraMoveDelay);
 
         if (mainCamera != null && targetTransform != null && !isMovingCamera)
@@ -345,14 +345,14 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / cameraMoveDuration;
 
-                // Smoothly interpolate the camera position and rotation
+                //smoothly move the camera position and rotation
                 mainCamera.transform.position = Vector3.Lerp(startPosition, endPosition, t);
                 mainCamera.transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
 
                 yield return null;
             }
 
-            // Ensure camera reaches the exact target position and rotation
+            //ensure the camera reaches the exact target position and rotation
             mainCamera.transform.position = endPosition;
             mainCamera.transform.rotation = endRotation;
 
