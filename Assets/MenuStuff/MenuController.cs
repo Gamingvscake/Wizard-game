@@ -10,22 +10,29 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
     public Animator animator;
     public string triggerName = "Interact";
 
+    //just for moving the camera closer to the book after it has opened
     [Tooltip("Camera Movement Settings")]
-    public Camera mainCamera; // Reference to the main camera
-    public Transform targetTransform; // Target position and rotation for the camera
-    public float cameraMoveDelay = 1.0f; // Time to wait before moving the camera
-    public float cameraMoveDuration = 2.0f; // Time it takes to move the camera smoothly
+    public Camera mainCamera;
+    public Transform targetTransform;
+    public float cameraMoveDelay = 1.0f;
+    public float cameraMoveDuration = 2.0f;
 
+
+    //lists for each tmptext on each "page", added to in inspector
     [Tooltip("Selection Settings")]
     public List<TextMeshProUGUI> MainMenuTexts;
     public List<TextMeshProUGUI> SettingsMenuTexts;
+    public List<TextMeshProUGUI> GeneralMenuTexts;
+    public List<TextMeshProUGUI> AudioMenuTexts;
+    public List<TextMeshProUGUI> ControlsMenuTexts;
     public List<TextMeshProUGUI> CurrentMenuTexts;
-    public Color defaultOutlineColor = new Color(0, 0, 0, 0); // No outline by default
-    public Color selectedOutlineColor = new Color(215, 215, 215); // White outline for selected text
-    public float pulseSpeed = 2.0f; // Speed of the pulsing effect
-    public float maxOutlineWidth = 0.3f; // Maximum outline width during the pulse
-    private int selectionIndex = 0; // Current selected index
+    public Color defaultOutlineColor = new Color(0, 0, 0, 0); // no outline by default
+    public Color selectedOutlineColor = new Color(215, 215, 215); // whiteish outline for selected text
+    public float pulseSpeed = 2.0f; // speed of the pulsing effect
+    public float maxOutlineWidth = 0.3f; // maximum outline width during the pulse
+    private int selectionIndex = 0; // current selected index
 
+    //each canvas that serves as a "page"
     [Tooltip("Screen Objects")]
     public GameObject MenuScreen;
     public GameObject SettingsScreen;
@@ -33,7 +40,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
     public GameObject AudioSettings;
     public GameObject ControlsSettings;
 
-
+    //booleans for what's happening (which page, book open, camera moving, etc)
     private bool isMovingCamera = false;
     public bool BookOpen = false;
     public bool MainScreenOpen = true;
@@ -47,6 +54,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
+        //sets current "open page" to the menu, sets every other page to false
         CurrentMenuTexts = MainMenuTexts;
         UpdateTextOutlines(); // Ensure the correct text is highlighted on start
         MenuScreen.SetActive(true);
@@ -144,9 +152,45 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     MenuScreen.SetActive(false);
                     MainScreenOpen = false;
                 }
+                if (selectionIndex == 2)
+                {
+                    //line below is only for actually running the game
+                    Application.Quit();
+                    //line below is only for play mode (testing quit variant)
+                    UnityEditor.EditorApplication.isPlaying = false;
+                }
             }
-            if (SettingsScreenOpen)
+            else if (SettingsScreenOpen)
             {
+                if (selectionIndex == 0)
+                {
+                    GeneralSettingsOpen = true;
+                    CurrentMenuTexts = GeneralMenuTexts;
+                    UpdateTextOutlines();
+                    GeneralSettings.SetActive(true);
+                    SettingsScreen.SetActive(false);
+                    SettingsScreenOpen = false;
+                }
+                if (selectionIndex == 1)
+                {
+                    AudioSettingsOpen = true;
+                    CurrentMenuTexts = AudioMenuTexts;
+                    ChangeSelection(-1);
+                    UpdateTextOutlines();
+                    AudioSettings.SetActive(true);
+                    SettingsScreen.SetActive(false);
+                    SettingsScreenOpen = false;
+                }
+                if (selectionIndex == 2)
+                {
+                    ControlsSettingsOpen = true;
+                    CurrentMenuTexts = ControlsMenuTexts;
+                    ChangeSelection(2);
+                    UpdateTextOutlines();
+                    ControlsSettings.SetActive(true);
+                    SettingsScreen.SetActive(false);
+                    SettingsScreenOpen = false;
+                }
                 if (selectionIndex == 3)
                 {
                     MainScreenOpen = true;
@@ -158,7 +202,78 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     SettingsScreenOpen = false;
                 }
             }
+            if (GeneralSettingsOpen)
+            {
+                if (selectionIndex == 3)
+                {
+                    SettingsScreenOpen = true;
+                    CurrentMenuTexts = SettingsMenuTexts;
+                    ChangeSelection(1);
+                    UpdateTextOutlines();
+                    SettingsScreen.SetActive(true);
+                    GeneralSettings.SetActive(false);
+                    GeneralSettingsOpen = false;
+                }
+            }
+            if (AudioSettingsOpen)
+            {
+                if (selectionIndex == 3)
+                {
+                    SettingsScreenOpen = true;
+                    CurrentMenuTexts = SettingsMenuTexts;
+                    ChangeSelection(1);
+                    UpdateTextOutlines();
+                    SettingsScreen.SetActive(true);
+                    AudioSettings.SetActive(false);
+                    AudioSettingsOpen = false;
+                }
+            }
+            if (ControlsSettingsOpen)
+            {
+                if (selectionIndex == 3)
+                {
+                    SettingsScreenOpen = true;
+                    CurrentMenuTexts = SettingsMenuTexts;
+                    ChangeSelection(1);
+                    UpdateTextOutlines();
+                    SettingsScreen.SetActive(true);
+                    ControlsSettings.SetActive(false);
+                    ControlsSettingsOpen = false;
+                }
+            }
 
+        }
+        //alternative "back" method using the right button (B on xbox)
+        if (BookOpen && Input.GetButtonDown("Crouch"))
+        {
+            if (ControlsSettingsOpen || AudioSettingsOpen || GeneralSettingsOpen)
+            {   
+                SettingsScreen.SetActive(true);
+                SettingsScreenOpen = true;
+                GeneralSettingsOpen = false;
+                AudioSettingsOpen = false;
+                ControlsSettingsOpen = false;
+                GeneralSettings.SetActive(false);
+                AudioSettings.SetActive(false);
+                ControlsSettings.SetActive(false);
+                CurrentMenuTexts = SettingsMenuTexts;
+                selectionIndex = 0;
+                UpdateTextOutlines();
+
+            }
+            else if (SettingsScreenOpen)
+            {
+                MenuScreen.SetActive(true);
+                MainScreenOpen = true;
+                CurrentMenuTexts = MainMenuTexts;
+                selectionIndex = 0;
+                UpdateTextOutlines();
+                SettingsScreen.SetActive(false);
+                SettingsScreenOpen = false;
+            }
+            {
+                
+            }
         }
     }
 
@@ -166,7 +281,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
     {
         // Update selection index and wrap around
 
-        if (SettingsScreenOpen)
+        if (SettingsScreenOpen || GeneralSettingsOpen || AudioSettingsOpen || ControlsSettingsOpen)
         {
             selectionIndex = (selectionIndex + direction + 4) % 4; //wraps selection number around 0-3
         }
