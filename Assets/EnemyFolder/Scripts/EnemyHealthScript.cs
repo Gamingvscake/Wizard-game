@@ -23,7 +23,8 @@ public class EnemyHealthScript : MonoBehaviour
         Earth,
         Air,
         Light,
-        Dark
+        Dark,
+        Ice
     }
     public enum DamageWeakness
     {
@@ -34,7 +35,8 @@ public class EnemyHealthScript : MonoBehaviour
         Earth,
         Air,
         Light,
-        Dark
+        Dark,
+        Ice
     }
     private void Start()
     {
