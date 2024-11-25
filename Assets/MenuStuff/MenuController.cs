@@ -138,10 +138,12 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
         {
             if (MainScreenOpen)
             {
+                //Start game
                 if (selectionIndex == 0)
                 {
                     SceneManager.LoadScene(2);
                 }
+                //Go to settings
                 if (selectionIndex == 1)
                 {
                     SettingsScreenOpen = true;
@@ -152,6 +154,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     MenuScreen.SetActive(false);
                     MainScreenOpen = false;
                 }
+                //Quit game
                 if (selectionIndex == 2)
                 {
                     //line below is only for actually running the game
@@ -162,6 +165,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             }
             else if (SettingsScreenOpen)
             {
+                //General settings
                 if (selectionIndex == 0)
                 {
                     GeneralSettingsOpen = true;
@@ -171,6 +175,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     SettingsScreen.SetActive(false);
                     SettingsScreenOpen = false;
                 }
+                //Audio open
                 if (selectionIndex == 1)
                 {
                     AudioSettingsOpen = true;
@@ -181,6 +186,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     SettingsScreen.SetActive(false);
                     SettingsScreenOpen = false;
                 }
+                //Controls settings
                 if (selectionIndex == 2)
                 {
                     ControlsSettingsOpen = true;
@@ -191,6 +197,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     SettingsScreen.SetActive(false);
                     SettingsScreenOpen = false;
                 }
+                //Go back to main menu
                 if (selectionIndex == 3)
                 {
                     MainScreenOpen = true;
@@ -217,6 +224,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             }
             if (AudioSettingsOpen)
             {
+                //Go back
                 if (selectionIndex == 3)
                 {
                     SettingsScreenOpen = true;
