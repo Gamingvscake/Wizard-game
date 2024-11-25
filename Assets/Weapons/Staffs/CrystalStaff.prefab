@@ -594,6 +594,7 @@ MonoBehaviour:
   dswsc: {fileID: 0}
   dsPI: {fileID: 0}
   isMelee: 1
+  isTurret: 0
 --- !u!1 &3080377891386322448
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7188116084076457725, guid: d33bd2fbe00c64e4e9dde4a9bd1fa54e, type: 3}
   upgradedStaff: {fileID: 0}
+  staffModel: {fileID: 1137341138802380796}
   castForce: 20
   upwardForce: 0
   castTime: 0.1
@@ -689,6 +691,7 @@ MonoBehaviour:
   hitscanTrailDuration: 0
   manaSize: 100
   spellsPerTap: 1
+  manaPerShot: 50
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0
@@ -706,6 +709,7 @@ MonoBehaviour:
   scPI: {fileID: 0}
   lineRenderer: {fileID: 0}
   allowInvoke: 1
+  Level: 1
 --- !u!1 &3478223178721121644
 GameObject:
   m_ObjectHideFlags: 0

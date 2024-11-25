@@ -109,6 +109,7 @@ MonoBehaviour:
   dswsc: {fileID: 0}
   dsPI: {fileID: 0}
   isMelee: 1
+  isTurret: 0
 --- !u!1 &3228822451976501643
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7188116084076457725, guid: fe3a45d93039452489e5433117067641, type: 3}
   upgradedStaff: {fileID: 0}
+  staffModel: {fileID: 3844538429730900774}
   castForce: 20
   upwardForce: 0
   castTime: 0.1
@@ -168,22 +170,25 @@ MonoBehaviour:
   hitscanTrailDuration: 0
   manaSize: 100
   spellsPerTap: 1
+  manaPerShot: 1
   allowButtonHold: 1
+  maxtimer: 0
   spellsLeft: 0
   spellsCasted: 0
   casting: 0
   readyToCast: 0
   reloading: 0
-  meleeHitbox: {fileID: 2925893458438777159}
   attackType: 0
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
+  meleeHitbox: {fileID: 2925893458438777159}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}
   scPI: {fileID: 0}
   lineRenderer: {fileID: 0}
   allowInvoke: 1
+  Level: 1
 --- !u!1001 &7536196924074236055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,6 +246,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac02a3480fd1e74399e4bce194de9f4, type: 3}
+--- !u!1 &3844538429730900774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6759754029706040241, guid: 0ac02a3480fd1e74399e4bce194de9f4, type: 3}
+  m_PrefabInstance: {fileID: 7536196924074236055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4472457033177797020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6234293417893202187, guid: 0ac02a3480fd1e74399e4bce194de9f4, type: 3}

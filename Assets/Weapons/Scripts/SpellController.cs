@@ -1,11 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using TMPro;
-using static UnityEditor.PlayerSettings;
-using UnityEngine.InputSystem.HID;
-
 public class SpellController : MonoBehaviour
 {
     //Fireball object
@@ -16,7 +11,7 @@ public class SpellController : MonoBehaviour
 
     //Fireball stats
     public float castTime, spread, reloadTime, castSpeed, hitscanRange, hitscanTrailDuration;
-    public int manaSize, spellsPerTap;
+    public int manaSize, spellsPerTap, manaPerShot;
     public bool allowButtonHold;
     public float maxtimer;
     private float temptimer;
@@ -50,7 +45,7 @@ public class SpellController : MonoBehaviour
     public LineRenderer lineRenderer;
     //Bug fixing
     public bool allowInvoke = true;
-
+    public int Level;
 
 
     private void Awake()
@@ -78,7 +73,7 @@ public class SpellController : MonoBehaviour
     {
         MyInput();
         //Set mana display
-        WSC.UpdateManaDisplay(spellsLeft, spellsPerTap, manaSize);
+        WSC.UpdateManaDisplay(spellsLeft, manaPerShot, manaSize);
         if (maxtimer > 0)
         {
             if (temptimer < maxtimer) temptimer += Time.deltaTime;
@@ -207,8 +202,8 @@ public class SpellController : MonoBehaviour
                 WSC.numberOfTurrets += 1;
             }
         }
-        spellsLeft--;
-        WSC.Mana--;
+        spellsLeft-= manaPerShot;
+        WSC.Mana-= manaPerShot;
         spellsCasted++;
         if (maxtimer > 0)canSwing = false;
         //print(spellsCasted);

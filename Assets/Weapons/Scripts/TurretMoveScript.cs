@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurretMoveScript : MonoBehaviour
@@ -10,20 +11,28 @@ public class TurretMoveScript : MonoBehaviour
     public float fireRate;
     public Transform attackPoint;
     public float castForce, upwardForce;
-    GameObject targetEnemy;
+    public List<GameObject> targetEnemy;
     public DamageScript damageScript;
     float temptimer;
+    public int hasenemy;
+    Quaternion attackpointrotation;
+    Vector3 attackpointposition;
     private void Start()
     {
         detectionRadius.radius = maxDetectionRadius;
     }
     private void Update()
     {
-        if (targetEnemy != null)
+        if (targetEnemy != null && hasenemy > 0)
         {
-            transform.parent.LookAt(targetEnemy.transform.position);
-            print("adf");
-        }        
+            Fire(0);
+        }
+    }
+    private void Fire(int i)
+    {
+        transform.LookAt(targetEnemy[i].transform.position);
+        attackpointrotation = attackPoint.rotation;
+        attackpointposition = attackPoint.position;
         if (temptimer < fireRate) temptimer += Time.deltaTime;
         if (temptimer >= fireRate && targetEnemy != null)
         {
@@ -35,29 +44,16 @@ public class TurretMoveScript : MonoBehaviour
             else targetPoint = fwd;
 
             Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
-            GameObject currentSpell = Instantiate(spawnSpell, attackPoint.position, attackPoint.rotation);
+            GameObject currentSpell = Instantiate(spawnSpell, attackpointposition, attackpointrotation);
             currentSpell.GetComponentInChildren<DamageScript>().cs = damageScript.cs;
             currentSpell.GetComponentInChildren<DamageScript>().dswsc = damageScript.dswsc;
             currentSpell.GetComponentInChildren<DamageScript>().dsPI = damageScript.dsPI;
             currentSpell.transform.forward = directionWithoutSpread.normalized;
 
+            currentSpell.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.None;
             currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * castForce, ForceMode.Impulse);
             currentSpell.GetComponentInChildren<Rigidbody>().AddForce(attackPoint.transform.up * upwardForce, ForceMode.Impulse);
             temptimer = 0;
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Enemy")
-        {
-            targetEnemy = collision.gameObject;
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            targetEnemy = other.gameObject;
         }
     }
 }

@@ -114,9 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   DeleteOnImpact: 0
-  DeleteDelay: 1
-  damageType: 5
-  StickInTarget: 1
+  DeleteDelay: 10
+  damageType: 1
+  StickInTarget: 0
   rb: {fileID: 7421888244588856750}
   SplashRadius: {fileID: 8706367442889607788}
   thisCollider: {fileID: 4055978372970862624}

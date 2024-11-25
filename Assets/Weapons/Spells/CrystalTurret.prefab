@@ -53,7 +53,9 @@ MonoBehaviour:
   attackPoint: {fileID: 8648710085680096093}
   castForce: 0
   upwardForce: 0
+  targetEnemy: []
   damageScript: {fileID: 3330200526749028151}
+  hasenemy: 0
 --- !u!114 &3330200526749028151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   DeleteOnImpact: 0
-  DeleteDelay: 0
+  DeleteDelay: 30
   damageType: 0
   StickInTarget: 0
   rb: {fileID: 0}
@@ -91,7 +93,7 @@ GameObject:
   - component: {fileID: 4900946239546243561}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698623644289190983}
+  - component: {fileID: 3701212684334724990}
   m_Layer: 6
   m_Name: CrystalTurret
   m_TagString: PlayerAttack
@@ -157,13 +160,40 @@ Transform:
   m_GameObject: {fileID: 7188116084076457725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.789, y: 2.01, z: 0.7751665}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2360145410783898291}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &3701212684334724990
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7188116084076457725}
+  serializedVersion: 4
+  m_Mass: 0.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 122
+  m_CollisionDetection: 1
 --- !u!1 &7462761151277310284
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,11 +222,11 @@ Transform:
   m_GameObject: {fileID: 7462761151277310284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0049947756, y: 0.046736557, z: 0.23483986}
-  m_LocalScale: {x: 0.041950986, y: 0.041950986, z: 0.028299384}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5332956}
+  m_LocalScale: {x: 0.60401994, y: 0.60401994, z: 0.12787104}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8338399408522617397}
+  m_Father: {fileID: 4332250624341740369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7629030646499114181
 MeshFilter:
@@ -280,11 +310,10 @@ GameObject:
   - component: {fileID: 8338399408522617397}
   - component: {fileID: 893046011294176993}
   - component: {fileID: 5994212240053512412}
-  - component: {fileID: 3643590611340855837}
   - component: {fileID: 6931244724446068515}
   m_Layer: 6
   m_Name: MainBody
-  m_TagString: PlayerAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,7 +332,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4332250624341740369}
-  - {fileID: 8648710085680096093}
   - {fileID: 9060211084506184038}
   m_Father: {fileID: 2360145410783898291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -337,33 +365,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5246602472640371925, guid: ab5bb561b53f0e443bf304b89b196e35, type: 3}
---- !u!54 &3643590611340855837
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8639558969070094520}
-  serializedVersion: 4
-  m_Mass: 0.5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 122
-  m_CollisionDetection: 1
 --- !u!23 &6931244724446068515
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -433,11 +434,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8668615472487387661}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0049947756, y: 0.046736557, z: 0.11681518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.037, z: 0.152}
   m_LocalScale: {x: 0.06945298, y: 0.06945298, z: 0.22131193}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8648710085680096093}
   m_Father: {fileID: 8338399408522617397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4997247267587226613

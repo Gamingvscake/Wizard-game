@@ -408,6 +408,7 @@ MonoBehaviour:
   damageWeak: 5
   wsc: {fileID: 0}
   enemySpawn: {fileID: 0}
+  thisMovement: {fileID: 5764010177297073256}
 --- !u!114 &5764010177297073256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +428,8 @@ MonoBehaviour:
   speed: 2
   AttackBox: {fileID: 38274629496478806}
   DMGScript: {fileID: 4187998116428254110}
+  tempturrscrip: {fileID: 0}
+  attackDistance: 1.5
 --- !u!54 &578138067553967179
 Rigidbody:
   m_ObjectHideFlags: 0

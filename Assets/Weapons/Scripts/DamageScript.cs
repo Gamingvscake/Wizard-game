@@ -34,7 +34,11 @@ public class DamageScript : MonoBehaviour
     }
     private void Update()
     {
-        if (isMelee != true && isTurret != true) Destroy(item, DeleteDelay + 1);
+        if (isMelee != true)
+        {
+            if (StickInTarget == false && rb != null)rb.constraints = RigidbodyConstraints.None;
+            Destroy(item, DeleteDelay + 1);
+        }
     }
     private void Delete()
     {

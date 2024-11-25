@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interactables : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class Interactables : MonoBehaviour
     public InteractableVariables InterVaris;
     public WeaponSwapControl iwsc;
     public TextMeshProUGUI txt;
+    public Slider slider;
     bool CanBuy;
     bool HasBought;
     private void Start()
     {
         timer = Maxtimer;
+        slider.maxValue = Maxtimer;
+        slider.value = Maxtimer;
+        slider.gameObject.SetActive(false);
         txt.gameObject.SetActive(false);
     }
     private void Update()
@@ -42,6 +47,7 @@ public class Interactables : MonoBehaviour
             if (InterVaris != null && InterVaris.Cost <= iwsc.points)
             {
                 timer -= Time.deltaTime;
+                slider.value = timer;
                 if (Removeable)
                 {
                     if (timer <= 0)
@@ -52,6 +58,7 @@ public class Interactables : MonoBehaviour
                         timer = Maxtimer;
                         InInteractableRange = false;
                         Removeable = false;
+                        slider.value = Maxtimer;
                     }
                 }
                 if (Buyable)
@@ -88,6 +95,7 @@ public class Interactables : MonoBehaviour
                             timer = Maxtimer;
                             InInteractableRange = false;
                             HasBought = false;
+                            slider.value = Maxtimer;
                         }
                     }
                 }
@@ -98,6 +106,7 @@ public class Interactables : MonoBehaviour
         {
             timer = Maxtimer;
             CanBuy = false;
+            slider.value = Maxtimer;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -107,12 +116,14 @@ public class Interactables : MonoBehaviour
             InInteractableRange = true;
             InterVaris = other.GetComponent<InteractableVariables>();
             Removeable = true;
+            slider.gameObject.SetActive(true);
         }
         if (other.tag == "Buyable")
         {
             InInteractableRange = true;
             InterVaris = other.GetComponent<InteractableVariables>();
             Buyable = true;
+            slider.gameObject.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -123,6 +134,7 @@ public class Interactables : MonoBehaviour
             timer = Maxtimer;
             InterVaris = null;
             Removeable = false;
+            slider.gameObject.SetActive(false);
         }
         if (other.tag == "Buyable")
         {
@@ -132,6 +144,7 @@ public class Interactables : MonoBehaviour
             Buyable = false;
             CanBuy = false;
             HasBought = false;
+            slider.gameObject.SetActive(false);
         }
     }
 }

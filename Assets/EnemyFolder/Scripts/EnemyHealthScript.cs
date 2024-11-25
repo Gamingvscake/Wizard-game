@@ -13,6 +13,7 @@ public class EnemyHealthScript : MonoBehaviour
     public WeaponSwapControl wsc;
     CauldronScript cs;
     public EnemySpawnScript enemySpawn;
+    public EnemyMovementScript thisMovement;
     public enum DamageResistance
     {
         NONE,
@@ -46,7 +47,18 @@ public class EnemyHealthScript : MonoBehaviour
         if (Health <= 0)
         {
             wsc.points += 1000;
-            if (enemySpawn != null)enemySpawn.amountOfEnemies -= 1;
+            if (enemySpawn != null) enemySpawn.amountOfEnemies -= 1;
+            if (thisMovement != null)
+            {
+                if (thisMovement.tempturrscrip != null)
+                {
+                    if (thisMovement.tempturrscrip.hasenemy > 0)
+                    {
+                        thisMovement.tempturrscrip.targetEnemy.Remove(this.gameObject);
+                        thisMovement.tempturrscrip.hasenemy -= 1;
+                    }
+                }
+            }
             Destroy(this.gameObject);
         }
     }

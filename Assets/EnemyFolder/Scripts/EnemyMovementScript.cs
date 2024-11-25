@@ -12,6 +12,8 @@ public class EnemyMovementScript : MonoBehaviour
     public GameObject AttackBox;
     private Animator animator; // Animator component reference
     public DamageSource DMGScript;
+    public TurretMoveScript tempturrscrip;
+    public float attackDistance;
 
     private void Start()
     {
@@ -36,7 +38,7 @@ public class EnemyMovementScript : MonoBehaviour
             Transform temp = GetClosestEnemy(PlayerNotList);
             transform.LookAt(temp);
             transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, temp.position) <= 1)
+            if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
             {
                 AttackBox.SetActive(true);
             }
@@ -50,6 +52,27 @@ public class EnemyMovementScript : MonoBehaviour
         {
             OutOfBounds = false;
             transform.position = other.GetComponent<HolderScript>().EnterPoint;
+        }
+        if (other.tag == "Turret")
+        {
+            if (tempturrscrip == null)
+            {
+                tempturrscrip = other.GetComponentInParent<TurretMoveScript>();
+                tempturrscrip.targetEnemy.Add(this.gameObject);
+                tempturrscrip.hasenemy += 1;
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Turret")
+        {
+            if (tempturrscrip != null)
+            {
+                tempturrscrip.targetEnemy.Remove(this.gameObject);
+                tempturrscrip.hasenemy -= 1;
+                tempturrscrip = null;
+            }
         }
     }
 
