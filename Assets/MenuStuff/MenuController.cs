@@ -202,7 +202,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                 {
                     MainScreenOpen = true;
                     CurrentMenuTexts = MainMenuTexts;
-                    ChangeSelection(1);
+                    selectionIndex = 1;
                     UpdateTextOutlines();
                     MenuScreen.SetActive(true);
                     SettingsScreen.SetActive(false);
@@ -274,7 +274,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                 MenuScreen.SetActive(true);
                 MainScreenOpen = true;
                 CurrentMenuTexts = MainMenuTexts;
-                selectionIndex = 0;
+                selectionIndex = 1;
                 UpdateTextOutlines();
                 SettingsScreen.SetActive(false);
                 SettingsScreenOpen = false;
