@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +13,7 @@ public class EnemyMovementScript : MonoBehaviour
     public DamageSource DMGScript;
     public TurretMoveScript tempturrscrip;
     public float attackDistance;
+    public bool DevBoolToNotMove;
 
     private void Start()
     {
@@ -27,13 +27,13 @@ public class EnemyMovementScript : MonoBehaviour
     }
     private void Update()
     {
-        if (OutOfBounds)
+        if (OutOfBounds && DevBoolToNotMove == false)
         {
             Transform temp = GetClosestEnemy(entryPoints);
             transform.LookAt(temp);
             transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
         }
-        else if (!OutOfBounds && !DMGScript.Attacking)
+        else if (!OutOfBounds && !DMGScript.Attacking && DevBoolToNotMove == false)
         {
             Transform temp = GetClosestEnemy(PlayerNotList);
             transform.LookAt(temp);

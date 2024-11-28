@@ -10114,6 +10114,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 5268389087141546494, guid: 851b1866d9dd0cf4a9efe0c928a1d411, type: 3}
+      propertyPath: DevNotSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5268389087141546494, guid: 851b1866d9dd0cf4a9efe0c928a1d411, type: 3}
+      propertyPath: OutOfBounds
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6360175071411869888, guid: 851b1866d9dd0cf4a9efe0c928a1d411, type: 3}
       propertyPath: PlayerTransform
       value: 
