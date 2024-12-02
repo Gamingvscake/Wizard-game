@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovementScript : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class EnemyMovementScript : MonoBehaviour
     public TurretMoveScript tempturrscrip;
     public float attackDistance;
     public bool DevBoolToNotMove;
+    public NavMeshAgent selfNavAgent;
 
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
         AttackBox.SetActive(false);
         animator = GetComponent<Animator>();
+        if (!DevBoolToNotMove)
+        {
+            selfNavAgent = GetComponent<NavMeshAgent>();
+            selfNavAgent.speed = speed;
+        }
         for (int i = 0; i < Players.Count; i++)
         {
             PlayerNotList[i] = Players[i];
@@ -27,23 +34,39 @@ public class EnemyMovementScript : MonoBehaviour
     }
     private void Update()
     {
-        if (OutOfBounds && DevBoolToNotMove == false)
+        if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
         {
             Transform temp = GetClosestEnemy(entryPoints);
             transform.LookAt(temp);
             transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
         }
-        else if (!OutOfBounds && !DMGScript.Attacking && DevBoolToNotMove == false)
+        else if (selfNavAgent != null && !OutOfBounds && !DMGScript.Attacking && DevBoolToNotMove == false)
         {
             Transform temp = GetClosestEnemy(PlayerNotList);
             transform.LookAt(temp);
-            transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
+                        transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
+            selfNavAgent.destination = temp.position;
             if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
             {
                 AttackBox.SetActive(true);
             }
             else AttackBox.SetActive(false);
         }
+
+        //TESTING NAVMESH
+
+        if (!DMGScript.Attacking && DevBoolToNotMove == false)
+        {
+            Transform temp = GetClosestEnemy(PlayerNotList);
+            transform.LookAt(temp);
+            selfNavAgent.destination = temp.position;
+            if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+            {
+                AttackBox.SetActive(true);
+            }
+            else AttackBox.SetActive(false);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)

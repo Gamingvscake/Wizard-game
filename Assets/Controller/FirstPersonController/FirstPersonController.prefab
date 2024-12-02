@@ -2926,6 +2926,7 @@ GameObject:
   - component: {fileID: 5744877315656657287}
   - component: {fileID: 5024756054901411381}
   - component: {fileID: 5704262758913048483}
+  - component: {fileID: 1383458623685084228}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -3068,6 +3069,7 @@ MonoBehaviour:
   IFrameTime: 1
   MaxDamage: 0
   MinDamage: 0
+  PlayerInflictsSE: {fileID: 0}
   regenTimer: 0
   isRegenerating: 0
   IFrames: 0
@@ -3225,6 +3227,24 @@ MonoBehaviour:
   UpgradedSpellPoint: {fileID: 0}
   LevelText: {fileID: 0}
   NextLevelText: {fileID: 0}
+--- !u!114 &1383458623685084228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4839f8ffdd1a4a8f345820767fcbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: 0
+  StatusPI: {fileID: 7230822006075314255}
+  StatusWSC: {fileID: 7266040769822686499}
+  StatusFPC: {fileID: 4459864850019384740}
+  maxtimer: 1
+  temptimer: 0
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0

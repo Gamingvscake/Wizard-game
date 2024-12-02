@@ -18,7 +18,7 @@ public class PlayerInflicts : MonoBehaviour
     public int MinDamage; //Max and Min Damage are altered by the DamageSource script, these do not need to be altered from here
     private bool DamageDealt;
 
-
+    public StatusEffects PlayerInflictsSE;
 
     public float regenTimer;
     public bool isRegenerating;

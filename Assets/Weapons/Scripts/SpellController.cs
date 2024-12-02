@@ -73,7 +73,8 @@ public class SpellController : MonoBehaviour
     {
         MyInput();
         //Set mana display
-        WSC.UpdateManaDisplay(spellsLeft, manaPerShot, manaSize);
+        WSC.UpdateManaDisplay(WSC.Mana, manaPerShot, WSC.MaxMana);
+        spellsLeft = WSC.Mana;
         if (maxtimer > 0)
         {
             if (temptimer < maxtimer) temptimer += Time.deltaTime;

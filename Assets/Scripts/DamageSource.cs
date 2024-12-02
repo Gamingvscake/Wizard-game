@@ -6,13 +6,29 @@ public class DamageSource : MonoBehaviour
     public bool DrainEnemy;
     public int maxDamage;
     public int minDamage;
+    public int statusDamage;
+    public float statusDuration;
     public PlayerInflicts UIPI;
     public bool Attacking; // Boolean for whether or not the enemy is attacking
     public bool Attacked;  // Boolean for when attack animation is done, check is still colliding
     private bool playerExitedDuringAttack = false; // Tracks if the player exited during the attack
-
+    public bool inflictStatusEffect;
     public Animator animator; // Animator component reference
     private Coroutine attackCoroutine; // Reference to the attack coroutine
+
+    public HostileStatus effects;
+    public enum HostileStatus
+    {
+        None,
+        NeutralTBD,
+        Burn,
+        Poison,
+        EarthTBD,
+        AirTBD,
+        ManaDrain,
+        DarkTBD,
+        Slow
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -43,6 +59,7 @@ public class DamageSource : MonoBehaviour
                     UIPI.IFrames = true;
                     UIPI.regenTimer = UIPI.HealthRegenDelay;
                     UIPI.isRegenerating = false;
+                    if (inflictStatusEffect) UIPI.PlayerInflictsSE.DoStatusWork((int)effects, statusDuration, statusDamage);
 
                     // Reset flags after applying damage
                     ResetAttackFlags();
