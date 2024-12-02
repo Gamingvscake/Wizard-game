@@ -211,6 +211,22 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             }
             if (GeneralSettingsOpen)
             {
+                //Temp1g
+                if (selectionIndex == 0)
+                {
+
+                }
+                //Temp2g
+                if (selectionIndex == 1)
+                {
+
+                }
+                //Temp3g
+                if (selectionIndex == 2)
+                {
+
+                }
+                //Go back to menu screen
                 if (selectionIndex == 3)
                 {
                     SettingsScreenOpen = true;
@@ -224,6 +240,24 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             }
             if (AudioSettingsOpen)
             {
+                //Mute button
+                if (selectionIndex == 0)
+                {
+                    AudioListener.pause = !AudioListener.pause;
+                    Debug.Log("Mute/unmute");
+                }
+                //Change audio up
+                if (selectionIndex == 1)
+                {
+                    AudioListener.volume = Mathf.Clamp(AudioListener.volume + 0.1f, 0f, 1f);
+                    CurrentMenuTexts[selectionIndex].text = $"Volume: {(int)(AudioListener.volume * 100)}%";
+                }
+                //Change audio down
+                if (selectionIndex == 2)
+                {
+                    AudioListener.volume = Mathf.Clamp(AudioListener.volume - 0.1f, 0f, 1f);
+                    CurrentMenuTexts[selectionIndex].text = $"Volume: {(int)(AudioListener.volume * 100)}%";
+                }
                 //Go back
                 if (selectionIndex == 3)
                 {
@@ -238,6 +272,23 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
             }
             if (ControlsSettingsOpen)
             {
+                //Increase FOV
+                if (selectionIndex == 0)
+                {
+                    mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView + 5f, 60f, 100f);
+                    CurrentMenuTexts[selectionIndex].text = $"FOV: {mainCamera.fieldOfView:F0}";
+                }
+                //Temp2g
+                if (selectionIndex == 1)
+                {
+                    mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - 5f, 60f, 100f);
+                    CurrentMenuTexts[selectionIndex].text = $"FOV: {mainCamera.fieldOfView:F0}";
+                }
+                //Temp3g
+                if (selectionIndex == 2)
+                {
+
+                }
                 if (selectionIndex == 3)
                 {
                     SettingsScreenOpen = true;

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: c27e080a70ac14e4a9946a82a2026840
   - enabled: 1
+    path: Assets/Scenes/Player Select.unity
+    guid: 925c9f13321c7074fb81787ab05299c1
+  - enabled: 1
     path: Assets/Scenes/Tavern.unity
     guid: ac0fea1ab0f4f0f4da4e18dfa0c9d351
   m_configObjects:
