@@ -66216,6 +66216,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400385959462656522, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_text
+      value: XXXXXXXXXXXXXXXXXXX
+      objectReference: {fileID: 0}
+    - target: {fileID: 400385959462656522, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400385959462656522, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 502786462596833736, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Type
       value: 0
@@ -66371,6 +66383,10 @@ PrefabInstance:
     - target: {fileID: 2226340089720831735, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257873152820037763, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.98
       objectReference: {fileID: 0}
     - target: {fileID: 2498176117996284858, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_fontSize
@@ -66792,6 +66808,22 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278250239
       objectReference: {fileID: 0}
+    - target: {fileID: 5527306750700083170, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12.073612
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527306750700083170, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4160434
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527306750700083170, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4160434
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527306750700083170, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -226.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5590000700875571562, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Name
       value: Damaged BG
@@ -66831,6 +66863,10 @@ PrefabInstance:
     - target: {fileID: 5683006169045566561, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -52
+      objectReference: {fileID: 0}
+    - target: {fileID: 5698441755426431691, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -76.7
       objectReference: {fileID: 0}
     - target: {fileID: 5704262758913048483, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: LevelText
