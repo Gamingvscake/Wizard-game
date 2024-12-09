@@ -66548,6 +66548,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3838503862688684099, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838503862688684099, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8100942
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838503862688684099, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838503862688684099, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278243327
+      objectReference: {fileID: 0}
     - target: {fileID: 3894942314584063278, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -67159,6 +67175,10 @@ PrefabInstance:
     - target: {fileID: 7934535686388092753, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Name
       value: StatusIcons
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962777481207324521, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5770743
       objectReference: {fileID: 0}
     - target: {fileID: 7970855128461440142, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_SizeDelta.y
