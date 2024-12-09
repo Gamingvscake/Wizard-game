@@ -21,7 +21,7 @@ public class Interactables : MonoBehaviour
         slider.maxValue = Maxtimer;
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);
-        txt.gameObject.SetActive(false);
+        txt.transform.parent.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -30,17 +30,17 @@ public class Interactables : MonoBehaviour
             if (InterVaris.BuyableObject != null)
             {
                 txt.text = "Buy " + InterVaris.BuyableObject.name + " for " + InterVaris.Cost;
-                txt.gameObject.SetActive(true);
+                txt.transform.parent.gameObject.SetActive(true);
             }
             else
             {
                 txt.text = "Buy barrier for " + InterVaris.Cost;
-                txt.gameObject.SetActive(true);
+                txt.transform.parent.gameObject.SetActive(true);
             }
         }
         else
         {
-            txt.gameObject.SetActive(false);
+            txt.transform.parent.gameObject.SetActive(false);
         }
         if (InInteractableRange && Input.GetKey(KeyCode.E))
         {
