@@ -114,7 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7188116084076457725, guid: 2dc7210ac9b13bf4fb64470bba15b3ff, type: 3}
   upgradedStaff: {fileID: 0}
-  staffModel: {fileID: 1986648815905503612}
   castForce: 20
   upwardForce: 0
   castTime: 0.3
@@ -256,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 7397379698482661076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0653, y: -0, z: 1.5093}
+  m_LocalPosition: {x: 0.0653, y: -0.29, z: 1.5093}
   m_LocalScale: {x: 2.5143952, y: 0.26740998, z: 1.23065}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +327,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1a36d45dbb3d6024db9dab860472c0bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -83,7 +83,7 @@ MonoBehaviour:
   Damage: 5
   DeleteOnImpact: 0
   DeleteDelay: 1
-  damageType: 3
+  damageType: 8
   StickInTarget: 1
   rb: {fileID: 2846807516539312182}
   SplashRadius: {fileID: 4977253481838395862}
@@ -91,6 +91,8 @@ MonoBehaviour:
   cs: {fileID: 0}
   dswsc: {fileID: 0}
   dsPI: {fileID: 0}
+  isMelee: 0
+  isTurret: 0
 --- !u!54 &2846807516539312182
 Rigidbody:
   m_ObjectHideFlags: 0
