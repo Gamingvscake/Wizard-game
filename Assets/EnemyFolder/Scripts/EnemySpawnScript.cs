@@ -69,11 +69,5 @@ public class EnemySpawnScript : MonoBehaviour
             inTheRound = false;
             roundup = true;
         }
-
-        //Modified enemy stats based on round
-        if (rounds >= 5)
-        {
-            enemyMovementScript.speed = 2;
-        }
     }
 }

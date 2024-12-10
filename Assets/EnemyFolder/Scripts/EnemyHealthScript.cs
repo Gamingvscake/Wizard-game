@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,19 @@ public class EnemyHealthScript : MonoBehaviour
     CauldronScript cs;
     public EnemySpawnScript enemySpawn;
     public EnemyMovementScript thisMovement;
+    public ParticleSystem ps;
+    public Renderer MyRenderer;
+    public Material outlineMat;
+    public bool DevBoolToNotMove;
+    public DamageSource EHSDS;
+    ParticleSystem.MainModule PSMM;
+    public GameObject[] statusIconsHold;
+    public GameObject[] statusIconLocations;
+    public List<GameObject> statusIconsInUse;
+    float temptimer;
+    float statusdonetemptimer;
+    float temporarytimer;
+
     public enum DamageResistance
     {
         NONE,
@@ -40,12 +54,94 @@ public class EnemyHealthScript : MonoBehaviour
     }
     private void Start()
     {
+        if (DevBoolToNotMove == false)
+        {
+            MaxHealth *= 1 + (enemySpawn.rounds / 5);
+            outlineMat = MyRenderer.materials[1];
+            ps.gameObject.SetActive(true);
+            outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
+            PSMM = ps.main;
+            int tempstatusint = Random.Range(0, 9);
+            switch (tempstatusint)
+            {
+                case 0:
+                    damageRes = DamageResistance.NONE;
+                    damageWeak = DamageWeakness.NONE;
+                    EHSDS.effects = DamageSource.HostileStatus.None;
+                    ps.gameObject.SetActive(false);
+                    outlineMat.SetColor("_OutlineColor", new Color32(109, 109, 109, 255));
+                    break;
+                case 1:
+                    damageRes = DamageResistance.Neutral;
+                    damageWeak = DamageWeakness.Ice;
+                    EHSDS.effects = DamageSource.HostileStatus.NeutralTBD;
+                    PSMM.startColor = new Color(0.43f, 0.43f, 0.43f, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(110, 110, 110, 255));
+                    break;
+                case 2:
+                    damageRes = DamageResistance.Fire;
+                    damageWeak = DamageWeakness.Water;
+                    EHSDS.effects = DamageSource.HostileStatus.Burn;
+                    PSMM.startColor = new Color(1, 0, 0, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(255, 0, 0, 255));
+                    break;
+                case 3:
+                    damageRes = DamageResistance.Water;
+                    damageWeak = DamageWeakness.Earth;
+                    EHSDS.effects = DamageSource.HostileStatus.Poison;
+                    PSMM.startColor = new Color(0, 0, 1, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 255, 255));
+                    break;
+                case 4:
+                    damageRes = DamageResistance.Earth;
+                    damageWeak = DamageWeakness.Air;
+                    EHSDS.effects = DamageSource.HostileStatus.EarthTBD;
+                    PSMM.startColor = new Color(0.66f, 0.39f, 0, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(170, 100, 0, 255));
+                    break;
+                case 5:
+                    damageRes = DamageResistance.Air;
+                    damageWeak = DamageWeakness.Fire;
+                    EHSDS.effects = DamageSource.HostileStatus.AirTBD;
+                    PSMM.startColor = new Color(0.7f, 1, 0.59f, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(180, 255, 150, 255));
+                    break;
+                case 6:
+                    damageRes = DamageResistance.Light;
+                    damageWeak = DamageWeakness.Dark;
+                    EHSDS.effects = DamageSource.HostileStatus.ManaDrain;
+                    PSMM.startColor = new Color(1, 1, 1, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(255, 255, 255, 255));
+                    break;
+                case 7:
+                    damageRes = DamageResistance.Dark;
+                    damageWeak = DamageWeakness.Light;
+                    EHSDS.effects = DamageSource.HostileStatus.DarkTBD;
+                    PSMM.startColor = new Color(0, 0, 0, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
+                    break;
+                case 8:
+                    damageRes = DamageResistance.Ice;
+                    damageWeak = DamageWeakness.Neutral;
+                    EHSDS.effects = DamageSource.HostileStatus.Slow;
+                    PSMM.startColor = new Color(0.59f, 0.9f, 1, 1);
+                    outlineMat.SetColor("_OutlineColor", new Color32(150, 230, 255, 255));
+                    break;
+            }
+            for (int i = 0; i < statusIconsHold.Length; i++)
+            {
+                statusIconsHold[i].GetComponentInChildren<Slider>().value = 0;
+                statusIconsHold[i].gameObject.SetActive(false);
+            }
+        }
         HealthSlider.maxValue = MaxHealth;
         Health = MaxHealth;
     }
     private void Update()
     {
         HealthSlider.value = Health;
+        if (temptimer > 0) temptimer -=Time.deltaTime;
+        if (statusdonetemptimer > 0) statusdonetemptimer -= Time.deltaTime;
         if (Health <= 0)
         {
             wsc.points += 1000;
@@ -63,6 +159,49 @@ public class EnemyHealthScript : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
+        if (statusIconsInUse.Count > 0)
+        {
+            for (int i = 0; i < statusIconsInUse.Count; i++)
+            {
+                statusIconsInUse[i].transform.position = statusIconLocations[i].transform.position;
+            }
+        }
+        if (temptimer <= 0)
+        {
+            if (statusIconsInUse.Count > 0)
+            {
+                for (int i = 0;i < statusIconsInUse.Count; i++)
+                {
+                    statusIconsHold[i].GetComponentInChildren<Slider>().value = 0;
+                    statusIconsInUse.Remove(statusIconsInUse[i]);
+                    statusIconsHold[i].SetActive(false);
+                }
+            }
+        }
+        if (statusdonetemptimer > 0)
+        {
+            if (temporarytimer <= 0)
+            {
+                if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsInUse[0].GetComponentInChildren<Slider>().maxValue) 
+                {
+                    if (damageRes == DamageResistance.Fire) Health -= (MaxHealth / 10) / 2;
+                    else Health -= MaxHealth / 10;
+                } 
+                temporarytimer = 1;
+            }
+            if (temporarytimer > 0) temporarytimer -= Time.deltaTime;
+        }
+        else
+        {
+            for (int i = 0; i < statusIconsInUse.Count; i++)
+            {
+                if (statusIconsInUse[i].GetComponentInChildren<Slider>().value == statusIconsInUse[i].GetComponentInChildren<Slider>().maxValue)
+                {
+                    statusIconsInUse.Remove(statusIconsInUse[i]);
+                }
+            }
+        }
+        if (DevBoolToNotMove == false && enemySpawn.rounds >= 5) thisMovement.speed = 2;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -84,6 +223,7 @@ public class EnemyHealthScript : MonoBehaviour
     {
         wsc = temp.dswsc;
         cs = temp.cs;
+        temptimer = 10;
         if ((int)temp.damageType == (int)damageRes)
         {
             Health -= ((temp.Damage + cs.Damage2) / 2);
@@ -98,6 +238,60 @@ public class EnemyHealthScript : MonoBehaviour
         {
             Health -= (temp.Damage + cs.Damage2);
             wsc.points += 100;
+        }
+        if (temp.damageType == DamageScript.DamageType.Fire)
+        {
+            if (statusIconsInUse.Contains(statusIconsHold[0]) == false)
+            {
+                statusIconsInUse.Add(statusIconsHold[0]);
+                statusIconsHold[0].SetActive(true);
+                statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
+            }
+            else
+            {
+                statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
+                if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsHold[0].GetComponentInChildren<Slider>().maxValue)
+                {
+                    print("kaboom");
+                    if (statusdonetemptimer >= 0)statusdonetemptimer = 10;
+                }
+            }
+        }
+        if (temp.damageType == DamageScript.DamageType.Ice)
+        {
+            if (statusIconsInUse.Contains(statusIconsHold[1]) == false)
+            {
+                statusIconsInUse.Add(statusIconsHold[1]);
+                statusIconsHold[1].SetActive(true);
+                statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
+            }
+            else
+            {
+                statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
+                if (statusIconsHold[1].GetComponentInChildren<Slider>().value == statusIconsHold[1].GetComponentInChildren<Slider>().maxValue)
+                {
+                    print("FREEZE");
+                    if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                }
+            }
+        }
+        if (temp.damageType == DamageScript.DamageType.Water)
+        {
+            if (statusIconsInUse.Contains(statusIconsHold[2]) == false)
+            {
+                statusIconsInUse.Add(statusIconsHold[2]);
+                statusIconsHold[2].SetActive(true);
+                statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
+            }
+            else
+            {
+                statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
+                if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
+                {
+                    print("Blub");
+                    if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                }
+            }
         }
     }
 }

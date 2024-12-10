@@ -1077,6 +1077,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1249924036}
+  - component: {fileID: 1249924039}
+  - component: {fileID: 1249924037}
   m_Layer: 0
   m_Name: Title Screen
   m_TagString: Untagged
@@ -1101,6 +1103,36 @@ Transform:
   - {fileID: 1491813812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 79.51, y: 0.002, z: 0.002}
+--- !u!114 &1249924037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249924035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d6fdd967611854da7a65c65c19f18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1249924039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249924035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &1383929942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 437044, guid: 8088cc0ca1f49f645802eeca8f4c1615, type: 3}
