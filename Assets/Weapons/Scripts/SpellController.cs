@@ -107,10 +107,7 @@ public class SpellController : MonoBehaviour
             Cast();
             
         }
-        [SerializeField] 
-        private AudioSource FireballWoosh;
-        FireballWoosh = GetComponent<AudioSource>();
-        FireballWoosh.Play();
+    
     }
 
     private void Cast()
