@@ -3,6 +3,9 @@ using UnityEngine;
 using TMPro;
 public class SpellController : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource icecracking;
+
     //Fireball object
     public GameObject fireball, upgradedStaff;
 
@@ -134,6 +137,9 @@ public class SpellController : MonoBehaviour
             //Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
 
             //Instantiate projectile
+
+            
+
             GameObject currentSpell = Instantiate(fireball, attackPoint.position, attackPoint.rotation);
             currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
             currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
@@ -144,6 +150,11 @@ public class SpellController : MonoBehaviour
             //Add forces to spell
             currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * castForce, ForceMode.Impulse);
             currentSpell.GetComponentInChildren<Rigidbody>().AddForce(playerCam.transform.up * upwardForce, ForceMode.Impulse);
+
+            // PLay the ice cracking sound
+            icecracking = GetComponent<AudioSource>();
+            icecracking.Play();
+
         }
         else if (attackType == AttackType.HitScan)
         {
