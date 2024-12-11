@@ -8,15 +8,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.CompilerServices;
+
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+
+    [SerializeField] private AudioSource walkingnoise;
 
     #region Camera Movement Variables
 
@@ -131,7 +135,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
+        walkingnoise = GetComponent<AudioSource>(); 
         crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
@@ -308,6 +312,7 @@ public class FirstPersonController : MonoBehaviour
             }
             else
             {
+                walkingnoise.Play();
                 isWalking = false;
             }
 
