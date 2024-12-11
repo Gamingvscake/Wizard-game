@@ -365,6 +365,7 @@ MonoBehaviour:
   wsc: {fileID: 0}
   enemySpawn: {fileID: 0}
   thisMovement: {fileID: 5764010177297073256}
+  enemyNoise: {fileID: 0}
 --- !u!114 &5764010177297073256
 MonoBehaviour:
   m_ObjectHideFlags: 0

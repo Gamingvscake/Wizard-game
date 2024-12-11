@@ -51,6 +51,7 @@ public class EnemyMovementScript : MonoBehaviour
                 AttackBox.SetActive(true);
             }
             else AttackBox.SetActive(false);
+
         }
 
         //TESTING NAVMESH

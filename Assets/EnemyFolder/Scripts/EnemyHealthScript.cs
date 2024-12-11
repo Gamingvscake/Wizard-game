@@ -14,6 +14,8 @@ public class EnemyHealthScript : MonoBehaviour
     CauldronScript cs;
     public EnemySpawnScript enemySpawn;
     public EnemyMovementScript thisMovement;
+
+    [SerializeField] private AudioSource enemyNoise;
     public enum DamageResistance
     {
         NONE,
@@ -41,6 +43,7 @@ public class EnemyHealthScript : MonoBehaviour
     private void Start()
     {
         HealthSlider.maxValue = MaxHealth;
+        enemyNoise = GetComponent<AudioSource>();
         Health = MaxHealth;
     }
     private void Update()
@@ -99,5 +102,10 @@ public class EnemyHealthScript : MonoBehaviour
             Health -= (temp.Damage + cs.Damage2);
             wsc.points += 100;
         }
+        if (!enemyNoise)
+        {
+            enemyNoise.Play();
+        }
+        else enemyNoise.Play();
     }
 }
