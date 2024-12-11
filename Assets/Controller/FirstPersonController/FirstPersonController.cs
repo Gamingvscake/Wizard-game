@@ -20,8 +20,6 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
-    [SerializeField] private AudioSource walkingnoise;
-
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -59,6 +57,7 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
+    [SerializeField] public AudioSource walkingnoise;
 
     // Internal Variables
     private bool isWalking = false;

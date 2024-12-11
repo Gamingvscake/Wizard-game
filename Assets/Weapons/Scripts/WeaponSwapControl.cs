@@ -23,6 +23,7 @@ public class WeaponSwapControl : MonoBehaviour
     public AnvilScript wscas;
     public int maxNumberOfTurrets;
     public int numberOfTurrets;
+    [SerializeField] private AudioSource changeweapon;
     private void Start()
     {
         Mana = MaxMana;
@@ -50,6 +51,7 @@ public class WeaponSwapControl : MonoBehaviour
         {
             if (EquippedStaffs.Length != 1 || EquippedStaffs[tempstaff += 1] != null)
             {
+                changeweapon.Play();
                 Destroy(tempobject);
                 if (tempstaff != MaxNumberOfStaffs - 1)
                 {
@@ -71,6 +73,7 @@ public class WeaponSwapControl : MonoBehaviour
         {
             if (EquippedStaffs.Length != 1 || EquippedStaffs[tempstaff -=1] != null)
             {
+                changeweapon.Play();
                 Destroy(tempobject);
                 if (tempstaff != 0)
                 {
