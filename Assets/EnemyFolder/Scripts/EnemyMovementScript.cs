@@ -34,15 +34,19 @@ public class EnemyMovementScript : MonoBehaviour
     }
     private void Update()
     {
+        Transform temp = GetClosestEnemy(PlayerNotList);
+        //transform.LookAt(temp);
+        selfNavAgent.destination = temp.position;
+
         if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
         {
-            Transform temp = GetClosestEnemy(entryPoints);
+            //Transform temp = GetClosestEnemy(entryPoints);
             //transform.LookAt(temp);
             transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
         }
         else if (selfNavAgent != null && !OutOfBounds && !DMGScript.Attacking && DevBoolToNotMove == false)
         {
-            Transform temp = GetClosestEnemy(PlayerNotList);
+            //Transform temp = GetClosestEnemy(PlayerNotList);
             //transform.LookAt(temp);
                         transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
             selfNavAgent.destination = temp.position;
@@ -57,9 +61,7 @@ public class EnemyMovementScript : MonoBehaviour
 
         if (!DMGScript.Attacking && DevBoolToNotMove == false)
         {
-            Transform temp = GetClosestEnemy(PlayerNotList);
-            //transform.LookAt(temp);
-            selfNavAgent.destination = temp.position;
+
             if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
             {
                 AttackBox.SetActive(true);
