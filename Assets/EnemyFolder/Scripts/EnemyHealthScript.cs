@@ -27,6 +27,7 @@ public class EnemyHealthScript : MonoBehaviour
     float temptimer;
     float statusdonetemptimer;
     float temporarytimer;
+    float tempspeed;
 
     public enum DamageResistance
     {
@@ -133,6 +134,8 @@ public class EnemyHealthScript : MonoBehaviour
                 statusIconsHold[i].GetComponentInChildren<Slider>().value = 0;
                 statusIconsHold[i].gameObject.SetActive(false);
             }
+            thisMovement.speed = 1 + (enemySpawn.rounds / 5);
+            tempspeed = thisMovement.speed;
         }
         HealthSlider.maxValue = MaxHealth;
         Health = MaxHealth;
@@ -182,14 +185,24 @@ public class EnemyHealthScript : MonoBehaviour
         {
             if (temporarytimer <= 0)
             {
-                if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsInUse[0].GetComponentInChildren<Slider>().maxValue) 
+                if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsHold[0].GetComponentInChildren<Slider>().maxValue) 
                 {
                     if (damageRes == DamageResistance.Fire) Health -= (MaxHealth / 10) / 2;
                     else Health -= MaxHealth / 10;
-                } 
+                }
                 temporarytimer = 1;
             }
             if (temporarytimer > 0) temporarytimer -= Time.deltaTime;
+            if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
+            {
+                if (damageRes == DamageResistance.Water) Health -= (int)(Time.deltaTime * 50) / 2;
+                else Health -= (int)(Time.deltaTime * 50);
+            }
+            if (statusIconsHold[1].GetComponentInChildren<Slider>().value > 0)
+            {
+                if (damageRes == DamageResistance.Ice) thisMovement.speed = tempspeed - (statusIconsHold[1].GetComponentInChildren<Slider>().value / 100) / 2;
+                else thisMovement.speed = tempspeed - (statusIconsHold[1].GetComponentInChildren<Slider>().value / 100);
+            }
         }
         else
         {
@@ -201,7 +214,6 @@ public class EnemyHealthScript : MonoBehaviour
                 }
             }
         }
-        if (DevBoolToNotMove == false && enemySpawn.rounds >= 5) thisMovement.speed = 2;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -239,57 +251,61 @@ public class EnemyHealthScript : MonoBehaviour
             Health -= (temp.Damage + cs.Damage2);
             wsc.points += 100;
         }
-        if (temp.damageType == DamageScript.DamageType.Fire)
+        if (DevBoolToNotMove == false)
         {
-            if (statusIconsInUse.Contains(statusIconsHold[0]) == false)
+            if (temp.damageType == DamageScript.DamageType.Fire)
             {
-                statusIconsInUse.Add(statusIconsHold[0]);
-                statusIconsHold[0].SetActive(true);
-                statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
-            }
-            else
-            {
-                statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
-                if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsHold[0].GetComponentInChildren<Slider>().maxValue)
+                if (statusIconsInUse.Contains(statusIconsHold[0]) == false)
                 {
-                    print("kaboom");
-                    if (statusdonetemptimer >= 0)statusdonetemptimer = 10;
+                    statusIconsInUse.Add(statusIconsHold[0]);
+                    statusIconsHold[0].SetActive(true);
+                    statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
+                }
+                else
+                {
+                    statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
+                    if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsHold[0].GetComponentInChildren<Slider>().maxValue)
+                    {
+                        print("kaboom");
+                        if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    }
                 }
             }
-        }
-        if (temp.damageType == DamageScript.DamageType.Ice)
-        {
-            if (statusIconsInUse.Contains(statusIconsHold[1]) == false)
+            if (temp.damageType == DamageScript.DamageType.Ice)
             {
-                statusIconsInUse.Add(statusIconsHold[1]);
-                statusIconsHold[1].SetActive(true);
-                statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
-            }
-            else
-            {
-                statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
-                if (statusIconsHold[1].GetComponentInChildren<Slider>().value == statusIconsHold[1].GetComponentInChildren<Slider>().maxValue)
+                if (statusIconsInUse.Contains(statusIconsHold[1]) == false)
                 {
-                    print("FREEZE");
-                    if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    statusIconsInUse.Add(statusIconsHold[1]);
+                    statusIconsHold[1].SetActive(true);
+                    statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
+                }
+                else
+                {
+                    statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
+                    if (statusIconsHold[1].GetComponentInChildren<Slider>().value == statusIconsHold[1].GetComponentInChildren<Slider>().maxValue)
+                    {
+                        print("FREEZE");
+                        if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    }
                 }
             }
-        }
-        if (temp.damageType == DamageScript.DamageType.Water)
-        {
-            if (statusIconsInUse.Contains(statusIconsHold[2]) == false)
+            if (temp.damageType == DamageScript.DamageType.Water)
             {
-                statusIconsInUse.Add(statusIconsHold[2]);
-                statusIconsHold[2].SetActive(true);
-                statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
-            }
-            else
-            {
-                statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
-                if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
+                if (statusIconsInUse.Contains(statusIconsHold[2]) == false)
                 {
-                    print("Blub");
-                    if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    statusIconsInUse.Add(statusIconsHold[2]);
+                    statusIconsHold[2].SetActive(true);
+                    statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
+                }
+                else
+                {
+                    statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
+                    statusdonetemptimer = 5;
+                    if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
+                    {
+                        print("Blub");
+                        if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    }
                 }
             }
         }

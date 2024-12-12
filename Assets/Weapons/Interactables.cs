@@ -44,6 +44,7 @@ public class Interactables : MonoBehaviour
         }
         if (InInteractableRange && Input.GetKey(KeyCode.E))
         {
+            slider.gameObject.SetActive(true);
             if (InterVaris != null && InterVaris.Cost <= iwsc.points)
             {
                 timer -= Time.deltaTime;
@@ -107,6 +108,7 @@ public class Interactables : MonoBehaviour
             timer = Maxtimer;
             CanBuy = false;
             slider.value = Maxtimer;
+            slider.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -116,14 +118,12 @@ public class Interactables : MonoBehaviour
             InInteractableRange = true;
             InterVaris = other.GetComponent<InteractableVariables>();
             Removeable = true;
-            slider.gameObject.SetActive(true);
         }
         if (other.tag == "Buyable")
         {
             InInteractableRange = true;
             InterVaris = other.GetComponent<InteractableVariables>();
             Buyable = true;
-            slider.gameObject.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
