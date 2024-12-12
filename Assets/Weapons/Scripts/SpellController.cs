@@ -5,7 +5,8 @@ public class SpellController : MonoBehaviour
 {
 
     [SerializeField] private AudioSource icecracking;
-    [SerializeField] private AudioSource firestaff; 
+    [SerializeField] private AudioSource firestaff;
+    public GameObject fireballStaff; 
 
     //Fireball object
     public GameObject fireball, upgradedStaff;
@@ -157,9 +158,10 @@ public class SpellController : MonoBehaviour
             icecracking.Play();
 
             if (Input.GetMouseButtonDown(0))
-            {
-                firestaff = GetComponent<AudioSource>();
-                firestaff.Play();
+            { 
+                    firestaff = GetComponent<AudioSource>();
+                    firestaff.Stop();
+                    firestaff.Play();
             }
 
 
