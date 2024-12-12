@@ -15,12 +15,10 @@ public class EnemyHealthScript : MonoBehaviour
     CauldronScript cs;
     public EnemySpawnScript enemySpawn;
     public EnemyMovementScript thisMovement;
-    public ParticleSystem ps;
     public Renderer MyRenderer;
     public Material outlineMat;
     public bool DevBoolToNotMove;
     public DamageSource EHSDS;
-    ParticleSystem.MainModule PSMM;
     public GameObject[] statusIconsHold;
     public GameObject[] statusIconLocations;
     public List<GameObject> statusIconsInUse;
@@ -59,9 +57,7 @@ public class EnemyHealthScript : MonoBehaviour
         {
             MaxHealth *= 1 + (enemySpawn.rounds / 5);
             outlineMat = MyRenderer.materials[1];
-            ps.gameObject.SetActive(true);
             outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
-            PSMM = ps.main;
             int tempstatusint = Random.Range(0, 9);
             switch (tempstatusint)
             {
@@ -69,63 +65,54 @@ public class EnemyHealthScript : MonoBehaviour
                     damageRes = DamageResistance.NONE;
                     damageWeak = DamageWeakness.NONE;
                     EHSDS.effects = DamageSource.HostileStatus.None;
-                    ps.gameObject.SetActive(false);
                     outlineMat.SetColor("_OutlineColor", new Color32(109, 109, 109, 255));
                     break;
                 case 1:
                     damageRes = DamageResistance.Neutral;
                     damageWeak = DamageWeakness.Ice;
                     EHSDS.effects = DamageSource.HostileStatus.NeutralTBD;
-                    PSMM.startColor = new Color(0.43f, 0.43f, 0.43f, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(110, 110, 110, 255));
                     break;
                 case 2:
                     damageRes = DamageResistance.Fire;
                     damageWeak = DamageWeakness.Water;
                     EHSDS.effects = DamageSource.HostileStatus.Burn;
-                    PSMM.startColor = new Color(1, 0, 0, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(255, 0, 0, 255));
                     break;
                 case 3:
                     damageRes = DamageResistance.Water;
                     damageWeak = DamageWeakness.Earth;
                     EHSDS.effects = DamageSource.HostileStatus.Poison;
-                    PSMM.startColor = new Color(0, 0, 1, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 255, 255));
                     break;
                 case 4:
                     damageRes = DamageResistance.Earth;
                     damageWeak = DamageWeakness.Air;
                     EHSDS.effects = DamageSource.HostileStatus.EarthTBD;
-                    PSMM.startColor = new Color(0.66f, 0.39f, 0, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(170, 100, 0, 255));
                     break;
                 case 5:
                     damageRes = DamageResistance.Air;
                     damageWeak = DamageWeakness.Fire;
                     EHSDS.effects = DamageSource.HostileStatus.AirTBD;
-                    PSMM.startColor = new Color(0.7f, 1, 0.59f, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(180, 255, 150, 255));
                     break;
                 case 6:
                     damageRes = DamageResistance.Light;
                     damageWeak = DamageWeakness.Dark;
                     EHSDS.effects = DamageSource.HostileStatus.ManaDrain;
-                    PSMM.startColor = new Color(1, 1, 1, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(255, 255, 255, 255));
                     break;
                 case 7:
                     damageRes = DamageResistance.Dark;
                     damageWeak = DamageWeakness.Light;
                     EHSDS.effects = DamageSource.HostileStatus.DarkTBD;
-                    PSMM.startColor = new Color(0, 0, 0, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
                     break;
                 case 8:
                     damageRes = DamageResistance.Ice;
                     damageWeak = DamageWeakness.Neutral;
                     EHSDS.effects = DamageSource.HostileStatus.Slow;
-                    PSMM.startColor = new Color(0.59f, 0.9f, 1, 1);
                     outlineMat.SetColor("_OutlineColor", new Color32(150, 230, 255, 255));
                     break;
             }
