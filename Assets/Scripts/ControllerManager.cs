@@ -25,7 +25,7 @@ public class ControllerManager : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    //I couldn't tell ya
+    //This is just the logic for detected new and DCed controllers
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
         if (device is Gamepad gamepad)
