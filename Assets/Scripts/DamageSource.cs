@@ -16,6 +16,9 @@ public class DamageSource : MonoBehaviour
     public Animator animator; // Animator component reference
     private Coroutine attackCoroutine; // Reference to the attack coroutine
 
+    [SerializeField] private AudioSource metalchain;
+
+
     public HostileStatus effects;
     public enum HostileStatus
     {
@@ -46,6 +49,11 @@ public class DamageSource : MonoBehaviour
                     // Initiate attack and stop movement
                     Attacking = true;
                     animator.SetTrigger("Attacking");
+
+                    
+                    metalchain = GetComponent<AudioSource>();
+
+
 
                     // Start the coroutine to wait for the animation to complete
                     attackCoroutine = StartCoroutine(CompleteAttack());
