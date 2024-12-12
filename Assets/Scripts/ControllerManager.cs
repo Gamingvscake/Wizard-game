@@ -4,11 +4,13 @@ using UnityEngine.InputSystem;
 
 public class ControllerManager : MonoBehaviour
 {
+    //Make a dictionary to assign gamepads IDs
     private readonly Dictionary<Gamepad, int> controllerIDs = new Dictionary<Gamepad, int>();
     private int nextControllerID = 1;
 
     void OnEnable()
     {
+        //When it detects a new controller it assigns that controller an ID, this makes it work mid game too
         InputSystem.onDeviceChange += OnDeviceChange;
 
         foreach (var gamepad in Gamepad.all)
@@ -17,11 +19,13 @@ public class ControllerManager : MonoBehaviour
         }
     }
 
+    //This make a controller DC possible
     void OnDisable()
     {
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
+    //I couldn't tell ya
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
         if (device is Gamepad gamepad)
@@ -39,6 +43,7 @@ public class ControllerManager : MonoBehaviour
         }
     }
 
+    //This detects any gamepads and assigns them an ID to be reference to
     private void AssignControllerID(Gamepad gamepad)
     {
         if (!controllerIDs.ContainsKey(gamepad))
@@ -49,6 +54,7 @@ public class ControllerManager : MonoBehaviour
         }
     }
 
+    //I mean just read the void name its kinda obvious
     private void RemoveControllerID(Gamepad gamepad)
     {
         if (controllerIDs.ContainsKey(gamepad))
@@ -59,11 +65,13 @@ public class ControllerManager : MonoBehaviour
         }
     }
 
+    //This shows all gamepad IDs in a public integer
     public int GetControllerID(Gamepad gamepad)
     {
         return controllerIDs.TryGetValue(gamepad, out int id) ? id : -1;
     }
 
+    //AAAAAAAAAAAAAAA
     public Gamepad GetControllerByID(int id)
     {
         foreach (var kvp in controllerIDs)
