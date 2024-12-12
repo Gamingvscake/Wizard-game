@@ -156,11 +156,10 @@ public class SpellController : MonoBehaviour
             icecracking = GetComponent<AudioSource>();
             icecracking.Play();
 
-            while (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 firestaff = GetComponent<AudioSource>();
                 firestaff.Play();
-
             }
 
 
