@@ -39956,7 +39956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e9cd52d1648b14aa769939398537c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 4515942442940512866, guid: 851b1866d9dd0cf4a9efe0c928a1d411, type: 3}
+  enemy: {fileID: 1641802354152373550, guid: 52f6a90ebe76d574dae596c06276ae71, type: 3}
   spawnpoints:
   - {fileID: 1754834154}
   - {fileID: 1318479038}
@@ -42597,7 +42597,7 @@ MonoBehaviour:
   HealthSlider: {fileID: 735880720}
   damageRes: 2
   damageWeak: 0
-  wsc: {fileID: 0}
+  wsc: {fileID: 1312987195}
   enemySpawn: {fileID: 0}
   thisMovement: {fileID: 0}
   ps: {fileID: 0}
@@ -67403,6 +67403,17 @@ MonoBehaviour:
   mouseSensitivity: 2
   controllerSensitivity: 2
   smoothing: 1.5
+--- !u!114 &1312987195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7266040769822686499, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1312987189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2c28a046e0b804e8c3ffa1706e18ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1318479037
 GameObject:
   m_ObjectHideFlags: 0
