@@ -5,6 +5,7 @@ public class SpellController : MonoBehaviour
 {
 
     [SerializeField] private AudioSource icecracking;
+    [SerializeField] private AudioSource firestaff; 
 
     //Fireball object
     public GameObject fireball, upgradedStaff;
@@ -154,6 +155,14 @@ public class SpellController : MonoBehaviour
             // PLay the ice cracking sound
             icecracking = GetComponent<AudioSource>();
             icecracking.Play();
+
+            while (Input.GetMouseButtonDown(0))
+            {
+                firestaff = GetComponent<AudioSource>();
+                firestaff.Play();
+
+            }
+
 
         }
         else if (attackType == AttackType.HitScan)
