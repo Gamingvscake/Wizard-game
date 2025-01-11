@@ -10,55 +10,44 @@ public class MovementController : MonoBehaviour
     public float jumpForce = 5f;
 
     [Header("Crouch Settings")]
-    public float crouchHeight = 1f; // Lower camera height when crouching
-    public float standingHeight = 2f; // Default camera height
-    public float crouchTransitionSpeed = 5f; // Speed of camera height transition
+    public float crouchHeight = 1f;
+    public float standingHeight = 2f;
+    public float crouchTransitionSpeed = 5f;
 
     [Header("Ground Detection")]
-    public LayerMask groundLayer; // Layer mask to check for ground collisions
-    public float groundCheckDistance = 1.5f; // Distance for the raycast to check
+    public LayerMask groundLayer;
+    public float groundCheckDistance = 1.5f;
 
     [Header("Camera Settings")]
-    public Transform playerCameraTransform; // Reference to the camera's transform, assigned via the Inspector
+    public Transform playerCameraTransform;
+    public float lookSensitivity = 1f;
+    public float smoothing = 1.5f; // Smoothing factor for camera input
 
-    private PlayerController controls; // Input action asset reference
-    private Vector2 movementInput;
+    private Gamepad assignedController;
+    private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
     private bool isGrounded;
     private bool isCrouching = false;
     private float currentSpeed;
-
-    private Rigidbody rb;
-    private CapsuleCollider capsuleCollider;
-
-    // Variable to track the camera's current height
     private float currentCameraHeight;
 
-    private void Awake()
-    {
-        controls = new PlayerController(); // Initialize the input system
-
-        controls.PlayerControls.Movement.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
-        controls.PlayerControls.Movement.canceled += _ => movementInput = Vector2.zero;
-
-        controls.PlayerControls.Jump.performed += _ => Jump();
-        controls.PlayerControls.Crouch.performed += _ => ToggleCrouch();
-        controls.PlayerControls.Sprint.performed += _ => currentSpeed = sprintSpeed;
-        controls.PlayerControls.Sprint.canceled += _ => currentSpeed = walkSpeed;
-    }
+    // Camera look variables
+    private Vector2 cameraInput;
+    private Vector2 velocity;
+    private Vector2 frameVelocity;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
-        // Ensure the camera transform is assigned
         if (playerCameraTransform == null)
         {
             Debug.LogError("Player Camera Transform is not assigned in the Inspector!");
         }
         else
         {
-            currentCameraHeight = playerCameraTransform.localPosition.y; // Start with the camera's initial height
+            currentCameraHeight = playerCameraTransform.localPosition.y;
         }
 
         currentSpeed = walkSpeed;
@@ -66,69 +55,87 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        CheckGroundStatus();
+        if (assignedController == null) return;
+
+        HandleMovement();
         HandleCrouchHeight();
+        CheckGroundStatus();
+        HandleCameraLook();
     }
 
-    private void Move()
+    public void AssignController(Gamepad controller)
     {
-        // Get movement direction and convert it to world space
-        Vector3 moveDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
-        Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
+        assignedController = controller;
+        Debug.Log($"Controller assigned to {gameObject.name}: {controller.name}");
+    }
 
-        // Apply velocity, keeping the y velocity (gravity and jumping) intact
+    private void HandleMovement()
+    {
+        // Read movement input from the assigned controller
+        Vector2 moveInput = assignedController.leftStick.ReadValue();
+        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+        // Apply movement
+        Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
         Vector3 velocity = new Vector3(worldMoveDirection.x * currentSpeed, rb.velocity.y, worldMoveDirection.z * currentSpeed);
         rb.velocity = velocity;
-    }
 
-    private void Jump()
-    {
-        // Ensure the player can only jump if they are grounded
-        if (isGrounded)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z); // Apply jump force
-        }
-    }
-
-    private void ToggleCrouch()
-    {
-        // Toggle crouch state and adjust speed accordingly
-        isCrouching = !isCrouching;
-        currentSpeed = isCrouching ? crouchSpeed : walkSpeed;
+        // Handle sprint input
+        if (assignedController.leftTrigger.isPressed)
+            currentSpeed = sprintSpeed;
+        else
+            currentSpeed = walkSpeed;
     }
 
     private void HandleCrouchHeight()
     {
-        // Smoothly transition between crouch and standing height for the camera
         if (playerCameraTransform != null)
         {
             float targetHeight = isCrouching ? crouchHeight : standingHeight;
             currentCameraHeight = Mathf.Lerp(currentCameraHeight, targetHeight, Time.deltaTime * crouchTransitionSpeed);
 
-            // Update the camera's local position to match the desired height
             Vector3 cameraPosition = playerCameraTransform.localPosition;
             cameraPosition.y = currentCameraHeight;
             playerCameraTransform.localPosition = cameraPosition;
         }
     }
 
+    private void ToggleCrouch()
+    {
+        isCrouching = !isCrouching;
+        currentSpeed = isCrouching ? crouchSpeed : walkSpeed;
+    }
+
     private void CheckGroundStatus()
     {
-        // Raycast downwards from the player's position to check if they're grounded
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
-
-        // Optional: Debug the ground check to visualize in the Scene view
         Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, isGrounded ? Color.green : Color.red);
     }
 
-    private void OnEnable()
+    private void Jump()
     {
-        controls.PlayerControls.Enable();
+        if (isGrounded)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        }
     }
 
-    private void OnDisable()
+    private void HandleCameraLook()
     {
-        controls.PlayerControls.Disable();
+        //Read camera input from the right stick
+        Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
+
+        //Smooth input
+        frameVelocity = Vector2.Lerp(frameVelocity, inputDelta, 1 / smoothing);
+        velocity += frameVelocity;
+
+        //Clamp vertical look rotation
+        velocity.y = Mathf.Clamp(velocity.y, -90f, 90f);
+
+        //Apply rotation to the camera (local X axis for up/down)
+        playerCameraTransform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
+
+        //Apply rotation to the character (Y axis for left/right)
+        transform.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
     }
 }

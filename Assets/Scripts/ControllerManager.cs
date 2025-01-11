@@ -4,13 +4,16 @@ using UnityEngine.InputSystem;
 
 public class ControllerManager : MonoBehaviour
 {
-    //Make a dictionary to assign gamepads IDs
     private readonly Dictionary<Gamepad, int> controllerIDs = new Dictionary<Gamepad, int>();
+    private readonly Dictionary<int, GameObject> playerInstances = new Dictionary<int, GameObject>();
+
+    public GameObject player1Object; // Assign this in the Inspector to the first player prefab in the scene
+    public GameObject player2Object; // Assign this in the Inspector to the second player prefab in the scene
+
     private int nextControllerID = 1;
 
     void OnEnable()
     {
-        //When it detects a new controller it assigns that controller an ID, this makes it work mid game too
         InputSystem.onDeviceChange += OnDeviceChange;
 
         foreach (var gamepad in Gamepad.all)
@@ -19,13 +22,11 @@ public class ControllerManager : MonoBehaviour
         }
     }
 
-    //This make a controller DC possible
     void OnDisable()
     {
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    //This is just the logic for detected new and DCed controllers
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
         if (device is Gamepad gamepad)
@@ -43,42 +44,50 @@ public class ControllerManager : MonoBehaviour
         }
     }
 
-    //This detects any gamepads and assigns them an ID to be reference to
     private void AssignControllerID(Gamepad gamepad)
     {
         if (!controllerIDs.ContainsKey(gamepad))
         {
             controllerIDs[gamepad] = nextControllerID;
-            Debug.Log($"Controller {nextControllerID} connected: {gamepad.name}");
+
+            // Assign the existing player object for the controller
+            GameObject playerObject = nextControllerID == 1 ? player1Object : player2Object;
+
+            if (playerObject != null)
+            {
+                playerInstances[nextControllerID] = playerObject;
+
+                // Assign the controller to the character's movement
+                var movementController = playerObject.GetComponent<MovementController>();
+                if (movementController != null)
+                {
+                    movementController.AssignController(gamepad);
+                }
+                Debug.Log($"Controller {nextControllerID} assigned to {playerObject.name}");
+            }
+            else
+            {
+                Debug.LogError($"Player {nextControllerID} object is not assigned in the Inspector!");
+            }
+
             nextControllerID++;
         }
     }
 
-    //I mean just read the void name its kinda obvious
+
     private void RemoveControllerID(Gamepad gamepad)
     {
         if (controllerIDs.ContainsKey(gamepad))
         {
             int id = controllerIDs[gamepad];
-            Debug.Log($"Controller {id} disconnected: {gamepad.name}");
+
+            if (playerInstances.ContainsKey(id))
+            {
+                Debug.Log($"Controller {id} disconnected from {playerInstances[id].name}");
+                playerInstances.Remove(id);
+            }
+
             controllerIDs.Remove(gamepad);
         }
-    }
-
-    //This shows all gamepad IDs in a public integer
-    public int GetControllerID(Gamepad gamepad)
-    {
-        return controllerIDs.TryGetValue(gamepad, out int id) ? id : -1;
-    }
-
-    //AAAAAAAAAAAAAAA
-    public Gamepad GetControllerByID(int id)
-    {
-        foreach (var kvp in controllerIDs)
-        {
-            if (kvp.Value == id)
-                return kvp.Key;
-        }
-        return null;
     }
 }
