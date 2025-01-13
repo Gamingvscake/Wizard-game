@@ -36,7 +36,9 @@ public class EnemyMovementScript : MonoBehaviour
     {
         Transform temp = GetClosestEnemy(PlayerNotList);
         //transform.LookAt(temp);
-        selfNavAgent.destination = temp.position;
+        //selfNavAgent.destination = temp.position;
+        selfNavAgent.SetDestination(temp.position);
+        Debug.Log(selfNavAgent.pathStatus);
 
         if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
         {

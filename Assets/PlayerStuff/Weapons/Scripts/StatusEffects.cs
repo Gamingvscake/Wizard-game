@@ -94,8 +94,8 @@ public class StatusEffects : MonoBehaviour
         }
         else if (statustemp == (int)Status.Slow)
         {
-            statusImage.sprite = Sprites[7];
             effects = Status.Slow;
+            statusImage.sprite = Sprites[7];
             StatusFPC.walkSpeed = StatusFPC.walkSpeed / 2;
             StatusFPC.sprintSpeed = StatusFPC.sprintSpeed / 2;
         }
