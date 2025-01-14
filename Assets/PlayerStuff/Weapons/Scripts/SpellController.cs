@@ -169,6 +169,65 @@ public class SpellController : MonoBehaviour
                 firestaff.Play();
             }
         }
+        else if (attackType == AttackType.HitScan)
+        {
+            Ray ray = playerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            lineRenderer = GetComponentInChildren<LineRenderer>();
+            lineRenderer.SetPosition(0, attackPoint.position);
+            if (Physics.Raycast(ray, out hit, hitscanRange))
+            {
+                lineRenderer.SetPosition(1, hit.point);
+                lineRenderer.enabled = true;
+                GameObject currentSpell = Instantiate(fireball, attackPoint.position, attackPoint.rotation);
+                currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
+                currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
+                currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
+                DamageScript tempds = currentSpell.GetComponentInChildren<DamageScript>();
+                Destroy(currentSpell);
+                print(tempds + " " + tempds.Damage);
+                if (hit.collider.tag == "Enemy" || hit.collider.gameObject.tag == "Enemy")
+                {
+                    EnemyHealthScript tempEHS = hit.collider.GetComponent<EnemyHealthScript>();
+                    tempEHS.DODAMAGE(tempds);
+                }
+            }
+            else
+            {
+                lineRenderer.SetPosition(1, ray.origin + (playerCam.transform.forward * hitscanRange));
+            }
+            StartCoroutine(ShootHitScan());
+        }
+        else if (attackType == AttackType.Melee)
+        {
+            GameObject currentSpell = Instantiate(fireball, attackPoint.position, attackPoint.rotation);
+            currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
+            currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
+            currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
+            DamageScript tempds = currentSpell.GetComponentInChildren<DamageScript>();
+            Destroy(currentSpell);
+            DamageScript temphitbox = meleeHitbox.GetComponentInChildren<DamageScript>();
+            temphitbox.cs = sccs;
+            temphitbox.dswsc = WSC;
+            temphitbox.dsPI = scPI;
+            temphitbox.damageType = tempds.damageType;
+            temphitbox.Damage = tempds.Damage;
+            meleeHitbox.SetActive(true);
+        }
+        else if (attackType == AttackType.Turret)
+        {
+            if (WSC.numberOfTurrets < WSC.maxNumberOfTurrets)
+            {
+                GameObject currentSpell = Instantiate(fireball, attackPoint.position, Quaternion.identity);
+                currentSpell.GetComponentInChildren<DamageScript>().cs = sccs;
+                currentSpell.GetComponentInChildren<DamageScript>().dswsc = WSC;
+                currentSpell.GetComponentInChildren<TurretMoveScript>().TMSWSC = WSC;
+                currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
+                currentSpell.GetComponentInChildren<TurretMoveScript>().castForce = castForce;
+                currentSpell.GetComponentInChildren<TurretMoveScript>().upwardForce = upwardForce;
+                WSC.numberOfTurrets += 1;
+            }
+        }
         spellsLeft -= manaPerShot;
         WSC.Mana -= manaPerShot;
         spellsCasted++;
@@ -184,7 +243,7 @@ public class SpellController : MonoBehaviour
             Invoke("ResetCast", castSpeed);
             allowInvoke = false;
         }
-    }
+    } 
 
     private void ResetCast()
     {
@@ -201,7 +260,12 @@ public class SpellController : MonoBehaviour
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }
-
+    IEnumerator ShootHitScan()
+    {
+        lineRenderer.enabled = true;
+        yield return new WaitForSeconds(hitscanTrailDuration);
+        lineRenderer.enabled = false;
+    }
     private void ReloadFinished()
     {
         spellsLeft = WSC.MaxMana;

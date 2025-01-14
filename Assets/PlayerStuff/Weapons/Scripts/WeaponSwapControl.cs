@@ -23,6 +23,7 @@ public class WeaponSwapControl : MonoBehaviour
     public AnvilScript wscas;
     public int maxNumberOfTurrets;
     public int numberOfTurrets;
+    public bool devkeyboard;
     [SerializeField] private AudioSource changeweapon;
 
     private PlayerController inputActions;
@@ -57,8 +58,15 @@ public class WeaponSwapControl : MonoBehaviour
 
     private void StaffSwap()
     {
-        float switchStaffValue = inputActions.PlayerControls.SwitchStaff.ReadValue<float>();
-
+        float switchStaffValue = 0;
+        if (!devkeyboard)
+        {
+             switchStaffValue = inputActions.PlayerControls.SwitchStaff.ReadValue<float>();
+        }
+        else 
+        { 
+             switchStaffValue = Input.mouseScrollDelta.y; 
+        }
         if (switchStaffValue > 0.5f && canSwitchStaff)
         {
             canSwitchStaff = false; // Prevent continuous swapping

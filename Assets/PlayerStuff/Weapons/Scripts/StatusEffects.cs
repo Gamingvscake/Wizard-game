@@ -8,7 +8,7 @@ public class StatusEffects : MonoBehaviour
     public Status effects;
     public PlayerInflicts StatusPI;
     public WeaponSwapControl StatusWSC;
-    public FirstPersonController StatusFPC;
+    public MovementController StatusMC;
     float tempduration;
     int tempdamage;
     bool working;
@@ -64,8 +64,8 @@ public class StatusEffects : MonoBehaviour
                 tempdamage = 0;
                 if (effects == Status.Slow)
                 {
-                    StatusFPC.walkSpeed = StatusFPC.walkSpeed * 2;
-                    StatusFPC.sprintSpeed = StatusFPC.sprintSpeed * 2;
+                    StatusMC.walkSpeed = StatusMC.walkSpeed * 2;
+                    StatusMC.sprintSpeed = StatusMC.sprintSpeed * 2;
                 }
                 working = false;
             }
@@ -96,8 +96,8 @@ public class StatusEffects : MonoBehaviour
         {
             effects = Status.Slow;
             statusImage.sprite = Sprites[7];
-            StatusFPC.walkSpeed = StatusFPC.walkSpeed / 2;
-            StatusFPC.sprintSpeed = StatusFPC.sprintSpeed / 2;
+            StatusMC.walkSpeed = StatusMC.walkSpeed / 2;
+            StatusMC.sprintSpeed = StatusMC.sprintSpeed / 2;
         }
         tempduration = duration;
         tempdamage = damage;

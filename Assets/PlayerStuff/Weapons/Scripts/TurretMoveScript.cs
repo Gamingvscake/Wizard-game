@@ -16,12 +16,19 @@ public class TurretMoveScript : MonoBehaviour
     public int hasenemy;
     Quaternion attackpointrotation;
     Vector3 attackpointposition;
+    public bool die;
+    public WeaponSwapControl TMSWSC;
     private void Start()
     {
         detectionRadius.radius = maxDetectionRadius;
     }
     private void Update()
     {
+        if (die)
+        {
+            TMSWSC.numberOfTurrets -= 1;
+            die = false;
+        }
         if (targetEnemy != null && hasenemy > 0)
         {
             Fire(0);

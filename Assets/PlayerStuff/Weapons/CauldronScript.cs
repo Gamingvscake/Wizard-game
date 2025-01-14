@@ -12,7 +12,7 @@ public class CauldronScript : MonoBehaviour
     public float SplashSize;
     public GameObject CauldronScreen;
     public bool InCauldronScreen;
-    public FirstPersonController fpc;
+    public MovementController csmc;
     public int LifeSteal;
     public GameObject CurScreen;
     private void Start()
@@ -107,8 +107,8 @@ public class CauldronScript : MonoBehaviour
         {
             if (wsc.points >= 1000)
             {
-                fpc.sprintSpeed += 0.5f;
-                fpc.walkSpeed += 0.5f;
+                csmc.sprintSpeed += 0.5f;
+                csmc.walkSpeed += 0.5f;
                 wsc.points -= 1000;
             }
         }
@@ -124,7 +124,8 @@ public class CauldronScript : MonoBehaviour
         {
             if (wsc.points >= 1000)
             {
-                fpc.sprintDuration += 1;
+                //csmc.sprintDuration += 1;
+                print("If we want a max duration on sprint, add it. If not, get rid of this code");
                 wsc.points -= 1000;
             }
         }

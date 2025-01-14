@@ -40,6 +40,16 @@ public class DamageScript : MonoBehaviour
             if (StickInTarget == false && rb != null)rb.constraints = RigidbodyConstraints.None;
             Destroy(item, DeleteDelay + 1);
         }
+        if (isTurret == true)
+        {
+            DeleteDelay -= Time.deltaTime;
+            if(DeleteDelay <= 0.1f)
+            {
+                TurretMoveScript tms = GetComponent<TurretMoveScript>();
+                tms.die = true;
+                isTurret = false;
+            }
+        }
     }
     private void Delete()
     {

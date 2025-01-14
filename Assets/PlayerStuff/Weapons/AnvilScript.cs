@@ -9,7 +9,8 @@ public class AnvilScript : MonoBehaviour
     public GameObject UpgradeScreen;
     public SpellController spellCon;
     WeaponSwapControl weaponSwapControl;
-    public GameObject StaffPoint, UpgradedStaffPoint, SpellPoint, UpgradedSpellPoint;
+    public GameObject StaffPoint, UpgradedStaffPoint;
+    GameObject SpellPoint, UpgradedSpellPoint;
     public TextMeshProUGUI LevelText, NextLevelText;
     void Start()
     {
