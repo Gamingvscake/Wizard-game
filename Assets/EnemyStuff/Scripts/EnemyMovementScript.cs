@@ -14,7 +14,7 @@ public class EnemyMovementScript : MonoBehaviour
     public DamageSource DMGScript;
     public TurretMoveScript tempturrscrip;
     public float attackDistance;
-    public bool DevBoolToNotMove;
+    public bool DevBoolToNotMove, isRanged;
     public NavMeshAgent selfNavAgent;
 
     private void Start()
@@ -63,12 +63,19 @@ public class EnemyMovementScript : MonoBehaviour
 
         if (!DMGScript.Attacking && DevBoolToNotMove == false)
         {
-
-            if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+            if (isRanged == false)
             {
-                AttackBox.SetActive(true);
+                if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+                {
+                    AttackBox.SetActive(true);
+                }
+                else AttackBox.SetActive(false);
             }
-            else AttackBox.SetActive(false);
+            else
+            {
+                //make ranged attack
+
+            }
         }
 
     }

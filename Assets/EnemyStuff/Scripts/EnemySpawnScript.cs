@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawnScript : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject[] enemy;
     public Transform[] spawnpoints;
     public int rounds;
     public int amountOfEnemiesLeft;
@@ -48,7 +48,7 @@ public class EnemySpawnScript : MonoBehaviour
                 }
                 if (tempcanspawn)
                 {
-                    GameObject temp = Instantiate(enemy, spawnpoints[Random.Range(0, spawnpoints.Length)]);
+                    GameObject temp = Instantiate(enemy[Random.Range(0,enemy.Length)], spawnpoints[Random.Range(0, spawnpoints.Length)]);
                     temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
                     temp.GetComponent<EnemyMovementScript>().Players = Players;
                     temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
