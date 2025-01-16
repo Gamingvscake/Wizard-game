@@ -23,9 +23,9 @@ public class WeaponSwapControl : MonoBehaviour
     public AnvilScript wscas;
     public int maxNumberOfTurrets;
     public int numberOfTurrets;
-    public bool devkeyboard;
     [SerializeField] private AudioSource changeweapon;
 
+    private MovementController movementController;
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
 
@@ -37,6 +37,7 @@ public class WeaponSwapControl : MonoBehaviour
         EquippedStaffs[0] = StarterStaff;
         ESS = GameObject.Find("Spawning").GetComponent<EnemySpawnScript>();
         ESS.Players.Add(this.transform);
+        movementController = GetComponent<MovementController>();
 
         if (tempobject == null)
         {
@@ -59,7 +60,7 @@ public class WeaponSwapControl : MonoBehaviour
     private void StaffSwap()
     {
         float switchStaffValue = 0;
-        if (!devkeyboard)
+        if (!movementController.DevKeyboardOn)
         {
              switchStaffValue = inputActions.PlayerControls.SwitchStaff.ReadValue<float>();
         }

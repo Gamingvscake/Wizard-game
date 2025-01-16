@@ -110,6 +110,18 @@ public class MovementController : MonoBehaviour
             else
                 currentSpeed = walkSpeed;
 
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                ToggleCrouch();
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                ToggleCrouch();
+            }
         }
     }
 
