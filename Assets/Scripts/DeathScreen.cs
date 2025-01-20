@@ -4,40 +4,29 @@ using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
 
-    public Transform Player1Camera; // Reference to the camera transform
-    public Vector3 targetPosition = new Vector3(0, 45, 0); // Target position
-    public float moveSpeed = 5f; // Speed at which the camera moves
+    public PlayerInflicts playerInflicts;
+    public float moveSpeed = 5f;            
 
-    private bool moveCamera = false; // Flag to trigger the camera movement
+    private bool isGameOver = false;        // Flag to check if the health is zero
+    private Vector3 targetPosition = new Vector3(0, 45, 0); // Target position for this GameObject
 
-    void Start()
+    private void Update()
     {
-        // Ensure the camera starts at (0, 0, 0)
-        Player1Camera.position = new Vector3(0, 0, 0);
-    }
-
-    void Update()
-    {
-        // Start moving the camera once the game begins (or on any specific event)
-        if (!moveCamera)
+        
+        if (playerInflicts.PlayerCurrentHealth <= 0 && !isGameOver)
         {
-            moveCamera = true; // Set the flag to true to start moving the camera
+            isGameOver = true;
         }
 
-        // Move the camera if the moveCamera flag is true
-        if (moveCamera)
+        
+        if (isGameOver)
         {
-            // Smoothly move the camera from its current position to the target position
-            Player1Camera.position = Vector3.MoveTowards(Player1Camera.position, targetPosition, moveSpeed * Time.deltaTime);
-
-            // Optional: Stop the movement once it reaches the target position
-            if (Player1Camera.position == targetPosition)
-            {
-                moveCamera = false; // Stop the camera from moving
-                Debug.Log("Camera has reached the target position.");
-            }
+            gameObject.transform.position = Vector3.Lerp(
+                gameObject.transform.position,
+                targetPosition,
+                moveSpeed * Time.deltaTime
+            );
         }
     }
 
