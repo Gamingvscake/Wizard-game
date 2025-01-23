@@ -105,15 +105,24 @@ public class SpellController : MonoBehaviour
 
     private void MyInput()
     {
-        // Check the trigger value for firing
-        bool fireStaffValue = movementController.ShootSpell;
+        if (movementController.DevKeyboardOn == false)
+        {
+            // Check the trigger value for firing
+            bool fireStaffValue = movementController.ShootSpell;
 
-        // Allow holding or tapping to cast based on the action value
-        if (canSwing && allowButtonHold && sccs.InCauldronScreen == false)
-            casting = fireStaffValue; // Trigger value threshold
-        else if (canSwing && sccs.InCauldronScreen == false)
-            casting = fireStaffValue;
-
+            // Allow holding or tapping to cast based on the action value
+            if (canSwing && allowButtonHold && sccs.InCauldronScreen == false)
+                casting = fireStaffValue; // Trigger value threshold
+            else if (canSwing && sccs.InCauldronScreen == false)
+                casting = fireStaffValue;
+        }
+        else
+        {
+            if (canSwing && allowButtonHold && sccs.InCauldronScreen == false && Input.GetKey(KeyCode.Mouse0))
+                casting = true; // Trigger value threshold
+            else if (canSwing && sccs.InCauldronScreen == false && Input.GetKey(KeyCode.Mouse0))
+                casting = true;
+        }
         // Reloading
         if (Input.GetKeyDown(KeyCode.R) && spellsLeft < manaSize && !reloading) Reload();
 

@@ -2574,9 +2574,11 @@ MonoBehaviour:
   AttackBox: {fileID: 7267922631033261070}
   DMGScript: {fileID: 9034159946278919642}
   tempturrscrip: {fileID: 0}
-  attackDistance: 2.5
+  attackDistance: 10
   DevBoolToNotMove: 0
+  isRanged: 1
   selfNavAgent: {fileID: 7086911645816786703}
+  RangedAttack: {fileID: 4397752145987830941, guid: ab15e3ce0f87a8345a2de03bcebd6ef5, type: 3}
 --- !u!195 &7086911645816786703
 NavMeshAgent:
   m_ObjectHideFlags: 0

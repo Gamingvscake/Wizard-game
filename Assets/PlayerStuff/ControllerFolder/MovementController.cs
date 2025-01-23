@@ -78,13 +78,16 @@ public class MovementController : MonoBehaviour
 
     public void HandleShooting()
     {
-        if (assignedController.rightTrigger.isPressed == true)
+        if (!DevKeyboardOn)
         {
-            ShootSpell = true;
-        }
-        else
-        {
-            ShootSpell = false;
+            if (assignedController.rightTrigger.isPressed == true)
+            {
+                ShootSpell = true;
+            }
+            else
+            {
+                ShootSpell = false;
+            }
         }
     }
 
