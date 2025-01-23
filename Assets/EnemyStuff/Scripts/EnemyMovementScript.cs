@@ -38,7 +38,7 @@ public class EnemyMovementScript : MonoBehaviour
         //transform.LookAt(temp);
         //selfNavAgent.destination = temp.position;
         selfNavAgent.SetDestination(temp.position);
-        Debug.Log(selfNavAgent.pathStatus);
+        //Debug.Log(selfNavAgent.pathStatus);
 
         if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
         {

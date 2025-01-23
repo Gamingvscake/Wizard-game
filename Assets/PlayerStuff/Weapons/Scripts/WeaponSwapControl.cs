@@ -44,6 +44,7 @@ public class WeaponSwapControl : MonoBehaviour
             CurrentEquippedStaff = EquippedStaffs[0];
             tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
             tempobject.GetComponent<SpellController>().enabled = true;
+            tempobject.GetComponent<SpellController>().movementController = movementController;
         }
 
         inputActions = new PlayerController();
@@ -82,6 +83,7 @@ public class WeaponSwapControl : MonoBehaviour
                 {
                     tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
                     tempobject.GetComponent<SpellController>().enabled = true;
+                    tempobject.GetComponent<SpellController>().movementController = movementController;
                 }
             }
             else
@@ -95,6 +97,7 @@ public class WeaponSwapControl : MonoBehaviour
                 {
                     tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
                     tempobject.GetComponent<SpellController>().enabled = true;
+                    tempobject.GetComponent<SpellController>().movementController = movementController;
                 }
             }
         }

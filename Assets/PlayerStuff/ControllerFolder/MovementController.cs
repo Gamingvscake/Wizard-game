@@ -41,6 +41,10 @@ public class MovementController : MonoBehaviour
     private Vector2 frameVelocity;
 
 
+    //Shooting
+    public bool ShootSpell;
+
+
 
     private void Start()
     {
@@ -69,6 +73,19 @@ public class MovementController : MonoBehaviour
         HandleCrouchHeight();
         CheckGroundStatus();
         HandleCameraLook();
+        HandleShooting();
+    }
+
+    public void HandleShooting()
+    {
+        if (assignedController.rightTrigger.isPressed == true)
+        {
+            ShootSpell = true;
+        }
+        else
+        {
+            ShootSpell = false;
+        }
     }
 
     public void AssignController(Gamepad controller)
