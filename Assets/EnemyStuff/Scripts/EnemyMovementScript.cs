@@ -16,6 +16,7 @@ public class EnemyMovementScript : MonoBehaviour
     public float attackDistance;
     public bool DevBoolToNotMove, isRanged;
     public NavMeshAgent selfNavAgent;
+    public GameObject RangedAttack;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class EnemyMovementScript : MonoBehaviour
         //transform.LookAt(temp);
         //selfNavAgent.destination = temp.position;
         selfNavAgent.SetDestination(temp.position);
-        Debug.Log(selfNavAgent.pathStatus);
+        //Debug.Log(selfNavAgent.pathStatus);
 
         if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
         {
@@ -74,7 +75,11 @@ public class EnemyMovementScript : MonoBehaviour
             else
             {
                 //make ranged attack
-
+                if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+                {
+                    Instantiate(RangedAttack,this.gameObject.transform.forward, this.gameObject.transform.rotation, this.gameObject.transform);
+                }
+                else return;
             }
         }
 
