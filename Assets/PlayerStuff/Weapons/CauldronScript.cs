@@ -81,69 +81,69 @@ public class CauldronScript : MonoBehaviour
     {
         if (UT == (int)UpgradeType.HealthUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 PI.PlayerMaxHealth += 10;
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.DamageUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 Damage2 += 5;
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.SplashUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 SplashSize += 0.1f;
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.SpeedUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 csmc.sprintSpeed += 0.5f;
                 csmc.walkSpeed += 0.5f;
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.LifeSteal)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 LifeSteal += 1;
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.StaminaUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 //csmc.sprintDuration += 1;
                 print("If we want a max duration on sprint, add it. If not, get rid of this code");
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.ManaUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 wsc.MaxMana += 10;
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else if (UT == (int)UpgradeType.WeaponSlotUp)
         {
-            if (wsc.points >= 1000)
+            if (wsc.points >= 2500)
             {
                 wsc.MaxNumberOfStaffs += 1;
                 wsc.UpdateStaffArray();
-                wsc.points -= 1000;
+                wsc.points -= 2500;
             }
         }
         else print("INT outside of Enum Range");
