@@ -8,8 +8,8 @@ public class DeathScreen : MonoBehaviour
     public PlayerInflicts playerInflicts;
     public float moveSpeed = 5f;            
 
-    private bool isGameOver = false;        // Flag to check if the health is zero
-    private Vector3 targetPosition = new Vector3(0, 45, 0); // Target position for this GameObject
+    public bool isGameOver = false;        // Flag to check if the health is zero
+    private Vector3 targetPosition = new Vector3(0, 80, 0); // Target position for this GameObject
 
     private void Update()
     {

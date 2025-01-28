@@ -4,6 +4,11 @@ using UnityEngine.TextCore.Text;
 
 public class MovementController : MonoBehaviour
 {
+
+    //public DeathScreen deathScreen;
+
+
+
     [Header("DEV TOOLS")] //Dev Boolean for Keyboard inputs
     public bool DevKeyboardOn;
 
@@ -46,6 +51,7 @@ public class MovementController : MonoBehaviour
 
 
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -67,18 +73,21 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        if (assignedController == null && DevKeyboardOn == false) return;
+        
+
+        if (assignedController == null && DevKeyboardOn == true) return;
 
         HandleMovement();
-        HandleCrouchHeight();
-        CheckGroundStatus();
-        HandleCameraLook();
-        HandleShooting();
+            HandleCrouchHeight();
+            CheckGroundStatus();
+            HandleCameraLook();
+            HandleShooting();
+        
     }
 
     public void HandleShooting()
     {
-        if (!DevKeyboardOn)
+        if (!DevKeyboardOn && assignedController != null)
         {
             if (assignedController.rightTrigger.isPressed == true)
             {
@@ -99,7 +108,7 @@ public class MovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (DevKeyboardOn == false)
+        if (DevKeyboardOn == false && assignedController != null)
         {
             // Read movement input from the assigned controller
             Vector2 moveInput = assignedController.leftStick.ReadValue();
@@ -180,7 +189,7 @@ public class MovementController : MonoBehaviour
 
     private void HandleCameraLook()
     {
-        if (DevKeyboardOn == false)
+        if (DevKeyboardOn == false && assignedController != null)
         {
             //Read camera input from the right stick
             Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
