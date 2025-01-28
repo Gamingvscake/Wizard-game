@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420806121679030139}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: FireIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 4602804283550405913}
   - component: {fileID: 7000980665362679906}
   - component: {fileID: 4187998116428254110}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DamageCollide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,6 +165,8 @@ MonoBehaviour:
   Attacked: 0
   inflictStatusEffect: 1
   animator: {fileID: 5101343577387470675}
+  isRangedAttack: 0
+  metalchain: {fileID: 0}
   effects: 5
 --- !u!1 &117910742862680697
 GameObject:
@@ -177,7 +179,7 @@ GameObject:
   - component: {fileID: 5189294391947345345}
   - component: {fileID: 8394531421611479734}
   - component: {fileID: 8751427888015271702}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +254,7 @@ GameObject:
   - component: {fileID: 706786102840418678}
   - component: {fileID: 8158864802367135040}
   - component: {fileID: 1884955171218493791}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +329,7 @@ GameObject:
   - component: {fileID: 7742146683273072063}
   - component: {fileID: 7738812625705174195}
   - component: {fileID: 2624436568841709088}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8034861796929726692}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: PoisonIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +447,7 @@ GameObject:
   - component: {fileID: 8439818067904634844}
   - component: {fileID: 4120009295539602597}
   - component: {fileID: 8942394633447347890}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyTemp
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -516,7 +518,6 @@ MonoBehaviour:
   wsc: {fileID: 0}
   enemySpawn: {fileID: 0}
   thisMovement: {fileID: 5764010177297073256}
-  ps: {fileID: 6153089208777919510}
   MyRenderer: {fileID: 2792756327912119927}
   outlineMat: {fileID: 2100000, guid: ec9b345eaae50584ea0af1374d4fa211, type: 2}
   DevBoolToNotMove: 0
@@ -553,7 +554,12 @@ MonoBehaviour:
   tempturrscrip: {fileID: 0}
   attackDistance: 1.5
   DevBoolToNotMove: 0
+  isRanged: 0
   selfNavAgent: {fileID: 7777174573433475459}
+  RangedAttack: {fileID: 0}
+  temprangedtimer: 0
+  rangedFireRate: 0
+  rangedAttackSpawn: {fileID: 0}
 --- !u!195 &7777174573433475459
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -683,7 +689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7190695393378779789}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +727,7 @@ GameObject:
   - component: {fileID: 5648917490868877563}
   - component: {fileID: 5533774467197849020}
   - component: {fileID: 7033788028202998041}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7627024905406507562}
   - component: {fileID: 6917774964803409671}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854184298877928340}
   - component: {fileID: 2784304521440763679}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +981,7 @@ GameObject:
   - component: {fileID: 6655138824156805907}
   - component: {fileID: 1222478771413014253}
   - component: {fileID: 3581112464287453590}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1102,7 @@ GameObject:
   - component: {fileID: 2695031678785339573}
   - component: {fileID: 6153089208777919510}
   - component: {fileID: 6981056595280968765}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5927,7 +5933,7 @@ GameObject:
   - component: {fileID: 82518745208974013}
   - component: {fileID: 2792756327912119927}
   - component: {fileID: 6947608493072269154}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6032,7 +6038,7 @@ GameObject:
   - component: {fileID: 9219739599256836104}
   - component: {fileID: 8966020092647069262}
   - component: {fileID: 5217686697028054389}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6105,7 +6111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5747241977546081057}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Location4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6140,7 +6146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3596255118370490973}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Location3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6175,7 +6181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5532475661956175466}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6213,7 +6219,7 @@ GameObject:
   - component: {fileID: 9221649562276067154}
   - component: {fileID: 27898004978234175}
   - component: {fileID: 4929531159004019392}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6288,7 +6294,7 @@ GameObject:
   - component: {fileID: 1835180320341147157}
   - component: {fileID: 3214693596905565010}
   - component: {fileID: 8566134956417898116}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6361,7 +6367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5529381406757819410}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Location1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6396,7 +6402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2350504090383237547}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6434,7 +6440,7 @@ GameObject:
   - component: {fileID: 7655898118332065224}
   - component: {fileID: 5903689144200968754}
   - component: {fileID: 8356211404438781868}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6507,7 +6513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310544794147212291}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Location2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6542,7 +6548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7894913980697916395}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6578,7 +6584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8795091832942943966}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: FreezeIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6616,7 +6622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4075225654287919530}
   - component: {fileID: 1815008141304625466}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6706,7 +6712,7 @@ GameObject:
   - component: {fileID: 2820350456995563368}
   - component: {fileID: 7371493915645339257}
   - component: {fileID: 3011760328019608025}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TempAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6810,7 +6816,7 @@ GameObject:
   - component: {fileID: 919248126381593528}
   - component: {fileID: 4988573998245454882}
   - component: {fileID: 8066599461745162733}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6884,7 +6890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2517264811548099503}
   - component: {fileID: 2793440957182265885}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}

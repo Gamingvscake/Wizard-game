@@ -90,6 +90,7 @@ public class Interactables : MonoBehaviour
                             if (iwsc.EquippedStaffs[i] == null)
                             {
                                 iwsc.EquippedStaffs[i] = InterVaris.BuyableObject;
+                                iwsc.EquippedStaffs[i].gameObject.GetComponent<SpellController>().movementController = iwsc.movementController;
                                 HasBought = true;
                                 break;
                             }
@@ -101,6 +102,7 @@ public class Interactables : MonoBehaviour
                             iwsc.CurrentEquippedStaff = InterVaris.BuyableObject;
                             Destroy(iwsc.tempobject);
                             iwsc.tempobject = Instantiate(iwsc.CurrentEquippedStaff, iwsc.StaffSpawnPoint);
+                            iwsc.tempobject.GetComponent<SpellController>().movementController = iwsc.movementController;
                             iwsc.tempobject.GetComponent<SpellController>().enabled = true;
                             HasBought = true;
                         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawnScript : MonoBehaviour
 {
     public GameObject[] enemy;
+    public GameObject[] RangedEnemies;
     public Transform[] spawnpoints;
     public int rounds;
     public int amountOfEnemiesLeft;
@@ -14,6 +15,7 @@ public class EnemySpawnScript : MonoBehaviour
     public float roundTimer;
     public float spawnTimer;
     public bool inTheRound;
+    public bool rangedEnemiesAdded;
     float tempRTimer;
     float tempSTimer;
     bool tempcanspawn;
@@ -43,6 +45,14 @@ public class EnemySpawnScript : MonoBehaviour
             {
                 if (roundup)
                 {
+                    if (rangedEnemiesAdded == false && rounds == 4)
+                    {
+                        for (int i = 0; i < RangedEnemies.Length; i++)
+                        {
+                            enemy[i+1] = RangedEnemies[i];
+                        }
+                        rangedEnemiesAdded = true;
+                    }
                     rounds += 1;
                     roundup = false;
                 }

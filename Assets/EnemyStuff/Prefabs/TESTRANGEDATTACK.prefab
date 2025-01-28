@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 5477987388166748272}
   - component: {fileID: 6583727214588747329}
   - component: {fileID: 7098287659541362460}
+  - component: {fileID: -5002520117093983313}
   - component: {fileID: 4016581638379848536}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TESTRANGEDATTACK
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4397752145987830941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.94705, y: 2.0683284, z: 3.874855}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,6 +107,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5002520117093983313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4397752145987830941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298fc1c1422678c49a105a3e91a89532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrainEnemy: 0
+  maxDamage: 50
+  minDamage: 35
+  statusDamage: 10
+  statusDuration: 5
+  UIPI: {fileID: 0}
+  Attacking: 0
+  Attacked: 0
+  inflictStatusEffect: 0
+  animator: {fileID: 0}
+  isRangedAttack: 1
+  metalchain: {fileID: 0}
+  effects: 2
 --- !u!54 &4016581638379848536
 Rigidbody:
   m_ObjectHideFlags: 0
