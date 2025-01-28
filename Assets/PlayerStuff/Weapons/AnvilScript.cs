@@ -68,10 +68,10 @@ public class AnvilScript : MonoBehaviour
     }
     public void UPGRADE()
     {
-        if (weaponSwapControl.points >= 1000)
+        if (weaponSwapControl.points >= 5000)
         {
             weaponSwapControl.UpgradeStaff();
-            weaponSwapControl.points -= 1000;
+            weaponSwapControl.points -= 5000;
         }
     }
 }

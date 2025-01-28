@@ -25,7 +25,7 @@ public class WeaponSwapControl : MonoBehaviour
     public int numberOfTurrets;
     [SerializeField] private AudioSource changeweapon;
 
-    private MovementController movementController;
+    public MovementController movementController;
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
 

@@ -134,7 +134,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (statusdonetemptimer > 0) statusdonetemptimer -= Time.deltaTime;
         if (Health <= 0)
         {
-            wsc.points += 1000;
+            wsc.points += 10;
             if (enemySpawn != null) enemySpawn.amountOfEnemies -= 1;
             if (thisMovement != null)
             {

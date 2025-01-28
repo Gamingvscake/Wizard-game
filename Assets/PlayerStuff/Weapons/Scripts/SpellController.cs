@@ -171,9 +171,9 @@ public class SpellController : MonoBehaviour
 
             // Play the ice cracking sound
             icecracking = GetComponent<AudioSource>();
-            icecracking.Play();
+            if (icecracking!= null)icecracking.Play();
 
-            if (fireStaffAction.ReadValue<float>() > 0.5f) // Check the trigger press value again
+            if (fireStaffAction.ReadValue<float>() > 0.5f && firestaff != null) // Check the trigger press value again
             {
                 firestaff = GetComponent<AudioSource>();
                 firestaff.Stop();

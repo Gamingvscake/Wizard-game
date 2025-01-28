@@ -17,7 +17,9 @@ public class EnemyMovementScript : MonoBehaviour
     public bool DevBoolToNotMove, isRanged;
     public NavMeshAgent selfNavAgent;
     public GameObject RangedAttack;
-
+    public float temprangedtimer, rangedFireRate;
+    public Transform rangedAttackSpawn;
+    public float forwardForce, upwardForce;
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
@@ -74,10 +76,29 @@ public class EnemyMovementScript : MonoBehaviour
             }
             else
             {
+                if (temprangedtimer < rangedFireRate) temprangedtimer += Time.deltaTime;
                 //make ranged attack
                 if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
                 {
-                    Instantiate(RangedAttack,this.gameObject.transform.forward, this.gameObject.transform.rotation, this.gameObject.transform);
+                    //Instantiate(RangedAttack,this.gameObject.transform.forward, this.gameObject.transform.rotation, this.gameObject.transform);
+                    if (temprangedtimer >= rangedFireRate && selfNavAgent.destination != null)
+                    {
+                        Vector3 fwd = rangedAttackSpawn.transform.TransformDirection(Vector3.forward);
+                        RaycastHit hit;
+                        Vector3 targetPoint;
+                        if (Physics.Raycast(transform.position, fwd, out hit, attackDistance))
+                            targetPoint = hit.point;
+                        else targetPoint = fwd;
+
+                        Vector3 directionWithoutSpread = targetPoint - rangedAttackSpawn.transform.position;
+                        GameObject currentSpell = Instantiate(RangedAttack, rangedAttackSpawn.transform.position, rangedAttackSpawn.transform.rotation);
+                        currentSpell.transform.forward = directionWithoutSpread.normalized;
+
+                        currentSpell.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.None;
+                        currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * forwardForce, ForceMode.Impulse);
+                        currentSpell.GetComponentInChildren<Rigidbody>().AddForce(rangedAttackSpawn.transform.up * upwardForce, ForceMode.Impulse);
+                        temprangedtimer = 0;
+                    }
                 }
                 else return;
             }
