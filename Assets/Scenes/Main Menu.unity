@@ -2164,10 +2164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2666eb0f19e7e4ca8352059b5c193f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinIntensity: 1.75
-  MaxIntensity: 2.25
+  MinIntensity: 1
+  MaxIntensity: 15
   Smoothing: 100
-  RandomMovement: 0.01
+  RandomMovement: 0.1
   fadeInWaitTime: 2
   fadeInDuration: 1
   targetRange: 14
@@ -6223,10 +6223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2666eb0f19e7e4ca8352059b5c193f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinIntensity: 1.75
-  MaxIntensity: 2.25
+  MinIntensity: 1
+  MaxIntensity: 15
   Smoothing: 100
-  RandomMovement: 0.01
+  RandomMovement: 0.1
   fadeInWaitTime: 2
   fadeInDuration: 1
   targetRange: 14
