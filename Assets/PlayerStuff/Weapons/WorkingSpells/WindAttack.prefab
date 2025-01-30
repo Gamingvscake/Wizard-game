@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4672510041259368783}
   - component: {fileID: 2409871464015803031}
   - component: {fileID: 4977253481838395862}
+  - component: {fileID: 986260580873961501}
   m_Layer: 6
   m_Name: GameObject
   m_TagString: PlayerAttack
@@ -80,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732a15f240de2a54092abdc5ed0f895f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 5
   DeleteOnImpact: 0
   DeleteDelay: 1
   damageType: 5
@@ -90,6 +91,9 @@ MonoBehaviour:
   thisCollider: {fileID: 3329651959803848270}
   cs: {fileID: 0}
   dswsc: {fileID: 0}
+  dsPI: {fileID: 0}
+  isMelee: 0
+  isTurret: 0
 --- !u!54 &2846807516539312182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -242,6 +246,29 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &986260580873961501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737571423428036014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &7188116084076457725
 GameObject:
   m_ObjectHideFlags: 0

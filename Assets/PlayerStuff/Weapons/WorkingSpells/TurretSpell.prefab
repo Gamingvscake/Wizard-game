@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 9143791939793213079}
   - component: {fileID: 6869082209610907409}
   - component: {fileID: 8706367442889607788}
+  - component: {fileID: 8054216325716868281}
   m_Layer: 6
   m_Name: GameObject
   m_TagString: PlayerAttack
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   DeleteOnImpact: 0
-  DeleteDelay: 10
+  DeleteDelay: 1
   damageType: 1
   StickInTarget: 0
   rb: {fileID: 7421888244588856750}
@@ -277,3 +278,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8054216325716868281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453283986251212938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0

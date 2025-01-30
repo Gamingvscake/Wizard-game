@@ -134,7 +134,6 @@ public class EnemyHealthScript : MonoBehaviour
         if (statusdonetemptimer > 0) statusdonetemptimer -= Time.deltaTime;
         if (Health <= 0)
         {
-            wsc.points += 10;
             if (enemySpawn != null) enemySpawn.amountOfEnemies -= 1;
             if (thisMovement != null)
             {
@@ -226,17 +225,17 @@ public class EnemyHealthScript : MonoBehaviour
         if ((int)temp.damageType == (int)damageRes)
         {
             Health -= ((temp.Damage + cs.Damage2) / 2);
-            wsc.points += 100;
+            wsc.points += 10;
         }
         else if ((int)temp.damageType == (int)damageWeak)
         {
             Health -= ((temp.Damage + cs.Damage2) * 2);
-            wsc.points += 100;
+            wsc.points += 10;
         }
         else
         {
             Health -= (temp.Damage + cs.Damage2);
-            wsc.points += 100;
+            wsc.points += 10;
         }
         if (DevBoolToNotMove == false)
         {

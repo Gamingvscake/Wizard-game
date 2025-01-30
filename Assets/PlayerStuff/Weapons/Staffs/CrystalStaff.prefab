@@ -678,20 +678,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b992413cd223b4e82bda0993dd5500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icecracking: {fileID: 0}
+  firestaff: {fileID: 0}
+  fireballStaff: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: d33bd2fbe00c64e4e9dde4a9bd1fa54e, type: 3}
-  upgradedStaff: {fileID: 0}
-  staffModel: {fileID: 1137341138802380796}
+  upgradedStaff: {fileID: 3228822451976501643, guid: 1e2bbd497bb65004792b90500575842b, type: 3}
   castForce: 20
   upwardForce: 0
-  castTime: 0.1
+  castTime: 10
   spread: 0
   reloadTime: 2
-  castSpeed: 0.1
+  castSpeed: 10
   hitscanRange: 100
   hitscanTrailDuration: 0
   manaSize: 100
   spellsPerTap: 1
-  manaPerShot: 50
+  manaPerShot: 25
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0
@@ -699,6 +701,7 @@ MonoBehaviour:
   casting: 0
   readyToCast: 0
   reloading: 0
+  movementController: {fileID: 0}
   attackType: 2
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}

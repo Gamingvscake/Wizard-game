@@ -49,13 +49,15 @@ MonoBehaviour:
   spawnSpell: {fileID: 7188116084076457725, guid: 974278907a40c3c4eb4d72b74dc1d5ed, type: 3}
   detectionRadius: {fileID: 4900946239546243561}
   maxDetectionRadius: 5
-  fireRate: 2
+  fireRate: 1
   attackPoint: {fileID: 8648710085680096093}
   castForce: 0
   upwardForce: 0
   targetEnemy: []
   damageScript: {fileID: 3330200526749028151}
   hasenemy: 0
+  die: 0
+  TMSWSC: {fileID: 0}
 --- !u!114 &3330200526749028151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +134,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7188116084076457725
 GameObject:

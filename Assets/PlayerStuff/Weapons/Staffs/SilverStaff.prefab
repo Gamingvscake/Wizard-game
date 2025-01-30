@@ -79,9 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b992413cd223b4e82bda0993dd5500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icecracking: {fileID: 0}
+  firestaff: {fileID: 0}
+  fireballStaff: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 2a1030687a821a841af41cf69748b756, type: 3}
-  upgradedStaff: {fileID: 0}
-  staffModel: {fileID: 4560918830159109345}
+  upgradedStaff: {fileID: 3228822451976501643, guid: 225bf0d864aec2346be0451cdf94e6da, type: 3}
   castForce: 20
   upwardForce: 0
   castTime: 0.1
@@ -92,7 +94,7 @@ MonoBehaviour:
   hitscanTrailDuration: 0.2
   manaSize: 100
   spellsPerTap: 1
-  manaPerShot: 15
+  manaPerShot: 10
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0
@@ -100,6 +102,7 @@ MonoBehaviour:
   casting: 0
   readyToCast: 0
   reloading: 0
+  movementController: {fileID: 0}
   attackType: 1
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
@@ -386,10 +389,5 @@ PrefabInstance:
 --- !u!4 &4138305859500120535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8437610341400370187, guid: 893b3f44262f59241af26db50bb97ba2, type: 3}
-  m_PrefabInstance: {fileID: 5509695262655301084}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4560918830159109345 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8304071622059284797, guid: 893b3f44262f59241af26db50bb97ba2, type: 3}
   m_PrefabInstance: {fileID: 5509695262655301084}
   m_PrefabAsset: {fileID: 0}

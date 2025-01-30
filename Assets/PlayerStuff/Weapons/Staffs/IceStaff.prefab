@@ -83,18 +83,18 @@ MonoBehaviour:
   firestaff: {fileID: 0}
   fireballStaff: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: dbfb3154a6656a249a9166db054a797b, type: 3}
-  upgradedStaff: {fileID: 3228822451976501643, guid: a3308475375e3804c99a62f67da2941e, type: 3}
+  upgradedStaff: {fileID: 3228822451976501643, guid: cdd403ceb30aa4f448726e21f7d83ea1, type: 3}
   castForce: 20
   upwardForce: 0
   castTime: 0.1
   spread: 0
   reloadTime: 2
-  castSpeed: 0.1
+  castSpeed: 0.5
   hitscanRange: 0
   hitscanTrailDuration: 0
   manaSize: 100
   spellsPerTap: 1
-  manaPerShot: 1
+  manaPerShot: 2
   allowButtonHold: 1
   maxtimer: 0
   spellsLeft: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   casting: 0
   readyToCast: 0
   reloading: 0
+  movementController: {fileID: 0}
   attackType: 0
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
