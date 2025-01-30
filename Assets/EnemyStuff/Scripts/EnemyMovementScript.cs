@@ -80,7 +80,6 @@ public class EnemyMovementScript : MonoBehaviour
                 //make ranged attack
                 if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
                 {
-                    //Instantiate(RangedAttack,this.gameObject.transform.forward, this.gameObject.transform.rotation, this.gameObject.transform);
                     if (temprangedtimer >= rangedFireRate && selfNavAgent.destination != null)
                     {
                         Vector3 fwd = rangedAttackSpawn.transform.TransformDirection(Vector3.forward);

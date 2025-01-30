@@ -75,7 +75,7 @@ public class MovementController : MonoBehaviour
     {
         
 
-        if (assignedController == null && DevKeyboardOn == true) return;
+        if (assignedController == null && DevKeyboardOn == false) return;
 
         HandleMovement();
             HandleCrouchHeight();
@@ -87,7 +87,7 @@ public class MovementController : MonoBehaviour
 
     public void HandleShooting()
     {
-        if (!DevKeyboardOn && assignedController != null)
+        if (!DevKeyboardOn)
         {
             if (assignedController.rightTrigger.isPressed == true)
             {
@@ -108,7 +108,7 @@ public class MovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (DevKeyboardOn == false && assignedController != null)
+        if (DevKeyboardOn == false)
         {
             // Read movement input from the assigned controller
             Vector2 moveInput = assignedController.leftStick.ReadValue();
@@ -189,7 +189,7 @@ public class MovementController : MonoBehaviour
 
     private void HandleCameraLook()
     {
-        if (DevKeyboardOn == false && assignedController != null)
+        if (DevKeyboardOn == false)
         {
             //Read camera input from the right stick
             Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
