@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawnScript : MonoBehaviour
 {
@@ -24,12 +25,18 @@ public class EnemySpawnScript : MonoBehaviour
     public Transform[] EntryPoints;
     public EnemyMovementScript enemyMovementScript;
 
+
+    //For Round Change
+    public TextMeshProUGUI roundText;
+    public int round = 0;
+
     private void Start()
     {
         amountOfEnemiesLeft = starterAmountOfEnemies;
     }
     private void Update()
     {
+        roundText.text = rounds.ToString();
         if (inTheRound == false)
         {
             if (tempSTimer < spawnTimer)
