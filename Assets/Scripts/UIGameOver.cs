@@ -13,7 +13,7 @@ public class UIGameOver : MonoBehaviour
     public GameObject manaGauge;
     public GameObject points;
     public GameObject statusicons;
-    
+    public GameObject staffspawnpoint;
 
 
 
@@ -102,6 +102,13 @@ public class UIGameOver : MonoBehaviour
             {
                 statusicons.gameObject.SetActive(false);
                 Debug.Log("StatusIcons are hidden");
+            }
+
+            // Hide StaffSpawnPoint
+            if (staffspawnpoint  != null)
+            {
+                staffspawnpoint.gameObject.SetActive(false);
+                Debug.Log("Staffs are gone");
             }
 
            
