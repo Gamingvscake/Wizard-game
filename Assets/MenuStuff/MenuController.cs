@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -49,6 +49,8 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
     public bool AudioSettingsOpen = false;
     public bool ControlsSettingsOpen = false;
 
+    private PlayerController inputActions;
+
     private void Start()
     {
         if (animator == null)
@@ -63,12 +65,15 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
         AudioSettings.SetActive(false);
         ControlsSettings.SetActive(false);
         MainScreenOpen = true;
+
+        inputActions = new PlayerController();
+        inputActions.PlayerControls.Enable();
     }
 
     void Update()
     {
         // Trigger animation and camera movement
-        if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
+        if (inputActions.PlayerControls.Jump.triggered)
         {
             animator.SetTrigger(triggerName);
             StartCoroutine(MoveCameraAfterDelay());
@@ -134,7 +139,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
     private void MenuControls()
     {
         //every menu selection option, decided based on the "text selected" (the selectionIndex value)
-        if (BookOpen && Input.GetButtonDown("Jump"))
+        if (BookOpen && inputActions.PlayerControls.Jump.triggered)
         {
             if (MainScreenOpen)
             {
@@ -303,10 +308,10 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
 
         }
         //alternative "back" method using the right button (B on xbox)
-        if (BookOpen && Input.GetButtonDown("Crouch"))
+        if (BookOpen && inputActions.PlayerControls.Crouch.triggered)
         {
             if (ControlsSettingsOpen || AudioSettingsOpen || GeneralSettingsOpen)
-            {   
+            {
                 SettingsScreen.SetActive(true);
                 SettingsScreenOpen = true;
                 GeneralSettingsOpen = false;
@@ -331,7 +336,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                 SettingsScreenOpen = false;
             }
             {
-                
+
             }
         }
     }
@@ -346,7 +351,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
         }
         else
         {
-            selectionIndex = (selectionIndex + direction + 3) % 3; // Modulo ensures wrapping between 0–2
+            selectionIndex = (selectionIndex + direction + 3) % 3; // Modulo ensures wrapping between 0ï¿½2
         }
 
         UpdateTextOutlines(); //update text highlights
