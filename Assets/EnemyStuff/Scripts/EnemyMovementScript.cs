@@ -14,7 +14,7 @@ public class EnemyMovementScript : MonoBehaviour
     public DamageSource DMGScript;
     public TurretMoveScript tempturrscrip;
     public float attackDistance;
-    public bool DevBoolToNotMove, isRanged;
+    public bool DevBoolToNotMove, isRanged, isBoss;
     public NavMeshAgent selfNavAgent;
     public GameObject RangedAttack;
     public float temprangedtimer, rangedFireRate;
