@@ -2473,6 +2473,7 @@ Transform:
   - {fileID: 3303669126446063155}
   - {fileID: 3514276648005408499}
   - {fileID: 2919295001430302075}
+  - {fileID: 7293431359312202890}
   - {fileID: 4435007344839901000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2550,10 +2551,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.0645239
-  m_Height: 3.644011
+  m_Radius: 1.8095396
+  m_Height: 4.1341314
   m_Direction: 1
-  m_Center: {x: 0, y: 1.7708946, z: 0}
+  m_Center: {x: 0.057458717, y: 1.970963, z: -0.8024743}
 --- !u!114 &3938961129305785951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2576,14 +2577,23 @@ MonoBehaviour:
   tempturrscrip: {fileID: 0}
   attackDistance: 2.5
   DevBoolToNotMove: 0
-  isRanged: 0
   selfNavAgent: {fileID: 7086911645816786703}
-  RangedAttack: {fileID: 0}
+  isRanged: 0
+  RangedAttack: {fileID: 4397752145987830941, guid: ab15e3ce0f87a8345a2de03bcebd6ef5, type: 3}
   temprangedtimer: 0
-  rangedFireRate: 0
-  rangedAttackSpawn: {fileID: 0}
-  forwardForce: 0
-  upwardForce: 0
+  rangedFireRate: 3
+  rangedAttackSpawn: {fileID: 7293431359312202890}
+  forwardForce: 30
+  upwardForce: 6
+  isSpawner: 1
+  spawningTimer: 0
+  maxSpawningTimer: 5
+  toBeSpawned: {fileID: 5624045146687822973, guid: 603300c9282a0374f97258f475e7d327, type: 3}
+  spawnScript: {fileID: 0}
+  isBoss: 1
+  phaseChange: 0
+  maxPhaseTimer: 4
+  phases: 0
 --- !u!195 &7086911645816786703
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3458,6 +3468,137 @@ Transform:
   - {fileID: 5043525492988152754}
   m_Father: {fileID: 6645943969419660386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7688335059956468374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7293431359312202890}
+  - component: {fileID: 3212456667431696623}
+  - component: {fileID: 5240225140616973121}
+  - component: {fileID: 7644483620229442164}
+  - component: {fileID: 3675192464453336305}
+  m_Layer: 10
+  m_Name: RangedAttackSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7293431359312202890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688335059956468374}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 1.1}
+  m_LocalScale: {x: 0.2718317, y: 0.35952407, z: 0.16051392}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1195382242363868778}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3212456667431696623
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688335059956468374}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5240225140616973121
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688335059956468374}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7644483620229442164
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688335059956468374}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3675192464453336305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688335059956468374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298fc1c1422678c49a105a3e91a89532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrainEnemy: 0
+  maxDamage: 36
+  minDamage: 12
+  statusDamage: 10
+  statusDuration: 10
+  UIPI: {fileID: 0}
+  Attacking: 0
+  Attacked: 0
+  inflictStatusEffect: 1
+  animator: {fileID: 0}
+  isRangedAttack: 0
+  metalchain: {fileID: 0}
+  effects: 5
 --- !u!1 &7845584915945458362
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +14,7 @@ public class EnemyHealthScript : MonoBehaviour
     CauldronScript cs;
     public EnemySpawnScript enemySpawn;
     public EnemyMovementScript thisMovement;
+    public EnemyMovementScript bossMovement;
     public Renderer MyRenderer;
     public Material outlineMat;
     public bool DevBoolToNotMove;
@@ -146,6 +146,12 @@ public class EnemyHealthScript : MonoBehaviour
                     }
                 }
             }
+            if (thisMovement.isBoss)
+            {
+                enemySpawn.BossDefeated = true;
+                enemySpawn.amountOfEnemies -= thisMovement.amountSpawned;
+            }
+            if (thisMovement.isMinion) bossMovement.amountSpawned -=1;
             Destroy(this.gameObject);
         }
         if (statusIconsInUse.Count > 0)

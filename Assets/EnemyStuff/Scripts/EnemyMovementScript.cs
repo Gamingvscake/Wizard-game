@@ -14,12 +14,25 @@ public class EnemyMovementScript : MonoBehaviour
     public DamageSource DMGScript;
     public TurretMoveScript tempturrscrip;
     public float attackDistance;
-    public bool DevBoolToNotMove, isRanged, isBoss;
+    public bool DevBoolToNotMove;
     public NavMeshAgent selfNavAgent;
+    [Header("Ranged Variables")]
+    public bool isRanged;
     public GameObject RangedAttack;
     public float temprangedtimer, rangedFireRate;
     public Transform rangedAttackSpawn;
     public float forwardForce, upwardForce;
+    [Header("Spawner Variables")]
+    public bool isSpawner,isMinion;
+    public float spawningTimer, maxSpawningTimer;
+    public int amountSpawned;
+    public GameObject toBeSpawned;
+    public EnemySpawnScript spawnScript;
+    [Header("Boss Variables")]
+    public bool isBoss;
+    public float phaseChange, maxPhaseTimer;
+    public int phases;
+    bool onPhaseChange;
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
@@ -61,12 +74,38 @@ public class EnemyMovementScript : MonoBehaviour
             }
             else AttackBox.SetActive(false);
         }
-
-        //TESTING NAVMESH
-
+        if (isBoss)
+        {
+            if (phaseChange >= maxPhaseTimer) onPhaseChange = false;
+            else phaseChange += Time.deltaTime;
+            if (onPhaseChange == false)
+            {
+                if (phases == 0)
+                {
+                    isSpawner = true;
+                    isRanged = false;
+                }
+                else if (phases == 1)
+                {
+                    attackDistance = 25;
+                    isSpawner = false;
+                    isRanged = true;
+                }
+                else
+                {
+                    attackDistance = 2.5f;
+                    isSpawner = false;
+                    isRanged = false;
+                }
+                if (phases <= 1) phases++;
+                else phases = 0;
+                onPhaseChange = true;
+                phaseChange = 0;
+            }
+        }
         if (!DMGScript.Attacking && DevBoolToNotMove == false)
         {
-            if (isRanged == false)
+            if (isRanged == false && isSpawner == false)
             {
                 if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
                 {
@@ -74,7 +113,7 @@ public class EnemyMovementScript : MonoBehaviour
                 }
                 else AttackBox.SetActive(false);
             }
-            else
+            else if (isRanged == true && isSpawner == false)
             {
                 if (temprangedtimer < rangedFireRate) temprangedtimer += Time.deltaTime;
                 //make ranged attack
@@ -101,6 +140,24 @@ public class EnemyMovementScript : MonoBehaviour
                 }
                 else return;
             }
+            else if (isRanged == false && isSpawner == true)
+            {
+                if (spawningTimer >= maxSpawningTimer)
+                {
+                    GameObject tempE = Instantiate(toBeSpawned, transform);
+                    tempE.GetComponent<EnemyHealthScript>().enemySpawn = spawnScript;
+                    tempE.GetComponent<EnemyHealthScript>().bossMovement = this;
+                    tempE.GetComponent<EnemyMovementScript>().Players = spawnScript.Players;
+                    tempE.GetComponent<EnemyMovementScript>().entryPoints = spawnScript.EntryPoints;
+                    tempE.GetComponent<EnemyMovementScript>().spawnScript = spawnScript;
+                    tempE.GetComponent<EnemyMovementScript>().isMinion = true;
+                    spawnScript.amountOfEnemies += 1;
+                    amountSpawned += 1;
+                    spawningTimer = 0;
+                }
+                else spawningTimer += Time.deltaTime;
+            }
+            else return;
         }
 
     }

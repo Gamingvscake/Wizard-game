@@ -7,6 +7,7 @@ public class EnemySpawnScript : MonoBehaviour
 {
     public GameObject[] enemy;
     public GameObject[] RangedEnemies;
+    public GameObject boss;
     public Transform[] spawnpoints;
     public int rounds;
     public int amountOfEnemiesLeft;
@@ -21,6 +22,8 @@ public class EnemySpawnScript : MonoBehaviour
     float tempSTimer;
     bool tempcanspawn;
     bool roundup = true;
+    int roundstillboss;
+    public bool BossDefeated;
     public List<Transform> Players;
     public Transform[] EntryPoints;
     public EnemyMovementScript enemyMovementScript;
@@ -28,7 +31,6 @@ public class EnemySpawnScript : MonoBehaviour
 
     //For Round Change
     public TextMeshProUGUI roundText;
-    public int round = 0;
 
     private void Start()
     {
@@ -61,14 +63,29 @@ public class EnemySpawnScript : MonoBehaviour
                         rangedEnemiesAdded = true;
                     }
                     rounds += 1;
+                    roundstillboss += 1;
                     roundup = false;
                 }
                 if (tempcanspawn)
                 {
-                    GameObject temp = Instantiate(enemy[Random.Range(0,enemy.Length)], spawnpoints[Random.Range(0, spawnpoints.Length)]);
-                    temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
-                    temp.GetComponent<EnemyMovementScript>().Players = Players;
-                    temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
+                    if (roundstillboss == 10)
+                    {
+                        GameObject temp = Instantiate(boss, spawnpoints[Random.Range(0, spawnpoints.Length)]);
+                        temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
+                        temp.GetComponent<EnemyMovementScript>().Players = Players;
+                        temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
+                        temp.GetComponent<EnemyMovementScript>().spawnScript = this;
+                        roundstillboss = 0;
+                    }
+                    else
+                    {
+                        GameObject temp = Instantiate(enemy[Random.Range(0, enemy.Length)], spawnpoints[Random.Range(0, spawnpoints.Length)]);
+                        temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
+                        temp.GetComponent<EnemyMovementScript>().Players = Players;
+                        temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
+                        temp.GetComponent<EnemyMovementScript>().spawnScript = this;
+                    }
+
                     amountOfEnemies += 1;
                     tempSTimer = 0;
                     tempcanspawn = false;
