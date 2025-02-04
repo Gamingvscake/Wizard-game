@@ -44,6 +44,7 @@ public class MovementController : MonoBehaviour
     private Vector2 cameraInput;
     private Vector2 velocity;
     private Vector2 frameVelocity;
+    public Animator animator;
 
 
     //Shooting
@@ -58,6 +59,7 @@ public class MovementController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        animator = GetComponentInChildren<Animator>();
 
         if (playerCameraTransform == null)
         {
@@ -114,16 +116,25 @@ public class MovementController : MonoBehaviour
             Vector2 moveInput = assignedController.leftStick.ReadValue();
             Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
 
+            // Check if the player is moving
+            bool isMoving = moveInput.magnitude > 0.1f;
+
             // Apply movement
             Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
             Vector3 velocity = new Vector3(worldMoveDirection.x * currentSpeed, rb.velocity.y, worldMoveDirection.z * currentSpeed);
             rb.velocity = velocity;
 
             // Handle sprint input
-            if (assignedController.leftTrigger.isPressed)
+            bool isSprinting = assignedController.leftTrigger.isPressed;
+
+            if (isSprinting)
                 currentSpeed = sprintSpeed;
             else
                 currentSpeed = walkSpeed;
+
+            // Set Animator Parameters
+            animator.SetBool("Walking", isMoving);
+            animator.SetBool("Sprinting", isSprinting && isMoving);
         }
         else
         {
