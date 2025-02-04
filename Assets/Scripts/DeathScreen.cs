@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
 {
+    public GameObject gravestone_bevel;
 
     public PlayerInflicts playerInflicts;
     public bool isDead;
     public float moveSpeed = 5f;            
 
-    public bool isGameOver = false;        // Flag to check if the health is zero
+    public bool isPlayerDead = false;        // Flag to check if the health is zero
+    public bool isGameOver = false;          // All players are dead
     private Vector3 targetPosition = new Vector3(0, 80, 0); // Target position for this GameObject
 
     private void Update()
@@ -24,13 +26,18 @@ public class DeathScreen : MonoBehaviour
         {
 
         }
-        if (isGameOver)
+        if (isPlayerDead)
         {
             gameObject.transform.position = Vector3.Lerp(
                 gameObject.transform.position,
                 targetPosition,
                 moveSpeed * Time.deltaTime
             );
+        }
+
+        if (isPlayerDead)
+        {
+            
         }
     }
 

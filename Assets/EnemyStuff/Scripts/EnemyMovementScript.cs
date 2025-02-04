@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,9 +35,15 @@ public class EnemyMovementScript : MonoBehaviour
     public float phaseChange, maxPhaseTimer;
     public int phases;
     bool onPhaseChange;
+
+    [SerializeField] private AudioSource metalchain;
+
+    public float timer = 0f;
+    public float timelimit = 1.8f;
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
+        metalchain = GetComponent<AudioSource>();
         AttackBox.SetActive(false);
         animator = GetComponent<Animator>();
         if (!DevBoolToNotMove)
@@ -54,6 +62,13 @@ public class EnemyMovementScript : MonoBehaviour
         //transform.LookAt(temp);
         //selfNavAgent.destination = temp.position;
         selfNavAgent.SetDestination(temp.position);
+        if (timer >= timelimit)
+        {
+            metalchain.Play();
+            StartCoroutine(cutoutSound());
+            timer = 0f;
+        }
+        timer += Time.deltaTime;
         //Debug.Log(selfNavAgent.pathStatus);
 
         if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
@@ -66,7 +81,7 @@ public class EnemyMovementScript : MonoBehaviour
         {
             //Transform temp = GetClosestEnemy(PlayerNotList);
             //transform.LookAt(temp);
-                        transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
             selfNavAgent.destination = temp.position;
             if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
             {
@@ -210,4 +225,12 @@ public class EnemyMovementScript : MonoBehaviour
 
         return bestTarget;
     }
+
+    IEnumerator cutoutSound ()
+    {
+        yield return new WaitForSeconds (1.7f);
+        metalchain.Stop();
+       
+    }
 }
+    

@@ -17,7 +17,8 @@ public class UIGameOver : MonoBehaviour
 
 
 
-    public bool isGameOver = false;     // Flag to check if the health is zer
+    public bool isPlayerDead = false;     // Flag to check if the health is zero
+    public bool isGameOver = false;       // Check if all players dead
 
     private void Start()
     {

@@ -2516,6 +2516,7 @@ MonoBehaviour:
   wsc: {fileID: 0}
   enemySpawn: {fileID: 0}
   thisMovement: {fileID: 3938961129305785951}
+  bossMovement: {fileID: 0}
   MyRenderer: {fileID: 824956829317630228}
   outlineMat: {fileID: 2100000, guid: ec9b345eaae50584ea0af1374d4fa211, type: 2}
   DevBoolToNotMove: 0
@@ -2575,12 +2576,28 @@ MonoBehaviour:
   tempturrscrip: {fileID: 0}
   attackDistance: 2.5
   DevBoolToNotMove: 0
-  isRanged: 0
   selfNavAgent: {fileID: 7086911645816786703}
+  isRanged: 0
   RangedAttack: {fileID: 0}
   temprangedtimer: 0
   rangedFireRate: 0
   rangedAttackSpawn: {fileID: 0}
+  forwardForce: 0
+  upwardForce: 0
+  isSpawner: 0
+  isMinion: 0
+  spawningTimer: 0
+  maxSpawningTimer: 0
+  amountSpawned: 0
+  toBeSpawned: {fileID: 0}
+  spawnScript: {fileID: 0}
+  isBoss: 0
+  phaseChange: 0
+  maxPhaseTimer: 0
+  phases: 0
+  metalchain: {fileID: -581356945083091958}
+  timer: 0
+  timelimit: 1
 --- !u!195 &7086911645816786703
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2613,20 +2630,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3629ec953e115e542a6385a753ac535d, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_audioClip: {fileID: 8300000, guid: 73f960cf9c2423343ad0245fdded7e1e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  Priority: 256
+  DopplerLevel: 1.47
+  MinDistance: 0.1
+  MaxDistance: 0.5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2634,8 +2651,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.22221835
+      value: 1.0058365
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2643,14 +2660,32 @@ AudioSource:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.6052526
+      value: 0.4439702
+      inSlope: 0.041580785
+      outSlope: 0.041580785
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.97416884
+      value: 0.38726807
+      inSlope: -1.0104054
+      outSlope: -1.0104054
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.34527022
+      inSlope: -0.9904936
+      outSlope: -0.9904936
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3293,7 +3328,6 @@ MonoBehaviour:
   inflictStatusEffect: 1
   animator: {fileID: 5527301524251910956}
   isRangedAttack: 0
-  metalchain: {fileID: -581356945083091958}
   effects: 5
 --- !u!1 &7356597073720726528
 GameObject:
