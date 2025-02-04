@@ -6,6 +6,7 @@ public class DeathScreen : MonoBehaviour
 {
 
     public PlayerInflicts playerInflicts;
+    public bool isDead;
     public float moveSpeed = 5f;            
 
     public bool isGameOver = false;        // Flag to check if the health is zero
@@ -14,12 +15,15 @@ public class DeathScreen : MonoBehaviour
     private void Update()
     {
         
-        if (playerInflicts.PlayerCurrentHealth <= 0 && !isGameOver)
+        if (playerInflicts.PlayerCurrentHealth <= 0 && !isDead)
         {
-            isGameOver = true;
+            isDead = true;
         }
 
-        
+        if (isDead)
+        {
+
+        }
         if (isGameOver)
         {
             gameObject.transform.position = Vector3.Lerp(

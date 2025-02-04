@@ -9,13 +9,18 @@ public class DamageScript : MonoBehaviour
     public DamageType damageType;
     public bool StickInTarget;
     public Rigidbody rb;
+
     public SphereCollider SplashRadius;
     public Collider thisCollider;
     public CauldronScript cs;
     public WeaponSwapControl dswsc;
     public PlayerInflicts dsPI;
+
     public bool isMelee;
     public bool isTurret;
+
+    public GameObject instantiateVFX;
+
     public enum DamageType 
     { 
         DONTUSE,
@@ -80,6 +85,7 @@ public class DamageScript : MonoBehaviour
                 {
                     dsPI.LifeStealDo(cs.LifeSteal);
                     Delete();
+                    Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
                 }
                 else
                 {
@@ -92,6 +98,7 @@ public class DamageScript : MonoBehaviour
                 if (collision.collider.tag == "Enemy")
                 {
                     Delete();
+                    Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
                 }
                 else
                 {
