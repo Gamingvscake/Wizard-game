@@ -136,7 +136,9 @@ public class SpellController : MonoBehaviour
             spellsCasted = 0;
 
             Cast();
+            
         }
+    
     }
 
     private void Cast()

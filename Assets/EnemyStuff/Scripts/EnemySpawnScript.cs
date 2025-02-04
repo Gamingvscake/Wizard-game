@@ -38,7 +38,7 @@ public class EnemySpawnScript : MonoBehaviour
     }
     private void Update()
     {
-        roundText.text = rounds.ToString();
+        //roundText.text = rounds.ToString();
         if (inTheRound == false)
         {
             if (tempSTimer < spawnTimer)
