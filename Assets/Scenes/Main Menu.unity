@@ -401,7 +401,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -647,7 +648,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -901,6 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369565263}
   - component: {fileID: 369565264}
+  - component: {fileID: 369565265}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -935,7 +938,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.89433956, g: 0.59387416, b: 0.18055533, a: 1}
-  m_Intensity: 1
+  m_Intensity: 4
   m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -985,6 +988,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &369565265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369565262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &434066380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1080,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1355,7 +1382,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1699,7 +1727,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1782,6 +1811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636561832}
   - component: {fileID: 636561833}
+  - component: {fileID: 636561834}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -1816,7 +1846,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.89433956, g: 0.59387416, b: 0.18055533, a: 1}
-  m_Intensity: 1
+  m_Intensity: 4
   m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1866,6 +1896,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &636561834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636561831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &683312914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2111,10 +2164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2666eb0f19e7e4ca8352059b5c193f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinIntensity: 1.75
-  MaxIntensity: 2.25
+  MinIntensity: 1
+  MaxIntensity: 15
   Smoothing: 100
-  RandomMovement: 0.01
+  RandomMovement: 0.1
   fadeInWaitTime: 2
   fadeInDuration: 1
   targetRange: 14
@@ -2231,7 +2284,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -2394,6 +2448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938617950}
   - component: {fileID: 938617949}
+  - component: {fileID: 938617951}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -2413,7 +2468,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.90943396, g: 0.7311406, b: 0.3414666, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 2600
   m_Range: 20000
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2478,6 +2533,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 44.681, y: -37.523, z: -24.999}
+--- !u!114 &938617951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938617948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1004561454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2625,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -2928,7 +3007,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3056,7 +3136,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3208,7 +3289,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3418,27 +3500,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4426768
+      value: 1.7792532
       objectReference: {fileID: 0}
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4426768
+      value: 1.7792532
       objectReference: {fileID: 0}
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4426768
+      value: 1.7792532
       objectReference: {fileID: 0}
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.102
+      value: -23.12
       objectReference: {fileID: 0}
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.8037
+      value: 7.763
       objectReference: {fileID: 0}
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100.23653
+      value: 100.227
       objectReference: {fileID: 0}
     - target: {fileID: 1483145288644940418, guid: ad86a024b3adea54880bc1554cc83710, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3538,7 +3620,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3680,7 +3763,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3814,7 +3898,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4010,7 +4095,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4494,7 +4580,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4832,7 +4919,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -5054,7 +5142,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -5193,7 +5282,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -5515,6 +5605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901013997}
   - component: {fileID: 1901013998}
+  - component: {fileID: 1901013999}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -5549,7 +5640,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.89433956, g: 0.59387416, b: 0.18055533, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5599,6 +5690,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1901013999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901013996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &1939055497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5806,7 +5920,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_sharedMaterial: {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 8851712489484032285, guid: a7c5a8b979c989342ae3c515d57cacdf, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6108,10 +6223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2666eb0f19e7e4ca8352059b5c193f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinIntensity: 1.75
-  MaxIntensity: 2.25
+  MinIntensity: 1
+  MaxIntensity: 15
   Smoothing: 100
-  RandomMovement: 0.01
+  RandomMovement: 0.1
   fadeInWaitTime: 2
   fadeInDuration: 1
   targetRange: 14

@@ -15,6 +15,9 @@ public class DamageSource : MonoBehaviour
     public bool inflictStatusEffect;
     public Animator animator; // Animator component reference
     private Coroutine attackCoroutine; // Reference to the attack coroutine
+    public bool isRangedAttack;
+    [SerializeField] private AudioSource metalchain;
+
 
     public HostileStatus effects;
     public enum HostileStatus
@@ -30,6 +33,10 @@ public class DamageSource : MonoBehaviour
         Slow
     }
 
+    private void Start()
+    {
+        Physics.IgnoreLayerCollision(10,10);
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -45,10 +52,14 @@ public class DamageSource : MonoBehaviour
                 {
                     // Initiate attack and stop movement
                     Attacking = true;
-                    animator.SetTrigger("Attacking");
+                    if (isRangedAttack == false)
+                    {
+                        animator.SetTrigger("Attacking");
+                        metalchain = GetComponent<AudioSource>();
 
-                    // Start the coroutine to wait for the animation to complete
-                    attackCoroutine = StartCoroutine(CompleteAttack());
+                        // Start the coroutine to wait for the animation to complete
+                        attackCoroutine = StartCoroutine(CompleteAttack());
+                    }
                 }
                 else if (Attacked && !playerExitedDuringAttack)
                 {
@@ -97,5 +108,23 @@ public class DamageSource : MonoBehaviour
         Attacking = false;
         Attacked = false;
         playerExitedDuringAttack = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isRangedAttack)
+        {
+            if (collision.collider.CompareTag("Player"))
+            {
+                UIPI = collision.collider.GetComponent<PlayerInflicts>();
+                UIPI.TakingNormalDamage = true;
+                UIPI.MaxDamage = maxDamage;
+                UIPI.MinDamage = minDamage;
+                UIPI.IFrames = true;
+                UIPI.regenTimer = UIPI.HealthRegenDelay;
+                UIPI.isRegenerating = false;
+                if (inflictStatusEffect) UIPI.PlayerInflictsSE.DoStatusWork((int)effects, statusDuration, statusDamage);
+            }
+            Destroy(gameObject);
+        }
     }
 }

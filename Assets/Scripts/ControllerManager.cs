@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 public class ControllerManager : MonoBehaviour
 {
     private readonly Dictionary<Gamepad, int> controllerIDs = new Dictionary<Gamepad, int>();
+    private readonly Dictionary<int, GameObject> playerInstances = new Dictionary<int, GameObject>();
+
+    public GameObject player1Object; // Assign this in the Inspector to the first player prefab in the scene
+    public GameObject player2Object; // Assign this in the Inspector to the second player prefab in the scene
+
     private int nextControllerID = 1;
 
     void OnEnable()
@@ -44,33 +49,45 @@ public class ControllerManager : MonoBehaviour
         if (!controllerIDs.ContainsKey(gamepad))
         {
             controllerIDs[gamepad] = nextControllerID;
-            Debug.Log($"Controller {nextControllerID} connected: {gamepad.name}");
+
+            // Assign the existing player object for the controller
+            GameObject playerObject = nextControllerID == 1 ? player1Object : player2Object;
+
+            if (playerObject != null)
+            {
+                playerInstances[nextControllerID] = playerObject;
+
+                // Assign the controller to the character's movement
+                var movementController = playerObject.GetComponent<MovementController>();
+                if (movementController != null)
+                {
+                    movementController.AssignController(gamepad);
+                }
+                Debug.Log($"Controller {nextControllerID} assigned to {playerObject.name}");
+            }
+            else
+            {
+                Debug.LogError($"Player {nextControllerID} object is not assigned in the Inspector!");
+            }
+
             nextControllerID++;
         }
     }
+
 
     private void RemoveControllerID(Gamepad gamepad)
     {
         if (controllerIDs.ContainsKey(gamepad))
         {
             int id = controllerIDs[gamepad];
-            Debug.Log($"Controller {id} disconnected: {gamepad.name}");
+
+            if (playerInstances.ContainsKey(id))
+            {
+                Debug.Log($"Controller {id} disconnected from {playerInstances[id].name}");
+                playerInstances.Remove(id);
+            }
+
             controllerIDs.Remove(gamepad);
         }
-    }
-
-    public int GetControllerID(Gamepad gamepad)
-    {
-        return controllerIDs.TryGetValue(gamepad, out int id) ? id : -1;
-    }
-
-    public Gamepad GetControllerByID(int id)
-    {
-        foreach (var kvp in controllerIDs)
-        {
-            if (kvp.Value == id)
-                return kvp.Key;
-        }
-        return null;
     }
 }
