@@ -66,7 +66,7 @@ public class EnemyMovementScript : MonoBehaviour
         {
             //Transform temp = GetClosestEnemy(PlayerNotList);
             //transform.LookAt(temp);
-                        transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
+                        //transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
             selfNavAgent.destination = temp.position;
             if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
             {
