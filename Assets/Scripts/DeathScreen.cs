@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
 {
-    public GameObject gravestone_bevel;
-
     public PlayerInflicts playerInflicts;
     public bool isDead;
     public float moveSpeed = 5f;            
@@ -26,7 +24,7 @@ public class DeathScreen : MonoBehaviour
         {
 
         }
-        if (isPlayerDead)
+        if (isGameOver)
         {
             gameObject.transform.position = Vector3.Lerp(
                 gameObject.transform.position,

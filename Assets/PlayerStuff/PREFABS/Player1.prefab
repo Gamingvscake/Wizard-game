@@ -5378,6 +5378,7 @@ MonoBehaviour:
   playerCameraTransform: {fileID: 1797292404721367267}
   lookSensitivity: 1
   smoothing: 1.5
+  animator: {fileID: 0}
   ShootSpell: 0
 --- !u!114 &4733858490563981127
 MonoBehaviour:
@@ -5475,6 +5476,7 @@ MonoBehaviour:
   UpgradedStaffPoint: {fileID: 7721893722537964903}
   LevelText: {fileID: 2018191158209431941}
   NextLevelText: {fileID: 738859003842696332}
+  anviltrack: {fileID: 0}
 --- !u!114 &7283115170589283217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5851,6 +5853,7 @@ GameObject:
   - component: {fileID: 2652522769285986493}
   - component: {fileID: 7813822904496133787}
   - component: {fileID: 1828731285897223723}
+  - component: {fileID: 8564905327579600204}
   m_Layer: 3
   m_Name: Player1Camera
   m_TagString: MainCamera
@@ -5949,6 +5952,7 @@ MonoBehaviour:
   playerInflicts: {fileID: 1530989311519409170}
   isDead: 0
   moveSpeed: 5
+  isPlayerDead: 0
   isGameOver: 0
 --- !u!114 &1828731285897223723
 MonoBehaviour:
@@ -5965,14 +5969,61 @@ MonoBehaviour:
   playerInflicts: {fileID: 1530989311519409170}
   DeathImage: {fileID: 5009164588306752680}
   bluePosePrefab: {fileID: 0}
+  redwiz: {fileID: 0}
   healthSlider: {fileID: 0}
   manaGauge: {fileID: 0}
   points: {fileID: 0}
   statusicons: {fileID: 0}
   staffspawnpoint: {fileID: 0}
+  isPlayerDead: 0
   isGameOver: 0
   player1: {fileID: 0}
   player1Camera: {fileID: 0}
+  gravestone_bevel: {fileID: 0}
+--- !u!114 &8564905327579600204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7388362813231882739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &7436462310924708531
 GameObject:
   m_ObjectHideFlags: 0

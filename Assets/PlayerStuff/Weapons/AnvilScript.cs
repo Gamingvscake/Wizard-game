@@ -12,6 +12,9 @@ public class AnvilScript : MonoBehaviour
     public GameObject StaffPoint, UpgradedStaffPoint;
     GameObject SpellPoint, UpgradedSpellPoint;
     public TextMeshProUGUI LevelText, NextLevelText;
+
+    [SerializeField] private AudioSource anviltrack;
+
     void Start()
     {
         UpgradeScreen.SetActive(false);
@@ -69,6 +72,7 @@ public class AnvilScript : MonoBehaviour
     public void UPGRADE()
     {
         if (weaponSwapControl.points >= 5000)
+            anviltrack.Play();
         {
             weaponSwapControl.UpgradeStaff();
             weaponSwapControl.points -= 5000;

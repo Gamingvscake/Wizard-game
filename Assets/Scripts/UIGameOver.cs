@@ -9,6 +9,7 @@ public class UIGameOver : MonoBehaviour
     public PlayerInflicts playerInflicts; // Reference to PlayerInflicts
     public Image DeathImage;
     public GameObject bluePosePrefab;
+    public GameObject redwiz;
     public Slider healthSlider;
     public GameObject manaGauge;
     public GameObject points;
@@ -33,7 +34,7 @@ public class UIGameOver : MonoBehaviour
 
     public Transform player1;          // Reference to Player1
     public Transform player1Camera;    // Reference to Player1Camera
-
+    public Transform gravestone_bevel; //Reference to Gravestone_Bevel
     private void HidePlayer()
     {
         // Detach the camera before hiding the player
@@ -41,6 +42,7 @@ public class UIGameOver : MonoBehaviour
 
         // Hide the player
         player1.gameObject.SetActive(false);
+
     }
 
     private void Update()
@@ -76,6 +78,21 @@ public class UIGameOver : MonoBehaviour
                     Debug.LogWarning("No MeshRenderer found on BluePose 1 prefab.");
                 }
             }
+
+            // Turn off the MeshRenderer for "RedWiz"
+            if (redwiz != null)
+            {
+                redwiz.gameObject.SetActive(false);
+                Debug.Log("RedWiz has been hidden.");
+            }
+
+            // Show the gravestone
+            if (gravestone_bevel != null)
+            {
+                gravestone_bevel.gameObject.SetActive(true);
+                Debug.Log("Grave has been shown");
+            }
+
 
             // Hide the health slider
             if (healthSlider != null)
