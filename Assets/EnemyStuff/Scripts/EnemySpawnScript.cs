@@ -27,81 +27,111 @@ public class EnemySpawnScript : MonoBehaviour
     public List<Transform> Players;
     public Transform[] EntryPoints;
     public EnemyMovementScript enemyMovementScript;
-
-
+    int playeramountdead;
+    float timer;
+    public bool work;
     //For Round Change
-    public TextMeshProUGUI roundText;
+    public TextMeshProUGUI player1RoundText;
+    public TextMeshProUGUI player2RoundText;
+    public TextMeshProUGUI player3RoundText;
+    public TextMeshProUGUI player4RoundText;
 
     private void Start()
     {
         amountOfEnemiesLeft = starterAmountOfEnemies;
+        work = true;
     }
     private void Update()
     {
-        //roundText.text = rounds.ToString();
-        if (inTheRound == false)
+        if (work)
         {
-            if (tempSTimer < spawnTimer)
+            timer += Time.deltaTime;
+            if (timer >= 1)
             {
-                tempSTimer += Time.deltaTime;
-            }
-            else tempcanspawn = true;
-            if (tempRTimer < roundTimer)
-            {
-                tempRTimer += Time.deltaTime;
-            }
-            else
-            {
-                if (roundup)
+                playeramountdead = 0;
+                for (int i = 0; i < Players.Count; i++)
                 {
-                    if (rangedEnemiesAdded == false && rounds == 4)
+                    if (Players[i].GetComponentInChildren<DeathScreen>().isGameOver == true ||
+                        Players[i].GetComponentInChildren<DeathScreen>().isPlayerDead == true ||
+                        Players[i].GetComponentInChildren<UIGameOver>().isGameOver == true ||
+                        Players[i].GetComponentInChildren<UIGameOver>().isGameOver == true)
                     {
-                        for (int i = 0; i < RangedEnemies.Length; i++)
+                        playeramountdead += 1;
+                    }
+                }
+                if (playeramountdead >= Players.Count)
+                {
+                    work = false;
+                }
+            }
+            if (player1RoundText != null) player1RoundText.text = rounds.ToString();
+            if (player2RoundText != null) player2RoundText.text = rounds.ToString();
+            if (player3RoundText != null) player3RoundText.text = rounds.ToString();
+            if (player4RoundText != null) player4RoundText.text = rounds.ToString();
+            if (inTheRound == false)
+            {
+                if (tempSTimer < spawnTimer)
+                {
+                    tempSTimer += Time.deltaTime;
+                }
+                else tempcanspawn = true;
+                if (tempRTimer < roundTimer)
+                {
+                    tempRTimer += Time.deltaTime;
+                }
+                else
+                {
+                    if (roundup)
+                    {
+                        if (rangedEnemiesAdded == false && rounds == 4)
                         {
-                            enemy[i+1] = RangedEnemies[i];
+                            for (int i = 0; i < RangedEnemies.Length; i++)
+                            {
+                                enemy[i + 1] = RangedEnemies[i];
+                            }
+                            rangedEnemiesAdded = true;
                         }
-                        rangedEnemiesAdded = true;
+                        rounds += 1;
+                        roundstillboss += 1;
+                        roundup = false;
                     }
-                    rounds += 1;
-                    roundstillboss += 1;
-                    roundup = false;
-                }
-                if (tempcanspawn)
-                {
-                    if (roundstillboss == 10)
+                    if (tempcanspawn)
                     {
-                        GameObject temp = Instantiate(boss, spawnpoints[Random.Range(0, spawnpoints.Length)]);
-                        temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
-                        temp.GetComponent<EnemyMovementScript>().Players = Players;
-                        temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
-                        temp.GetComponent<EnemyMovementScript>().spawnScript = this;
-                        roundstillboss = 0;
-                    }
-                    else
-                    {
-                        GameObject temp = Instantiate(enemy[Random.Range(0, enemy.Length)], spawnpoints[Random.Range(0, spawnpoints.Length)]);
-                        temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
-                        temp.GetComponent<EnemyMovementScript>().Players = Players;
-                        temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
-                        temp.GetComponent<EnemyMovementScript>().spawnScript = this;
-                    }
+                        if (roundstillboss == 10)
+                        {
+                            GameObject temp = Instantiate(boss, spawnpoints[Random.Range(0, spawnpoints.Length)]);
+                            temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
+                            temp.GetComponent<EnemyMovementScript>().Players = Players;
+                            temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
+                            temp.GetComponent<EnemyMovementScript>().spawnScript = this;
+                            roundstillboss = 0;
+                        }
+                        else
+                        {
+                            GameObject temp = Instantiate(enemy[Random.Range(0, enemy.Length)], spawnpoints[Random.Range(0, spawnpoints.Length)]);
+                            temp.GetComponent<EnemyHealthScript>().enemySpawn = this;
+                            temp.GetComponent<EnemyMovementScript>().Players = Players;
+                            temp.GetComponent<EnemyMovementScript>().entryPoints = EntryPoints;
+                            temp.GetComponent<EnemyMovementScript>().spawnScript = this;
+                        }
 
-                    amountOfEnemies += 1;
-                    tempSTimer = 0;
-                    tempcanspawn = false;
-                }
-                if (amountOfEnemies == amountOfEnemiesLeft)
-                {
-                    tempRTimer = 0;
-                    amountOfEnemiesLeft += spawnIncreasePerRound;
-                    inTheRound = true;
+                        amountOfEnemies += 1;
+                        tempSTimer = 0;
+                        tempcanspawn = false;
+                    }
+                    if (amountOfEnemies == amountOfEnemiesLeft)
+                    {
+                        tempRTimer = 0;
+                        amountOfEnemiesLeft += spawnIncreasePerRound;
+                        inTheRound = true;
+                    }
                 }
             }
-        }
-        if (amountOfEnemies == 0)
-        {
-            inTheRound = false;
-            roundup = true;
+            if (amountOfEnemies == 0)
+            {
+                inTheRound = false;
+                roundup = true;
+            }
         }
     }
 }

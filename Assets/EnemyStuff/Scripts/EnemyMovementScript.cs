@@ -214,8 +214,17 @@ public class EnemyMovementScript : MonoBehaviour
         Vector3 currentPosition = transform.position;
         foreach (Transform potentialTarget in enemies)
         {
+
             Vector3 directionToTarget = potentialTarget.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == true ||
+                    potentialTarget.GetComponentInChildren<DeathScreen>().isGameOver == true ||
+                    potentialTarget.GetComponentInChildren<UIGameOver>().isGameOver == true ||
+                    potentialTarget.GetComponentInChildren<UIGameOver>().isPlayerDead == true)
+            {
+                 directionToTarget = potentialTarget.position + new Vector3(10000,10000,10000);
+                 dSqrToTarget = directionToTarget.sqrMagnitude;
+            }
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;

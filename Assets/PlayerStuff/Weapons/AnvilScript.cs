@@ -72,8 +72,8 @@ public class AnvilScript : MonoBehaviour
     public void UPGRADE()
     {
         if (weaponSwapControl.points >= 5000)
-            anviltrack.Play();
         {
+            anviltrack.Play();
             weaponSwapControl.UpgradeStaff();
             weaponSwapControl.points -= 5000;
         }

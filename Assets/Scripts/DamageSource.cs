@@ -44,6 +44,10 @@ public class DamageSource : MonoBehaviour
             {
                 UIPI = other.GetComponent<PlayerInflicts>();
             }
+            else if (UIPI != other.GetComponent<PlayerInflicts>())
+            {
+                UIPI = other.GetComponent<PlayerInflicts>();
+            }
 
             if (UIPI != null && !UIPI.IFrames)
             {
