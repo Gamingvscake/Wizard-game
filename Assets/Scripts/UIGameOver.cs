@@ -34,7 +34,7 @@ public class UIGameOver : MonoBehaviour
 
     public Transform player1;          // Reference to Player1
     public Transform player1Camera;    // Reference to Player1Camera
-    public Transform gravestone_bevel; //Reference to Gravestone_Bevel
+    
     private void HidePlayer()
     {
         // Detach the camera before hiding the player
@@ -86,12 +86,7 @@ public class UIGameOver : MonoBehaviour
                 Debug.Log("RedWiz has been hidden.");
             }
 
-            // Show the gravestone
-            if (gravestone_bevel != null)
-            {
-                gravestone_bevel.gameObject.SetActive(true);
-                Debug.Log("Grave has been shown");
-            }
+            
 
 
             // Hide the health slider
