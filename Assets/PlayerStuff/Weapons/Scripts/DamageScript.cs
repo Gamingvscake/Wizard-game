@@ -85,7 +85,7 @@ public class DamageScript : MonoBehaviour
                 {
                     dsPI.LifeStealDo(cs.LifeSteal);
                     Delete();
-                    Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
+                    if (instantiateVFX != null)Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
                 }
                 else
                 {

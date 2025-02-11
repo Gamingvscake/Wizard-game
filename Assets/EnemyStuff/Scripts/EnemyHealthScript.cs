@@ -26,6 +26,7 @@ public class EnemyHealthScript : MonoBehaviour
     float statusdonetemptimer;
     float temporarytimer;
     float tempspeed;
+    float tempfirerate;
 
     public enum DamageResistance
     {
@@ -70,7 +71,7 @@ public class EnemyHealthScript : MonoBehaviour
                 case 1:
                     damageRes = DamageResistance.Neutral;
                     damageWeak = DamageWeakness.Ice;
-                    EHSDS.effects = DamageSource.HostileStatus.NeutralTBD;
+                    EHSDS.effects = DamageSource.HostileStatus.Neutral;
                     outlineMat.SetColor("_OutlineColor", new Color32(110, 110, 110, 255));
                     break;
                 case 2:
@@ -94,7 +95,7 @@ public class EnemyHealthScript : MonoBehaviour
                 case 5:
                     damageRes = DamageResistance.Air;
                     damageWeak = DamageWeakness.Fire;
-                    EHSDS.effects = DamageSource.HostileStatus.AirTBD;
+                    EHSDS.effects = DamageSource.HostileStatus.FireRateLower;
                     outlineMat.SetColor("_OutlineColor", new Color32(180, 255, 150, 255));
                     break;
                 case 6:
@@ -121,8 +122,9 @@ public class EnemyHealthScript : MonoBehaviour
                 statusIconsHold[i].GetComponentInChildren<Slider>().value = 0;
                 statusIconsHold[i].gameObject.SetActive(false);
             }
-            thisMovement.speed = 1 + (enemySpawn.rounds / 5);
             tempspeed = thisMovement.speed;
+            thisMovement.speed = tempspeed + (enemySpawn.rounds / 5);
+            tempfirerate = thisMovement.rangedFireRate;
         }
         HealthSlider.maxValue = MaxHealth;
         Health = MaxHealth;
@@ -179,25 +181,30 @@ public class EnemyHealthScript : MonoBehaviour
             {
                 if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsHold[0].GetComponentInChildren<Slider>().maxValue) 
                 {
-                    if (damageRes == DamageResistance.Fire) Health -= (MaxHealth / 10) / 2;
-                    else Health -= MaxHealth / 10;
+                    //if (damageRes == DamageResistance.Fire) Health -= (MaxHealth / 10) / 2;
+                    if (damageRes != DamageResistance.Fire) Health -= MaxHealth / 10;
                 }
                 temporarytimer = 1;
             }
             if (temporarytimer > 0) temporarytimer -= Time.deltaTime;
             if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
             {
-                if (damageRes == DamageResistance.Water) Health -= (int)(Time.deltaTime * 50) / 2;
-                else Health -= (int)(Time.deltaTime * 50);
+                //if (damageRes == DamageResistance.Water) Health -= (int)(Time.deltaTime * 50) / 2;
+                if (damageRes != DamageResistance.Water) Health -= (int)(Time.deltaTime * 50);
             }
             if (statusIconsHold[1].GetComponentInChildren<Slider>().value > 0)
             {
-                if (damageRes == DamageResistance.Ice) thisMovement.speed = tempspeed - (statusIconsHold[1].GetComponentInChildren<Slider>().value / 100) / 2;
-                else thisMovement.speed = tempspeed - (statusIconsHold[1].GetComponentInChildren<Slider>().value / 100);
+                //if (damageRes == DamageResistance.Ice) thisMovement.speed = tempspeed - (statusIconsHold[1].GetComponentInChildren<Slider>().value / 100) / 2;
+                if (damageRes != DamageResistance.Ice) thisMovement.speed = tempspeed - (statusIconsHold[1].GetComponentInChildren<Slider>().value / 100);
+            }
+            if (statusIconsHold[3].GetComponentInChildren<Slider>().value > 0)
+            {
+                if (damageRes != DamageResistance.Air) thisMovement.rangedFireRate = tempfirerate * 2;
             }
         }
         else
         {
+            if (thisMovement.rangedFireRate != tempfirerate) thisMovement.rangedFireRate = tempfirerate;
             for (int i = 0; i < statusIconsInUse.Count; i++)
             {
                 if (statusIconsInUse[i].GetComponentInChildren<Slider>().value == statusIconsInUse[i].GetComponentInChildren<Slider>().maxValue)
@@ -207,6 +214,14 @@ public class EnemyHealthScript : MonoBehaviour
             }
         }
     }
+    /*
+    Damage type to make status effect for:
+        - Neutral,
+        - Earth,
+        - Air,
+        - Light,
+        - Dark,
+*/
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "PlayerAttack" || collision.collider.tag == "EnvironmentAttack")
@@ -294,6 +309,25 @@ public class EnemyHealthScript : MonoBehaviour
                     statusIconsHold[2].GetComponentInChildren<Slider>().value += 10;
                     statusdonetemptimer = 5;
                     if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
+                    {
+                        print("Blub");
+                        if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    }
+                }
+            }
+            if (temp.damageType == DamageScript.DamageType.Air)
+            {
+                if (statusIconsInUse.Contains(statusIconsHold[3]) == false)
+                {
+                    statusIconsInUse.Add(statusIconsHold[3]);
+                    statusIconsHold[3].SetActive(true);
+                    statusIconsHold[3].GetComponentInChildren<Slider>().value += 10;
+                }
+                else
+                {
+                    statusIconsHold[3].GetComponentInChildren<Slider>().value += 10;
+                    statusdonetemptimer = 5;
+                    if (statusIconsHold[3].GetComponentInChildren<Slider>().value == statusIconsHold[3].GetComponentInChildren<Slider>().maxValue)
                     {
                         print("Blub");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;

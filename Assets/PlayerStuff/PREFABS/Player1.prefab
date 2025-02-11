@@ -5410,6 +5410,7 @@ MonoBehaviour:
   wscPI: {fileID: 1530989311519409170}
   ESS: {fileID: 0}
   wscas: {fileID: 7387548971118068514}
+  wscSE: {fileID: 7283115170589283217}
   maxNumberOfTurrets: 3
   numberOfTurrets: 0
   changeweapon: {fileID: 3581273076849310564}
@@ -5493,6 +5494,7 @@ MonoBehaviour:
   StatusPI: {fileID: 1530989311519409170}
   StatusWSC: {fileID: 4733858490563981127}
   StatusMC: {fileID: 371045532584648257}
+  currentStaffEquipped: {fileID: 0}
   maxtimer: 1
   temptimer: 0
   statusImage: {fileID: 7490359339108286060}
@@ -5950,10 +5952,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInflicts: {fileID: 1530989311519409170}
+  uigameover: {fileID: 0}
   isDead: 0
   moveSpeed: 5
   isPlayerDead: 0
   isGameOver: 0
+  gravestone_bevel: {fileID: 0}
 --- !u!114 &1828731285897223723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5979,7 +5983,6 @@ MonoBehaviour:
   isGameOver: 0
   player1: {fileID: 0}
   player1Camera: {fileID: 0}
-  gravestone_bevel: {fileID: 0}
 --- !u!114 &8564905327579600204
 MonoBehaviour:
   m_ObjectHideFlags: 0

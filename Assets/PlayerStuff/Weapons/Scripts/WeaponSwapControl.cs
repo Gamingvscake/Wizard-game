@@ -21,6 +21,7 @@ public class WeaponSwapControl : MonoBehaviour
     public PlayerInflicts wscPI;
     public EnemySpawnScript ESS;
     public AnvilScript wscas;
+    public StatusEffects wscSE;
     public int maxNumberOfTurrets;
     public int numberOfTurrets;
     [SerializeField] private AudioSource changeweapon;
@@ -45,6 +46,7 @@ public class WeaponSwapControl : MonoBehaviour
             tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
             tempobject.GetComponent<SpellController>().enabled = true;
             tempobject.GetComponent<SpellController>().movementController = movementController;
+            wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
         }
 
         inputActions = new PlayerController();
@@ -84,6 +86,7 @@ public class WeaponSwapControl : MonoBehaviour
                     tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
                     tempobject.GetComponent<SpellController>().enabled = true;
                     tempobject.GetComponent<SpellController>().movementController = movementController;
+                    wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
                 }
             }
             else
@@ -98,6 +101,7 @@ public class WeaponSwapControl : MonoBehaviour
                     tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
                     tempobject.GetComponent<SpellController>().enabled = true;
                     tempobject.GetComponent<SpellController>().movementController = movementController;
+                    wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
                 }
             }
         }
@@ -135,5 +139,6 @@ public class WeaponSwapControl : MonoBehaviour
 
         tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
         tempobject.GetComponent<SpellController>().enabled = true;
+        wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
     }
 }

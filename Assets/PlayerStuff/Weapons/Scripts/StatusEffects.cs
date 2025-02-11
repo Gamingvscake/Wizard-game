@@ -9,20 +9,22 @@ public class StatusEffects : MonoBehaviour
     public PlayerInflicts StatusPI;
     public WeaponSwapControl StatusWSC;
     public MovementController StatusMC;
+    public SpellController currentStaffEquipped;
     float tempduration;
     int tempdamage;
     bool working;
     public float maxtimer, temptimer;
     public Image statusImage;
     public Sprite[] Sprites = new Sprite[8];
+    float speedtemp;
     public enum Status
     {
         None,
-        NeutralTBD,
+        Neutral,
         Burn,
         Poison,
         EarthTBD,
-        AirTBD,
+        FireRateLower,
         ManaDrain,
         DarkTBD,
         Slow
@@ -35,6 +37,7 @@ public class StatusEffects : MonoBehaviour
     {
         if (working)
         {
+            currentStaffEquipped.castSpeed = speedtemp;
             if (statusImage.gameObject.activeSelf == false)statusImage.gameObject.SetActive(true);
             if (tempduration > 0)
             {
@@ -67,6 +70,10 @@ public class StatusEffects : MonoBehaviour
                     StatusMC.walkSpeed = StatusMC.walkSpeed * 2;
                     StatusMC.sprintSpeed = StatusMC.sprintSpeed * 2;
                 }
+                if (effects == Status.FireRateLower)
+                {
+                    currentStaffEquipped.castSpeed = speedtemp / 2;
+                }
                 working = false;
             }
         }
@@ -87,6 +94,13 @@ public class StatusEffects : MonoBehaviour
             effects = Status.Poison;
             statusImage.sprite = Sprites[2];
         }
+        else if (statustemp == (int)Status.FireRateLower)
+        {
+            effects = Status.FireRateLower;
+            statusImage.sprite = Sprites[4];
+            speedtemp = currentStaffEquipped.castSpeed * 2;
+            currentStaffEquipped.castSpeed = speedtemp;
+        }
         else if (statustemp == (int)Status.ManaDrain)
         {
             effects = Status.ManaDrain;
@@ -99,8 +113,13 @@ public class StatusEffects : MonoBehaviour
             StatusMC.walkSpeed = StatusMC.walkSpeed / 2;
             StatusMC.sprintSpeed = StatusMC.sprintSpeed / 2;
         }
-        tempduration = duration;
-        tempdamage = damage;
-        working = true;
+        if (statustemp != (int)Status.None && statustemp != (int)Status.Neutral)
+        {
+            if (statustemp == (int)Status.FireRateLower) speedtemp = currentStaffEquipped.castSpeed;
+            tempduration = duration;
+            tempdamage = damage;
+            working = true;
+        }
+        else return;
     }
 }

@@ -118,9 +118,9 @@ public class SpellController : MonoBehaviour
         }
         else
         {
-            if (canSwing && allowButtonHold && sccs.InCauldronScreen == false && Input.GetKey(KeyCode.Mouse0))
+            if (canSwing && allowButtonHold && sccs.InCauldronScreen == false && scas.InUpgradeScreen == false && Input.GetKey(KeyCode.Mouse0))
                 casting = true; // Trigger value threshold
-            else if (canSwing && sccs.InCauldronScreen == false && Input.GetKey(KeyCode.Mouse0))
+            else if (canSwing && sccs.InCauldronScreen == false && scas.InUpgradeScreen == false && Input.GetKey(KeyCode.Mouse0))
                 casting = true;
         }
         // Reloading

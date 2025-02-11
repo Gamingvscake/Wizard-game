@@ -22,11 +22,11 @@ public class DamageSource : MonoBehaviour
     public enum HostileStatus
     {
         None,
-        NeutralTBD,
+        Neutral,
         Burn,
         Poison,
         EarthTBD,
-        AirTBD,
+        FireRateLower,
         ManaDrain,
         DarkTBD,
         Slow
