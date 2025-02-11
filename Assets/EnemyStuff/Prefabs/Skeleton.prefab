@@ -2883,7 +2883,7 @@ MonoBehaviour:
   Players: []
   PlayerNotList: []
   OutOfBounds: 1
-  speed: 2
+  speed: 4
   AttackBox: {fileID: 7267922631033261070}
   DMGScript: {fileID: 9034159946278919642}
   tempturrscrip: {fileID: 0}

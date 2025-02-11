@@ -2698,7 +2698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef90047c74ad9a94fa00891b717ba9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 25
   Health: 1
   HealthSlider: {fileID: 8204065448606643533}
   damageRes: 2
@@ -2761,7 +2761,7 @@ MonoBehaviour:
   Players: []
   PlayerNotList: []
   OutOfBounds: 1
-  speed: 4
+  speed: 8
   AttackBox: {fileID: 7267922631033261070}
   DMGScript: {fileID: 9034159946278919642}
   tempturrscrip: {fileID: 0}
