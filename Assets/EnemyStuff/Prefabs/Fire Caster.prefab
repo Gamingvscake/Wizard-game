@@ -2646,7 +2646,7 @@ MonoBehaviour:
   phaseChange: 0
   maxPhaseTimer: 0
   phases: 0
-  metalchain: {fileID: 0}
+  metalchain: {fileID: -581356945083091958}
   timer: 0
   timelimit: 1.8
 --- !u!195 &7086911645816786703
@@ -2681,20 +2681,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3629ec953e115e542a6385a753ac535d, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 10c5fcbf99f5afb4c9792d45c1d59e85, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  Priority: 256
+  DopplerLevel: 1.47
+  MinDistance: 0.1
+  MaxDistance: 0.5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
