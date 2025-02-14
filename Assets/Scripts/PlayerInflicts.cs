@@ -27,6 +27,7 @@ public class PlayerInflicts : MonoBehaviour
     public bool TakingNormalDamage = false;
     public bool TakingDrainingDamage = false;
 
+    public bool StatusIncreasedDamage;
     void Start()
     {
         PlayerCurrentHealth = PlayerMaxHealth;
@@ -68,7 +69,8 @@ public class PlayerInflicts : MonoBehaviour
     {
         if (TakingNormalDamage && !DamageDealt)
         {
-            PlayerCurrentHealth -= Random.Range(MinDamage, MaxDamage);
+            if (StatusIncreasedDamage == false) PlayerCurrentHealth -= Random.Range(MinDamage, MaxDamage);
+            else PlayerCurrentHealth -= Random.Range(MinDamage, MaxDamage) * 2;
             DamageDealt = true;
             regenTimer = HealthRegenDelay;
             isRegenerating = false;
@@ -78,7 +80,8 @@ public class PlayerInflicts : MonoBehaviour
 
         if (TakingDrainingDamage && !DamageDealt)
         {
-            PlayerCurrentHealth -= Random.Range(MinDamage, MaxDamage);
+            if (StatusIncreasedDamage == false)PlayerCurrentHealth -= Random.Range(MinDamage, MaxDamage);
+            else PlayerCurrentHealth -= Random.Range(MinDamage, MaxDamage)*2;
             DamageDealt = true;
             regenTimer = HealthRegenDelay;
             isRegenerating = false;

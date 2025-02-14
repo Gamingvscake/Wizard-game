@@ -25,7 +25,7 @@ public class DamageSource : MonoBehaviour
         Neutral,
         Burn,
         Poison,
-        EarthTBD,
+        DamageIncrease,
         FireRateLower,
         ManaDrain,
         DarkTBD,
