@@ -134,7 +134,8 @@ public class MovementController : MonoBehaviour
             rb.velocity = velocity;
 
             // Handle sprint input
-            bool isSprinting = assignedController.leftTrigger.isPressed;
+            bool isSprinting = assignedController.leftStickButton.isPressed;
+            Debug.Log(isSprinting);
 
             if (isSprinting)
                 currentSpeed = sprintSpeed;
