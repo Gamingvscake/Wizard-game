@@ -137,6 +137,15 @@ public class MovementController : MonoBehaviour
             bool isSprinting = assignedController.leftStickButton.isPressed;
             Debug.Log(isSprinting);
 
+            if (assignedController.buttonEast.wasPressedThisFrame)
+            {
+                ToggleCrouch();
+            }
+            if (assignedController.buttonSouth.wasPressedThisFrame)
+            {
+                Jump();
+            }
+
             if (isSprinting)
                 currentSpeed = sprintSpeed;
             else
