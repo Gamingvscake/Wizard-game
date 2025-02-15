@@ -144,6 +144,7 @@ public class MovementController : MonoBehaviour
             if (assignedController.buttonSouth.wasPressedThisFrame)
             {
                 Jump();
+                animator.SetTrigger("Jumping");
             }
 
             if (isSprinting)
@@ -154,6 +155,7 @@ public class MovementController : MonoBehaviour
             // Set Animator Parameters
             animator.SetBool("Walking", isMoving);
             animator.SetBool("Sprinting", isSprinting && isMoving);
+            animator.SetBool("Grounded", isGrounded);
 
             // Play footsteps sound only if the player is moving
             if (isMoving)
