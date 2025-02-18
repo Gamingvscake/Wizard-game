@@ -126,7 +126,7 @@ public class StatusEffects : MonoBehaviour
         }
         if (statustemp != (int)Status.None && statustemp != (int)Status.Neutral)
         {
-            if (statustemp == (int)Status.FireRateLower) speedtemp = currentStaffEquipped.castSpeed;
+            speedtemp = currentStaffEquipped.castSpeed;
             tempduration = duration;
             tempdamage = damage;
             working = true;
