@@ -18,7 +18,7 @@ public class DeathScreen : MonoBehaviour
     private void Update()
     {
         
-        if (playerInflicts.PlayerCurrentHealth <= 0 && !isDead)
+        if (playerInflicts.PlayerCurrentHealth <= 0 && !isPlayerDead)
         {
             isDead = true;
             isPlayerDead = true;
@@ -31,10 +31,7 @@ public class DeathScreen : MonoBehaviour
             }
         }
 
-        if (isDead)
-        {
-
-        }
+        
 
         if (isPlayerDead)
         {
@@ -44,7 +41,8 @@ public class DeathScreen : MonoBehaviour
 
         if (isGameOver)  // Camera is moved up
         {
-            gameObject.transform.position = Vector3.Lerp(
+            gameObject.transform.position = Vector3.Lerp
+            (
                 gameObject.transform.position,
                 targetPosition,
                 moveSpeed * Time.deltaTime
@@ -62,27 +60,40 @@ public class DeathScreen : MonoBehaviour
         // Check if all the players have their isPlayerDead true
         bool allPlayersDead = true;
 
-        foreach ( GameObject player in players )
+        for(int i = 0; i < players.Length; i++)
         {
+            print(players[i]);
             // Get the DeathScreen script attached to each player
-            DeathScreen deathScreen = player.GetComponent<DeathScreen>();
-
-            if (deathScreen != null && !deathScreen.isPlayerDead)
-            {
-                allPlayersDead = false;  // If any player is not dead, game over is not triggered
-                break;
-            }
-
+            DeathScreen deathScreen = players[i].GetComponentInChildren<DeathScreen>();
+            //if (deathScreen != null && !deathScreen.isPlayerDead)
+            
+               // allPlayersDead = false;  // If any player is not dead, game over is not triggered
+               // break;
+            
+            print(deathScreen);
+            print(deathScreen.gravestone_bevel);
             // Check if this player's gravestone is active
-            if (deathScreen != null && deathScreen.gravestone_bevel != null && !deathScreen.gravestone_bevel.activeSelf)
+            if (deathScreen != null && deathScreen.gravestone_bevel != null)
             {
-                Debug.Log("Bro This is being read");
-                // If any player's gravestone is not active, game over should not be triggered
-                allPlayersDead = false;
+                
+                if (!deathScreen.gravestone_bevel.activeSelf)
+                {
+                    // If any player's gravestone is not active, set allPlayersDead to false and break
+                    
+                    allPlayersDead = false;
+                    break;
+                }
+            }
+            else if (deathScreen == null && deathScreen.gravestone_bevel == null)
+            {
+                // If deathScreen or gravestone is missing, log an issue
+                
+                allPlayersDead = false;  // We cannot proceed if any player is missing these components
                 break;
             }
         }
 
+        
         // If all players are dead, trigger game over
         if (allPlayersDead)
         {

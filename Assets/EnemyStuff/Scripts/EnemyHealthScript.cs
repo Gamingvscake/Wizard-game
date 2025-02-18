@@ -27,6 +27,7 @@ public class EnemyHealthScript : MonoBehaviour
     float temporarytimer;
     float tempspeed;
     float tempfirerate;
+    float damageincreasefloat;
 
     public enum DamageResistance
     {
@@ -56,6 +57,7 @@ public class EnemyHealthScript : MonoBehaviour
     {
         if (DevBoolToNotMove == false)
         {
+            damageincreasefloat = 1;
             MaxHealth *= 1 + (enemySpawn.rounds / 5);
             outlineMat = MyRenderer.materials[1];
             outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
@@ -89,7 +91,7 @@ public class EnemyHealthScript : MonoBehaviour
                 case 4:
                     damageRes = DamageResistance.Earth;
                     damageWeak = DamageWeakness.Air;
-                    EHSDS.effects = DamageSource.HostileStatus.EarthTBD;
+                    EHSDS.effects = DamageSource.HostileStatus.DamageIncrease;
                     outlineMat.SetColor("_OutlineColor", new Color32(170, 100, 0, 255));
                     break;
                 case 5:
@@ -201,10 +203,15 @@ public class EnemyHealthScript : MonoBehaviour
             {
                 if (damageRes != DamageResistance.Air) thisMovement.rangedFireRate = tempfirerate * 2;
             }
+            if (statusIconsHold[4].GetComponentInChildren<Slider>().value > 0)
+            {
+                if (damageRes != DamageResistance.Earth) damageincreasefloat = 1 + (statusIconsHold[4].GetComponentInChildren<Slider>().value / 50);
+            }
         }
         else
         {
             if (thisMovement.rangedFireRate != tempfirerate) thisMovement.rangedFireRate = tempfirerate;
+            if (damageincreasefloat != 1) damageincreasefloat = 1;
             for (int i = 0; i < statusIconsInUse.Count; i++)
             {
                 if (statusIconsInUse[i].GetComponentInChildren<Slider>().value == statusIconsInUse[i].GetComponentInChildren<Slider>().maxValue)
@@ -216,9 +223,6 @@ public class EnemyHealthScript : MonoBehaviour
     }
     /*
     Damage type to make status effect for:
-        - Neutral,
-        - Earth,
-        - Air,
         - Light,
         - Dark,
 */
@@ -245,17 +249,17 @@ public class EnemyHealthScript : MonoBehaviour
         temptimer = 10;
         if ((int)temp.damageType == (int)damageRes)
         {
-            Health -= ((temp.Damage + cs.Damage2) / 2);
+            Health -= (int)(((temp.Damage + cs.Damage2) / 2) * damageincreasefloat);
             wsc.points += 10;
         }
         else if ((int)temp.damageType == (int)damageWeak)
         {
-            Health -= ((temp.Damage + cs.Damage2) * 2);
+            Health -= (int)(((temp.Damage + cs.Damage2) * 2) *damageincreasefloat);
             wsc.points += 10;
         }
         else
         {
-            Health -= (temp.Damage + cs.Damage2);
+            Health -= (int)((temp.Damage + cs.Damage2) * damageincreasefloat);
             wsc.points += 10;
         }
         if (DevBoolToNotMove == false)
@@ -329,7 +333,26 @@ public class EnemyHealthScript : MonoBehaviour
                     statusdonetemptimer = 5;
                     if (statusIconsHold[3].GetComponentInChildren<Slider>().value == statusIconsHold[3].GetComponentInChildren<Slider>().maxValue)
                     {
-                        print("Blub");
+                        print("Woosh");
+                        if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
+                    }
+                }
+            }
+            if (temp.damageType == DamageScript.DamageType.Earth)
+            {
+                if (statusIconsInUse.Contains(statusIconsHold[4]) == false)
+                {
+                    statusIconsInUse.Add(statusIconsHold[4]);
+                    statusIconsHold[4].SetActive(true);
+                    statusIconsHold[4].GetComponentInChildren<Slider>().value += 10;
+                }
+                else
+                {
+                    statusIconsHold[4].GetComponentInChildren<Slider>().value += 10;
+                    statusdonetemptimer = 5;
+                    if (statusIconsHold[4].GetComponentInChildren<Slider>().value == statusIconsHold[4].GetComponentInChildren<Slider>().maxValue)
+                    {
+                        print("Crack");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
                     }
                 }

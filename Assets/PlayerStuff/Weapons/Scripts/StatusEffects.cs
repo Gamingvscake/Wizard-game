@@ -23,7 +23,7 @@ public class StatusEffects : MonoBehaviour
         Neutral,
         Burn,
         Poison,
-        EarthTBD,
+        DamageIncrease,
         FireRateLower,
         ManaDrain,
         DarkTBD,
@@ -74,12 +74,17 @@ public class StatusEffects : MonoBehaviour
                 {
                     currentStaffEquipped.castSpeed = speedtemp / 2;
                 }
+                if(effects == Status.DamageIncrease)
+                {
+                    StatusPI.StatusIncreasedDamage = false;
+                }
                 working = false;
             }
         }
         else
         {
             if (statusImage.gameObject.activeSelf == true) statusImage.gameObject.SetActive(false);
+            if (StatusPI.StatusIncreasedDamage == true) StatusPI.StatusIncreasedDamage = false;
         }
     }
     public void DoStatusWork(int statustemp, float duration, int damage)
@@ -93,6 +98,12 @@ public class StatusEffects : MonoBehaviour
         {
             effects = Status.Poison;
             statusImage.sprite = Sprites[2];
+        }
+        else if (statustemp == (int)Status.DamageIncrease)
+        {
+            effects = Status.DamageIncrease;
+            statusImage.sprite = Sprites[3];
+            StatusPI.StatusIncreasedDamage = true;
         }
         else if (statustemp == (int)Status.FireRateLower)
         {
@@ -115,7 +126,7 @@ public class StatusEffects : MonoBehaviour
         }
         if (statustemp != (int)Status.None && statustemp != (int)Status.Neutral)
         {
-            if (statustemp == (int)Status.FireRateLower) speedtemp = currentStaffEquipped.castSpeed;
+            speedtemp = currentStaffEquipped.castSpeed;
             tempduration = duration;
             tempdamage = damage;
             working = true;

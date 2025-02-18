@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
@@ -50,7 +51,10 @@ public class MovementController : MonoBehaviour
     //Shooting
     public bool ShootSpell;
 
+    [SerializeField] private AudioSource playersteps;
 
+    public float timer = 0f;
+    public float timelimit = 1f;
 
 
     private void Start()
@@ -71,6 +75,8 @@ public class MovementController : MonoBehaviour
         }
 
         currentSpeed = walkSpeed;
+
+        
     }
 
     private void Update()
@@ -84,7 +90,9 @@ public class MovementController : MonoBehaviour
             CheckGroundStatus();
             HandleCameraLook();
             HandleShooting();
-        
+
+             
+
     }
 
     public void HandleShooting()
@@ -115,6 +123,7 @@ public class MovementController : MonoBehaviour
             // Read movement input from the assigned controller
             Vector2 moveInput = assignedController.leftStick.ReadValue();
             Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+            
 
             // Check if the player is moving
             bool isMoving = moveInput.magnitude > 0.1f;
@@ -125,7 +134,18 @@ public class MovementController : MonoBehaviour
             rb.velocity = velocity;
 
             // Handle sprint input
-            bool isSprinting = assignedController.leftTrigger.isPressed;
+            bool isSprinting = assignedController.leftStickButton.isPressed;
+            Debug.Log(isSprinting);
+
+            if (assignedController.buttonEast.wasPressedThisFrame)
+            {
+                ToggleCrouch();
+            }
+            if (assignedController.buttonSouth.wasPressedThisFrame)
+            {
+                Jump();
+                animator.SetTrigger("Jumping");
+            }
 
             if (isSprinting)
                 currentSpeed = sprintSpeed;
@@ -135,11 +155,42 @@ public class MovementController : MonoBehaviour
             // Set Animator Parameters
             animator.SetBool("Walking", isMoving);
             animator.SetBool("Sprinting", isSprinting && isMoving);
+            animator.SetBool("Grounded", isGrounded);
+
+            // Play footsteps sound only if the player is moving
+            if (isMoving)
+            {
+                if (timer >= timelimit)
+                {
+                    if (!playersteps.isPlaying) // Only play if it's not already playing
+                    {
+                        playersteps.Play();
+                    }
+
+                    timer = 0f;
+                }
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                if (playersteps.isPlaying) // Stop sound when not moving
+                {
+                    playersteps.Stop();
+                }
+            }
+
         }
         else
         {
             Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
             Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
+            if (timer >= timelimit)
+            {
+                playersteps.Play();
+
+                timer = 0f;
+            }
+            timer += Time.deltaTime;
 
             // Apply velocity, keeping the y velocity (gravity and jumping) intact
             Vector3 velocity = new Vector3(worldMoveDirection.x * currentSpeed, rb.velocity.y, worldMoveDirection.z * currentSpeed);
@@ -162,7 +213,19 @@ public class MovementController : MonoBehaviour
             {
                 ToggleCrouch();
             }
+
+            // Stop the sound if the player stops moving
+            if (moveDirection.magnitude < 0.1f)
+            {
+                if (playersteps.isPlaying)
+                {
+                   playersteps.Stop();
+                }
+            }
+
         }
+
+
     }
 
     private void HandleCrouchHeight()
@@ -237,4 +300,7 @@ public class MovementController : MonoBehaviour
             transform.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);    // Left-right rotation
         }
     }
+
+
+
 }

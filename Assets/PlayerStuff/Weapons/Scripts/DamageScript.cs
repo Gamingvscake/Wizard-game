@@ -37,6 +37,7 @@ public class DamageScript : MonoBehaviour
     {
         item = transform.parent.gameObject;
         if (SplashRadius != null ) SplashRadius.enabled = false;
+        Physics.IgnoreLayerCollision(6,16);
     }
     private void Update()
     {
@@ -98,7 +99,7 @@ public class DamageScript : MonoBehaviour
                 if (collision.collider.tag == "Enemy")
                 {
                     Delete();
-                    Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
+                    if(instantiateVFX != null)Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
                 }
                 else
                 {
