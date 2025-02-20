@@ -124,15 +124,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 772ed6ad18b681c4297c33e86947acb7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 23ecb019978cee44aaf877cdaeb2e28f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 72
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -289,6 +289,7 @@ MonoBehaviour:
   dsPI: {fileID: 0}
   isMelee: 1
   isTurret: 0
+  instantiateVFX: {fileID: 0}
 --- !u!1001 &4899252406918837699
 PrefabInstance:
   m_ObjectHideFlags: 0
