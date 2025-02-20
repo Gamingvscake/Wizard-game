@@ -10,6 +10,7 @@ public class UIGameOver : MonoBehaviour
     public Image DeathImage;
     public GameObject bluePosePrefab;
     public GameObject redwiz;
+    public GameObject pinkwiz;
     public Slider healthSlider;
     public GameObject manaGauge;
     public GameObject points;
@@ -86,7 +87,13 @@ public class UIGameOver : MonoBehaviour
                 Debug.Log("RedWiz has been hidden.");
             }
 
-            
+            // Turn off the MeshRenderer for "PinkWiz"
+            if (pinkwiz != null)
+            {
+                pinkwiz.gameObject.SetActive(false);
+                Debug.Log("PinkWiz has been hidden.");
+            }
+
 
 
             // Hide the health slider
