@@ -832,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.85
+      value: -0.212
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -866,12 +866,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3351094568058733161, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09744
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_Name
       value: Refined Stone Staff
       objectReference: {fileID: 0}
+    - target: {fileID: 1683940920265114951, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.085143104
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570216905711501561, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09139
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973417282736390291, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07737237
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5188011040409599484, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+    - {fileID: -2051127533696154057, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+    - {fileID: 623420616769059698, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+    - {fileID: 8523772855540137367, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+    - {fileID: -8418885108249170206, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       insertIndex: -1
