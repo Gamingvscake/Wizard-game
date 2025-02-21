@@ -20,6 +20,7 @@ public class DamageScript : MonoBehaviour
     public bool isTurret;
 
     public GameObject instantiateVFX;
+    [SerializeField] private AudioSource vfxSFX;
 
     public enum DamageType 
     { 
@@ -87,6 +88,9 @@ public class DamageScript : MonoBehaviour
                     dsPI.LifeStealDo(cs.LifeSteal);
                     Delete();
                     if (instantiateVFX != null)Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
+                    //Play the VFX sound effect
+                    vfxSFX = GetComponent<AudioSource>();
+                    vfxSFX.Play();
                 }
                 else
                 {
