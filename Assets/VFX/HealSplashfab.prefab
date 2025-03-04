@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 555720807084452639}
   - component: {fileID: 7661427110681112503}
   - component: {fileID: 675160276093688813}
+  - component: {fileID: -4444428631864941022}
   m_Layer: 0
   m_Name: HealSplashfab
   m_TagString: Untagged
@@ -179,3 +180,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LifeTime: 3
+--- !u!114 &-4444428631864941022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640857179593466088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa72b8f7a3385e40971858f7c2ed28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

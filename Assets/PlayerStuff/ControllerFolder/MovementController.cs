@@ -135,7 +135,6 @@ public class MovementController : MonoBehaviour
 
             // Handle sprint input
             bool isSprinting = assignedController.leftStickButton.isPressed;
-            Debug.Log(isSprinting);
 
             if (assignedController.buttonEast.wasPressedThisFrame)
             {

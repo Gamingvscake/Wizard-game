@@ -21,7 +21,7 @@ public class CandleBounce : MonoBehaviour
     public float targetRange = 14f; // Final range after fade-in
 
     private Light[] lights;
-    private Renderer[] renderer;
+    private new Renderer[] renderer;
     private Color[] materialEmissionColors;
     private Vector3[] originalPositions;
     private Queue<float> SmoothQueue;
