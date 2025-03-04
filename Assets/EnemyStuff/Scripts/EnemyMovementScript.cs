@@ -217,18 +217,22 @@ public class EnemyMovementScript : MonoBehaviour
 
             Vector3 directionToTarget = potentialTarget.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == true ||
-                    potentialTarget.GetComponentInChildren<DeathScreen>().isGameOver == true ||
-                    potentialTarget.GetComponentInChildren<UIGameOver>().isGameOver == true ||
-                    potentialTarget.GetComponentInChildren<UIGameOver>().isPlayerDead == true)
+            if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false &&
+                    potentialTarget.GetComponentInChildren<UIGameOver>().isPlayerDead == false)
             {
-                 directionToTarget = potentialTarget.position + new Vector3(10000,10000,10000);
-                 dSqrToTarget = directionToTarget.sqrMagnitude;
-            }
-            if (dSqrToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget;
+                if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false)
+                {
+                    if (dSqrToTarget < closestDistanceSqr)
+                    {
+                        closestDistanceSqr = dSqrToTarget;
+                        bestTarget = potentialTarget;
+                    }
+                }
+                if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == true)
+                {
+                    closestDistanceSqr = dSqrToTarget;
+                    bestTarget = potentialTarget;
+                }
             }
         }
 

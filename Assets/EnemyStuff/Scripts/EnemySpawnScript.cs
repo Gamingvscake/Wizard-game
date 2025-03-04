@@ -63,6 +63,7 @@ public class EnemySpawnScript : MonoBehaviour
                 {
                     work = false;
                 }
+                timer = 0;
             }
             if (player1RoundText != null) player1RoundText.text = rounds.ToString();
             if (player2RoundText != null) player2RoundText.text = rounds.ToString();

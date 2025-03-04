@@ -37,7 +37,7 @@ public class StatusEffects : MonoBehaviour
     {
         if (working)
         {
-            currentStaffEquipped.castSpeed = speedtemp;
+            if (currentStaffEquipped != null) currentStaffEquipped.castSpeed = speedtemp;
             if (statusImage.gameObject.activeSelf == false)statusImage.gameObject.SetActive(true);
             if (tempduration > 0)
             {
@@ -72,7 +72,7 @@ public class StatusEffects : MonoBehaviour
                 }
                 if (effects == Status.FireRateLower)
                 {
-                    currentStaffEquipped.castSpeed = speedtemp / 2;
+                    if (currentStaffEquipped != null) currentStaffEquipped.castSpeed = speedtemp / 2;
                 }
                 if(effects == Status.DamageIncrease)
                 {
@@ -109,8 +109,8 @@ public class StatusEffects : MonoBehaviour
         {
             effects = Status.FireRateLower;
             statusImage.sprite = Sprites[4];
-            speedtemp = currentStaffEquipped.castSpeed * 2;
-            currentStaffEquipped.castSpeed = speedtemp;
+            if(currentStaffEquipped != null) speedtemp = currentStaffEquipped.castSpeed * 2;
+            if (currentStaffEquipped != null) currentStaffEquipped.castSpeed = speedtemp;
         }
         else if (statustemp == (int)Status.ManaDrain)
         {
@@ -126,7 +126,7 @@ public class StatusEffects : MonoBehaviour
         }
         if (statustemp != (int)Status.None && statustemp != (int)Status.Neutral)
         {
-            speedtemp = currentStaffEquipped.castSpeed;
+            if (currentStaffEquipped != null) speedtemp = currentStaffEquipped.castSpeed;
             tempduration = duration;
             tempdamage = damage;
             working = true;

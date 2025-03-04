@@ -46,7 +46,7 @@ public class WeaponSwapControl : MonoBehaviour
             tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
             tempobject.GetComponent<SpellController>().enabled = true;
             tempobject.GetComponent<SpellController>().movementController = movementController;
-            wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
+            if (wscSE != null)wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
         }
 
         inputActions = new PlayerController();
@@ -65,7 +65,7 @@ public class WeaponSwapControl : MonoBehaviour
         float switchStaffValue = 0;
         if (!movementController.DevKeyboardOn)
         {
-             switchStaffValue = inputActions.PlayerControls.SwitchStaff.ReadValue<float>();
+             if (inputActions != null)switchStaffValue = inputActions.PlayerControls.SwitchStaff.ReadValue<float>();
         }
         else 
         { 

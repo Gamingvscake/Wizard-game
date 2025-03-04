@@ -277,7 +277,6 @@ public class EnemyHealthScript : MonoBehaviour
                     statusIconsHold[0].GetComponentInChildren<Slider>().value += 10;
                     if (statusIconsHold[0].GetComponentInChildren<Slider>().value == statusIconsHold[0].GetComponentInChildren<Slider>().maxValue)
                     {
-                        print("kaboom");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
                     }
                 }
@@ -295,7 +294,6 @@ public class EnemyHealthScript : MonoBehaviour
                     statusIconsHold[1].GetComponentInChildren<Slider>().value += 10;
                     if (statusIconsHold[1].GetComponentInChildren<Slider>().value == statusIconsHold[1].GetComponentInChildren<Slider>().maxValue)
                     {
-                        print("FREEZE");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
                     }
                 }
@@ -314,7 +312,6 @@ public class EnemyHealthScript : MonoBehaviour
                     statusdonetemptimer = 5;
                     if (statusIconsHold[2].GetComponentInChildren<Slider>().value == statusIconsHold[2].GetComponentInChildren<Slider>().maxValue)
                     {
-                        print("Blub");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
                     }
                 }
@@ -333,7 +330,6 @@ public class EnemyHealthScript : MonoBehaviour
                     statusdonetemptimer = 5;
                     if (statusIconsHold[3].GetComponentInChildren<Slider>().value == statusIconsHold[3].GetComponentInChildren<Slider>().maxValue)
                     {
-                        print("Woosh");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
                     }
                 }
@@ -352,7 +348,6 @@ public class EnemyHealthScript : MonoBehaviour
                     statusdonetemptimer = 5;
                     if (statusIconsHold[4].GetComponentInChildren<Slider>().value == statusIconsHold[4].GetComponentInChildren<Slider>().maxValue)
                     {
-                        print("Crack");
                         if (statusdonetemptimer >= 0) statusdonetemptimer = 10;
                     }
                 }

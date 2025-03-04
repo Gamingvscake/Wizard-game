@@ -6564,6 +6564,7 @@ MonoBehaviour:
   DeathImage: {fileID: 5009164588306752680}
   bluePosePrefab: {fileID: 0}
   redwiz: {fileID: 0}
+  pinkwiz: {fileID: 0}
   healthSlider: {fileID: 0}
   manaGauge: {fileID: 0}
   points: {fileID: 0}
@@ -8674,10 +8675,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91a3170753579074d9b64e82ccd487f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4404983836525921809}
   m_SourcePrefab: {fileID: 100100000, guid: 91a3170753579074d9b64e82ccd487f3, type: 3}
 --- !u!4 &8413781401443186899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 91a3170753579074d9b64e82ccd487f3, type: 3}
   m_PrefabInstance: {fileID: 8307303917913530168}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9189613971202597481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 91a3170753579074d9b64e82ccd487f3, type: 3}
+  m_PrefabInstance: {fileID: 8307303917913530168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4404983836525921809
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189613971202597481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}

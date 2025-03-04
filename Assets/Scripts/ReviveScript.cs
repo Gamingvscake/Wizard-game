@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ReviveScript : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.tag == ("Player"))
         {
             Transform gravestoneParent = other.transform.parent;
 
@@ -19,9 +19,11 @@ public class ReviveScript : MonoBehaviour
                 if (playerInflicts != null && deathScreen != null && deathScreen.isDead == true && deathScreen.isPlayerDead == true)
                 {
                     deathScreen.gravestone_bevel.gameObject.SetActive(false);
+                    playerInflicts.PlayerCurrentHealth = 75;
                     deathScreen.isDead = false;
                     deathScreen.isPlayerDead = false;
-                    playerInflicts.PlayerCurrentHealth = 75;
+                    UIgameOver.isPlayerDead = false;
+                    playerInflicts.wasrevived = true;
                     if (UIgameOver.redwiz != null)
                     {
                         UIgameOver.redwiz.gameObject.SetActive(true);

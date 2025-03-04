@@ -28,6 +28,8 @@ public class PlayerInflicts : MonoBehaviour
     public bool TakingDrainingDamage = false;
 
     public bool StatusIncreasedDamage;
+
+    public bool wasrevived;
     void Start()
     {
         PlayerCurrentHealth = PlayerMaxHealth;

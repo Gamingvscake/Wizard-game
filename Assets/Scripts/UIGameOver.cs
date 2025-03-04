@@ -28,7 +28,7 @@ public class UIGameOver : MonoBehaviour
         if (DeathImage != null)
         {
             DeathImage.gameObject.SetActive(false);
-            Debug.Log("Game Over UI hidden at start.");
+            //Debug.Log("Game Over UI hidden at start.");
         }
     }
 
@@ -52,7 +52,7 @@ public class UIGameOver : MonoBehaviour
         if (playerInflicts.PlayerCurrentHealth <= 0 && !isGameOver)
         {
             isGameOver = true;
-            Debug.Log("Player health is 0 or below. Showing Game Over UI.");
+            //Debug.Log("Player health is 0 or below. Showing Game Over UI.");
 
 
             // Show the game over image
@@ -72,11 +72,11 @@ public class UIGameOver : MonoBehaviour
                 if (meshRenderer != null)
                 {
                     meshRenderer.enabled = false;
-                    Debug.Log("BluePose 1 MeshRenderer has been turned off.");
+                    //Debug.Log("BluePose 1 MeshRenderer has been turned off.");
                 }
                 else
                 {
-                    Debug.LogWarning("No MeshRenderer found on BluePose 1 prefab.");
+                    //Debug.LogWarning("No MeshRenderer found on BluePose 1 prefab.");
                 }
             }
 
@@ -84,14 +84,14 @@ public class UIGameOver : MonoBehaviour
             if (redwiz != null)
             {
                 redwiz.gameObject.SetActive(false);
-                Debug.Log("RedWiz has been hidden.");
+                //Debug.Log("RedWiz has been hidden.");
             }
 
             // Turn off the MeshRenderer for "PinkWiz"
             if (pinkwiz != null)
             {
                 pinkwiz.gameObject.SetActive(false);
-                Debug.Log("PinkWiz has been hidden.");
+                //Debug.Log("PinkWiz has been hidden.");
             }
 
 
@@ -100,35 +100,35 @@ public class UIGameOver : MonoBehaviour
             if (healthSlider != null)
             {
                 healthSlider.gameObject.SetActive(false);
-                Debug.Log("Health slider has been hidden.");
+                //Debug.Log("Health slider has been hidden.");
             }
 
             // Hide the ManaGauge
             if (manaGauge != null)
             {
                 manaGauge.SetActive(false);
-                Debug.Log("ManaGauge has been hidden.");
+                //Debug.Log("ManaGauge has been hidden.");
             }
 
             //Hide the Points
             if (points != null)
             {
                 points.gameObject.SetActive(false);
-                Debug.Log("Points are hidden");
+                //Debug.Log("Points are hidden");
             }
 
             //Hide StatusIcons
             if (statusicons != null)
             {
                 statusicons.gameObject.SetActive(false);
-                Debug.Log("StatusIcons are hidden");
+                //Debug.Log("StatusIcons are hidden");
             }
 
             // Hide StaffSpawnPoint
             if (staffspawnpoint  != null)
             {
                 staffspawnpoint.gameObject.SetActive(false);
-                Debug.Log("Staffs are gone");
+                //Debug.Log("Staffs are gone");
             }
 
            
@@ -138,7 +138,7 @@ public class UIGameOver : MonoBehaviour
             if (weaponSwapControl != null)
             {
                 weaponSwapControl.enabled = false;
-                Debug.Log("WeaponSwapControl script disabled.");
+                //Debug.Log("WeaponSwapControl script disabled.");
             }
 
             // Disable the MovementController
@@ -146,7 +146,7 @@ public class UIGameOver : MonoBehaviour
             if (movementController != null)
             {
                 movementController.enabled = false;
-                Debug.Log("MovementController script is disabled");
+                //Debug.Log("MovementController script is disabled");
             }
 
         }
