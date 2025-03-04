@@ -92,6 +92,8 @@ public class EnemySpawnScript : MonoBehaviour
                             }
                             rangedEnemiesAdded = true;
                         }
+
+                        //sound ends
                         rounds += 1;
                         roundstillboss += 1;
                         roundup = false;
@@ -132,6 +134,7 @@ public class EnemySpawnScript : MonoBehaviour
             {
                 inTheRound = false;
                 roundup = true;
+                //sound plays
             }
         }
     }
