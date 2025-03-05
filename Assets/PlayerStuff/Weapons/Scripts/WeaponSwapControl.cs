@@ -25,6 +25,7 @@ public class WeaponSwapControl : MonoBehaviour
     public int maxNumberOfTurrets;
     public int numberOfTurrets;
     [SerializeField] private AudioSource changeweapon;
+    public int playerID;
 
     public MovementController movementController;
     private PlayerController inputActions;

@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerInflicts : MonoBehaviour
 {
 
+    public WeaponSwapControl wsc;
+
     [Header("Health Settings")]
     public int PlayerMaxHealth;
     public int PlayerCurrentHealth;

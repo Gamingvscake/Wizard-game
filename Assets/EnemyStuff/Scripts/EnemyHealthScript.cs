@@ -29,6 +29,16 @@ public class EnemyHealthScript : MonoBehaviour
     float tempfirerate;
     float damageincreasefloat;
 
+
+    // Dictionary to track player kills
+    public static Dictionary<string, int> playerKillCount = new Dictionary<string, int>
+    {
+        {"Player1", 1},
+        {"Player2", 2},
+        {"Player3", 3},
+        {"Player4", 4}
+    };
+
     public enum DamageResistance
     {
         NONE,
@@ -156,6 +166,18 @@ public class EnemyHealthScript : MonoBehaviour
                 enemySpawn.amountOfEnemies -= thisMovement.amountSpawned;
             }
             if (thisMovement.isMinion) bossMovement.amountSpawned -=1;
+            // Track player kill
+            if (wsc != null)
+            {
+                string playerKey = "Player" + wsc.playerID.ToString(); // Convert playerID to a matching string key
+
+                if (playerKillCount.ContainsKey(playerKey))
+                {
+                    playerKillCount[playerKey]++;
+                    Debug.Log("This code is being read");
+                    Debug.Log(playerKey + " has defeated " + playerKillCount[playerKey] + " enemies.");
+                }
+            }
             Destroy(this.gameObject);
         }
         if (statusIconsInUse.Count > 0)
