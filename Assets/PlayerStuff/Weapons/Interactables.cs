@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Interactables : MonoBehaviour
 {
     public bool InInteractableRange;
-    public bool Buyable, Removeable;
+    public bool Buyable, Removeable, CauldronBuyable;
     public float timer, Maxtimer;
     public InteractableVariables InterVaris;
     public WeaponSwapControl iwsc;
@@ -110,6 +110,18 @@ public class Interactables : MonoBehaviour
                         ResetInteractState();
                     }
                 }
+                else if (CauldronBuyable)
+                {
+                    /*
+                    Do things in here Kevin
+                    Or if you need to, add variables to the InteractableVariables script
+                    Like booleans, ints, or anything like that.
+
+                    print("Cauldron New Working");
+                    */
+
+
+                }
             }
         }
     }
@@ -146,6 +158,12 @@ public class Interactables : MonoBehaviour
             InterVaris = other.GetComponent<InteractableVariables>();
             Buyable = true;
         }
+        if (other.CompareTag("CauldronBuyable"))
+        {
+            InInteractableRange = true;
+            InterVaris = other.GetComponent<InteractableVariables>();
+            CauldronBuyable = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -164,6 +182,7 @@ public class Interactables : MonoBehaviour
         Removeable = false;
         Buyable = false;
         CanBuy = false;
+        CauldronBuyable = false;
         HasBought = false;
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);

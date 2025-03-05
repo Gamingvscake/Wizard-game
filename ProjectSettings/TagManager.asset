@@ -13,6 +13,7 @@ TagManager:
   - EnterPoint
   - Anvil
   - Turret
+  - CauldronBuyable
   layers:
   - Default
   - TransparentFX
