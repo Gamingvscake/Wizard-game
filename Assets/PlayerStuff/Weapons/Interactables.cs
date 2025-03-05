@@ -11,6 +11,8 @@ public class Interactables : MonoBehaviour
     public float timer, Maxtimer;
     public InteractableVariables InterVaris;
     public WeaponSwapControl iwsc;
+    public PlayerInflicts playerInflicts;
+    public MovementController movementController;
     public TextMeshProUGUI txt;
     public Slider slider;
     private bool CanBuy;
@@ -35,6 +37,8 @@ public class Interactables : MonoBehaviour
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);
         txt.transform.parent.gameObject.SetActive(false);
+        playerInflicts = GetComponentInParent<PlayerInflicts>();
+        movementController = GetComponentInParent<MovementController>();
     }
 
     private void Update()
@@ -112,15 +116,24 @@ public class Interactables : MonoBehaviour
                 }
                 else if (CauldronBuyable)
                 {
-                    /*
-                    Do things in here Kevin
-                    Or if you need to, add variables to the InteractableVariables script
-                    Like booleans, ints, or anything like that.
 
-                    print("Cauldron New Working");
-                    */
-
-
+                    if (InterVaris.HealthUp)
+                    {
+                        playerInflicts.PlayerMaxHealth += 50;
+                    }
+                    else if (InterVaris.SpeedUp)
+                    {
+                        movementController.walkSpeed = 6f;
+                        movementController.sprintSpeed = 9f;
+                    }
+                    else if (InterVaris.StaminaUp)
+                    {
+                        //increase player sprint time when it is made a variable again
+                    }
+                    else if (InterVaris.ManaUp)
+                    {
+                        //i dont even know where to do this right now man
+                    }
                 }
             }
         }

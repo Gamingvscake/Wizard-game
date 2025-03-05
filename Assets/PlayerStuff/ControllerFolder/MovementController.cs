@@ -1,16 +1,10 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
 public class MovementController : MonoBehaviour
 {
-
-    //public DeathScreen deathScreen;
-
-
-
-    [Header("DEV TOOLS")] //Dev Boolean for Keyboard inputs
+    [Header("DEV TOOLS")]
     public bool DevKeyboardOn;
 
     [Header("Movement Settings")]
@@ -31,7 +25,7 @@ public class MovementController : MonoBehaviour
     [Header("Camera Settings")]
     public Transform playerCameraTransform;
     public float lookSensitivity = 1f;
-    public float smoothing = 1.5f; // Smoothing factor for camera input
+    public float smoothing = 5f; // Smoothing factor for camera rotation
 
     private Gamepad assignedController;
     private Rigidbody rb;
@@ -47,15 +41,13 @@ public class MovementController : MonoBehaviour
     private Vector2 frameVelocity;
     public Animator animator;
 
-
-    //Shooting
+    // Shooting
     public bool ShootSpell;
 
     [SerializeField] private AudioSource playersteps;
 
     public float timer = 0f;
     public float timelimit = 1f;
-
 
     private void Start()
     {
@@ -75,24 +67,17 @@ public class MovementController : MonoBehaviour
         }
 
         currentSpeed = walkSpeed;
-
-        
     }
 
     private void Update()
     {
-        
-
         if (assignedController == null && DevKeyboardOn == false) return;
 
         HandleMovement();
-            HandleCrouchHeight();
-            CheckGroundStatus();
-            HandleCameraLook();
-            HandleShooting();
-
-             
-
+        HandleCrouchHeight();
+        CheckGroundStatus();
+        HandleCameraLook();
+        HandleShooting();
     }
 
     public void HandleShooting()
@@ -123,7 +108,6 @@ public class MovementController : MonoBehaviour
             // Read movement input from the assigned controller
             Vector2 moveInput = assignedController.leftStick.ReadValue();
             Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-            
 
             // Check if the player is moving
             bool isMoving = moveInput.magnitude > 0.1f;
@@ -177,7 +161,6 @@ public class MovementController : MonoBehaviour
                     playersteps.Stop();
                 }
             }
-
         }
         else
         {
@@ -186,7 +169,6 @@ public class MovementController : MonoBehaviour
             if (timer >= timelimit)
             {
                 playersteps.Play();
-
                 timer = 0f;
             }
             timer += Time.deltaTime;
@@ -194,6 +176,7 @@ public class MovementController : MonoBehaviour
             // Apply velocity, keeping the y velocity (gravity and jumping) intact
             Vector3 velocity = new Vector3(worldMoveDirection.x * currentSpeed, rb.velocity.y, worldMoveDirection.z * currentSpeed);
             rb.velocity = velocity;
+
             // Handle sprint input
             if (Input.GetKey(KeyCode.LeftShift))
                 currentSpeed = sprintSpeed;
@@ -218,13 +201,52 @@ public class MovementController : MonoBehaviour
             {
                 if (playersteps.isPlaying)
                 {
-                   playersteps.Stop();
+                    playersteps.Stop();
                 }
             }
-
         }
+    }
 
+    private void HandleCameraLook()
+    {
+        if (DevKeyboardOn == false)
+        {
+            // Read camera input from the right stick
+            Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
 
+            // Apply rotation to the camera immediately, without smoothing on inputDelta
+            velocity.x += inputDelta.x;
+            velocity.y -= inputDelta.y;
+
+            // Smooth the rotation transition over time
+            velocity = Vector2.Lerp(velocity, new Vector2(velocity.x, Mathf.Clamp(velocity.y, -90f, 90f)), Time.deltaTime * smoothing);
+
+            // Apply rotation to the camera (local X axis for up/down)
+            playerCameraTransform.localRotation = Quaternion.Euler(velocity.y, 0f, 0f);
+
+            // Apply rotation to the character (Y axis for left/right)
+            transform.localRotation = Quaternion.Euler(0f, velocity.x, 0f);
+        }
+        else
+        {
+            float tempx = Input.GetAxis("Mouse X");
+            float tempy = Input.GetAxis("Mouse Y");
+            cameraInput = new Vector2(tempx, tempy);
+            Vector2 inputDelta = cameraInput * (lookSensitivity * 2);
+
+            // Apply rotation to the camera immediately, without smoothing on inputDelta
+            velocity.x += inputDelta.x;
+            velocity.y -= inputDelta.y;
+
+            // Smooth the rotation transition over time
+            velocity = Vector2.Lerp(velocity, new Vector2(velocity.x, Mathf.Clamp(velocity.y, -90f, 90f)), Time.deltaTime * smoothing);
+
+            // Apply rotation to the camera (local X axis for up/down)
+            playerCameraTransform.localRotation = Quaternion.Euler(velocity.y, 0f, 0f);
+
+            // Apply rotation to the character (Y axis for left/right)
+            transform.localRotation = Quaternion.Euler(0f, velocity.x, 0f);
+        }
     }
 
     private void HandleCrouchHeight()
@@ -259,47 +281,4 @@ public class MovementController : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
     }
-
-    private void HandleCameraLook()
-    {
-        if (DevKeyboardOn == false)
-        {
-            //Read camera input from the right stick
-            Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
-
-            //Smooth input
-            frameVelocity = Vector2.Lerp(frameVelocity, inputDelta, 1 / smoothing);
-            velocity += frameVelocity;
-
-            //Clamp vertical look rotation
-            velocity.y = Mathf.Clamp(velocity.y, -90f, 90f);
-
-            //Apply rotation to the camera (local X axis for up/down)
-            playerCameraTransform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
-
-            //Apply rotation to the character (Y axis for left/right)
-            transform.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
-        }
-        else
-        {
-            float tempx = Input.GetAxis("Mouse X");
-            float tempy = Input.GetAxis("Mouse Y");
-            cameraInput = new Vector2(tempx, tempy);
-            Vector2 inputDelta = cameraInput * (lookSensitivity * 2);
-
-            // Smooth input
-            frameVelocity = Vector2.Lerp(frameVelocity, inputDelta, 1 / smoothing);
-            velocity += frameVelocity;
-
-            // Clamp vertical look rotation
-            velocity.y = Mathf.Clamp(velocity.y, -90f, 90f);
-
-            // Apply rotation
-            playerCameraTransform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right); // Up-down rotation
-            transform.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);    // Left-right rotation
-        }
-    }
-
-
-
 }
