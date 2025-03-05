@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class Interactables : MonoBehaviour
 {
     public bool InInteractableRange;
-    public bool Buyable, Removeable;
+    public bool Buyable, Removeable, CauldronBuyable;
     public float timer, Maxtimer;
     public InteractableVariables InterVaris;
     public WeaponSwapControl iwsc;
+    public PlayerInflicts playerInflicts;
+    public MovementController movementController;
     public TextMeshProUGUI txt;
     public Slider slider;
     private bool CanBuy;
@@ -35,6 +37,8 @@ public class Interactables : MonoBehaviour
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);
         txt.transform.parent.gameObject.SetActive(false);
+        playerInflicts = GetComponentInParent<PlayerInflicts>();
+        movementController = GetComponentInParent<MovementController>();
     }
 
     private void Update()
@@ -110,6 +114,27 @@ public class Interactables : MonoBehaviour
                         ResetInteractState();
                     }
                 }
+                else if (CauldronBuyable)
+                {
+
+                    if (InterVaris.HealthUp)
+                    {
+                        playerInflicts.PlayerMaxHealth += 50;
+                    }
+                    else if (InterVaris.SpeedUp)
+                    {
+                        movementController.walkSpeed = 6f;
+                        movementController.sprintSpeed = 9f;
+                    }
+                    else if (InterVaris.StaminaUp)
+                    {
+                        //increase player sprint time when it is made a variable again
+                    }
+                    else if (InterVaris.ManaUp)
+                    {
+                        //i dont even know where to do this right now man
+                    }
+                }
             }
         }
     }
@@ -146,6 +171,12 @@ public class Interactables : MonoBehaviour
             InterVaris = other.GetComponent<InteractableVariables>();
             Buyable = true;
         }
+        if (other.CompareTag("CauldronBuyable"))
+        {
+            InInteractableRange = true;
+            InterVaris = other.GetComponent<InteractableVariables>();
+            CauldronBuyable = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -164,6 +195,7 @@ public class Interactables : MonoBehaviour
         Removeable = false;
         Buyable = false;
         CanBuy = false;
+        CauldronBuyable = false;
         HasBought = false;
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);

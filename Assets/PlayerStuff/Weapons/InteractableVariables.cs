@@ -6,4 +6,8 @@ public class InteractableVariables : MonoBehaviour
 {
     public int Cost;
     public GameObject BuyableObject;
+    public bool HealthUp;
+    public bool SpeedUp;
+    public bool StaminaUp;
+    public bool ManaUp;
 }
