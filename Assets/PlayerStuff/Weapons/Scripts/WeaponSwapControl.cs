@@ -16,7 +16,6 @@ public class WeaponSwapControl : MonoBehaviour
     public int MaxMana;
     public TextMeshProUGUI DisplayMana;
     public TextMeshProUGUI DisplayPoints;
-    public TextMeshProUGUI ScoreboardPoints;
     public int points;
     public CauldronScript wsccs;
     public PlayerInflicts wscPI;
@@ -59,9 +58,6 @@ public class WeaponSwapControl : MonoBehaviour
     {
         StaffSwap();
         DisplayPoints.SetText(points.ToString());
-
-        ScoreboardPoints.SetText(points.ToString());
-        
         //print(Mana);
     }
 

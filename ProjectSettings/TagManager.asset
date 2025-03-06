@@ -14,7 +14,6 @@ TagManager:
   - Anvil
   - Turret
   - CauldronBuyable
-  - Gravestone
   layers:
   - Default
   - TransparentFX
