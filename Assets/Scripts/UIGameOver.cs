@@ -8,6 +8,7 @@ public class UIGameOver : MonoBehaviour
     // Start is called before the first frame update
     public PlayerInflicts playerInflicts; // Reference to PlayerInflicts
     public Image DeathImage;
+    public Image ScoreBoard_IMG;
     public GameObject bluePosePrefab;
     public GameObject redwiz;
     public GameObject pinkwiz;
@@ -30,6 +31,12 @@ public class UIGameOver : MonoBehaviour
             DeathImage.gameObject.SetActive(false);
             //Debug.Log("Game Over UI hidden at start.");
         }
+
+        if (ScoreBoard_IMG != null)
+        {
+            ScoreBoard_IMG.gameObject.SetActive(false);
+        }
+
     }
 
 
@@ -63,6 +70,11 @@ public class UIGameOver : MonoBehaviour
             {
                 
                 DeathImage.gameObject.SetActive(true);
+            }
+
+            if (ScoreBoard_IMG != null)
+            {
+                ScoreBoard_IMG.gameObject.SetActive(true);
             }
 
             // Turn off the MeshRenderer for "BluePose 1"
