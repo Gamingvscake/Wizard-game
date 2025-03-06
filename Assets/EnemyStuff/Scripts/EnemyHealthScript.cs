@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class EnemyHealthScript : MonoBehaviour
     public GameObject[] statusIconsHold;
     public GameObject[] statusIconLocations;
     public List<GameObject> statusIconsInUse;
+    //public TextMeshProUGUI ScoreboardKills;
     float temptimer;
     float statusdonetemptimer;
     float temporarytimer;
@@ -174,7 +176,7 @@ public class EnemyHealthScript : MonoBehaviour
                 if (playerKillCount.ContainsKey(playerKey))
                 {
                     playerKillCount[playerKey]++;
-                    Debug.Log("This code is being read");
+                    //Debug.Log("This code is being read");
                     Debug.Log(playerKey + " has defeated " + playerKillCount[playerKey] + " enemies.");
                 }
             }
@@ -242,6 +244,9 @@ public class EnemyHealthScript : MonoBehaviour
                 }
             }
         }
+
+        //ScoreboardKills.SetText(wsc.playerID.ToString());
+
     }
     /*
     Damage type to make status effect for:

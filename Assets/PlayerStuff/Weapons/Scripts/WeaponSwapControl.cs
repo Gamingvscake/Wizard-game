@@ -17,10 +17,12 @@ public class WeaponSwapControl : MonoBehaviour
     public TextMeshProUGUI DisplayMana;
     public TextMeshProUGUI DisplayPoints;
     public TextMeshProUGUI ScoreboardPoints;
+    public TextMeshProUGUI ScoreboardKills;
     public int points;
     public CauldronScript wsccs;
     public PlayerInflicts wscPI;
     public EnemySpawnScript ESS;
+    public EnemyHealthScript EHS;
     public AnvilScript wscas;
     public StatusEffects wscSE;
     public int maxNumberOfTurrets;
@@ -61,7 +63,8 @@ public class WeaponSwapControl : MonoBehaviour
         DisplayPoints.SetText(points.ToString());
 
         ScoreboardPoints.SetText(points.ToString());
-        
+
+        ScoreboardKills.SetText(playerID.ToString());
         //print(Mana);
     }
 
