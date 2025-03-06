@@ -36,6 +36,9 @@ public class EnemySpawnScript : MonoBehaviour
     public TextMeshProUGUI player3RoundText;
     public TextMeshProUGUI player4RoundText;
 
+
+    public AudioSource roundChange;
+
     private void Start()
     {
         amountOfEnemiesLeft = starterAmountOfEnemies;
@@ -135,6 +138,7 @@ public class EnemySpawnScript : MonoBehaviour
                 inTheRound = false;
                 roundup = true;
                 //sound plays
+                roundChange.Play();
             }
         }
     }
