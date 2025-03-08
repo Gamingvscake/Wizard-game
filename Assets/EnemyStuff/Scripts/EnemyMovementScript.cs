@@ -61,7 +61,7 @@ public class EnemyMovementScript : MonoBehaviour
         Transform temp = GetClosestEnemy(PlayerNotList);
         //transform.LookAt(temp);
         //selfNavAgent.destination = temp.position;
-        selfNavAgent.SetDestination(temp.position);
+        if (temp != null)selfNavAgent.SetDestination(temp.position);
         if (timer >= timelimit)
         {
             metalchain.Play();
