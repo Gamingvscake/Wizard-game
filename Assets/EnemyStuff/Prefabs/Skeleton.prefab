@@ -356,7 +356,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3052ea0de1046494da938ae4aeb519e1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -890,7 +890,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4584d20b90727b34e8b149a4b231ee41, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3232,6 +3232,7 @@ MonoBehaviour:
   damageRes: 2
   damageWeak: 5
   wsc: {fileID: 0}
+  cs: {fileID: 0}
   enemySpawn: {fileID: 0}
   thisMovement: {fileID: 3938961129305785951}
   bossMovement: {fileID: 0}
@@ -3355,7 +3356,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 03506025c5115a34f9912cfe487e0ad3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

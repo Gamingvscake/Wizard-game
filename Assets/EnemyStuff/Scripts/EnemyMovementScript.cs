@@ -243,12 +243,12 @@ public class EnemyMovementScript : MonoBehaviour
 
     IEnumerator cutoutSound ()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
     }
 
     public void walkSound()
     {
-        int x = Random.Range(0, 3);
+        int x = Random.Range(0, 4);
         Debug.Log("x is" + x);
         if (x == 0)
         {
@@ -262,7 +262,10 @@ public class EnemyMovementScript : MonoBehaviour
         {
             walk2.Play();
         }
-        StartCoroutine("cutoutSound");
+        if (x == 3)
+        {
+            metalchain.Play();
+        }
     }
 }
     

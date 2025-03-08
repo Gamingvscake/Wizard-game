@@ -7,6 +7,9 @@ public class SpellController : MonoBehaviour
 {
     [SerializeField] private AudioSource icecracking;
     [SerializeField] private AudioSource firestaff;
+
+
+    [SerializeField] private AudioSource defaultStaff;
     public GameObject fireballStaff;
 
     // Fireball object
@@ -174,6 +177,9 @@ public class SpellController : MonoBehaviour
             // Play the ice cracking sound
             icecracking = GetComponent<AudioSource>();
             if (icecracking!= null)icecracking.Play();
+
+            defaultStaff = GetComponent<AudioSource>(); 
+            if (icecracking != null) defaultStaff.Play();
 
             if (fireStaffAction.ReadValue<float>() > 0.5f && firestaff != null) // Check the trigger press value again
             {
