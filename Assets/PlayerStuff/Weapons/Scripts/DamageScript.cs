@@ -90,7 +90,7 @@ public class DamageScript : MonoBehaviour
                     if (instantiateVFX != null)Instantiate(instantiateVFX, collision.collider.transform.position + Vector3.up * 0.25f, Quaternion.identity);
                     //Play the VFX sound effect
                     vfxSFX = GetComponent<AudioSource>();
-                    vfxSFX.Play();
+                    if (vfxSFX != null) vfxSFX.Play();
                 }
                 else
                 {

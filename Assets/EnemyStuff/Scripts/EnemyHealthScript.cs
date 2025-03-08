@@ -12,7 +12,7 @@ public class EnemyHealthScript : MonoBehaviour
     public DamageResistance damageRes;
     public DamageWeakness damageWeak;
     public WeaponSwapControl wsc;
-    CauldronScript cs;
+    public CauldronScript cs;
     public EnemySpawnScript enemySpawn;
     public EnemyMovementScript thisMovement;
     public EnemyMovementScript bossMovement;
@@ -176,8 +176,7 @@ public class EnemyHealthScript : MonoBehaviour
                 if (playerKillCount.ContainsKey(playerKey))
                 {
                     playerKillCount[playerKey]++;
-                    //Debug.Log("This code is being read");
-                    Debug.Log(playerKey + " has defeated " + playerKillCount[playerKey] + " enemies.");
+                    
                 }
             }
             Destroy(this.gameObject);

@@ -29,7 +29,7 @@ public class WeaponSwapControl : MonoBehaviour
     public int numberOfTurrets;
     [SerializeField] private AudioSource changeweapon;
     public int playerID;
-
+    
     public MovementController movementController;
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
@@ -55,16 +55,25 @@ public class WeaponSwapControl : MonoBehaviour
 
         inputActions = new PlayerController();
         inputActions.PlayerControls.Enable();
+
+        playerID.ToString();
     }
 
     private void Update()
     {
         StaffSwap();
         DisplayPoints.SetText(points.ToString());
-
+       
         ScoreboardPoints.SetText(points.ToString());
 
-        ScoreboardKills.SetText(playerID.ToString());
+
+
+        ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
+        //else
+        {
+            
+            //ScoreboardKills.SetText("10");
+        }
         //print(Mana);
     }
 
