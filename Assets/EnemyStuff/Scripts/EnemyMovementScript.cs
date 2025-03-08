@@ -37,6 +37,8 @@ public class EnemyMovementScript : MonoBehaviour
     bool onPhaseChange;
 
     [SerializeField] private AudioSource metalchain;
+    [SerializeField] private AudioSource walk1;
+    [SerializeField] private AudioSource walk2;
 
     public float timer = 0f;
     public float timelimit = 1.8f;
@@ -64,9 +66,9 @@ public class EnemyMovementScript : MonoBehaviour
         selfNavAgent.SetDestination(temp.position);
         if (timer >= timelimit)
         {
-            metalchain.Play();
-            StartCoroutine(cutoutSound());
-            timer = 0f;
+            //metalchain.Play();
+            //StartCoroutine(cutoutSound());
+           // timer = 0f;
         }
         timer += Time.deltaTime;
         //Debug.Log(selfNavAgent.pathStatus);
@@ -241,9 +243,26 @@ public class EnemyMovementScript : MonoBehaviour
 
     IEnumerator cutoutSound ()
     {
-        yield return new WaitForSeconds (1.7f);
-        metalchain.Stop();
-       
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    public void walkSound()
+    {
+        int x = Random.Range(0, 3);
+        Debug.Log("x is" + x);
+        if (x == 0)
+        {
+            metalchain.Play();
+        }
+        if (x == 1)
+        {
+            walk1.Play();
+        }
+        if (x == 2)
+        {
+            walk2.Play();
+        }
+        StartCoroutine("cutoutSound");
     }
 }
     
