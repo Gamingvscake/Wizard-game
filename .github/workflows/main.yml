@@ -1,6 +1,9 @@
 name: Actions 😎
 
-on: [push, pull_request]
+on:
+    push:
+      branches:
+        - main
 
 jobs:
   build:
@@ -32,7 +35,7 @@ jobs:
           targetPlatform: StandaloneWindows64
 
       # Output
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Build
           path: build
