@@ -62,105 +62,90 @@ public class UIGameOver : MonoBehaviour
             //Debug.Log("Player health is 0 or below. Showing Game Over UI.");
 
 
-            // Show the game over image
+            StartCoroutine(HandleGameOver());
+        }
+    }
 
-            //isGameOver = true;
+    private IEnumerator HandleGameOver()
+    {
+        // Show the death image for a few seconds
+        if (DeathImage != null)
+        {
+            DeathImage.gameObject.SetActive(true);
+        }
 
-            if (DeathImage != null)
+        // Wait for a few seconds (you can adjust the time)
+        yield return new WaitForSeconds(3f);
+
+        // Hide the DeathImage
+        if (DeathImage != null)
+        {
+            DeathImage.gameObject.SetActive(false);
+        }
+
+        // Show the scoreboard
+        if (ScoreBoard_IMG != null)
+        {
+            ScoreBoard_IMG.gameObject.SetActive(true);
+        }
+
+        // Continue the game over handling (hide other elements, disable scripts, etc.)
+        if (bluePosePrefab != null)
+        {
+            MeshRenderer meshRenderer = bluePosePrefab.GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
             {
-                
-                DeathImage.gameObject.SetActive(true);
+                meshRenderer.enabled = false;
             }
+        }
 
-            if (ScoreBoard_IMG != null)
-            {
-                ScoreBoard_IMG.gameObject.SetActive(true);
-            }
+        if (redwiz != null)
+        {
+            redwiz.gameObject.SetActive(false);
+        }
 
-            // Turn off the MeshRenderer for "BluePose 1"
-            if (bluePosePrefab != null)
-            {
-                MeshRenderer meshRenderer = bluePosePrefab.GetComponent<MeshRenderer>();
-                if (meshRenderer != null)
-                {
-                    meshRenderer.enabled = false;
-                    //Debug.Log("BluePose 1 MeshRenderer has been turned off.");
-                }
-                else
-                {
-                    //Debug.LogWarning("No MeshRenderer found on BluePose 1 prefab.");
-                }
-            }
+        if (pinkwiz != null)
+        {
+            pinkwiz.gameObject.SetActive(false);
+        }
 
-            // Turn off the MeshRenderer for "RedWiz"
-            if (redwiz != null)
-            {
-                redwiz.gameObject.SetActive(false);
-                //Debug.Log("RedWiz has been hidden.");
-            }
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(false);
+        }
 
-            // Turn off the MeshRenderer for "PinkWiz"
-            if (pinkwiz != null)
-            {
-                pinkwiz.gameObject.SetActive(false);
-                //Debug.Log("PinkWiz has been hidden.");
-            }
+        if (manaGauge != null)
+        {
+            manaGauge.SetActive(false);
+        }
 
+        if (points != null)
+        {
+            points.gameObject.SetActive(false);
+        }
 
+        if (statusicons != null)
+        {
+            statusicons.gameObject.SetActive(false);
+        }
 
-            // Hide the health slider
-            if (healthSlider != null)
-            {
-                healthSlider.gameObject.SetActive(false);
-                //Debug.Log("Health slider has been hidden.");
-            }
+        if (staffspawnpoint != null)
+        {
+            staffspawnpoint.gameObject.SetActive(false);
+        }
 
-            // Hide the ManaGauge
-            if (manaGauge != null)
-            {
-                manaGauge.SetActive(false);
-                //Debug.Log("ManaGauge has been hidden.");
-            }
+        // Disable the WeaponSwapControl script
+        WeaponSwapControl weaponSwapControl = player1.GetComponent<WeaponSwapControl>();
+        if (weaponSwapControl != null)
+        {
+            weaponSwapControl.enabled = false;
+        }
 
-            //Hide the Points
-            if (points != null)
-            {
-                points.gameObject.SetActive(false);
-                //Debug.Log("Points are hidden");
-            }
-
-            //Hide StatusIcons
-            if (statusicons != null)
-            {
-                statusicons.gameObject.SetActive(false);
-                //Debug.Log("StatusIcons are hidden");
-            }
-
-            // Hide StaffSpawnPoint
-            if (staffspawnpoint  != null)
-            {
-                staffspawnpoint.gameObject.SetActive(false);
-                //Debug.Log("Staffs are gone");
-            }
-
-           
-
-            // Disable the WeaponSwapControl script
-            WeaponSwapControl weaponSwapControl = player1.GetComponent<WeaponSwapControl>();
-            if (weaponSwapControl != null)
-            {
-                weaponSwapControl.enabled = false;
-                //Debug.Log("WeaponSwapControl script disabled.");
-            }
-
-            // Disable the MovementController
-            MovementController movementController = player1.GetComponent<MovementController>();
-            if (movementController != null)
-            {
-                movementController.enabled = false;
-                //Debug.Log("MovementController script is disabled");
-            }
-
+        // Disable the MovementController
+        MovementController movementController = player1.GetComponent<MovementController>();
+        if (movementController != null)
+        {
+            movementController.enabled = false;
         }
     }
 }
