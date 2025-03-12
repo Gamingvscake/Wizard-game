@@ -5903,7 +5903,6 @@ GameObject:
   - component: {fileID: 7363945000355450042}
   - component: {fileID: 7732456308433710301}
   - component: {fileID: 4268012039215427793}
-  - component: {fileID: 6636579872311549427}
   m_Layer: 3
   m_Name: Player1
   m_TagString: Player
@@ -6541,25 +6540,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6636579872311549427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7099176292787408141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01c274919bf078847bab78b818c13838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInflicts: {fileID: 1530989311519409170}
-  uigameover: {fileID: 1828731285897223723}
-  isDead: 0
-  moveSpeed: 5
-  isPlayerDead: 0
-  isGameOver: 0
-  gravestone_bevel: {fileID: 919132149155446097, guid: 91a3170753579074d9b64e82ccd487f3, type: 3}
 --- !u!1 &7210973597151754087
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,7 +6757,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7388362813231882739}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01c274919bf078847bab78b818c13838, type: 3}
   m_Name: 

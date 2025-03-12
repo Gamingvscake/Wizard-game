@@ -77,7 +77,7 @@ public class DeathScreen : MonoBehaviour
         for(int i = 0; i < players.Length; i++)
         {
             // Get the DeathScreen script attached to each player
-            DeathScreen deathScreen = players[i].GetComponent<DeathScreen>();
+            DeathScreen deathScreen = players[i].GetComponentInChildren<DeathScreen>();
             //if (deathScreen != null && !deathScreen.isPlayerDead)
 
             // allPlayersDead = false;  // If any player is not dead, game over is not triggered
