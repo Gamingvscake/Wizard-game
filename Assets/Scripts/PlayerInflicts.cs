@@ -32,6 +32,9 @@ public class PlayerInflicts : MonoBehaviour
     public bool StatusIncreasedDamage;
 
     public bool wasrevived;
+
+    public int deathCount = 0;
+
     void Start()
     {
         PlayerCurrentHealth = PlayerMaxHealth;
@@ -92,6 +95,8 @@ public class PlayerInflicts : MonoBehaviour
             StartCoroutine(WaitForIFrames());
             TakingDrainingDamage = false;
         }
+
+        
             if (regenTimer > 0)
             {
                 regenTimer -= Time.deltaTime;

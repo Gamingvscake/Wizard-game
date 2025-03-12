@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
@@ -7,8 +8,8 @@ public class DeathScreen : MonoBehaviour
     public PlayerInflicts playerInflicts;
     public UIGameOver uigameover;
     public bool isDead;
-    public float moveSpeed = 5f;            
-
+    public float moveSpeed = 5f;
+    public TextMeshProUGUI DisplayDeathCount;
     public bool isPlayerDead = false;        // Flag to check if the health is zero
     public bool isGameOver = false;          // All players are dead
     private Vector3 targetPosition = new Vector3(0, 80, 0); // Target position for this GameObject
@@ -22,6 +23,7 @@ public class DeathScreen : MonoBehaviour
         {
             isDead = true;
             isPlayerDead = true;
+            playerInflicts.deathCount++;
 
             // Show the gravestone
             if (gravestone_bevel != null)
@@ -29,6 +31,7 @@ public class DeathScreen : MonoBehaviour
                 gravestone_bevel.gameObject.SetActive(true);
                 //Debug.Log("Grave has been shown");
             }
+
         }
         else if (playerInflicts.PlayerCurrentHealth > 0)
         {
@@ -45,7 +48,10 @@ public class DeathScreen : MonoBehaviour
             }
         }
 
-        
+        if (DisplayDeathCount != null)
+        {
+            DisplayDeathCount.SetText(playerInflicts.deathCount.ToString());
+        }
 
         if (isPlayerDead)
         {
@@ -78,10 +84,7 @@ public class DeathScreen : MonoBehaviour
         {
             // Get the DeathScreen script attached to each player
             DeathScreen deathScreen = players[i].GetComponentInChildren<DeathScreen>();
-            //if (deathScreen != null && !deathScreen.isPlayerDead)
-
-            // allPlayersDead = false;  // If any player is not dead, game over is not triggered
-            // break;
+            
 
             // Check if this player's gravestone is active
             if (deathScreen == null)
@@ -109,7 +112,7 @@ public class DeathScreen : MonoBehaviour
         // If all players are dead, trigger game over
         if (allPlayersDead)
         {
-            Debug.Log("isGameOver is working");
+            //Debug.Log("isGameOver is working");
             isGameOver = true;
         }
     }
