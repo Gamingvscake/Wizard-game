@@ -19,16 +19,9 @@ public class TempThrow : MonoBehaviour
 
     void Throw()
     {
-        if (objectToThrow == null || throwPoint == null || playerCamera == null)
-        {
-            Debug.LogError("Assign 'objectToThrow', 'throwPoint', and 'playerCamera' in the Inspector!");
-            return;
-        }
-
         // Instantiate the object at the throw point
         GameObject thrownObject = Instantiate(objectToThrow, throwPoint.position, Quaternion.identity);
 
-        // Ensure it has a Rigidbody
         Rigidbody rb = thrownObject.GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -36,13 +29,10 @@ public class TempThrow : MonoBehaviour
             return;
         }
 
-        // Get the direction the camera is facing (this includes looking up/down)
         Vector3 throwDirection = playerCamera.forward;
 
-        // Apply forward force in the direction the camera is looking
         rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
 
-        // Apply random rotation for a natural airborne effect
         Vector3 randomTorqueVector = new Vector3(
             Random.Range(-randomTorque, randomTorque),
             Random.Range(-randomTorque, randomTorque),

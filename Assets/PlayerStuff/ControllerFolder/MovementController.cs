@@ -35,6 +35,7 @@ public class MovementController : MonoBehaviour
     private float currentSpeed;
     private float currentCameraHeight;
 
+
     // Camera look variables
     private Vector2 cameraInput;
     private Vector2 velocity;
@@ -43,6 +44,13 @@ public class MovementController : MonoBehaviour
 
     // Shooting
     public bool ShootSpell;
+
+    [Header("Throw Settings")]
+    public GameObject objectToThrow; // Prefab to throw
+    public Transform throwPoint; // The spawn position of the object (should be child of camera)
+    public Transform playerCamera; // Assign the player's camera here
+    public float throwForce = 10f; // Strength of the throw
+    public float randomTorque = 10f; // Random rotation force
 
     [SerializeField] private AudioSource playersteps;
 
@@ -122,7 +130,8 @@ public class MovementController : MonoBehaviour
 
             if (assignedController.buttonEast.wasPressedThisFrame)
             {
-                ToggleCrouch();
+                //ToggleCrouch();
+                Throw();
             }
             if (assignedController.buttonSouth.wasPressedThisFrame)
             {
@@ -214,18 +223,24 @@ public class MovementController : MonoBehaviour
             // Read camera input from the right stick
             Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
 
-            // Apply rotation to the camera immediately, without smoothing on inputDelta
+            // Apply rotation input directly to velocity
             velocity.x += inputDelta.x;
             velocity.y -= inputDelta.y;
 
-            // Smooth the rotation transition over time
-            velocity = Vector2.Lerp(velocity, new Vector2(velocity.x, Mathf.Clamp(velocity.y, -90f, 90f)), Time.deltaTime * smoothing);
+            // Smooth the rotation transition before applying it
+            Vector2 smoothedVelocity = Vector2.Lerp(velocity, new Vector2(velocity.x, velocity.y), Time.deltaTime * smoothing);
+
+            // Clamp the Y-axis (vertical look) after smoothing to prevent exceeding limits
+            smoothedVelocity.y = Mathf.Clamp(smoothedVelocity.y, -90f, 90f);
 
             // Apply rotation to the camera (local X axis for up/down)
-            playerCameraTransform.localRotation = Quaternion.Euler(velocity.y, 0f, 0f);
+            playerCameraTransform.localRotation = Quaternion.Euler(smoothedVelocity.y, 0f, 0f);
 
             // Apply rotation to the character (Y axis for left/right)
-            transform.localRotation = Quaternion.Euler(0f, velocity.x, 0f);
+            transform.localRotation = Quaternion.Euler(0f, smoothedVelocity.x, 0f);
+
+            // Update velocity with the clamped/smoothed value to ensure consistent state
+            velocity = smoothedVelocity;
         }
         else
         {
@@ -260,6 +275,29 @@ public class MovementController : MonoBehaviour
             cameraPosition.y = currentCameraHeight;
             playerCameraTransform.localPosition = cameraPosition;
         }
+    }
+
+    void Throw()
+    {
+        GameObject thrownObject = Instantiate(objectToThrow, throwPoint.position, Quaternion.identity);
+
+        Rigidbody rb = thrownObject.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Thrown object needs a Rigidbody!");
+            return;
+        }
+
+        Vector3 throwDirection = playerCamera.forward;
+
+        rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+
+        Vector3 randomTorqueVector = new Vector3(
+            Random.Range(-randomTorque, randomTorque),
+            Random.Range(-randomTorque, randomTorque),
+            Random.Range(-randomTorque, randomTorque)
+        );
+        rb.AddTorque(randomTorqueVector, ForceMode.Impulse);
     }
 
     private void ToggleCrouch()
