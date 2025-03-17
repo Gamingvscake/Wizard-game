@@ -117,23 +117,28 @@ public class Interactables : MonoBehaviour
                 else if (CauldronBuyable)
                 {
 
-                    if (InterVaris.HealthUp)
+                    if (InterVaris.HealthUp && !HasBought)
                     {
                         playerInflicts.PlayerMaxHealth += 50;
+                        HasBought = true;
                     }
-                    else if (InterVaris.SpeedUp)
+                    else if (InterVaris.SpeedUp && !HasBought)
                     {
                         movementController.walkSpeed = 6f;
                         movementController.sprintSpeed = 9f;
+                        HasBought = true;
                     }
-                    else if (InterVaris.StaminaUp)
+                    else if (InterVaris.StaminaUp && !HasBought)
                     {
                         //increase player sprint time when it is made a variable again
+                        HasBought = true;
                     }
-                    else if (InterVaris.ManaUp)
+                    else if (InterVaris.ManaUp && !HasBought)
                     {
                         //i dont even know where to do this right now man
+                        HasBought = true;
                     }
+                    ResetInteractState();
                 }
             }
         }
