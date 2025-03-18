@@ -165,7 +165,7 @@ public class TriggerAnimationWithCameraMove : MonoBehaviour
                     //line below is only for actually running the game
                     Application.Quit();
                     //line below is only for play mode (testing quit variant)
-                    UnityEditor.EditorApplication.isPlaying = false;
+                    //.EditorApplication.isPlaying = false;
                 }
             }
             else if (SettingsScreenOpen)

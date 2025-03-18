@@ -8,6 +8,9 @@ public class SpellController : MonoBehaviour
     [SerializeField] private AudioSource icecracking;
     [SerializeField] private AudioSource firestaff;
 
+    [SerializeField] private AudioSource icecrackingUPGRADED;
+    [SerializeField] private AudioSource firestaffUPGRADED;
+
 
     [SerializeField] private AudioSource defaultStaff;
     public GameObject fireballStaff;
@@ -176,16 +179,32 @@ public class SpellController : MonoBehaviour
 
             // Play the ice cracking sound
             icecracking = GetComponent<AudioSource>();
-            if (icecracking!= null)icecracking.Play();
+            if (icecracking != null)
+            {
+                    icecracking.Play();
+            }
+            icecrackingUPGRADED = GetComponent<AudioSource>();
+            if (icecrackingUPGRADED != null)
+            {
+                icecrackingUPGRADED.Play();
+            }
 
+
+            //Default Staff Sound
             defaultStaff = GetComponent<AudioSource>(); 
-            if (icecracking != null) defaultStaff.Play();
+            if (defaultStaff != null) defaultStaff.Play();
 
             if (fireStaffAction.ReadValue<float>() > 0.5f && firestaff != null) // Check the trigger press value again
             {
                 firestaff = GetComponent<AudioSource>();
                 firestaff.Stop();
                 firestaff.Play();
+            }
+            if (fireStaffAction.ReadValue<float>() > 0.5f && firestaff != null) // Upgraded fire sound
+            {
+                firestaffUPGRADED = GetComponent<AudioSource>();
+                firestaffUPGRADED.Stop();
+                firestaffUPGRADED.Play();
             }
         }
         else if (attackType == AttackType.HitScan)

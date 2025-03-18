@@ -163,6 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icecracking: {fileID: 0}
   firestaff: {fileID: 3753098738193911914}
+  icecrackingUPGRADED: {fileID: 0}
+  firestaffUPGRADED: {fileID: 3753098738193911914}
+  defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 7be94c817f2cc38499c738b126219ad8, type: 3}
   upgradedStaff: {fileID: 0}
@@ -206,7 +209,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3a425508f7c3d5c41bc1e95756470269, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fe1f021a4bd3ad8418b43d5a5e558ed5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
