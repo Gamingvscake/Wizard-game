@@ -11,7 +11,10 @@ public class SpellController : MonoBehaviour
     [SerializeField] private AudioSource icecrackingUPGRADED;
     [SerializeField] private AudioSource firestaffUPGRADED;
 
-
+    [SerializeField] private AudioSource crystalSound;
+    [SerializeField] private AudioSource lightSound;
+    [SerializeField] private AudioSource windSound;
+    [SerializeField] private AudioSource IronSound;
     [SerializeField] private AudioSource defaultStaff;
     public GameObject fireballStaff;
 
@@ -189,6 +192,19 @@ public class SpellController : MonoBehaviour
                 icecrackingUPGRADED.Play();
             }
 
+            crystalSound = GetComponent<AudioSource>();
+            print("This sound is bieng played");
+            if(crystalSound != null) crystalSound.Play();
+
+            lightSound = GetComponent<AudioSource>();
+            if(lightSound != null) lightSound.Play();
+
+            windSound = GetComponent<AudioSource>();
+            if(windSound != null) windSound.Play();
+
+            IronSound = GetComponent<AudioSource>();
+            if(IronSound != null) IronSound.Play();
+
 
             //Default Staff Sound
             defaultStaff = GetComponent<AudioSource>(); 
@@ -200,6 +216,7 @@ public class SpellController : MonoBehaviour
                 firestaff.Stop();
                 firestaff.Play();
             }
+            //Upgraded fire noise
             if (fireStaffAction.ReadValue<float>() > 0.5f && firestaff != null) // Upgraded fire sound
             {
                 firestaffUPGRADED = GetComponent<AudioSource>();
