@@ -162,9 +162,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icecracking: {fileID: 0}
   firestaff: {fileID: -2025843543212096256}
+  icecrackingUPGRADED: {fileID: 0}
+  firestaffUPGRADED: {fileID: 0}
+  defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: d4ccc3480912ce54e928091ab634579d, type: 3}
-  upgradedStaff: {fileID: 0}
+  upgradedStaff: {fileID: 3228822451976501643, guid: 061ae3c4b5c8ad54f85a6b0d66b44596, type: 3}
   castForce: 20
   upwardForce: 0
   castTime: 0.1
