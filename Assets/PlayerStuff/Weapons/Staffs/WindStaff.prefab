@@ -164,7 +164,7 @@ MonoBehaviour:
   firestaff: {fileID: 0}
   icecrackingUPGRADED: {fileID: 0}
   firestaffUPGRADED: {fileID: 0}
-  crystalSound: {fileID: 0}
+  laserSound: {fileID: 0}
   lightSound: {fileID: 0}
   windSound: {fileID: -655796971260518230}
   IronSound: {fileID: 0}

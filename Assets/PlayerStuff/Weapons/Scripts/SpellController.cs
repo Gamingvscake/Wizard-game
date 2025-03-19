@@ -11,13 +11,14 @@ public class SpellController : MonoBehaviour
     [SerializeField] private AudioSource icecrackingUPGRADED;
     [SerializeField] private AudioSource firestaffUPGRADED;
 
-    [SerializeField] private AudioSource crystalSound;
+    [SerializeField] private AudioSource laserSound;
     [SerializeField] private AudioSource lightSound;
     [SerializeField] private AudioSource windSound;
     [SerializeField] private AudioSource IronSound;
     [SerializeField] private AudioSource defaultStaff;
     public GameObject fireballStaff;
 
+    Coroutine windSoundCoroutine;
     //windSound staff
     public float windSoundTimer = 0f;
     public bool isWindSoundPlaying = false; //check to see my awsome wind SFX is playing
@@ -212,33 +213,21 @@ public class SpellController : MonoBehaviour
                 icecrackingUPGRADED.Play();
             }
 
-            crystalSound = GetComponent<AudioSource>();
-            if (crystalSound != null)
-            {
-                Debug.Log("Playing Crystal Sound");
-                crystalSound.Play();
-            }
-            else
-            {
-                Debug.LogWarning("crystalSound is null!");
-            }
 
             lightSound = GetComponent<AudioSource>();
             if(lightSound != null) lightSound.Play();
 
-            //windSound = GetComponent<AudioSource>();
-            //if(windSound != null) windSound.Play();
+            
 
-            if (moveStaffAction.ReadValue<float>() > 0.5f && windSound != null) // Check the trigger press value again
+            if (moveStaffAction.ReadValue<float>() > 0.5f && windSound != null) 
             {
-                if (!isWindSoundPlaying)  
+                if (windSoundCoroutine != null)
                 {
-                    windSound = GetComponent<AudioSource>();
-                    windSound.Stop();  
-                    windSound.Play();
-                    //windSoundTimer = 0f;  
-                    isWindSoundPlaying = true;  
+                    StopCoroutine(windSoundCoroutine); 
                 }
+
+                // Start a new coroutine to play and stop the wind sound after 1 second
+                windSoundCoroutine = StartCoroutine(PlayWindSoundWithDelay());
             }
 
             IronSound = GetComponent<AudioSource>();
@@ -319,8 +308,17 @@ public class SpellController : MonoBehaviour
                 currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
                 currentSpell.GetComponentInChildren<TurretMoveScript>().castForce = castForce;
                 currentSpell.GetComponentInChildren<TurretMoveScript>().upwardForce = upwardForce;
+
+                if (laserSound != null)
+                {
+                    laserSound.Play();
+                }
+
                 WSC.numberOfTurrets += 1;
             }
+
+            
+
         }
         spellsLeft -= manaPerShot;
         WSC.Mana -= manaPerShot;
@@ -365,5 +363,13 @@ public class SpellController : MonoBehaviour
         spellsLeft = WSC.MaxMana;
         WSC.Mana = WSC.MaxMana;
         reloading = false;
+    }
+
+    IEnumerator PlayWindSoundWithDelay()
+    {
+        windSound.Stop(); 
+        windSound.Play(); 
+        yield return new WaitForSeconds(1f); 
+        windSound.Stop(); 
     }
 }
