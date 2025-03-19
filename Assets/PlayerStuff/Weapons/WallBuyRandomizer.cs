@@ -5,19 +5,18 @@ using UnityEngine;
 public class WallBuyRandomizer : MonoBehaviour
 {
     public GameObject[] wallBuys;
-    public int numberOfAvailableStaffs;
+    public GameObject[] wallBuySpawnLocations;
+    public List<int> wallBuyNumbersUsed;
     void Start()
     {
-        for (int k = 0; k < wallBuys.Length; k++)
-        {
-            wallBuys[k].gameObject.SetActive(false);
-        }
-        for (int i = 0; i < numberOfAvailableStaffs; i++)
+        for (int i = 0; i < wallBuySpawnLocations.Length; i++)
         {
             int temprand = Random.Range(0, wallBuys.Length);
-            if (wallBuys[temprand].activeInHierarchy == false)
-            { 
-                wallBuys[temprand].SetActive(true); 
+            if (wallBuyNumbersUsed.Contains(temprand) == false)
+            {
+                wallBuyNumbersUsed.Add(temprand);
+                wallBuys[temprand].transform.position = wallBuySpawnLocations[i].transform.position;
+                wallBuys[temprand].transform.rotation = wallBuySpawnLocations[i].transform.rotation;
             }
             else
             {

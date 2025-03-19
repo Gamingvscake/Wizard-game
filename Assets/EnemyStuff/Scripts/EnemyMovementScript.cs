@@ -35,6 +35,8 @@ public class EnemyMovementScript : MonoBehaviour
     public float phaseChange, maxPhaseTimer;
     public int phases;
     bool onPhaseChange;
+    int allplayersdead;
+    bool playerdeadbool;
 
     [SerializeField] private AudioSource metalchain;
     [SerializeField] private AudioSource walk1;
@@ -48,6 +50,7 @@ public class EnemyMovementScript : MonoBehaviour
         metalchain = GetComponent<AudioSource>();
         AttackBox.SetActive(false);
         animator = GetComponent<Animator>();
+        allplayersdead = 0;
         if (!DevBoolToNotMove)
         {
             selfNavAgent = GetComponent<NavMeshAgent>();
@@ -60,123 +63,126 @@ public class EnemyMovementScript : MonoBehaviour
     }
     private void Update()
     {
-        Transform temp = GetClosestEnemy(PlayerNotList);
-        //transform.LookAt(temp);
-        //selfNavAgent.destination = temp.position;
-        if (temp != null)selfNavAgent.SetDestination(temp.position);
-        if (timer >= timelimit)
+        if (spawnScript.work == true && playerdeadbool == false)
         {
-            //metalchain.Play();
-            //StartCoroutine(cutoutSound());
-           // timer = 0f;
-        }
-        timer += Time.deltaTime;
-        //Debug.Log(selfNavAgent.pathStatus);
+            Transform temp = GetClosestEnemy(PlayerNotList);
+            //transform.LookAt(temp);
+            //selfNavAgent.destination = temp.position;
+            if (temp != null) selfNavAgent.SetDestination(temp.position);
+            if (timer >= timelimit)
+            {
+                //metalchain.Play();
+                //StartCoroutine(cutoutSound());
+                // timer = 0f;
+            }
+            timer += Time.deltaTime;
+            //Debug.Log(selfNavAgent.pathStatus);
 
-        if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
-        {
-            //Transform temp = GetClosestEnemy(entryPoints);
-            //transform.LookAt(temp);
-            transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
-        }
-        else if (selfNavAgent != null && !OutOfBounds && !DMGScript.Attacking && DevBoolToNotMove == false)
-        {
-            //Transform temp = GetClosestEnemy(PlayerNotList);
-            //transform.LookAt(temp);
-            //transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
-            selfNavAgent.destination = temp.position;
-            if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+            if (selfNavAgent != null && OutOfBounds && DevBoolToNotMove == false)
             {
-                AttackBox.SetActive(true);
+                //Transform temp = GetClosestEnemy(entryPoints);
+                //transform.LookAt(temp);
+                transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
             }
-            else AttackBox.SetActive(false);
-        }
-        if (isBoss)
-        {
-            if (phaseChange >= maxPhaseTimer) onPhaseChange = false;
-            else phaseChange += Time.deltaTime;
-            if (onPhaseChange == false)
+            else if (selfNavAgent != null && !OutOfBounds && !DMGScript.Attacking && DevBoolToNotMove == false)
             {
-                if (phases == 0)
-                {
-                    isSpawner = true;
-                    isRanged = false;
-                }
-                else if (phases == 1)
-                {
-                    attackDistance = 25;
-                    isSpawner = false;
-                    isRanged = true;
-                }
-                else
-                {
-                    attackDistance = 2.5f;
-                    isSpawner = false;
-                    isRanged = false;
-                }
-                if (phases <= 1) phases++;
-                else phases = 0;
-                onPhaseChange = true;
-                phaseChange = 0;
-            }
-        }
-        if (!DMGScript.Attacking && DevBoolToNotMove == false)
-        {
-            if (isRanged == false && isSpawner == false)
-            {
+                //Transform temp = GetClosestEnemy(PlayerNotList);
+                //transform.LookAt(temp);
+                //transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
+                if(temp != null)selfNavAgent.destination = temp.position;
                 if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
                 {
                     AttackBox.SetActive(true);
                 }
                 else AttackBox.SetActive(false);
             }
-            else if (isRanged == true && isSpawner == false)
+            if (isBoss)
             {
-                if (temprangedtimer < rangedFireRate) temprangedtimer += Time.deltaTime;
-                //make ranged attack
-                if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+                if (phaseChange >= maxPhaseTimer) onPhaseChange = false;
+                else phaseChange += Time.deltaTime;
+                if (onPhaseChange == false)
                 {
-                    if (temprangedtimer >= rangedFireRate && selfNavAgent.destination != null)
+                    if (phases == 0)
                     {
-                        Vector3 fwd = rangedAttackSpawn.transform.TransformDirection(Vector3.forward);
-                        RaycastHit hit;
-                        Vector3 targetPoint;
-                        if (Physics.Raycast(transform.position, fwd, out hit, attackDistance))
-                            targetPoint = hit.point;
-                        else targetPoint = fwd;
-
-                        Vector3 directionWithoutSpread = targetPoint - rangedAttackSpawn.transform.position;
-                        GameObject currentSpell = Instantiate(RangedAttack, rangedAttackSpawn.transform.position, rangedAttackSpawn.transform.rotation);
-                        currentSpell.transform.forward = directionWithoutSpread.normalized;
-
-                        currentSpell.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.None;
-                        currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * forwardForce, ForceMode.Impulse);
-                        currentSpell.GetComponentInChildren<Rigidbody>().AddForce(rangedAttackSpawn.transform.up * upwardForce, ForceMode.Impulse);
-                        temprangedtimer = 0;
+                        isSpawner = true;
+                        isRanged = false;
                     }
+                    else if (phases == 1)
+                    {
+                        attackDistance = 25;
+                        isSpawner = false;
+                        isRanged = true;
+                    }
+                    else
+                    {
+                        attackDistance = 2.5f;
+                        isSpawner = false;
+                        isRanged = false;
+                    }
+                    if (phases <= 1) phases++;
+                    else phases = 0;
+                    onPhaseChange = true;
+                    phaseChange = 0;
+                }
+            }
+            if (!DMGScript.Attacking && DevBoolToNotMove == false)
+            {
+                if (isRanged == false && isSpawner == false)
+                {
+                    if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+                    {
+                        AttackBox.SetActive(true);
+                    }
+                    else AttackBox.SetActive(false);
+                }
+                else if (isRanged == true && isSpawner == false)
+                {
+                    if (temprangedtimer < rangedFireRate) temprangedtimer += Time.deltaTime;
+                    //make ranged attack
+                    if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+                    {
+                        if (temprangedtimer >= rangedFireRate && selfNavAgent.destination != null)
+                        {
+                            Vector3 fwd = rangedAttackSpawn.transform.TransformDirection(Vector3.forward);
+                            RaycastHit hit;
+                            Vector3 targetPoint;
+                            if (Physics.Raycast(transform.position, fwd, out hit, attackDistance))
+                                targetPoint = hit.point;
+                            else targetPoint = fwd;
+
+                            Vector3 directionWithoutSpread = targetPoint - rangedAttackSpawn.transform.position;
+                            GameObject currentSpell = Instantiate(RangedAttack, rangedAttackSpawn.transform.position, rangedAttackSpawn.transform.rotation);
+                            currentSpell.transform.forward = directionWithoutSpread.normalized;
+
+                            currentSpell.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.None;
+                            currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * forwardForce, ForceMode.Impulse);
+                            currentSpell.GetComponentInChildren<Rigidbody>().AddForce(rangedAttackSpawn.transform.up * upwardForce, ForceMode.Impulse);
+                            temprangedtimer = 0;
+                        }
+                    }
+                    else return;
+                }
+                else if (isRanged == false && isSpawner == true)
+                {
+                    if (spawningTimer >= maxSpawningTimer)
+                    {
+                        GameObject tempE = Instantiate(toBeSpawned, transform);
+                        tempE.GetComponent<EnemyHealthScript>().enemySpawn = spawnScript;
+                        tempE.GetComponent<EnemyHealthScript>().bossMovement = this;
+                        tempE.GetComponent<EnemyMovementScript>().Players = spawnScript.Players;
+                        tempE.GetComponent<EnemyMovementScript>().entryPoints = spawnScript.EntryPoints;
+                        tempE.GetComponent<EnemyMovementScript>().spawnScript = spawnScript;
+                        tempE.GetComponent<EnemyMovementScript>().isMinion = true;
+                        spawnScript.amountOfEnemies += 1;
+                        amountSpawned += 1;
+                        spawningTimer = 0;
+                    }
+                    else spawningTimer += Time.deltaTime;
                 }
                 else return;
             }
-            else if (isRanged == false && isSpawner == true)
-            {
-                if (spawningTimer >= maxSpawningTimer)
-                {
-                    GameObject tempE = Instantiate(toBeSpawned, transform);
-                    tempE.GetComponent<EnemyHealthScript>().enemySpawn = spawnScript;
-                    tempE.GetComponent<EnemyHealthScript>().bossMovement = this;
-                    tempE.GetComponent<EnemyMovementScript>().Players = spawnScript.Players;
-                    tempE.GetComponent<EnemyMovementScript>().entryPoints = spawnScript.EntryPoints;
-                    tempE.GetComponent<EnemyMovementScript>().spawnScript = spawnScript;
-                    tempE.GetComponent<EnemyMovementScript>().isMinion = true;
-                    spawnScript.amountOfEnemies += 1;
-                    amountSpawned += 1;
-                    spawningTimer = 0;
-                }
-                else spawningTimer += Time.deltaTime;
-            }
-            else return;
-        }
 
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -214,9 +220,9 @@ public class EnemyMovementScript : MonoBehaviour
         Transform bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
+        allplayersdead = 0;
         foreach (Transform potentialTarget in enemies)
         {
-
             Vector3 directionToTarget = potentialTarget.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false &&
@@ -236,8 +242,16 @@ public class EnemyMovementScript : MonoBehaviour
                     bestTarget = potentialTarget;
                 }
             }
+            else
+            {
+                allplayersdead += 1;
+                bestTarget = null;
+            }
         }
-
+        if (allplayersdead >= spawnScript.Players.Count)
+        {
+            playerdeadbool = true;
+        }
         return bestTarget;
     }
 
@@ -249,7 +263,6 @@ public class EnemyMovementScript : MonoBehaviour
     public void walkSound()
     {
         int x = Random.Range(0, 4);
-        Debug.Log("x is" + x);
         if (x == 0)
         {
             metalchain.Play();
