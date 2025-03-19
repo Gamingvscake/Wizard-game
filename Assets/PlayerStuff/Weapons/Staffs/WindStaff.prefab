@@ -170,6 +170,8 @@ MonoBehaviour:
   IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  windSoundTimer: 0
+  isWindSoundPlaying: 0
   fireball: {fileID: 7188116084076457725, guid: fe3a45d93039452489e5433117067641, type: 3}
   upgradedStaff: {fileID: 0}
   castForce: 20
@@ -212,7 +214,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0713e3125069c1c41936c957eab4341a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 08c90bccb740f7f4eb16d4b031f7a6ca, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

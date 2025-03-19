@@ -18,6 +18,10 @@ public class SpellController : MonoBehaviour
     [SerializeField] private AudioSource defaultStaff;
     public GameObject fireballStaff;
 
+    //windSound staff
+    public float windSoundTimer = 0f;
+    public bool isWindSoundPlaying = false; //check to see my awsome wind SFX is playing
+
     // Fireball object
     public GameObject fireball, upgradedStaff;
 
@@ -66,6 +70,7 @@ public class SpellController : MonoBehaviour
 
     private PlayerController inputActions; // Reference to PlayerController Input Map
     private InputAction fireStaffAction; // Reference to FireStaff action
+    private InputAction moveStaffAction;
 
     private void Awake()
     {
@@ -90,6 +95,7 @@ public class SpellController : MonoBehaviour
         // Initialize Input Map
         inputActions = new PlayerController();
         fireStaffAction = inputActions.PlayerControls.FireStaff;
+        moveStaffAction = inputActions.PlayerControls.FireStaff;
         inputActions.Enable();
     }
 
@@ -110,6 +116,20 @@ public class SpellController : MonoBehaviour
             if (temptimer >= maxtimer) canSwing = true;
         }
         else if (maxtimer <= 0) canSwing = true;
+
+        if (isWindSoundPlaying)
+        {
+            windSoundTimer += Time.deltaTime;  
+            if (windSoundTimer >= 1f)  
+            {
+                if (windSound != null)
+                {
+                    windSound.Stop();
+                    windSoundTimer = 0f;
+                }
+                isWindSoundPlaying = false;  
+            }
+        }
     }
 
     private void MyInput()
@@ -193,14 +213,33 @@ public class SpellController : MonoBehaviour
             }
 
             crystalSound = GetComponent<AudioSource>();
-            print("This sound is bieng played");
-            if(crystalSound != null) crystalSound.Play();
+            if (crystalSound != null)
+            {
+                Debug.Log("Playing Crystal Sound");
+                crystalSound.Play();
+            }
+            else
+            {
+                Debug.LogWarning("crystalSound is null!");
+            }
 
             lightSound = GetComponent<AudioSource>();
             if(lightSound != null) lightSound.Play();
 
-            windSound = GetComponent<AudioSource>();
-            if(windSound != null) windSound.Play();
+            //windSound = GetComponent<AudioSource>();
+            //if(windSound != null) windSound.Play();
+
+            if (moveStaffAction.ReadValue<float>() > 0.5f && windSound != null) // Check the trigger press value again
+            {
+                if (!isWindSoundPlaying)  
+                {
+                    windSound = GetComponent<AudioSource>();
+                    windSound.Stop();  
+                    windSound.Play();
+                    //windSoundTimer = 0f;  
+                    isWindSoundPlaying = true;  
+                }
+            }
 
             IronSound = GetComponent<AudioSource>();
             if(IronSound != null) IronSound.Play();
