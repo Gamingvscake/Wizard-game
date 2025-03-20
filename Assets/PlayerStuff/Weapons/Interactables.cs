@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class Interactables : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class Interactables : MonoBehaviour
     public Slider slider;
     private bool CanBuy;
     private bool HasBought;
+    public GameObject[] cauldronEffectIconsHold;
+    public GameObject[] cauldronEffectIconLocations;
+    public List<GameObject> cauldronEffectsGot;
+    bool healthbought;
+    bool speedbought;
+    bool weaponbought;
+    bool manabought;
 
     private PlayerController controls;
 
@@ -37,6 +45,10 @@ public class Interactables : MonoBehaviour
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);
         txt.transform.parent.gameObject.SetActive(false);
+        for (int i = 0; i < cauldronEffectIconsHold.Length; i++)
+        {
+            cauldronEffectIconsHold[i].SetActive(false);
+        }
         playerInflicts = GetComponentInParent<PlayerInflicts>();
         movementController = GetComponentInParent<MovementController>();
     }
@@ -47,8 +59,16 @@ public class Interactables : MonoBehaviour
         {
             if (InterVaris.BuyableObject != null)
             {
-                txt.text = "Buy " + InterVaris.BuyableObject.name + " for " + InterVaris.Cost;
-                txt.transform.parent.gameObject.SetActive(true);
+                if (InterVaris.HealthUp || InterVaris.ManaUp || InterVaris.WeaponUp || InterVaris.SpeedUp)
+                {
+                    txt.text = "Buy " + InterVaris.gameObject.name + " for " + InterVaris.Cost;
+                    txt.transform.parent.gameObject.SetActive(true);
+                }
+                else
+                {
+                    txt.text = "Buy " + InterVaris.BuyableObject.name + " for " + InterVaris.Cost;
+                    txt.transform.parent.gameObject.SetActive(true);
+                }
             }
             else
             {
@@ -117,25 +137,44 @@ public class Interactables : MonoBehaviour
                 else if (CauldronBuyable)
                 {
 
-                    if (InterVaris.HealthUp && !HasBought)
+                    if (InterVaris.HealthUp && !HasBought && !healthbought)
                     {
                         playerInflicts.PlayerMaxHealth += 50;
+                        AddCauldronEffect(0);
+                        iwsc.points -= InterVaris.Cost;
+                        healthbought = true;
                         HasBought = true;
                     }
-                    else if (InterVaris.SpeedUp && !HasBought)
+                    else if (InterVaris.SpeedUp && !HasBought && !speedbought)
                     {
-                        movementController.walkSpeed = 6f;
-                        movementController.sprintSpeed = 9f;
+                        movementController.walkSpeed = movementController.walkSpeed += 1f;
+                        movementController.sprintSpeed = movementController.sprintSpeed += 1f;
+                        AddCauldronEffect(1);
+                        iwsc.points -= InterVaris.Cost;
+                        speedbought = true;
                         HasBought = true;
                     }
-                    else if (InterVaris.StaminaUp && !HasBought)
+                    else if (InterVaris.WeaponUp && !HasBought && !weaponbought)
                     {
-                        //increase player sprint time when it is made a variable again
+                        iwsc.MaxNumberOfStaffs += 1;
+                        iwsc.UpdateStaffArray();
+                        AddCauldronEffect(2);
+                        iwsc.points -= InterVaris.Cost;
+                        weaponbought = true;
                         HasBought = true;
                     }
-                    else if (InterVaris.ManaUp && !HasBought)
+                    else if (InterVaris.ManaUp && !HasBought && !manabought)
                     {
-                        //i dont even know where to do this right now man
+                        iwsc.MaxMana += 50;
+                        AddCauldronEffect(3);
+                        iwsc.points -= InterVaris.Cost;
+                        manabought = true;
+                        HasBought = true;
+                    }
+                    else if (InterVaris.RevivePotion && !HasBought && movementController.numberOfAvailablePotions != movementController.maxNumberOfPotions)
+                    {
+                        movementController.numberOfAvailablePotions += 1;
+                        iwsc.points -= InterVaris.Cost;
                         HasBought = true;
                     }
                     ResetInteractState();
@@ -214,5 +253,20 @@ public class Interactables : MonoBehaviour
     private void OnDisable()
     {
         controls.PlayerControls.Disable();
+    }
+    public void AddCauldronEffect(int k)
+    {
+        if (!cauldronEffectsGot.Contains(cauldronEffectIconsHold[k]))
+        {
+            cauldronEffectsGot.Add(cauldronEffectIconsHold[k]);
+            cauldronEffectIconsHold[k].SetActive(true);
+        }
+        if (cauldronEffectsGot.Count > 0)
+        {
+            for (int i = 0; i < cauldronEffectsGot.Count; i++)
+            {
+                cauldronEffectsGot[i].transform.position = cauldronEffectIconLocations[i].transform.position;
+            }
+        }
     }
 }
