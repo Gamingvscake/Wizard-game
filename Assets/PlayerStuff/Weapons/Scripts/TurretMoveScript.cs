@@ -18,6 +18,9 @@ public class TurretMoveScript : MonoBehaviour
     Vector3 attackpointposition;
     public bool die;
     public WeaponSwapControl TMSWSC;
+
+
+    public AudioSource shootingNoise;
     private void Start()
     {
         detectionRadius.radius = maxDetectionRadius;
@@ -56,6 +59,7 @@ public class TurretMoveScript : MonoBehaviour
             currentSpell.GetComponentInChildren<DamageScript>().dsPI = damageScript.dsPI;
             currentSpell.transform.forward = directionWithoutSpread.normalized;
 
+            shootingNoise.Play();
             currentSpell.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.None;
             currentSpell.GetComponentInChildren<Rigidbody>().AddForce(directionWithoutSpread.normalized * castForce, ForceMode.Impulse);
             currentSpell.GetComponentInChildren<Rigidbody>().AddForce(attackPoint.transform.up * upwardForce, ForceMode.Impulse);

@@ -18,6 +18,9 @@ public class SpellController : MonoBehaviour
     [SerializeField] private AudioSource defaultStaff;
     public GameObject fireballStaff;
 
+
+    [SerializeField] private AudioSource crystalnoise;
+
     Coroutine windSoundCoroutine;
     //windSound staff
     public float windSoundTimer = 0f;
@@ -238,6 +241,10 @@ public class SpellController : MonoBehaviour
             defaultStaff = GetComponent<AudioSource>(); 
             if (defaultStaff != null) defaultStaff.Play();
 
+            //Crystalnoise
+            crystalnoise = GetComponent<AudioSource>();
+            if (crystalnoise != null) crystalnoise.Play();
+
             if (fireStaffAction.ReadValue<float>() > 0.5f && firestaff != null) // Check the trigger press value again
             {
                 firestaff = GetComponent<AudioSource>();
@@ -308,11 +315,6 @@ public class SpellController : MonoBehaviour
                 currentSpell.GetComponentInChildren<DamageScript>().dsPI = scPI;
                 currentSpell.GetComponentInChildren<TurretMoveScript>().castForce = castForce;
                 currentSpell.GetComponentInChildren<TurretMoveScript>().upwardForce = upwardForce;
-
-                if (laserSound != null)
-                {
-                    laserSound.Play();
-                }
 
                 WSC.numberOfTurrets += 1;
             }
