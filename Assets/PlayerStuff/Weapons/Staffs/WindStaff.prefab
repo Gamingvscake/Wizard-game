@@ -170,6 +170,7 @@ MonoBehaviour:
   IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
   windSoundTimer: 0
   isWindSoundPlaying: 0
   fireball: {fileID: 7188116084076457725, guid: fe3a45d93039452489e5433117067641, type: 3}

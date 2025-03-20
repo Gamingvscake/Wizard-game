@@ -21,7 +21,7 @@ public class SpellController : MonoBehaviour
 
     [SerializeField] private AudioSource crystalnoise;
 
-    Coroutine windSoundCoroutine;
+    private Coroutine windSoundCoroutine;
     //windSound staff
     public float windSoundTimer = 0f;
     public bool isWindSoundPlaying = false; //check to see my awsome wind SFX is playing
@@ -231,6 +231,7 @@ public class SpellController : MonoBehaviour
 
                 // Start a new coroutine to play and stop the wind sound after 1 second
                 windSoundCoroutine = StartCoroutine(PlayWindSoundWithDelay());
+                //StartCoroutine(windSoundCoroutine);
             }
 
             IronSound = GetComponent<AudioSource>();
@@ -367,11 +368,13 @@ public class SpellController : MonoBehaviour
         reloading = false;
     }
 
-    IEnumerator PlayWindSoundWithDelay()
+    private IEnumerator PlayWindSoundWithDelay()
     {
-        windSound.Stop(); 
-        windSound.Play(); 
-        yield return new WaitForSeconds(1f); 
-        windSound.Stop(); 
+        windSound.Stop();
+        
+        yield return new WaitForSeconds(1f);
+        windSound.Play();
+        windSound.Stop();
     }
+    
 }
