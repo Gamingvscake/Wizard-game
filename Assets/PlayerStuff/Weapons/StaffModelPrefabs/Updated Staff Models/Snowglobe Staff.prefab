@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1580262422473688043
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9.726063
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.726063
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9.726063
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.9589999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.173
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      propertyPath: m_Name
+      value: Snowglobe Staff
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3308947498818417542}
+  m_SourcePrefab: {fileID: 100100000, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+--- !u!1 &1814758909932240570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+  m_PrefabInstance: {fileID: 1580262422473688043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3308947498818417542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814758909932240570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b992413cd223b4e82bda0993dd5500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icecracking: {fileID: 0}
+  firestaff: {fileID: 0}
+  icecrackingUPGRADED: {fileID: 0}
+  firestaffUPGRADED: {fileID: 0}
+  laserSound: {fileID: 0}
+  lightSound: {fileID: 0}
+  windSound: {fileID: 0}
+  IronSound: {fileID: 0}
+  defaultStaff: {fileID: 0}
+  fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
+  windSoundTimer: 0
+  isWindSoundPlaying: 0
+  fireball: {fileID: 7188116084076457725, guid: dbfb3154a6656a249a9166db054a797b, type: 3}
+  upgradedStaff: {fileID: 0}
+  castForce: 0
+  upwardForce: 0
+  castTime: 0
+  spread: 0
+  reloadTime: 0
+  castSpeed: 0
+  hitscanRange: 0
+  hitscanTrailDuration: 0
+  manaSize: 0
+  spellsPerTap: 0
+  manaPerShot: 0
+  allowButtonHold: 0
+  maxtimer: 0
+  spellsLeft: 0
+  spellsCasted: 0
+  casting: 0
+  readyToCast: 0
+  reloading: 0
+  movementController: {fileID: 0}
+  attackType: 0
+  playerCam: {fileID: 0}
+  attackPoint: {fileID: 0}
+  meleeHitbox: {fileID: 0}
+  manaDisplay: {fileID: 0}
+  sccs: {fileID: 0}
+  scas: {fileID: 0}
+  scPI: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  allowInvoke: 1
+  Level: 0

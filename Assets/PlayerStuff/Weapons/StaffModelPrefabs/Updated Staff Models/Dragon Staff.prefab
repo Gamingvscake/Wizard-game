@@ -1745,19 +1745,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9bf2f11984ff9a4459da3df1f3e25fad, type: 3}
       propertyPath: m_LocalScale.x
-      value: 15.915472
+      value: 9.007623
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bf2f11984ff9a4459da3df1f3e25fad, type: 3}
       propertyPath: m_LocalScale.y
-      value: 15.915472
+      value: 9.007623
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bf2f11984ff9a4459da3df1f3e25fad, type: 3}
       propertyPath: m_LocalScale.z
-      value: 15.915472
+      value: 9.007623
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bf2f11984ff9a4459da3df1f3e25fad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.169
+      value: -0.95299995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bf2f11984ff9a4459da3df1f3e25fad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1926,8 +1926,15 @@ MonoBehaviour:
   firestaff: {fileID: 0}
   icecrackingUPGRADED: {fileID: 0}
   firestaffUPGRADED: {fileID: 0}
+  laserSound: {fileID: 0}
+  lightSound: {fileID: 0}
+  windSound: {fileID: 0}
+  IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
+  windSoundTimer: 0
+  isWindSoundPlaying: 0
   fireball: {fileID: 576261018160768828, guid: 442fe511d12b9b14ebe87787923bb011, type: 3}
   upgradedStaff: {fileID: 0}
   castForce: 0
