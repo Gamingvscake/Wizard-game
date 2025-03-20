@@ -51,7 +51,10 @@ public class MovementController : MonoBehaviour
     public Transform playerCamera; // Assign the player's camera here
     public float throwForce = 10f; // Strength of the throw
     public float randomTorque = 10f; // Random rotation force
+    public int numberOfAvailablePotions; 
+    public int maxNumberOfPotions;
 
+    [Header("Audio")]
     [SerializeField] private AudioSource playersteps;
 
     public float timer = 0f;
@@ -64,7 +67,7 @@ public class MovementController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         animator = GetComponentInChildren<Animator>();
-
+        numberOfAvailablePotions = 1;
         if (playerCameraTransform == null)
         {
             Debug.LogError("Player Camera Transform is not assigned in the Inspector!");
@@ -128,7 +131,7 @@ public class MovementController : MonoBehaviour
             // Handle sprint input
             bool isSprinting = assignedController.leftStickButton.isPressed;
 
-            if (assignedController.buttonEast.wasPressedThisFrame)
+            if (assignedController.buttonEast.wasPressedThisFrame && numberOfAvailablePotions >0)
             {
                 //ToggleCrouch();
                 Throw();
@@ -191,7 +194,10 @@ public class MovementController : MonoBehaviour
                 currentSpeed = sprintSpeed;
             else
                 currentSpeed = walkSpeed;
-
+            if (Input.GetKeyDown(KeyCode.G) && numberOfAvailablePotions > 0)
+            {
+                Throw();
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
@@ -279,6 +285,7 @@ public class MovementController : MonoBehaviour
 
     void Throw()
     {
+        numberOfAvailablePotions -= 1;
         GameObject thrownObject = Instantiate(objectToThrow, throwPoint.position, Quaternion.identity);
 
         Rigidbody rb = thrownObject.GetComponent<Rigidbody>();

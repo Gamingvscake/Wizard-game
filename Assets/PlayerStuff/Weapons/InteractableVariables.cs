@@ -9,8 +9,9 @@ public class InteractableVariables : MonoBehaviour
     public GameObject BuyableObject;
     public bool HealthUp;
     public bool SpeedUp;
-    public bool StaminaUp;
+    public bool WeaponUp;
     public bool ManaUp;
+    public bool RevivePotion;
     public TMP_Text text;
     private void Start()
     {
