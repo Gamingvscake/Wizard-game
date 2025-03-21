@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WeaponSwapControl : MonoBehaviour
 {
@@ -69,12 +70,7 @@ public class WeaponSwapControl : MonoBehaviour
 
 
         ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
-        //else
-        {
-            
-            //ScoreboardKills.SetText("10");
-        }
-        //print(Mana);
+        
     }
 
     private void StaffSwap()
@@ -157,5 +153,38 @@ public class WeaponSwapControl : MonoBehaviour
         tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
         tempobject.GetComponent<SpellController>().enabled = true;
         wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe to the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from the scene loaded event to avoid memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // This method is called when a new scene is loaded
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Check if the scene is the "MainMenu" or other scenes that indicate the start of a new game/round
+        if (scene.name == "MainMenu" || scene.name == "GameScene") // Replace "GameScene" with your actual game scene name
+        {
+            ResetKillCount(); // Reset kill count when the game starts
+        }
+    }
+
+    public static void ResetKillCount()
+    {
+        // Reset kill count for all players to 0
+        EnemyHealthScript.playerKillCount["Player1"] = 0;
+        EnemyHealthScript.playerKillCount["Player2"] = 0;
+        EnemyHealthScript.playerKillCount["Player3"] = 0;
+        EnemyHealthScript.playerKillCount["Player4"] = 0;
+
+        
     }
 }

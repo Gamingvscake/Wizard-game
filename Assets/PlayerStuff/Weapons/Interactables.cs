@@ -59,7 +59,7 @@ public class Interactables : MonoBehaviour
         {
             if (InterVaris.BuyableObject != null)
             {
-                if (InterVaris.HealthUp || InterVaris.ManaUp || InterVaris.WeaponUp || InterVaris.SpeedUp)
+                if (InterVaris.HealthUp || InterVaris.ManaUp || InterVaris.WeaponUp || InterVaris.SpeedUp || InterVaris.RevivePotion)
                 {
                     txt.text = "Buy " + InterVaris.gameObject.name + " for " + InterVaris.Cost;
                     txt.transform.parent.gameObject.SetActive(true);

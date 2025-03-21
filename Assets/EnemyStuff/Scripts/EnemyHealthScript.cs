@@ -35,10 +35,10 @@ public class EnemyHealthScript : MonoBehaviour
     // Dictionary to track player kills
     public static Dictionary<string, int> playerKillCount = new Dictionary<string, int>
     {
-        {"Player1", 1},
-        {"Player2", 2},
-        {"Player3", 3},
-        {"Player4", 4}
+        {"Player1", 0},
+        {"Player2", 0},
+        {"Player3", 0},
+        {"Player4", 0}
     };
 
     public enum DamageResistance

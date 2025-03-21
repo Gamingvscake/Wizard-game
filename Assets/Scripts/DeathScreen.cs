@@ -29,7 +29,7 @@ public class DeathScreen : MonoBehaviour
             if (gravestone_bevel != null)
             {
                 gravestone_bevel.gameObject.SetActive(true);
-                //Debug.Log("Grave has been shown");
+                
             }
 
         }
@@ -89,32 +89,39 @@ public class DeathScreen : MonoBehaviour
             // Check if this player's gravestone is active
             if (deathScreen == null)
             {
-                Debug.LogWarning("DeathScreen component is missing on a player!");
+                Debug.LogWarning($"DeathScreen component is missing on player {players[i].name}!");
                 allPlayersDead = false;
                 continue; // Skip to the next player instead of breaking
             }
 
             if (deathScreen.gravestone_bevel == null)
             {
-                Debug.LogWarning("Gravestone reference is missing on a player!");
+                Debug.LogWarning($"Gravestone reference is missing on player {players[i].name}!");
                 allPlayersDead = false;
                 continue;
             }
 
             if (!deathScreen.gravestone_bevel.activeSelf)
             {
+                
                 allPlayersDead = false;
                 break;
             }
+            
         }
 
         
         // If all players are dead, trigger game over
         if (allPlayersDead)
         {
-            //Debug.Log("isGameOver is working");
+           
             isGameOver = true;
+            
+
+            
         }
     }
+
+    
 
 }

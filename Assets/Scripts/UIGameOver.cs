@@ -8,7 +8,7 @@ public class UIGameOver : MonoBehaviour
     // Start is called before the first frame update
     public PlayerInflicts playerInflicts; // Reference to PlayerInflicts
     public Image DeathImage;
-    public Image ScoreBoard_IMG;
+    
     public GameObject bluePosePrefab;
     public GameObject redwiz;
     public GameObject pinkwiz;
@@ -17,8 +17,7 @@ public class UIGameOver : MonoBehaviour
     public GameObject points;
     public GameObject statusicons;
     public GameObject staffspawnpoint;
-
-
+    
 
     public bool isPlayerDead = false;     // Flag to check if the health is zero
     public bool isGameOver = false;       // Check if all players dead
@@ -32,10 +31,7 @@ public class UIGameOver : MonoBehaviour
             //Debug.Log("Game Over UI hidden at start.");
         }
 
-        if (ScoreBoard_IMG != null)
-        {
-            ScoreBoard_IMG.gameObject.SetActive(false);
-        }
+     
 
     }
 
@@ -68,84 +64,85 @@ public class UIGameOver : MonoBehaviour
 
     private IEnumerator HandleGameOver()
     {
-        // Show the death image for a few seconds
-        if (DeathImage != null)
+        if (isGameOver)
         {
-            DeathImage.gameObject.SetActive(true);
-        }
+            
 
-        // Wait for a few seconds (you can adjust the time)
-        yield return new WaitForSeconds(3f);
-
-        // Hide the DeathImage
-        if (DeathImage != null)
-        {
-            DeathImage.gameObject.SetActive(false);
-        }
-
-        // Show the scoreboard
-        if (ScoreBoard_IMG != null)
-        {
-            ScoreBoard_IMG.gameObject.SetActive(true);
-        }
-
-        // Continue the game over handling (hide other elements, disable scripts, etc.)
-        if (bluePosePrefab != null)
-        {
-            MeshRenderer meshRenderer = bluePosePrefab.GetComponent<MeshRenderer>();
-            if (meshRenderer != null)
+            // Show the death image for a few seconds
+            if (DeathImage != null)
             {
-                meshRenderer.enabled = false;
+                DeathImage.gameObject.SetActive(true);
             }
-        }
 
-        if (redwiz != null)
-        {
-            redwiz.gameObject.SetActive(false);
-        }
+            // Wait for a few seconds (you can adjust the time)
+            yield return new WaitForSeconds(2f);
 
-        if (pinkwiz != null)
-        {
-            pinkwiz.gameObject.SetActive(false);
-        }
+            // Hide the DeathImage
+           // if (DeathImage != null)
+            {
+                DeathImage.gameObject.SetActive(false);
+            }
 
-        if (healthSlider != null)
-        {
-            healthSlider.gameObject.SetActive(false);
-        }
+            
 
-        if (manaGauge != null)
-        {
-            manaGauge.SetActive(false);
-        }
+            // Continue the game over handling (hide other elements, disable scripts, etc.)
+            if (bluePosePrefab != null)
+            {
+                MeshRenderer meshRenderer = bluePosePrefab.GetComponent<MeshRenderer>();
+                if (meshRenderer != null)
+                {
+                    meshRenderer.enabled = false;
+                }
+            }
 
-        if (points != null)
-        {
-            points.gameObject.SetActive(false);
-        }
+            if (redwiz != null)
+            {
+                redwiz.gameObject.SetActive(false);
+            }
 
-        if (statusicons != null)
-        {
-            statusicons.gameObject.SetActive(false);
-        }
+            if (pinkwiz != null)
+            {
+                pinkwiz.gameObject.SetActive(false);
+            }
 
-        if (staffspawnpoint != null)
-        {
-            staffspawnpoint.gameObject.SetActive(false);
-        }
+            if (healthSlider != null)
+            {
+                healthSlider.gameObject.SetActive(false);
+            }
 
-        // Disable the WeaponSwapControl script
-        WeaponSwapControl weaponSwapControl = player1.GetComponent<WeaponSwapControl>();
-        if (weaponSwapControl != null)
-        {
-            weaponSwapControl.enabled = false;
-        }
+            if (manaGauge != null)
+            {
+                manaGauge.SetActive(false);
+            }
 
-        // Disable the MovementController
-        MovementController movementController = player1.GetComponent<MovementController>();
-        if (movementController != null)
-        {
-            movementController.enabled = false;
+            if (points != null)
+            {
+                points.gameObject.SetActive(false);
+            }
+
+            if (statusicons != null)
+            {
+                statusicons.gameObject.SetActive(false);
+            }
+
+            if (staffspawnpoint != null)
+            {
+                staffspawnpoint.gameObject.SetActive(false);
+            }
+
+            // Disable the WeaponSwapControl script
+            WeaponSwapControl weaponSwapControl = player1.GetComponent<WeaponSwapControl>();
+            if (weaponSwapControl != null)
+            {
+                weaponSwapControl.enabled = false;
+            }
+
+            // Disable the MovementController
+            MovementController movementController = player1.GetComponent<MovementController>();
+            if (movementController != null)
+            {
+                movementController.enabled = false;
+            }
         }
     }
 }
