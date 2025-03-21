@@ -209,11 +209,7 @@ public class SpellController : MonoBehaviour
                 icecrackingUPGRADED.Play();
             }
 
-
-           
-            if(lightSound != null) lightSound.Play();
-
-            
+                                           
 
             if (moveStaffAction.ReadValue<float>() > 0.5f && windSound != null) 
             {
@@ -227,10 +223,7 @@ public class SpellController : MonoBehaviour
                 //StartCoroutine(windSoundCoroutine);
             }
 
-            
-            if(IronSound != null) IronSound.Play();
-
-
+                        
             //Default Staff Sound
             
             if (defaultStaff != null) defaultStaff.Play();
@@ -281,6 +274,10 @@ public class SpellController : MonoBehaviour
                 lineRenderer.SetPosition(1, ray.origin + (playerCam.transform.forward * hitscanRange));
             }
             StartCoroutine(ShootHitScan());
+
+            if (lightSound != null) lightSound.Play();
+
+            
         }
         else if (attackType == AttackType.Melee)
         {
@@ -297,6 +294,8 @@ public class SpellController : MonoBehaviour
             temphitbox.damageType = tempds.damageType;
             temphitbox.Damage = tempds.Damage;
             meleeHitbox.SetActive(true);
+
+            if (IronSound != null) IronSound.Play();
         }
         else if (attackType == AttackType.Turret)
         {

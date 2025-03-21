@@ -84,12 +84,13 @@ MonoBehaviour:
   firestaff: {fileID: 0}
   icecrackingUPGRADED: {fileID: 0}
   firestaffUPGRADED: {fileID: 0}
-  crystalSound: {fileID: 0}
+  laserSound: {fileID: 0}
   lightSound: {fileID: -5135259226641851948}
   windSound: {fileID: 0}
   IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 2a1030687a821a841af41cf69748b756, type: 3}
   upgradedStaff: {fileID: 3228822451976501643, guid: 225bf0d864aec2346be0451cdf94e6da, type: 3}
   castForce: 20
@@ -115,6 +116,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
   meleeHitbox: {fileID: 5946919254628722933}
+  animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}
@@ -132,7 +134,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 304bbe9b18de90749be6d9d4987c4dfc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ba5f3d4df86a994ca02962e95ce62f8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -60,6 +60,7 @@ public class WeaponSwapControl : MonoBehaviour
         inputActions.PlayerControls.Enable();
 
         playerID.ToString();
+        //ScoreboardKills.text = "0";
     }
 
     private void Update()

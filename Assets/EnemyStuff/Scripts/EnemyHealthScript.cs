@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyHealthScript : MonoBehaviour
 {
@@ -67,6 +68,11 @@ public class EnemyHealthScript : MonoBehaviour
     }
     private void Start()
     {
+        playerKillCount["Player1"] = 0;
+        playerKillCount["Player2"] = 0;
+        playerKillCount["Player3"] = 0;
+        playerKillCount["Player4"] = 0;
+
         if (DevBoolToNotMove == false)
         {
             damageincreasefloat = 1;
