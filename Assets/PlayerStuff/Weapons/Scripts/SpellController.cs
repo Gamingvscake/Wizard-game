@@ -5,6 +5,7 @@ using UnityEngine.InputSystem; // Required for the new Input System
 
 public class SpellController : MonoBehaviour
 {
+    [Header("Audio")]
     [SerializeField] private AudioSource icecracking;
     [SerializeField] private AudioSource firestaff;
 
@@ -21,8 +22,8 @@ public class SpellController : MonoBehaviour
 
     [SerializeField] private AudioSource crystalnoise;
 
-    
 
+    [Header("Variables")]
     // Fireball object
     public GameObject fireball, upgradedStaff;
 
@@ -58,6 +59,7 @@ public class SpellController : MonoBehaviour
     public Camera playerCam;
     public Transform attackPoint;
     public GameObject meleeHitbox;
+    public Animator animator;
     // Graphics
     public TextMeshProUGUI manaDisplay;
     WeaponSwapControl WSC;
@@ -114,10 +116,17 @@ public class SpellController : MonoBehaviour
         if (maxtimer > 0)
         {
             if (temptimer < maxtimer) temptimer += Time.deltaTime;
-            if (temptimer >= maxtimer) canSwing = true;
+            if (temptimer >= maxtimer)
+            {
+                canSwing = true;
+                animator.SetBool("ResetSwing", false);
+            }
         }
-        else if (maxtimer <= 0) canSwing = true;
-
+        else if (maxtimer <= 0)
+        {
+            canSwing = true;
+            animator.SetBool("ResetSwing", false);
+        }
     }
 
     private void MyInput()
@@ -310,8 +319,11 @@ public class SpellController : MonoBehaviour
         spellsLeft -= manaPerShot;
         WSC.Mana -= manaPerShot;
         spellsCasted++;
-        if (maxtimer > 0) canSwing = false;
-
+/*        if (maxtimer > 0)
+        {
+            canSwing = false;
+            animator.SetBool("ResetSwing", true);
+        }*/
         // Invoke resetCast function if not already invoked
         if (spellsCasted < spellsPerTap && spellsLeft > 0)
         {
@@ -326,7 +338,11 @@ public class SpellController : MonoBehaviour
 
     private void ResetCast()
     {
-        if (maxtimer > 0) canSwing = false;
+        if (maxtimer > 0)
+        {
+            canSwing = false;
+            animator.SetBool("ResetSwing", true);
+        }
         readyToCast = true;
         allowInvoke = true;
         casting = false;
@@ -337,6 +353,7 @@ public class SpellController : MonoBehaviour
     private void Reload()
     {
         reloading = true;
+        animator.SetBool("Reload", true);
         Invoke("ReloadFinished", reloadTime);
     }
     IEnumerator ShootHitScan()
@@ -349,6 +366,7 @@ public class SpellController : MonoBehaviour
     {
         spellsLeft = WSC.MaxMana;
         WSC.Mana = WSC.MaxMana;
+        animator.SetBool("Reload", false);
         reloading = false;
     }
 

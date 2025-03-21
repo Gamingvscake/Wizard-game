@@ -32,6 +32,7 @@ public class WeaponSwapControl : MonoBehaviour
     public int playerID;
     
     public MovementController movementController;
+    public Animator animator;
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
 
@@ -51,6 +52,7 @@ public class WeaponSwapControl : MonoBehaviour
             tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
             tempobject.GetComponent<SpellController>().enabled = true;
             tempobject.GetComponent<SpellController>().movementController = movementController;
+            tempobject.GetComponent<SpellController>().animator = animator;
             if (wscSE != null)wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
         }
 
@@ -99,6 +101,7 @@ public class WeaponSwapControl : MonoBehaviour
                     tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
                     tempobject.GetComponent<SpellController>().enabled = true;
                     tempobject.GetComponent<SpellController>().movementController = movementController;
+                    tempobject.GetComponent<SpellController>().animator = animator;
                     wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
                 }
             }
@@ -114,6 +117,7 @@ public class WeaponSwapControl : MonoBehaviour
                     tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
                     tempobject.GetComponent<SpellController>().enabled = true;
                     tempobject.GetComponent<SpellController>().movementController = movementController;
+                    tempobject.GetComponent<SpellController>().animator = animator;
                     wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
                 }
             }
@@ -152,6 +156,8 @@ public class WeaponSwapControl : MonoBehaviour
 
         tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
         tempobject.GetComponent<SpellController>().enabled = true;
+        tempobject.GetComponent<SpellController>().movementController = movementController;
+        tempobject.GetComponent<SpellController>().animator = animator;
         wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
     }
 

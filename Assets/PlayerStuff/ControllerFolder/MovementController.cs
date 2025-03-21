@@ -53,6 +53,7 @@ public class MovementController : MonoBehaviour
     public float randomTorque = 10f; // Random rotation force
     public int numberOfAvailablePotions; 
     public int maxNumberOfPotions;
+    public GameObject fullPotionIcon;
 
     [Header("Audio")]
     [SerializeField] private AudioSource playersteps;
@@ -83,7 +84,8 @@ public class MovementController : MonoBehaviour
     private void Update()
     {
         if (assignedController == null && DevKeyboardOn == false) return;
-
+        if (numberOfAvailablePotions > 0 && fullPotionIcon.activeInHierarchy == false) fullPotionIcon.SetActive(true);
+        else if (numberOfAvailablePotions <= 0 && fullPotionIcon.activeInHierarchy == true) fullPotionIcon.SetActive(false);
         HandleMovement();
         HandleCrouchHeight();
         CheckGroundStatus();
