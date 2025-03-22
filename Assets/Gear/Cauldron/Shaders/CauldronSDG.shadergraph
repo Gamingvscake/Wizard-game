@@ -80,11 +80,7 @@
         }
     ],
     "m_GroupDatas": [],
-    "m_StickyNoteDatas": [
-        {
-            "m_Id": "c3ce6058d35b46d0880ca2c39002c910"
-        }
-    ],
+    "m_StickyNoteDatas": [],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -776,9 +772,6 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_DisableTint": false,
-    "m_AdditionalMotionVectorMode": 0,
-    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -1638,26 +1631,6 @@
 }
 
 {
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
-    "m_ObjectId": "c3ce6058d35b46d0880ca2c39002c910",
-    "m_Title": "Base Texture",
-    "m_Content": "Write something here",
-    "m_TextSize": 0,
-    "m_Theme": 0,
-    "m_Position": {
-        "serializedVersion": "2",
-        "x": -2037.0,
-        "y": 447.0,
-        "width": 200.0,
-        "height": 160.0
-    },
-    "m_Group": {
-        "m_Id": ""
-    }
-}
-
-{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.VoronoiNode",
     "m_ObjectId": "cbb9add926b44c18a3765824c67ce7c5",
@@ -1964,8 +1937,8 @@
         "y": 0.5
     },
     "m_DefaultValue": {
-        "x": 0.5,
-        "y": 0.5
+        "x": 0.0,
+        "y": 0.0
     },
     "m_Labels": []
 }
@@ -1985,8 +1958,8 @@
         "y": 1.0
     },
     "m_DefaultValue": {
-        "x": 10.0,
-        "y": 10.0
+        "x": 0.0,
+        "y": 0.0
     },
     "m_Labels": []
 }
