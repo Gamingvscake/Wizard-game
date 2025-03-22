@@ -7,8 +7,10 @@ public class ControllerManager : MonoBehaviour
     private readonly Dictionary<Gamepad, int> controllerIDs = new Dictionary<Gamepad, int>();
     private readonly Dictionary<int, GameObject> playerInstances = new Dictionary<int, GameObject>();
 
-    public GameObject player1Object; // Assign this in the Inspector to the first player prefab in the scene
-    public GameObject player2Object; // Assign this in the Inspector to the second player prefab in the scene
+    public GameObject player1Object; // Assign in Inspector
+    public GameObject player2Object; // Assign in Inspector
+    public GameObject player3Object; // Assign in Inspector
+    public GameObject player4Object; // Assign in Inspector
 
     private int nextControllerID = 1;
 
@@ -36,7 +38,6 @@ public class ControllerManager : MonoBehaviour
                 case InputDeviceChange.Added:
                     AssignControllerID(gamepad);
                     break;
-
                 case InputDeviceChange.Removed:
                     RemoveControllerID(gamepad);
                     break;
@@ -46,18 +47,22 @@ public class ControllerManager : MonoBehaviour
 
     private void AssignControllerID(Gamepad gamepad)
     {
-        if (!controllerIDs.ContainsKey(gamepad))
+        if (!controllerIDs.ContainsKey(gamepad) && nextControllerID <= 4)
         {
             controllerIDs[gamepad] = nextControllerID;
 
-            // Assign the existing player object for the controller
-            GameObject playerObject = nextControllerID == 1 ? player1Object : player2Object;
+            GameObject playerObject = nextControllerID switch
+            {
+                1 => player1Object,
+                2 => player2Object,
+                3 => player3Object,
+                4 => player4Object,
+                _ => null
+            };
 
             if (playerObject != null)
             {
                 playerInstances[nextControllerID] = playerObject;
-
-                // Assign the controller to the character's movement
                 var movementController = playerObject.GetComponent<MovementController>();
                 if (movementController != null)
                 {
@@ -73,7 +78,6 @@ public class ControllerManager : MonoBehaviour
             nextControllerID++;
         }
     }
-
 
     private void RemoveControllerID(Gamepad gamepad)
     {
