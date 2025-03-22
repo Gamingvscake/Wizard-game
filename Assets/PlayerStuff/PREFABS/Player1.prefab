@@ -3942,7 +3942,7 @@ RectTransform:
   m_GameObject: {fileID: 4167172520955598743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.87069327, y: 1.2254, z: 1.2254}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7890526264440037281}
@@ -3950,7 +3950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450, y: 294}
+  m_AnchoredPosition: {x: 457.42, y: 294}
   m_SizeDelta: {x: 343.4733, y: 218.2922}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2063668498438495484
@@ -3981,7 +3981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 93e0df41bec84a249b87d906066e63e8, type: 3}
+  m_Texture: {fileID: 2800000, guid: 750e1803c32c39340b02194f9251886b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4058,7 +4058,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 151.5, y: -52.6875}
+  m_AnchoredPosition: {x: 137, y: -44.7}
   m_SizeDelta: {x: 300.2278, y: 112.9338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1700874501291583238
@@ -4116,8 +4116,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6221,6 +6221,14 @@ MonoBehaviour:
   smoothing: 1.5
   animator: {fileID: 0}
   ShootSpell: 0
+  objectToThrow: {fileID: 0}
+  throwPoint: {fileID: 0}
+  playerCamera: {fileID: 0}
+  throwForce: 10
+  randomTorque: 10
+  numberOfAvailablePotions: 0
+  maxNumberOfPotions: 0
+  fullPotionIcon: {fileID: 0}
   playersteps: {fileID: 0}
   timer: 0
   timelimit: 1
@@ -6263,6 +6271,7 @@ MonoBehaviour:
   changeweapon: {fileID: 3581273076849310564}
   playerID: 0
   movementController: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &7432447311309871040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6308,6 +6317,9 @@ MonoBehaviour:
   movementController: {fileID: 0}
   txt: {fileID: 722653270362621552}
   slider: {fileID: 7880037411057503578}
+  cauldronEffectIconsHold: []
+  cauldronEffectIconLocations: []
+  cauldronEffectsGot: []
 --- !u!114 &7387548971118068514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6920,7 +6932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInflicts: {fileID: 1530989311519409170}
   DeathImage: {fileID: 5009164588306752680}
-  ScoreBoard_IMG: {fileID: 0}
   bluePosePrefab: {fileID: 0}
   redwiz: {fileID: 0}
   pinkwiz: {fileID: 0}

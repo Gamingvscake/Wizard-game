@@ -6,18 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameOverButton : MonoBehaviour
 {
 
-    void Update()
+    void Start()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            ReturnMenu();
-        }
+        StartCoroutine(WaitAndReturnMenu());
     }
 
-
-    public void ReturnMenu()
+    IEnumerator WaitAndReturnMenu()
     {
+        yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(0);
     }
 }
