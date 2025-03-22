@@ -4,16 +4,15 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using UnityEngine.ProBuilder.MeshOperations;
 
-//I swear to god I will never make another local co-op game in my life
 public class LevelSelect : MonoBehaviour
 {
-    //Cylinder allocation
+    // Cylinder allocation
     public GameObject[] cylinders;
 
-    //Individual controller selection stuff
+    // Individual controller selection stuff
     private Dictionary<int, int> controllerSelections = new Dictionary<int, int>();
 
-    //Controller detection
+    // Controller detection
     private readonly Dictionary<Gamepad, int> controllerIDs = new Dictionary<Gamepad, int>();
     private int nextControllerID = 1;
 
@@ -25,13 +24,13 @@ public class LevelSelect : MonoBehaviour
 
     void Start()
     {
-        //Assign each detected controller an ID
+        // Assign each detected controller an ID
         foreach (var gamepad in Gamepad.all)
         {
             AssignControllerID(gamepad);
         }
 
-        //Create an outline for each controller
+        // Create an outline for each controller
         UpdateAllOutlines();
 
         Tavern.transform.position = new Vector3(0, 7, 0);
@@ -40,37 +39,37 @@ public class LevelSelect : MonoBehaviour
 
     void OnEnable()
     {
-        //Check for controller disconnection
+        // Check for controller disconnection
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
     void OnDisable()
     {
-        //Check for controller connection?
+        // Check for controller connection?
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
     void Update()
     {
-        //Use joystick for each controller to navigate menu
+        // Use joystick for each controller to navigate menu
         foreach (var gamepad in Gamepad.all)
         {
             int controllerID = controllerIDs[gamepad];
-            
+
             if (gamepad.leftStick.right.wasPressedThisFrame)
             {
-                //Move selection to the right
+                // Move selection to the right
                 controllerSelections[controllerID] = (controllerSelections[controllerID] + 1) % cylinders.Length;
+                Debug.Log($"Controller {controllerID} moved right, selection: {controllerSelections[controllerID]}");
                 UpdateAllOutlines();
-                Debug.Log(controllerSelections[controllerID]);
                 MoveLevel();
             }
             else if (gamepad.leftStick.left.wasPressedThisFrame)
             {
-                //Move selection to the left
+                // Move selection to the left
                 controllerSelections[controllerID] = (controllerSelections[controllerID] - 1 + cylinders.Length) % cylinders.Length;
+                Debug.Log($"Controller {controllerID} moved left, selection: {controllerSelections[controllerID]}");
                 UpdateAllOutlines();
-                Debug.Log(controllerSelections[controllerID]);
                 MoveLevel();
             }
 
@@ -84,7 +83,7 @@ public class LevelSelect : MonoBehaviour
                 Mausoleum.transform.Rotate(0, 0.06f, 0);
             }
 
-            //Load Tavern level when southern button is pressed
+            // Load Tavern level when southern button is pressed
             if (gamepad.buttonSouth.wasPressedThisFrame)
             {
                 if (controllerSelections[controllerID] == 0)
@@ -111,7 +110,7 @@ public class LevelSelect : MonoBehaviour
             }
         }
 
-        //Old keyboard input
+        // Old keyboard input
         if (Input.GetKeyDown(KeyCode.D))
         {
             controllerSelections[1] = (controllerSelections[1] + 1) % cylinders.Length;
@@ -131,25 +130,37 @@ public class LevelSelect : MonoBehaviour
 
     void MoveLevel()
     {
-        if (mausoleumSelected)
+        // Ensure Player 1's selection takes precedence
+        int player1Selection = controllerSelections.ContainsKey(1) ? controllerSelections[1] : 0;
+
+        // Move levels based on Player 1's selection
+        if (player1Selection == 0)
         {
+            tavernSelected = true;
+            mausoleumSelected = false;
+
+            // Move Tavern to the front and Mausoleum to the back
             Tavern.transform.position = new Vector3(0, 7, 0);
-            Mausoleum.transform.position = new Vector3(-84, 0, 219);
-            Tavern.transform.rotation = Quaternion.identity;
-            Mausoleum.transform.rotation = Quaternion.identity;
+            Mausoleum.transform.position = new Vector3(-84, 0, 219);  // Behind Tavern
         }
-        if (tavernSelected)
+        else if (player1Selection == 1)
         {
+            tavernSelected = false;
+            mausoleumSelected = true;
+
+            // Move Mausoleum to the front and Tavern to the back
             Mausoleum.transform.position = new Vector3(0, 7, 0);
-            Tavern.transform.position = new Vector3(-46, 7, -207);
-            Tavern.transform.rotation = Quaternion.identity;
-            Mausoleum.transform.rotation = Quaternion.identity;
+            Tavern.transform.position = new Vector3(-46, 7, -207);  // Behind Mausoleum
         }
+
+        // Reset rotation for both levels to ensure they face forward correctly
+        Tavern.transform.rotation = Quaternion.identity;
+        Mausoleum.transform.rotation = Quaternion.identity;
     }
 
     void UpdateAllOutlines()
     {
-        //Select each cylinder
+        // Select each cylinder
         for (int i = 0; i < cylinders.Length; i++)
         {
             Outline outline = cylinders[i].GetComponent<Outline>();
@@ -167,7 +178,7 @@ public class LevelSelect : MonoBehaviour
                     }
                 }
 
-                //Disable outline if not selected
+                // Disable outline if not selected
                 if (!isSelected)
                 {
                     outline.enabled = false;
@@ -190,15 +201,22 @@ public class LevelSelect : MonoBehaviour
 
     Color GetControllerColor(int controllerID)
     {
-        //Assign colors based on controller ID
-        if (controllerID == 1)
-            return Color.red; //First controller
-        if (controllerID == 2)
-            return Color.blue; //Second controller
-
-        //Default color for third and fourth controller (CHRIS WORK ON THIS LATER ONCE YOU WANT TO TEST 4 CONTROLLERS) - Chris
-        return Color.green;
+        // Assign colors based on controller ID
+        switch (controllerID)
+        {
+            case 1:
+                return Color.blue; // Player 1
+            case 2:
+                return Color.red;  // Player 2
+            case 3:
+                return new Color(1f, 0.41f, 0.71f); // Player 3 - Pink (RGB: 1, 0.41, 0.71)
+            case 4:
+                return new Color(1f, 0.647f, 0f); // Player 4 - Orange (RGB: 1, 0.647, 0)
+            default:
+                return Color.gray;
+        }
     }
+
 
     void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
@@ -220,7 +238,7 @@ public class LevelSelect : MonoBehaviour
         if (!controllerIDs.ContainsKey(gamepad))
         {
             controllerIDs[gamepad] = nextControllerID;
-            controllerSelections[nextControllerID] = 0; //Puts outline on first cylinder
+            controllerSelections[nextControllerID] = 0; // Puts outline on first cylinder
             nextControllerID++;
         }
     }

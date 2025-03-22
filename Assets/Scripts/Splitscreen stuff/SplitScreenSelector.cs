@@ -1,85 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; // Required for detecting controllers
 
 public class SplitScreenSelector : MonoBehaviour
 {
-    //Creating a public variable for all the player cameras
     public Camera cam1, cam2, cam3, cam4;
+    public GameObject player1, player2, player3, player4; // Player objects to enable/disable
 
-    //Creating a true or false for which camera mode is activated at the moment
-    private bool onePlayer, twoPlayer, threePlayer, fourPlayer;
+    private int lastControllerCount = 0;
+
+    void Start()
+    {
+        UpdatePlayers();
+    }
 
     void Update()
     {
-        //Sets the camera mode to one player
-        if (Input.GetKeyDown(KeyCode.F1))
+        int currentControllerCount = Gamepad.all.Count;
+
+        // Only update if the controller count has changed
+        if (currentControllerCount != lastControllerCount)
         {
-            onePlayer = true;
-            twoPlayer = false;
-            threePlayer = false;
-            fourPlayer = false;
-            SetSplitScreen();
+            lastControllerCount = currentControllerCount;
+            UpdatePlayers();
         }
-        //sets the camera mode to two player
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            onePlayer = false;
-            twoPlayer = true;
-            threePlayer = false;
-            fourPlayer = false;
-            SetSplitScreen();
-        }
-        //Sets the camera mode to three player
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            onePlayer = false;
-            twoPlayer = false;
-            threePlayer = true;
-            fourPlayer = false;
-            SetSplitScreen();
-        }
-        //Sets the camera mode to four player
-        if (Input.GetKeyDown(KeyCode.F4))
-        {
-            onePlayer = false;
-            twoPlayer = false;
-            threePlayer = false;
-            fourPlayer = true;
-            SetSplitScreen();
-        }
-        //This wont be constantly called in the real game, but instead we can assign these variables to a menu option so they are only seen once
     }
 
-    public void SetSplitScreen()
+    private void UpdatePlayers()
     {
-        if (onePlayer == true)
+        // Enable/Disable players based on controller count
+        player1.SetActive(lastControllerCount >= 1);
+        player2.SetActive(lastControllerCount >= 2);
+        player3.SetActive(lastControllerCount >= 3);
+        player4.SetActive(lastControllerCount >= 4);
+
+        // Update camera layout
+        SetSplitScreen(lastControllerCount);
+    }
+
+    private void SetSplitScreen(int activePlayers)
+    {
+        switch (activePlayers)
         {
-            cam1.rect = new Rect(0f, 0f, 1f, 1f);
-            cam2.rect = new Rect(1f, 1f, 1f, 1f);
-            cam3.rect = new Rect(1f, 1f, 1f, 1f);
-            cam4.rect = new Rect(1f, 1f, 1f, 1f);
-        }
-        else if (twoPlayer == true)
-        {
-            cam1.rect = new Rect(0f, .5f, 1f, .5f);
-            cam2.rect = new Rect(0f, 0f, 1f, .5f);
-            cam3.rect = new Rect(1f, 1f, 1f, 1f);
-            cam4.rect = new Rect(1f, 1f, 1f, 1f);
-        }
-        else if (threePlayer == true)
-        {
-            cam1.rect = new Rect(0f, .5f, 1f, .5f);
-            cam2.rect = new Rect(0f, 0f, .5f, .5f);
-            cam3.rect = new Rect(.5f, 0f,.5f, .5f);
-            cam4.rect = new Rect(1f, 1f, 1f, 1f);
-        }
-        else if (fourPlayer == true)
-        {
-            cam1.rect = new Rect(0f, .5f, .5f, .5f);
-            cam2.rect = new Rect(.5f, .5f, .5f, .5f);
-            cam3.rect = new Rect(0f, 0f, .5f, .5f);
-            cam4.rect = new Rect(.5f, 0f, .5f, .5f); ;
+            case 1:
+                cam1.rect = new Rect(0f, 0f, 1f, 1f);
+                cam2.gameObject.SetActive(false);
+                cam3.gameObject.SetActive(false);
+                cam4.gameObject.SetActive(false);
+                break;
+            case 2:
+                cam1.rect = new Rect(0f, .5f, 1f, .5f);
+                cam2.rect = new Rect(0f, 0f, 1f, .5f);
+                cam2.gameObject.SetActive(true);
+                cam3.gameObject.SetActive(false);
+                cam4.gameObject.SetActive(false);
+                break;
+            case 3:
+                cam1.rect = new Rect(0f, .5f, 1f, .5f);
+                cam2.rect = new Rect(0f, 0f, .5f, .5f);
+                cam3.rect = new Rect(.5f, 0f, .5f, .5f);
+                cam2.gameObject.SetActive(true);
+                cam3.gameObject.SetActive(true);
+                cam4.gameObject.SetActive(false);
+                break;
+            case 4:
+                cam1.rect = new Rect(0f, .5f, .5f, .5f);
+                cam2.rect = new Rect(.5f, .5f, .5f, .5f);
+                cam3.rect = new Rect(0f, 0f, .5f, .5f);
+                cam4.rect = new Rect(.5f, 0f, .5f, .5f);
+                cam2.gameObject.SetActive(true);
+                cam3.gameObject.SetActive(true);
+                cam4.gameObject.SetActive(true);
+                break;
+            default:
+                cam1.rect = new Rect(0f, 0f, 1f, 1f);
+                cam2.gameObject.SetActive(false);
+                cam3.gameObject.SetActive(false);
+                cam4.gameObject.SetActive(false);
+                break;
         }
     }
 }
