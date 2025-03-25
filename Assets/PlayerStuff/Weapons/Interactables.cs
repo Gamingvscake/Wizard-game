@@ -227,7 +227,7 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Removeable") || other.CompareTag("Buyable"))
+        if (other.CompareTag("Removeable") || other.CompareTag("Buyable") || other.CompareTag("CauldronBuyable"))
         {
             ResetInteractState();
         }

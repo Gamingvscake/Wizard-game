@@ -92,11 +92,11 @@ public class EnemyMovementScript : MonoBehaviour
                 //transform.LookAt(temp);
                 //transform.position = Vector3.MoveTowards(transform.position, temp.position, speed * Time.deltaTime);
                 if(temp != null)selfNavAgent.destination = temp.position;
-                if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
+/*                if (Vector3.Distance(transform.position, temp.position) <= attackDistance && temp.gameObject.GetComponentInChildren<DeathScreen>().isPlayerDead == false)
                 {
                     AttackBox.SetActive(true);
                 }
-                else AttackBox.SetActive(false);
+                else AttackBox.SetActive(false);*/
             }
             if (isBoss)
             {
@@ -129,7 +129,7 @@ public class EnemyMovementScript : MonoBehaviour
             }
             if (!DMGScript.Attacking && DevBoolToNotMove == false)
             {
-                if (isRanged == false && isSpawner == false)
+                if (isRanged == false && isSpawner == false && temp != null)
                 {
                     if (Vector3.Distance(transform.position, temp.position) <= attackDistance)
                     {
@@ -249,7 +249,7 @@ public class EnemyMovementScript : MonoBehaviour
                 else
                 {
                     allplayersdead += 1;
-                    bestTarget = null;
+                    dSqrToTarget = 0;
                 }
             }
         }

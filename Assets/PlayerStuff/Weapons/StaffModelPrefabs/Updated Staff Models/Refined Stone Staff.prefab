@@ -199,6 +199,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &288729406369717460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3920407708357700353}
+  m_Layer: 0
+  m_Name: Attack Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3920407708357700353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288729406369717460}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: 0.045494266, y: 0.0651106, z: -0.07094751}
+  m_LocalScale: {x: 0.12131218, y: 0.12131218, z: 0.12131218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1575029962968323275}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2085505388822747714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1137,134 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &4723455238500003254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5467929052054107634}
+  - component: {fileID: 986585100633156726}
+  m_Layer: 0
+  m_Name: Refined Stone Staff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5467929052054107634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723455238500003254}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: 0.045494266, y: 0.0454, z: -0.0986}
+  m_LocalScale: {x: 0.12131218, y: 0.12131218, z: 0.12131218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1575029962968323275}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &986585100633156726
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723455238500003254}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0.7181058
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5308429677974033428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1862,87 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &8182068262114700086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40184168861957129}
+  - component: {fileID: 4394235201171002780}
+  - component: {fileID: 8876483075651456246}
+  m_Layer: 0
+  m_Name: Melee Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &40184168861957129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182068262114700086}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: 0.0009, y: 0.0922, z: -0.033}
+  m_LocalScale: {x: 0.21071926, y: 0.046886627, z: 0.12131218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1575029962968323275}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4394235201171002780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182068262114700086}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8876483075651456246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182068262114700086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732a15f240de2a54092abdc5ed0f895f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  DeleteOnImpact: 0
+  DeleteDelay: 0
+  damageType: 0
+  StickInTarget: 0
+  rb: {fileID: 0}
+  SplashRadius: {fileID: 0}
+  thisCollider: {fileID: 0}
+  cs: {fileID: 0}
+  dswsc: {fileID: 0}
+  dsPI: {fileID: 0}
+  isMelee: 0
+  isTurret: 0
+  instantiateVFX: {fileID: 0}
+  vfxSFX: {fileID: 0}
 --- !u!1 &8721196551955971353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,6 +2474,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3013159542918368125}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3920407708357700353}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 40184168861957129}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5467929052054107634}
     - targetCorrespondingSourceObject: {fileID: 555617983089694907, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6817050905761062393}
@@ -2341,9 +2590,9 @@ MonoBehaviour:
   castSpeed: 0
   hitscanRange: 0
   hitscanTrailDuration: 0
-  manaSize: 0
-  spellsPerTap: 0
-  manaPerShot: 0
+  manaSize: 100
+  spellsPerTap: 1
+  manaPerShot: 100
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0

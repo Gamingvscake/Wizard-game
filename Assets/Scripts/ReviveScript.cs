@@ -11,15 +11,14 @@ public class ReviveScript : MonoBehaviour
     {
         if (other.tag == ("Player"))
         {
-            Transform gravestoneParent = other.transform.parent;
-
+            Transform gravestoneParent = other.transform;
+            print("playerrevivingtrigger");
             if (gravestoneParent != null)
             {
                 PlayerInflicts playerInflicts = gravestoneParent.GetComponentInChildren<PlayerInflicts>();
                 DeathScreen deathScreen = gravestoneParent.GetComponentInChildren<DeathScreen>();
                 UIGameOver UIgameOver = gravestoneParent.GetComponentInChildren<UIGameOver>();
-
-                if (playerInflicts != null && deathScreen != null && deathScreen.isDead == true && deathScreen.isPlayerDead == true)
+                if (playerInflicts != null && deathScreen != null && (deathScreen.isDead == true || deathScreen.isPlayerDead == true))
                 {
                     deathScreen.gravestone_bevel.gameObject.SetActive(false);
                     playerInflicts.PlayerCurrentHealth = 75;
