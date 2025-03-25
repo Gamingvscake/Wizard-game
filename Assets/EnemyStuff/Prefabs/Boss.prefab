@@ -66,7 +66,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -6.26, y: 0}
+  m_AnchoredPosition: {x: 6.26, y: 0}
   m_SizeDelta: {x: -2.51, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &990031992705225919
@@ -999,7 +999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 4.54, y: 0}
+  m_AnchoredPosition: {x: -4.54, y: 0}
   m_SizeDelta: {x: 5.51, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2460024680774656603
@@ -2840,6 +2840,7 @@ MonoBehaviour:
   damageRes: 2
   damageWeak: 5
   wsc: {fileID: 0}
+  cs: {fileID: 0}
   enemySpawn: {fileID: 0}
   thisMovement: {fileID: 3938961129305785951}
   bossMovement: {fileID: 0}
@@ -2925,6 +2926,8 @@ MonoBehaviour:
   maxPhaseTimer: 4
   phases: 0
   metalchain: {fileID: 0}
+  walk1: {fileID: 0}
+  walk2: {fileID: 0}
   timer: 0
   timelimit: 1.8
 --- !u!195 &7086911645816786703
@@ -4915,7 +4918,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 5052870484440382958}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0

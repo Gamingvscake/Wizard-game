@@ -20,6 +20,7 @@ public class Interactables : MonoBehaviour
     private bool HasBought;
     public GameObject[] cauldronEffectIconsHold;
     public GameObject[] cauldronEffectIconLocations;
+    public GameObject PoofVFX;
     public List<GameObject> cauldronEffectsGot;
     bool healthbought;
     bool speedbought;
@@ -92,6 +93,7 @@ public class Interactables : MonoBehaviour
                 {
                     iwsc.points -= InterVaris.Cost;
                     Destroy(InterVaris.gameObject);
+                    Instantiate(PoofVFX, InterVaris.gameObject.transform.position, Quaternion.identity);
                     ResetInteractState();
                 }
                 else if (Buyable)
@@ -225,7 +227,7 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Removeable") || other.CompareTag("Buyable"))
+        if (other.CompareTag("Removeable") || other.CompareTag("Buyable") || other.CompareTag("CauldronBuyable"))
         {
             ResetInteractState();
         }
