@@ -2111,47 +2111,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 15.141252
+      value: 8.243196
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 15.141252
+      value: 8.243196
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 15.141252
+      value: 8.243196
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.904
+      value: -5.206
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.079
+      value: -0.37399998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.024
+      value: -2.809
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.95230407
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.3051507
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 35.534
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2324,8 +2324,13 @@ MonoBehaviour:
   firestaff: {fileID: 0}
   icecrackingUPGRADED: {fileID: 0}
   firestaffUPGRADED: {fileID: 0}
+  laserSound: {fileID: 0}
+  lightSound: {fileID: 0}
+  windSound: {fileID: 0}
+  IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 9ffc5c93dc424b842b6d005bb9ffcd0a, type: 3}
   upgradedStaff: {fileID: 0}
   castForce: 0
@@ -2351,6 +2356,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 0}
   meleeHitbox: {fileID: 0}
+  animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}
