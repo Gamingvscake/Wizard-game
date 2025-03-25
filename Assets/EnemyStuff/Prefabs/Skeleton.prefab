@@ -3296,7 +3296,7 @@ MonoBehaviour:
   AttackBox: {fileID: 7267922631033261070}
   DMGScript: {fileID: 9034159946278919642}
   tempturrscrip: {fileID: 0}
-  attackDistance: 2.5
+  attackDistance: 6
   DevBoolToNotMove: 0
   selfNavAgent: {fileID: 7086911645816786703}
   isRanged: 0
@@ -3971,8 +3971,8 @@ Transform:
   m_GameObject: {fileID: 7267922631033261070}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.9830892, z: 1.4269109}
-  m_LocalScale: {x: 1.5122, y: 2, z: 2.2853}
+  m_LocalPosition: {x: -0, y: 1.9830892, z: 1.9412}
+  m_LocalScale: {x: 3.200571, y: 2, z: 3.3139133}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1195382242363868778}

@@ -80,6 +80,50 @@ public class DamageSource : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (UIPI == null)
+            {
+                UIPI = other.GetComponent<PlayerInflicts>();
+            }
+            else if (UIPI != other.GetComponent<PlayerInflicts>())
+            {
+                UIPI = other.GetComponent<PlayerInflicts>();
+            }
+
+            if (UIPI != null && !UIPI.IFrames)
+            {
+                if (!Attacking)
+                {
+                    // Initiate attack and stop movement
+                    Attacking = true;
+                    if (isRangedAttack == false)
+                    {
+                        animator.SetTrigger("Attacking");
+
+                        // Start the coroutine to wait for the animation to complete
+                        attackCoroutine = StartCoroutine(CompleteAttack());
+                    }
+                }
+                else if (Attacked && !playerExitedDuringAttack)
+                {
+                    // Apply damage after attack animation completes
+                    UIPI.TakingNormalDamage = true;
+                    UIPI.MaxDamage = maxDamage;
+                    UIPI.MinDamage = minDamage;
+                    UIPI.IFrames = true;
+                    UIPI.regenTimer = UIPI.HealthRegenDelay;
+                    UIPI.isRegenerating = false;
+                    if (inflictStatusEffect) UIPI.PlayerInflictsSE.DoStatusWork((int)effects, statusDuration, statusDamage);
+
+                    // Reset flags after applying damage
+                    ResetAttackFlags();
+                }
+            }
+        }
+    }
 
     private void OnTriggerExit(Collider other)
     {
