@@ -137,19 +137,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.274
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.808
+      value: -2.424
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.95230407
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.3051507
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalRotation.y
@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 35.534
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -214,8 +214,6 @@ MonoBehaviour:
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
   crystalnoise: {fileID: 0}
-  windSoundTimer: 0
-  isWindSoundPlaying: 0
   fireball: {fileID: 0}
   upgradedStaff: {fileID: 0}
   castForce: 0
@@ -241,6 +239,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 0}
   meleeHitbox: {fileID: 0}
+  animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}
