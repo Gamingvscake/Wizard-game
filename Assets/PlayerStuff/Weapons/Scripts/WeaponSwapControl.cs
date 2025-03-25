@@ -68,11 +68,11 @@ public class WeaponSwapControl : MonoBehaviour
         StaffSwap();
         DisplayPoints.SetText(points.ToString());
        
-        ScoreboardPoints.SetText(points.ToString());
+        if (ScoreboardPoints != null)ScoreboardPoints.SetText(points.ToString());
 
 
 
-        ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
+        if (ScoreboardKills != null) ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
         
     }
 

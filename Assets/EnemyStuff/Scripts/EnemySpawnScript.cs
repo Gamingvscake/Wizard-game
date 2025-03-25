@@ -48,7 +48,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         if (work)
         {
-            timer += Time.deltaTime;
+/*            timer += Time.deltaTime;
             if (timer >= 1)
             {
                 playeramountdead = 0;
@@ -67,7 +67,7 @@ public class EnemySpawnScript : MonoBehaviour
                     work = false;
                 }
                 timer = 0;
-            }
+            }*/
             if (player1RoundText != null) player1RoundText.text = rounds.ToString();
             if (player2RoundText != null) player2RoundText.text = rounds.ToString();
             if (player3RoundText != null) player3RoundText.text = rounds.ToString();

@@ -44,6 +44,8 @@ public class EnemyMovementScript : MonoBehaviour
 
     public float timer = 0f;
     public float timelimit = 1.8f;
+
+    Transform temp;
     private void Start()
     {
         PlayerNotList = new Transform[Players.Count];
@@ -65,7 +67,7 @@ public class EnemyMovementScript : MonoBehaviour
     {
         if (spawnScript.work == true && playerdeadbool == false)
         {
-            Transform temp = GetClosestEnemy(PlayerNotList);
+            if (PlayerNotList != null) temp = GetClosestEnemy(PlayerNotList);
             //transform.LookAt(temp);
             //selfNavAgent.destination = temp.position;
             if (temp != null) selfNavAgent.SetDestination(temp.position);
@@ -223,29 +225,32 @@ public class EnemyMovementScript : MonoBehaviour
         allplayersdead = 0;
         foreach (Transform potentialTarget in enemies)
         {
-            Vector3 directionToTarget = potentialTarget.position - currentPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false &&
-                    potentialTarget.GetComponentInChildren<UIGameOver>().isPlayerDead == false)
+            if (potentialTarget.gameObject.activeInHierarchy)
             {
-                if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false)
+                Vector3 directionToTarget = potentialTarget.position - currentPosition;
+                float dSqrToTarget = directionToTarget.sqrMagnitude;
+                if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false &&
+                        potentialTarget.GetComponentInChildren<UIGameOver>().isPlayerDead == false)
                 {
-                    if (dSqrToTarget < closestDistanceSqr)
+                    if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == false)
+                    {
+                        if (dSqrToTarget < closestDistanceSqr)
+                        {
+                            closestDistanceSqr = dSqrToTarget;
+                            bestTarget = potentialTarget;
+                        }
+                    }
+                    if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == true)
                     {
                         closestDistanceSqr = dSqrToTarget;
                         bestTarget = potentialTarget;
                     }
                 }
-                if (potentialTarget.GetComponentInChildren<DeathScreen>().isPlayerDead == true)
+                else
                 {
-                    closestDistanceSqr = dSqrToTarget;
-                    bestTarget = potentialTarget;
+                    allplayersdead += 1;
+                    bestTarget = null;
                 }
-            }
-            else
-            {
-                allplayersdead += 1;
-                bestTarget = null;
             }
         }
         if (allplayersdead >= spawnScript.Players.Count)
