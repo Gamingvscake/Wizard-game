@@ -21,6 +21,7 @@ public class PlayerInflicts : MonoBehaviour
     private bool DamageDealt;
 
     public StatusEffects PlayerInflictsSE;
+    public DeathScreen DeathScreen;
 
     public float regenTimer;
     public bool isRegenerating;
@@ -40,11 +41,12 @@ public class PlayerInflicts : MonoBehaviour
         PlayerCurrentHealth = PlayerMaxHealth;
         regenTimer = HealthRegenDelay;
         isRegenerating = false;
+        DeathScreen = GetComponentInChildren<DeathScreen>();
     }
 
     private void StartHealthRegen()
     {
-        if (!isRegenerating)
+        if (!isRegenerating && DeathScreen.isDead == false)
         {
             isRegenerating = true;
             StartCoroutine(RegenerateHealth());
