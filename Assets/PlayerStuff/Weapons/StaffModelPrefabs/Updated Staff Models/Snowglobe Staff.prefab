@@ -1,5 +1,245 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &117339827261799433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6478720256514610922}
+  m_Layer: 0
+  m_Name: Attack Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6478720256514610922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117339827261799433}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: -0.0302, y: 0.0914, z: -0.0725}
+  m_LocalScale: {x: 0.10281652, y: 0.10281652, z: 0.10281652}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1325326240119006208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3377940381841863207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2880515235337180476}
+  - component: {fileID: 7259936210337488817}
+  m_Layer: 0
+  m_Name: Snowglobe Staff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2880515235337180476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377940381841863207}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: -0.0555, y: 0.0354, z: -0.0928}
+  m_LocalScale: {x: 0.10281652, y: 0.10281652, z: 0.10281652}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1325326240119006208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &7259936210337488817
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377940381841863207}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0.6939311
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &4940683353917417029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3698108771522190411}
+  - component: {fileID: 2465657112986307070}
+  - component: {fileID: 7657596418218327682}
+  m_Layer: 0
+  m_Name: Melee Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3698108771522190411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4940683353917417029}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: -0.0645, y: 0.0838, z: -0.0354}
+  m_LocalScale: {x: 0.15409112, y: 0.027995933, z: 0.08309324}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1325326240119006208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2465657112986307070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4940683353917417029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7657596418218327682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4940683353917417029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732a15f240de2a54092abdc5ed0f895f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  DeleteOnImpact: 0
+  DeleteDelay: 0
+  damageType: 0
+  StickInTarget: 0
+  rb: {fileID: 0}
+  SplashRadius: {fileID: 0}
+  thisCollider: {fileID: 0}
+  cs: {fileID: 0}
+  dswsc: {fileID: 0}
+  dsPI: {fileID: 0}
+  isMelee: 0
+  isTurret: 0
+  instantiateVFX: {fileID: 0}
+  vfxSFX: {fileID: 0}
 --- !u!1001 &1580262422473688043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,12 +306,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6478720256514610922}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3698108771522190411}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2880515235337180476}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3308947498818417542}
   m_SourcePrefab: {fileID: 100100000, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+--- !u!4 &1325326240119006208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
+  m_PrefabInstance: {fileID: 1580262422473688043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1814758909932240570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 140f46d9c3703b64287e6a0ad2d86900, type: 3}
@@ -102,17 +356,17 @@ MonoBehaviour:
   crystalnoise: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: dbfb3154a6656a249a9166db054a797b, type: 3}
   upgradedStaff: {fileID: 0}
-  castForce: 0
+  castForce: 20
   upwardForce: 0
-  castTime: 0
+  castTime: 0.1
   spread: 0
-  reloadTime: 0
-  castSpeed: 0
+  reloadTime: 2
+  castSpeed: 0.5
   hitscanRange: 0
   hitscanTrailDuration: 0
-  manaSize: 0
-  spellsPerTap: 0
-  manaPerShot: 0
+  manaSize: 100
+  spellsPerTap: 1
+  manaPerShot: 2
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0

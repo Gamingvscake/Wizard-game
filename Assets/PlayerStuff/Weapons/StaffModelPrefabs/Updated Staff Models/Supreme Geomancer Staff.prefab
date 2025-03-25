@@ -111,6 +111,68 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &5724562809364416231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6994794321422052248}
+  m_Layer: 0
+  m_Name: Melee Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6994794321422052248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724562809364416231}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: 0.0044086464, y: 0.07291885, z: -0.072171815}
+  m_LocalScale: {x: 0.087689646, y: 0.087689646, z: 0.087689646}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826423445088484509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7484904912424110945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4074364833576732184}
+  m_Layer: 0
+  m_Name: Attack Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4074364833576732184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484904912424110945}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: 0.0044086464, y: 0.07291885, z: -0.072171815}
+  m_LocalScale: {x: 0.087689646, y: 0.087689646, z: 0.087689646}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826423445088484509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2220972871462476662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,6 +243,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2757327636057366014}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4074364833576732184}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6994794321422052248}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       insertIndex: -1
@@ -224,9 +292,9 @@ MonoBehaviour:
   castSpeed: 0
   hitscanRange: 0
   hitscanTrailDuration: 0
-  manaSize: 0
-  spellsPerTap: 0
-  manaPerShot: 0
+  manaSize: 200
+  spellsPerTap: 1
+  manaPerShot: 100
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0
