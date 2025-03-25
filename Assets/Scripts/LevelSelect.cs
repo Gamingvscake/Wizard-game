@@ -16,11 +16,13 @@ public class LevelSelect : MonoBehaviour
     private readonly Dictionary<Gamepad, int> controllerIDs = new Dictionary<Gamepad, int>();
     private int nextControllerID = 1;
 
-    public bool tavernSelected = true;
+    public bool tavernSelected = false;
     public bool mausoleumSelected = false;
+    public bool tutorialSelected = true;
 
     public GameObject Tavern;
     public GameObject Mausoleum;
+    public GameObject Tutorial;
 
     void Start()
     {
@@ -32,9 +34,6 @@ public class LevelSelect : MonoBehaviour
 
         // Create an outline for each controller
         UpdateAllOutlines();
-
-        Tavern.transform.position = new Vector3(0, 7, 0);
-        Mausoleum.transform.position = new Vector3(-36, 0, 213);
     }
 
     void OnEnable()
@@ -83,15 +82,25 @@ public class LevelSelect : MonoBehaviour
                 Mausoleum.transform.Rotate(0, 0.06f, 0);
             }
 
-            // Load Tavern level when southern button is pressed
+            if (tutorialSelected)
+            {
+                Tutorial.transform.Rotate(0, 0.06f, 0);
+            }
+
+            // Load level when southern button is pressed
             if (gamepad.buttonSouth.wasPressedThisFrame)
             {
                 if (controllerSelections[controllerID] == 0)
                 {
                     Debug.Log($"Controller {controllerID} confirmed selection!");
-                    SceneManager.LoadScene(3);
+                    SceneManager.LoadScene(5);
                 }
                 if (controllerSelections[controllerID] == 1)
+                {
+                    Debug.Log($"Controller {controllerID} confirmed selection!");
+                    SceneManager.LoadScene(3);
+                }
+                if (controllerSelections[controllerID] == 2)
                 {
                     Debug.Log($"Controller {controllerID} confirmed selection!");
                     SceneManager.LoadScene(4);
@@ -100,13 +109,21 @@ public class LevelSelect : MonoBehaviour
 
             if (controllerSelections[controllerID] == 0)
             {
-                tavernSelected = true;
+                tavernSelected = false;
                 mausoleumSelected = false;
+                tutorialSelected = true;
             }
             if (controllerSelections[controllerID] == 1)
             {
-                tavernSelected = false;
+                tutorialSelected = false;
+                tavernSelected = true;
+                mausoleumSelected = false;
+            }
+            if (controllerSelections[controllerID] == 2)
+            {
+                tutorialSelected = false;
                 mausoleumSelected = true;
+                tavernSelected = false;
             }
         }
 
@@ -136,26 +153,39 @@ public class LevelSelect : MonoBehaviour
         // Move levels based on Player 1's selection
         if (player1Selection == 0)
         {
-            tavernSelected = true;
+            tavernSelected = false;
             mausoleumSelected = false;
+            tutorialSelected= true;
 
-            // Move Tavern to the front and Mausoleum to the back
-            Tavern.transform.position = new Vector3(0, 7, 0);
-            Mausoleum.transform.position = new Vector3(-84, 0, 219);  // Behind Tavern
+            Tutorial.transform.position = new Vector3(0, 7, 0);
+            Tavern.transform.position = new Vector3(-46, 7, 196);
+            Mausoleum.transform.position = new Vector3(-131, 7, 375);
         }
         else if (player1Selection == 1)
         {
+            tutorialSelected = false;
+            tavernSelected = true;
+            mausoleumSelected = false;
+
+            Tutorial.transform.position = new Vector3(-125, 7, -153);
+            Mausoleum.transform.position = new Vector3(-69, 7, 180);
+            Tavern.transform.position = new Vector3(0, 7, 0);
+        }
+        else if (player1Selection == 2)
+        {
+            tutorialSelected = false;
             tavernSelected = false;
             mausoleumSelected = true;
 
-            // Move Mausoleum to the front and Tavern to the back
+            Tutorial.transform.position = new Vector3(-250, 7, -300);
             Mausoleum.transform.position = new Vector3(0, 7, 0);
-            Tavern.transform.position = new Vector3(-46, 7, -207);  // Behind Mausoleum
+            Tavern.transform.position = new Vector3(-46, 7, -196);
         }
 
         // Reset rotation for both levels to ensure they face forward correctly
         Tavern.transform.rotation = Quaternion.identity;
         Mausoleum.transform.rotation = Quaternion.identity;
+        Tutorial.transform.rotation = Quaternion.identity;
     }
 
     void UpdateAllOutlines()
