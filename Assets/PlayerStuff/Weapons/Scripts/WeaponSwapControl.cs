@@ -60,7 +60,7 @@ public class WeaponSwapControl : MonoBehaviour
         inputActions.PlayerControls.Enable();
 
         playerID.ToString();
-        //ScoreboardKills.text = "0";
+     
     }
 
     private void Update()
@@ -72,7 +72,10 @@ public class WeaponSwapControl : MonoBehaviour
 
 
 
-        if (ScoreboardKills != null) ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
+        if (ScoreboardKills != null)
+        {
+            ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
+        }
         
     }
 
@@ -172,13 +175,14 @@ public class WeaponSwapControl : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // Call my method when scene starts
+    
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "MainMenu" || scene.name == "Tavern") 
         {
             ResetKillCount(); // Reset kill count when the game starts
         }
+        
     }
 
     public static void ResetKillCount()

@@ -27,10 +27,17 @@ public class ReviveScript : MonoBehaviour
                     UIgameOver.isPlayerDead = false;
                     playerInflicts.wasrevived = true;
 
-                    //int playerID = playerInflicts.playerID;
-                    //if (!reviveCounts.ContainsKey(playerID))
+                    if (wsc != null)
                     {
-                       // reviveCounts[playerID] = 0; // Initialize the revive count for this player
+                        int revivingPlayerID = wsc.playerID;
+
+                        if (!reviveCounts.ContainsKey(revivingPlayerID))
+                        {
+                            reviveCounts[revivingPlayerID] = 0; 
+                        }
+
+                        reviveCounts[revivingPlayerID]++; 
+                        print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");
                     }
 
                     if (UIgameOver.redwiz != null)
@@ -46,13 +53,10 @@ public class ReviveScript : MonoBehaviour
         }
     }
 
+
     public static int GetReviveCount(int playerID)
     {
-        if (reviveCounts.ContainsKey(playerID))
-        {
-            return reviveCounts[playerID];
-        }
-        return 0; // Return 0 if no revive data for this player
+        return reviveCounts.ContainsKey(playerID) ? reviveCounts[playerID] : 0;
     }
 
 }

@@ -8,7 +8,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class EnemyHealthScript : MonoBehaviour
 {
     public int MaxHealth;
-    public int Health;
+    public int Health = 100;
     public Slider HealthSlider;
     public DamageResistance damageRes;
     public DamageWeakness damageWeak;
@@ -24,7 +24,7 @@ public class EnemyHealthScript : MonoBehaviour
     public GameObject[] statusIconsHold;
     public GameObject[] statusIconLocations;
     public List<GameObject> statusIconsInUse;
-    //public TextMeshProUGUI ScoreboardKills;
+    
     float temptimer;
     float statusdonetemptimer;
     float temporarytimer;
@@ -34,13 +34,10 @@ public class EnemyHealthScript : MonoBehaviour
 
 
     // Dictionary to track player kills
-    public static Dictionary<string, int> playerKillCount = new Dictionary<string, int>
-    {
-        {"Player1", 0},
-        {"Player2", 0},
-        {"Player3", 0},
-        {"Player4", 0}
-    };
+    public static Dictionary<string, int> playerKillCount = new Dictionary<string, int>();
+
+    public string playerTag;
+    public int playerID;
 
     public enum DamageResistance
     {
@@ -68,10 +65,10 @@ public class EnemyHealthScript : MonoBehaviour
     }
     private void Start()
     {
-        playerKillCount["Player1"] = 0;
-        playerKillCount["Player2"] = 0;
-        playerKillCount["Player3"] = 0;
-        playerKillCount["Player4"] = 0;
+        if (!playerKillCount.ContainsKey("Player1")) playerKillCount.Add("Player1", 0);
+        if (!playerKillCount.ContainsKey("Player2")) playerKillCount.Add("Player2", 0);
+        if (!playerKillCount.ContainsKey("Player3")) playerKillCount.Add("Player3", 0);
+        if (!playerKillCount.ContainsKey("Player4")) playerKillCount.Add("Player4", 0);
 
         if (DevBoolToNotMove == false)
         {
@@ -384,6 +381,25 @@ public class EnemyHealthScript : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void OnDeath()
+    {
+        // Update the kill count when an enemy dies
+        if (playerKillCount.ContainsKey(playerTag))
+        {
+            playerKillCount[playerTag]++;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            OnDeath();  
+            
         }
     }
 }
