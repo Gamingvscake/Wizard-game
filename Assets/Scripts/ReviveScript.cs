@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ReviveScript : MonoBehaviour
 {
     public WeaponSwapControl wsc;
+    public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
 
     private void OnTriggerStay(Collider other)
@@ -53,6 +55,14 @@ public class ReviveScript : MonoBehaviour
         }
     }
 
+    private void UpdateReviveText(int playerID)
+    {
+        // Make sure the playerID is valid and that the text array is initialized
+        if (playerID >= 1 && playerID <= reviveTexts.Length)
+        {
+            reviveTexts[playerID - 1].text = "Revives: " + reviveCounts[playerID];
+        }
+    }
 
     public static int GetReviveCount(int playerID)
     {
