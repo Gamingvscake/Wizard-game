@@ -111,6 +111,134 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &5689642784048061978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7802760163848253366}
+  - component: {fileID: 6554938015137757295}
+  m_Layer: 0
+  m_Name: Geomancer Staff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7802760163848253366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689642784048061978}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
+  m_LocalPosition: {x: -0.0121, y: 0.0604, z: -0.0969}
+  m_LocalScale: {x: 0.087689646, y: 0.087689646, z: 0.087689646}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826423445088484509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &6554938015137757295
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689642784048061978}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0.637831
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5724562809364416231
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +248,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6994794321422052248}
+  - component: {fileID: 2037804945575047481}
+  - component: {fileID: 5341364100977725867}
   m_Layer: 0
   m_Name: Melee Hitbox
   m_TagString: Untagged
@@ -136,12 +266,60 @@ Transform:
   m_GameObject: {fileID: 5724562809364416231}
   serializedVersion: 2
   m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
-  m_LocalPosition: {x: 0.0044086464, y: 0.07291885, z: -0.072171815}
-  m_LocalScale: {x: 0.087689646, y: 0.087689646, z: 0.087689646}
+  m_LocalPosition: {x: -0.033, y: 0.0811, z: -0.0375}
+  m_LocalScale: {x: 0.16122618, y: 0.038059372, z: 0.06876446}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1826423445088484509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2037804945575047481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724562809364416231}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5341364100977725867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724562809364416231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732a15f240de2a54092abdc5ed0f895f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  DeleteOnImpact: 0
+  DeleteDelay: 0
+  damageType: 0
+  StickInTarget: 0
+  rb: {fileID: 0}
+  SplashRadius: {fileID: 0}
+  thisCollider: {fileID: 0}
+  cs: {fileID: 0}
+  dswsc: {fileID: 0}
+  dsPI: {fileID: 0}
+  isMelee: 0
+  isTurret: 0
+  instantiateVFX: {fileID: 0}
+  vfxSFX: {fileID: 0}
 --- !u!1 &7484904912424110945
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +345,7 @@ Transform:
   m_GameObject: {fileID: 7484904912424110945}
   serializedVersion: 2
   m_LocalRotation: {x: -0.3051507, y: 0, z: -0, w: 0.95230407}
-  m_LocalPosition: {x: 0.0044086464, y: 0.07291885, z: -0.072171815}
+  m_LocalPosition: {x: 0.0044086464, y: 0.0945, z: -0.0731}
   m_LocalScale: {x: 0.087689646, y: 0.087689646, z: 0.087689646}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249,6 +427,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6994794321422052248}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7802760163848253366}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e31516d8e7ff81b4a873f042959ee993, type: 3}
       insertIndex: -1
@@ -284,29 +465,29 @@ MonoBehaviour:
   crystalnoise: {fileID: 0}
   fireball: {fileID: 0}
   upgradedStaff: {fileID: 0}
-  castForce: 0
+  castForce: 20
   upwardForce: 0
-  castTime: 0
+  castTime: 0.1
   spread: 0
-  reloadTime: 0
-  castSpeed: 0
-  hitscanRange: 0
+  reloadTime: 2
+  castSpeed: 0.1
+  hitscanRange: 120
   hitscanTrailDuration: 0
   manaSize: 200
   spellsPerTap: 1
-  manaPerShot: 100
+  manaPerShot: 50
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0
   spellsCasted: 0
   casting: 0
-  readyToCast: 0
+  readyToCast: 1
   reloading: 0
   movementController: {fileID: 0}
   attackType: 0
   playerCam: {fileID: 0}
-  attackPoint: {fileID: 0}
-  meleeHitbox: {fileID: 0}
+  attackPoint: {fileID: 4074364833576732184}
+  meleeHitbox: {fileID: 5724562809364416231}
   animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}

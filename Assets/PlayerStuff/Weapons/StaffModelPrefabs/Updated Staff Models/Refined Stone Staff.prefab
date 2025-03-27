@@ -2581,18 +2581,18 @@ MonoBehaviour:
   fireballStaff: {fileID: 0}
   crystalnoise: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 9ffc5c93dc424b842b6d005bb9ffcd0a, type: 3}
-  upgradedStaff: {fileID: 0}
-  castForce: 0
+  upgradedStaff: {fileID: 1302405465543665191, guid: 3015c2c6700cf4c4b9aaca2741beb487, type: 3}
+  castForce: 20
   upwardForce: 0
-  castTime: 0
+  castTime: 0.1
   spread: 0
-  reloadTime: 0
-  castSpeed: 0
-  hitscanRange: 0
+  reloadTime: 2
+  castSpeed: 0.1
+  hitscanRange: 100
   hitscanTrailDuration: 0
   manaSize: 100
   spellsPerTap: 1
-  manaPerShot: 100
+  manaPerShot: 25
   allowButtonHold: 0
   maxtimer: 0
   spellsLeft: 0
