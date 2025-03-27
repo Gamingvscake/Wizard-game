@@ -164,9 +164,14 @@ MonoBehaviour:
   firestaff: {fileID: -2025843543212096256}
   icecrackingUPGRADED: {fileID: 0}
   firestaffUPGRADED: {fileID: 0}
+  laserSound: {fileID: 0}
+  lightSound: {fileID: 0}
+  windSound: {fileID: 0}
+  IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
-  fireball: {fileID: 7188116084076457725, guid: d4ccc3480912ce54e928091ab634579d, type: 3}
+  crystalnoise: {fileID: 0}
+  fireball: {fileID: 576261018160768828, guid: 442fe511d12b9b14ebe87787923bb011, type: 3}
   upgradedStaff: {fileID: 3228822451976501643, guid: 061ae3c4b5c8ad54f85a6b0d66b44596, type: 3}
   castForce: 20
   upwardForce: 0
@@ -191,6 +196,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
   meleeHitbox: {fileID: 709665727413256575}
+  animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}

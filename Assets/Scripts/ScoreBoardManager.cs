@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ScoreBoardManager : MonoBehaviour
 {
-    public GameObject scoreboardCanvas;  // Reference to the scoreboard canvas
+    public GameObject scoreboardCanvas;  
     public GameObject[] players;         // Array of all player GameObjects
-    public GameObject[] gravestones;     // Array of gravestone objects for each player
+    public PlayerInflicts playerInflicts;
+    private int deadPlayersCount = 0;    // Count of players who are dead
+    private int activePlayersCount = 0; // Count number of active players
+    private bool allPlayersDead = false;
 
-    private int deadPlayersCount = 0;    // Count of players who are dead (i.e., gravestone is active)
-    private bool allPlayersDead = false; // Boolean to check if all players are dead
 
     private void Start()
     {
@@ -23,18 +24,22 @@ public class ScoreBoardManager : MonoBehaviour
     private void Update()
     {
         deadPlayersCount = 0;
+        activePlayersCount = 0;
 
-        
-        for (int i = 0; i < players.Length; i++)
+        foreach (GameObject player in players)
         {
-            if (gravestones[i] != null && gravestones[i].activeSelf) 
+            if (player.activeInHierarchy) // Check for active players
             {
-                deadPlayersCount++;
+                activePlayersCount++;
+                PlayerInflicts playerInflicts = player.GetComponent<PlayerInflicts>();
+                if (playerInflicts != null && playerInflicts.PlayerCurrentHealth <= 0)
+                {
+                    deadPlayersCount++;
+                }
             }
         }
 
-        
-        if (deadPlayersCount == players.Length && !allPlayersDead)
+        if (deadPlayersCount == activePlayersCount && activePlayersCount > 0 && !allPlayersDead)
         {
             allPlayersDead = true;
             ShowScoreboard();

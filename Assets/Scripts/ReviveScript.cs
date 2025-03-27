@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ReviveScript : MonoBehaviour
 {
     public WeaponSwapControl wsc;
+    public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
 
     private void OnTriggerStay(Collider other)
@@ -27,10 +29,17 @@ public class ReviveScript : MonoBehaviour
                     UIgameOver.isPlayerDead = false;
                     playerInflicts.wasrevived = true;
 
-                    //int playerID = playerInflicts.playerID;
-                    //if (!reviveCounts.ContainsKey(playerID))
+                    if (wsc != null)
                     {
-                       // reviveCounts[playerID] = 0; // Initialize the revive count for this player
+                        int revivingPlayerID = wsc.playerID;
+
+                        if (!reviveCounts.ContainsKey(revivingPlayerID))
+                        {
+                            reviveCounts[revivingPlayerID] = 0; 
+                        }
+
+                        reviveCounts[revivingPlayerID]++; 
+                        print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");
                     }
 
                     if (UIgameOver.redwiz != null)
@@ -46,13 +55,18 @@ public class ReviveScript : MonoBehaviour
         }
     }
 
+    private void UpdateReviveText(int playerID)
+    {
+        // Make sure the playerID is valid and that the text array is initialized
+        if (playerID >= 1 && playerID <= reviveTexts.Length)
+        {
+            reviveTexts[playerID - 1].text = "Revives: " + reviveCounts[playerID];
+        }
+    }
+
     public static int GetReviveCount(int playerID)
     {
-        if (reviveCounts.ContainsKey(playerID))
-        {
-            return reviveCounts[playerID];
-        }
-        return 0; // Return 0 if no revive data for this player
+        return reviveCounts.ContainsKey(playerID) ? reviveCounts[playerID] : 0;
     }
 
 }
