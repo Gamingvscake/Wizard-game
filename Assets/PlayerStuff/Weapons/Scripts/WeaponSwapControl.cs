@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.PlayerSettings;
 
 public class WeaponSwapControl : MonoBehaviour
 {
@@ -19,11 +21,13 @@ public class WeaponSwapControl : MonoBehaviour
     public TextMeshProUGUI DisplayPoints;
     public TextMeshProUGUI ScoreboardPoints;
     public TextMeshProUGUI ScoreboardKills;
+    public TextMeshProUGUI ScoreboardRevives;
     public int points;
     public CauldronScript wsccs;
     public PlayerInflicts wscPI;
     public EnemySpawnScript ESS;
     public EnemyHealthScript EHS;
+    public ReviveScript revive;
     public AnvilScript wscas;
     public StatusEffects wscSE;
     public int maxNumberOfTurrets;
@@ -35,6 +39,9 @@ public class WeaponSwapControl : MonoBehaviour
     public Animator animator;
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
+
+    public TMP_Text[] reviveTexts;
+    private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
 
     private void Start()
     {
@@ -58,9 +65,18 @@ public class WeaponSwapControl : MonoBehaviour
 
         inputActions = new PlayerController();
         inputActions.PlayerControls.Enable();
-
         playerID.ToString();
-     
+
+        /*int revivingPlayerID = playerID;
+
+        if (!reviveCounts.ContainsKey(revivingPlayerID))
+        {
+            reviveCounts[revivingPlayerID] = 0;
+        }
+
+        reviveCounts[revivingPlayerID]++;
+        print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");*/
+
     }
 
     private void Update()
@@ -76,7 +92,21 @@ public class WeaponSwapControl : MonoBehaviour
         {
             ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
         }
-        
+
+        if (ScoreboardRevives != null)
+        {
+            if (reviveCounts.ContainsKey(playerID)) // Check if key exists
+            {
+                ScoreboardRevives.SetText(reviveCounts[playerID].ToString());
+            }
+            else
+            {
+                // If the playerID does not exist, set the revive count to 0
+                reviveCounts[playerID] = 0; // Initialize the value for this player
+                ScoreboardRevives.SetText("0"); // Set the scoreboard to show 0 revives
+            }
+        }
+
     }
 
     private void StaffSwap()
@@ -194,5 +224,19 @@ public class WeaponSwapControl : MonoBehaviour
         EnemyHealthScript.playerKillCount["Player4"] = 0;
 
         
+    }
+
+    private void UpdateReviveText(int playerID)
+    {
+        // Make sure the playerID is valid and that the text array is initialized
+        if (playerID >= 1 && playerID <= reviveTexts.Length)
+        {
+            reviveTexts[playerID - 1].text = "Revives: " + reviveCounts[playerID];
+        }
+    }
+
+    public static int GetReviveCount(int playerID)
+    {
+        return reviveCounts.ContainsKey(playerID) ? reviveCounts[playerID] : 0;
     }
 }

@@ -276,6 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealCast: {fileID: 8640857179593466088, guid: 508b99065d8477a4bb9a191f65782f1c, type: 3}
+  reviveTexts: []
+  revivestuff: {fileID: 8640857179593466088, guid: 508b99065d8477a4bb9a191f65782f1c, type: 3}
 --- !u!1 &7251395280055763604
 GameObject:
   m_ObjectHideFlags: 0

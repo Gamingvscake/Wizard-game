@@ -12,6 +12,7 @@ public class UIGameOver : MonoBehaviour
     public GameObject bluePosePrefab;
     public GameObject redwiz;
     public GameObject pinkwiz;
+    public GameObject wizardPrefab;
     public Slider healthSlider;
     public GameObject manaGauge;
     public GameObject points;
@@ -93,6 +94,10 @@ public class UIGameOver : MonoBehaviour
                 {
                     meshRenderer.enabled = false;
                 }
+            }
+            if (wizardPrefab != null)
+            {
+                wizardPrefab.gameObject.SetActive(false);
             }
 
             if (redwiz != null)

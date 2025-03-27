@@ -29,44 +29,31 @@ public class ReviveScript : MonoBehaviour
                     UIgameOver.isPlayerDead = false;
                     playerInflicts.wasrevived = true;
 
-                    if (wsc != null)
+                    int revivingPlayerID = wsc.playerID;
+
+                    if (!reviveCounts.ContainsKey(revivingPlayerID))
                     {
-                        int revivingPlayerID = wsc.playerID;
-
-                        if (!reviveCounts.ContainsKey(revivingPlayerID))
-                        {
-                            reviveCounts[revivingPlayerID] = 0; 
-                        }
-
-                        reviveCounts[revivingPlayerID]++; 
-                        print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");
+                        reviveCounts[revivingPlayerID] = 0;
                     }
 
-                    if (UIgameOver.redwiz != null)
+                    reviveCounts[revivingPlayerID]++;
+                    print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");
+
+                    if (UIgameOver.wizardPrefab != null)
                     {
-                        UIgameOver.redwiz.gameObject.SetActive(true);
+                        UIgameOver.wizardPrefab.gameObject.SetActive(true);
                     }
-                    if (UIgameOver.pinkwiz != null)
+                    /*if (UIgameOver.pinkwiz != null)
                     {
                         UIgameOver.pinkwiz.gameObject.SetActive(true);
-                    }
+                    }*/
                 }
             }
         }
+
+
     }
 
-    private void UpdateReviveText(int playerID)
-    {
-        // Make sure the playerID is valid and that the text array is initialized
-        if (playerID >= 1 && playerID <= reviveTexts.Length)
-        {
-            reviveTexts[playerID - 1].text = "Revives: " + reviveCounts[playerID];
-        }
-    }
-
-    public static int GetReviveCount(int playerID)
-    {
-        return reviveCounts.ContainsKey(playerID) ? reviveCounts[playerID] : 0;
-    }
+    
 
 }
