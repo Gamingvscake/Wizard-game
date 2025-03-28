@@ -39,7 +39,7 @@ public class WeaponSwapControl : MonoBehaviour
     public Animator animator;
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
-
+    public bool inTutorialScene;
     public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
 
@@ -49,8 +49,11 @@ public class WeaponSwapControl : MonoBehaviour
         EquippedStaffs = new GameObject[MaxNumberOfStaffs];
         TempStaffs = new GameObject[MaxNumberOfStaffs];
         EquippedStaffs[0] = StarterStaff;
-        ESS = GameObject.Find("Spawning").GetComponent<EnemySpawnScript>();
-        ESS.Players.Add(this.transform);
+        if (inTutorialScene == false) 
+        {
+            ESS = GameObject.Find("Spawning").GetComponent<EnemySpawnScript>();
+            ESS.Players.Add(this.transform);
+        }
         movementController = GetComponent<MovementController>();
 
         if (tempobject == null)
