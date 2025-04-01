@@ -12,6 +12,7 @@ public class InteractableVariables : MonoBehaviour
     public bool WeaponUp;
     public bool ManaUp;
     public bool RevivePotion;
+    public bool Anvil;
     public TMP_Text text;
     private void Start()
     {

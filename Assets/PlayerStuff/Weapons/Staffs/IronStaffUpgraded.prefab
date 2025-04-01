@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6335638096430071705
 Transform:
   m_ObjectHideFlags: 0
@@ -97,6 +97,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4324217888321436317}
+  - {fileID: 2680466448051840387}
   - {fileID: 6335638096430071705}
   - {fileID: 2626075607143133344}
   m_Father: {fileID: 0}
@@ -117,8 +118,13 @@ MonoBehaviour:
   firestaff: {fileID: 0}
   icecrackingUPGRADED: {fileID: 0}
   firestaffUPGRADED: {fileID: 0}
+  laserSound: {fileID: 0}
+  lightSound: {fileID: 0}
+  windSound: {fileID: 0}
+  IronSound: {fileID: 0}
   defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 497c2e29cd4180a4e97320b07018df86, type: 3}
   upgradedStaff: {fileID: 0}
   castForce: 20
@@ -144,6 +150,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
   meleeHitbox: {fileID: 7397379698482661076}
+  animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}
@@ -631,3 +638,81 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &2501845753476334184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3497894399543412447}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2148304
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.95172983
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.62251884
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.6607949
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.2010546
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.69182295
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.21049508
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.463
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -267.81702
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 33.818
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+      propertyPath: m_Name
+      value: Refined Stone Staff
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+--- !u!4 &2680466448051840387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36f0c7257d477ba4b924949f1b07bb3f, type: 3}
+  m_PrefabInstance: {fileID: 2501845753476334184}
+  m_PrefabAsset: {fileID: 0}

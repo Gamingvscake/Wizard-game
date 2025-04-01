@@ -1640,6 +1640,7 @@ MonoBehaviour:
   MaxDamage: 0
   MinDamage: 0
   PlayerInflictsSE: {fileID: 6379825533279166842}
+  DeathScreen: {fileID: 0}
   regenTimer: 0
   isRegenerating: 0
   IFrames: 0
@@ -1660,6 +1661,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62a846af9db83e4bb34f103da58313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reviveTexts: []
+  revivescripts: {fileID: 0}
+  revivestuff: {fileID: 0}
   DevKeyboardOn: 0
   walkSpeed: 5
   sprintSpeed: 8
@@ -1715,11 +1719,13 @@ MonoBehaviour:
   DisplayPoints: {fileID: 135280050689231363}
   ScoreboardPoints: {fileID: 0}
   ScoreboardKills: {fileID: 0}
+  ScoreboardRevives: {fileID: 0}
   points: 5000
   wsccs: {fileID: 6462214699197122375}
   wscPI: {fileID: 7904782378280369243}
   ESS: {fileID: 0}
   EHS: {fileID: 0}
+  revive: {fileID: 0}
   wscas: {fileID: 1288785501496707857}
   wscSE: {fileID: 6379825533279166842}
   maxNumberOfTurrets: 3
@@ -1728,6 +1734,8 @@ MonoBehaviour:
   playerID: 1
   movementController: {fileID: 0}
   animator: {fileID: 7384182130072181771}
+  inTutorialScene: 0
+  reviveTexts: []
 --- !u!114 &6462214699197122375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1765,6 +1773,7 @@ MonoBehaviour:
   Buyable: 0
   Removeable: 0
   CauldronBuyable: 0
+  AnvilBuyable: 0
   timer: 0
   Maxtimer: 1
   InterVaris: {fileID: 0}
@@ -1783,7 +1792,10 @@ MonoBehaviour:
   - {fileID: 1333866765120678959}
   - {fileID: 797059531738495729}
   - {fileID: 7868470919576062201}
+  PoofVFX: {fileID: 7453985737520528936, guid: da23f9de50ccc624881809afb2183406, type: 3}
   cauldronEffectsGot: []
+  anviltrack: {fileID: 5494868551525475286}
+  anvilVFX: {fileID: 7453985737520528936, guid: 8a6eff171b361f4468aeb0aaa85c5cf4, type: 3}
 --- !u!114 &1288785501496707857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7622,6 +7634,7 @@ MonoBehaviour:
   bluePosePrefab: {fileID: 0}
   redwiz: {fileID: 1209730087625075738}
   pinkwiz: {fileID: 8172189482942059104}
+  wizardPrefab: {fileID: 0}
   healthSlider: {fileID: 5483456825691924316}
   manaGauge: {fileID: 3354020938930307461}
   points: {fileID: 2610393740672970095}

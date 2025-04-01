@@ -1171,7 +1171,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7159534162941036860}
-  - component: {fileID: -1194403061092229375}
   m_Layer: 0
   m_Name: PlatinumStaff
   m_TagString: Untagged
@@ -1209,39 +1208,6 @@ Transform:
   - {fileID: 6608602449406845509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1194403061092229375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8484182010707820095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0b992413cd223b4e82bda0993dd5500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireball: {fileID: 623420616769059698, guid: ab5bb561b53f0e443bf304b89b196e35, type: 3}
-  castForce: 20
-  upwardForce: 0
-  castTime: 0.1
-  spread: 0
-  reloadTime: 2
-  castSpeed: 0.5
-  manaSize: 100
-  spellsPerTap: 3
-  allowButtonHold: 0
-  spellsLeft: 0
-  spellsCasted: 0
-  casting: 0
-  readyToCast: 0
-  reloading: 0
-  playerCam: {fileID: 0}
-  attackPoint: {fileID: 2626075607143133344, guid: e50d520e18af2784b92b6a332aa42240, type: 3}
-  manaDisplay: {fileID: 0}
-  sccs: {fileID: 0}
-  scPI: {fileID: 0}
-  allowInvoke: 1
 --- !u!1 &8638951334494939687
 GameObject:
   m_ObjectHideFlags: 0

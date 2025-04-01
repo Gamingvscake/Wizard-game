@@ -65,6 +65,7 @@ Transform:
   - {fileID: 2626075607143133344}
   - {fileID: 4138305859500120535}
   - {fileID: 4899995523113837228}
+  - {fileID: 6712070116282094234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3324005319182850135
@@ -81,7 +82,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icecracking: {fileID: 0}
   firestaff: {fileID: 0}
+  icecrackingUPGRADED: {fileID: 0}
+  firestaffUPGRADED: {fileID: 0}
+  laserSound: {fileID: 0}
+  lightSound: {fileID: 0}
+  windSound: {fileID: 0}
+  IronSound: {fileID: 0}
+  defaultStaff: {fileID: 0}
   fireballStaff: {fileID: 0}
+  crystalnoise: {fileID: 0}
   fireball: {fileID: 7188116084076457725, guid: 6268553b0b6195543a4c776d6f8b3a3a, type: 3}
   upgradedStaff: {fileID: 0}
   castForce: 20
@@ -107,6 +116,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   attackPoint: {fileID: 2626075607143133344}
   meleeHitbox: {fileID: 5946919254628722933}
+  animator: {fileID: 0}
   manaDisplay: {fileID: 0}
   sccs: {fileID: 0}
   scas: {fileID: 0}
@@ -329,6 +339,70 @@ MonoBehaviour:
   dsPI: {fileID: 0}
   isMelee: 1
   isTurret: 0
+  instantiateVFX: {fileID: 0}
+  vfxSFX: {fileID: 0}
+--- !u!1001 &4502990867427859366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3497894399543412447}
+    m_Modifications:
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2668
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4493
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6442641
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19602485
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70724297
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.21518682
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -2.969
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 94.436
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 33.731
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484182010707820095, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+      propertyPath: m_Name
+      value: PlatinumStaff
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+--- !u!4 &6712070116282094234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7159534162941036860, guid: ca2bd1f482998ff429a4ddc01b9210c3, type: 3}
+  m_PrefabInstance: {fileID: 4502990867427859366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5509695262655301084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -340,6 +414,10 @@ PrefabInstance:
     - target: {fileID: 8304071622059284797, guid: 893b3f44262f59241af26db50bb97ba2, type: 3}
       propertyPath: m_Name
       value: SilverStaff
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304071622059284797, guid: 893b3f44262f59241af26db50bb97ba2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8437610341400370187, guid: 893b3f44262f59241af26db50bb97ba2, type: 3}
       propertyPath: m_LocalPosition.x

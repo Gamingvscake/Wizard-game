@@ -5563,6 +5563,7 @@ MonoBehaviour:
   bluePosePrefab: {fileID: 0}
   redwiz: {fileID: 5183347801625790703}
   pinkwiz: {fileID: 8621948626507071585}
+  wizardPrefab: {fileID: 0}
   healthSlider: {fileID: 7823474662135069899}
   manaGauge: {fileID: 7992539402527311203}
   points: {fileID: 2447524264925919561}
@@ -7886,6 +7887,7 @@ MonoBehaviour:
   MaxDamage: 0
   MinDamage: 0
   PlayerInflictsSE: {fileID: 2627897436871568985}
+  DeathScreen: {fileID: 0}
   regenTimer: 0
   isRegenerating: 0
   IFrames: 0
@@ -7906,6 +7908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62a846af9db83e4bb34f103da58313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reviveTexts: []
+  revivescripts: {fileID: 0}
+  revivestuff: {fileID: 0}
   DevKeyboardOn: 0
   walkSpeed: 5
   sprintSpeed: 8
@@ -7961,11 +7966,13 @@ MonoBehaviour:
   DisplayPoints: {fileID: 1610058399829707522}
   ScoreboardPoints: {fileID: 0}
   ScoreboardKills: {fileID: 0}
+  ScoreboardRevives: {fileID: 0}
   points: 5000
   wsccs: {fileID: 7835633373602754456}
   wscPI: {fileID: 8826547227365373462}
   ESS: {fileID: 0}
   EHS: {fileID: 0}
+  revive: {fileID: 0}
   wscas: {fileID: 7438490547100911021}
   wscSE: {fileID: 2627897436871568985}
   maxNumberOfTurrets: 3
@@ -7974,6 +7981,8 @@ MonoBehaviour:
   playerID: 1
   movementController: {fileID: 0}
   animator: {fileID: 7731018602399407995}
+  inTutorialScene: 0
+  reviveTexts: []
 --- !u!114 &7835633373602754456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8011,6 +8020,7 @@ MonoBehaviour:
   Buyable: 0
   Removeable: 0
   CauldronBuyable: 0
+  AnvilBuyable: 0
   timer: 0
   Maxtimer: 1
   InterVaris: {fileID: 0}
@@ -8029,7 +8039,10 @@ MonoBehaviour:
   - {fileID: 5312363044581375077}
   - {fileID: 3671792070843784448}
   - {fileID: 7853966393752346896}
+  PoofVFX: {fileID: 7453985737520528936, guid: da23f9de50ccc624881809afb2183406, type: 3}
   cauldronEffectsGot: []
+  anviltrack: {fileID: 5605113107321113305}
+  anvilVFX: {fileID: 7453985737520528936, guid: 8a6eff171b361f4468aeb0aaa85c5cf4, type: 3}
 --- !u!114 &7438490547100911021
 MonoBehaviour:
   m_ObjectHideFlags: 0

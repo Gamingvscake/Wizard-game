@@ -174,6 +174,7 @@ MonoBehaviour:
   MaxDamage: 0
   MinDamage: 0
   PlayerInflictsSE: {fileID: 4712270538996341825}
+  DeathScreen: {fileID: 0}
   regenTimer: 0
   isRegenerating: 0
   IFrames: 0
@@ -194,6 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62a846af9db83e4bb34f103da58313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reviveTexts: []
+  revivescripts: {fileID: 0}
+  revivestuff: {fileID: 0}
   DevKeyboardOn: 0
   walkSpeed: 5
   sprintSpeed: 8
@@ -249,11 +253,13 @@ MonoBehaviour:
   DisplayPoints: {fileID: 1460790117255133894}
   ScoreboardPoints: {fileID: 0}
   ScoreboardKills: {fileID: 0}
+  ScoreboardRevives: {fileID: 0}
   points: 5000
   wsccs: {fileID: 9040982871116824312}
   wscPI: {fileID: 8334799217425185858}
   ESS: {fileID: 0}
   EHS: {fileID: 0}
+  revive: {fileID: 0}
   wscas: {fileID: 1539398453585075729}
   wscSE: {fileID: 4712270538996341825}
   maxNumberOfTurrets: 3
@@ -262,6 +268,8 @@ MonoBehaviour:
   playerID: 1
   movementController: {fileID: 0}
   animator: {fileID: 5127214717123630710}
+  inTutorialScene: 0
+  reviveTexts: []
 --- !u!114 &9040982871116824312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +307,7 @@ MonoBehaviour:
   Buyable: 0
   Removeable: 0
   CauldronBuyable: 0
+  AnvilBuyable: 0
   timer: 0
   Maxtimer: 1
   InterVaris: {fileID: 0}
@@ -317,7 +326,10 @@ MonoBehaviour:
   - {fileID: 2302035158206634198}
   - {fileID: 5337069913741585971}
   - {fileID: 3956272028620258539}
+  PoofVFX: {fileID: 7453985737520528936, guid: da23f9de50ccc624881809afb2183406, type: 3}
   cauldronEffectsGot: []
+  anviltrack: {fileID: 3810116862239744178}
+  anvilVFX: {fileID: 7453985737520528936, guid: 8a6eff171b361f4468aeb0aaa85c5cf4, type: 3}
 --- !u!114 &1539398453585075729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,6 +983,7 @@ MonoBehaviour:
   bluePosePrefab: {fileID: 0}
   redwiz: {fileID: 8110714878743723713}
   pinkwiz: {fileID: 727231468878790436}
+  wizardPrefab: {fileID: 0}
   healthSlider: {fileID: 1136472538459207920}
   manaGauge: {fileID: 4792474104979360118}
   points: {fileID: 6047678165035253074}

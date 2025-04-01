@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class Interactables : MonoBehaviour
 {
     public bool InInteractableRange;
-    public bool Buyable, Removeable, CauldronBuyable;
+    public bool Buyable, Removeable, CauldronBuyable, AnvilBuyable;
     public float timer, Maxtimer;
     public InteractableVariables InterVaris;
     public WeaponSwapControl iwsc;
@@ -22,6 +21,8 @@ public class Interactables : MonoBehaviour
     public GameObject[] cauldronEffectIconLocations;
     public GameObject PoofVFX;
     public List<GameObject> cauldronEffectsGot;
+    public AudioSource anviltrack;
+    public GameObject anvilVFX;
     bool healthbought;
     bool speedbought;
     bool weaponbought;
@@ -70,6 +71,11 @@ public class Interactables : MonoBehaviour
                     txt.text = "Buy " + InterVaris.BuyableObject.name + " for " + InterVaris.Cost;
                     txt.transform.parent.gameObject.SetActive(true);
                 }
+            }
+            else if (InterVaris.Anvil)
+            {
+                txt.text = "Upgrade staff for 5000";
+                txt.transform.parent.gameObject.SetActive(true);
             }
             else
             {
@@ -181,6 +187,17 @@ public class Interactables : MonoBehaviour
                     }
                     ResetInteractState();
                 }
+                else if (AnvilBuyable)
+                {
+                    if (iwsc.points >= 5000 && iwsc.CurrentEquippedStaff.GetComponent<SpellController>().upgradedStaff != null)
+                    {
+
+                        iwsc.UpgradeStaff();
+                        iwsc.points -= 5000;
+                        anviltrack.Play();
+                        Instantiate(anvilVFX, InterVaris.gameObject.transform.position, Quaternion.identity);
+                    }
+                }
             }
         }
     }
@@ -223,11 +240,17 @@ public class Interactables : MonoBehaviour
             InterVaris = other.GetComponent<InteractableVariables>();
             CauldronBuyable = true;
         }
+        if (other.CompareTag("Anvil"))
+        {
+            InInteractableRange = true;
+            InterVaris = other.GetComponent<InteractableVariables>();
+            AnvilBuyable = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Removeable") || other.CompareTag("Buyable") || other.CompareTag("CauldronBuyable"))
+        if (other.CompareTag("Removeable") || other.CompareTag("Buyable") || other.CompareTag("CauldronBuyable") || other.CompareTag("Anvil"))
         {
             ResetInteractState();
         }
@@ -242,6 +265,7 @@ public class Interactables : MonoBehaviour
         Buyable = false;
         CanBuy = false;
         CauldronBuyable = false;
+        AnvilBuyable = false;
         HasBought = false;
         slider.value = Maxtimer;
         slider.gameObject.SetActive(false);

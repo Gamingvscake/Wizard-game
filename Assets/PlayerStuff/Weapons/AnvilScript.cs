@@ -15,7 +15,7 @@ public class AnvilScript : MonoBehaviour
 
     [SerializeField] private AudioSource anviltrack;
 
-    void Start()
+    /*void Start()
     {
         UpgradeScreen.SetActive(false);
         weaponSwapControl = GetComponent<WeaponSwapControl>();
@@ -78,5 +78,5 @@ public class AnvilScript : MonoBehaviour
             weaponSwapControl.points -= 5000;
             anviltrack.Play();
         }
-    }
+    }*/
 }
