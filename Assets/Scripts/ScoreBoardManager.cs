@@ -14,7 +14,8 @@ public class ScoreBoardManager : MonoBehaviour
     
 
     public TMP_Text[] reviveCountTexts;  
-    private Dictionary<GameObject, int> reviveCounts = new Dictionary<GameObject, int>(); 
+    //private Dictionary<GameObject, int> reviveCounts = new Dictionary<GameObject, int>();
+    private Dictionary<GameObject, int> revivesPerformed = new Dictionary<GameObject, int>();
 
     private void Start()
     {
@@ -26,7 +27,9 @@ public class ScoreBoardManager : MonoBehaviour
 
         foreach (GameObject player in players)
         {
-            reviveCounts[player] = 0;
+
+            revivesPerformed[player] = 0;
+            /*killCounts[player] = 0;*/
         }
     }
 
@@ -66,11 +69,19 @@ public class ScoreBoardManager : MonoBehaviour
         }
     }
 
-    public void UpdateReviveCount(GameObject player)
+    public void UpdateReviveCount(GameObject reviver)
     {
-        if (reviveCounts.ContainsKey(player))
+        //Debug.Log("Reviver: " + reviver.name);
+        if (revivesPerformed.ContainsKey(reviver))
         {
-            reviveCounts[player]++;
+            revivesPerformed[reviver]++;
+           
+        }
+        else
+        {
+            revivesPerformed[reviver] = 1;
+            
+
         }
     }
 
@@ -80,7 +91,18 @@ public class ScoreBoardManager : MonoBehaviour
         {
             if (reviveCountTexts.Length > i)
             {
-                reviveCountTexts[i].text = reviveCounts[players[i]].ToString();
+                GameObject player = players[i];
+
+                if (revivesPerformed.ContainsKey(player))
+                {
+                    Debug.Log("Revive count for " + player.name + ": " + revivesPerformed[player]);
+                    reviveCountTexts[i].text = revivesPerformed[player].ToString();
+                    
+                }
+                else
+                {
+                    reviveCountTexts[i].text = "0";
+                }
             }
         }
     }

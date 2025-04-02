@@ -16,6 +16,10 @@ public class UIGameOver : MonoBehaviour
     public GameObject points;
     public GameObject statusicons;
     public GameObject staffspawnpoint;
+    public GameObject rounrrdUI;
+    public GameObject fullpotion;
+    public GameObject emptypotion;
+    public GameObject perkeffectsholder;
     
 
     public bool isPlayerDead = false;     // Flag to check if the health is zero
@@ -119,6 +123,26 @@ public class UIGameOver : MonoBehaviour
             if (staffspawnpoint != null)
             {
                 staffspawnpoint.gameObject.SetActive(false);
+            }
+
+            if (rounrrdUI != null)
+            {
+                rounrrdUI.gameObject.SetActive(false);
+            }
+
+            if (fullpotion != null)
+            {
+                fullpotion.gameObject.SetActive(false);
+            }
+
+            if (emptypotion != null)
+            {
+                emptypotion.gameObject.SetActive(false);
+            }
+
+            if (perkeffectsholder != null)
+            {
+                perkeffectsholder.gameObject.SetActive(false);
             }
 
             // Disable the WeaponSwapControl script

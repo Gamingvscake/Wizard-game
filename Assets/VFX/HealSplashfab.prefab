@@ -67,7 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wsc: {fileID: 0}
-  reviveTexts: []
+  scoreBoardManager: {fileID: 0}
+  reviverObject: {fileID: 0}
 --- !u!1 &8640857179593466088
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,5 +209,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wsc: {fileID: 0}
-  reviveTexts:
-  - {fileID: 0}
+  scoreBoardManager: {fileID: 0}
+  reviverObject: {fileID: 0}

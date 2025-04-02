@@ -78,6 +78,26 @@ public class ReviveScript : MonoBehaviour
                         UIgameOver.staffspawnpoint.gameObject.SetActive(true); 
                     }
 
+                    if (UIgameOver.rounrrdUI != null)
+                    {
+                        UIgameOver.rounrrdUI.gameObject.SetActive(true);
+                    }
+
+                    if (UIgameOver.fullpotion != null)
+                    {
+                        UIgameOver.fullpotion.gameObject.SetActive(true);
+                    }
+
+                    if (UIgameOver.emptypotion != null)
+                    {
+                        UIgameOver.emptypotion.gameObject.SetActive(true);
+                    }
+
+                    if (UIgameOver.perkeffectsholder != null)
+                    {
+                        UIgameOver.perkeffectsholder.gameObject.SetActive(true);
+                    }
+
                     WeaponSwapControl weaponSwapControl = gravestoneParent.GetComponent<WeaponSwapControl>();
                     if (weaponSwapControl != null)
                     {

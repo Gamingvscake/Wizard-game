@@ -39,6 +39,7 @@ public class EnemyHealthScript : MonoBehaviour
     public string playerTag;
     public int playerID;
 
+
     public enum DamageResistance
     {
         NONE,
