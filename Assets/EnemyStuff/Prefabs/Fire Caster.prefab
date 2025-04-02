@@ -2861,6 +2861,8 @@ MonoBehaviour:
   - {fileID: 3664035729263366966}
   - {fileID: 5692447313586189180}
   statusIconsInUse: []
+  playerTag: 
+  playerID: 0
 --- !u!136 &6953899388284465753
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3553,7 +3555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrainEnemy: 0
-  maxDamage: 36
+  maxDamage: 25
   minDamage: 12
   statusDamage: 10
   statusDuration: 10

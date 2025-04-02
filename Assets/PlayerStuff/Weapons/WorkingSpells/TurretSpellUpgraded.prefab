@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732a15f240de2a54092abdc5ed0f895f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
+  Damage: 50
   DeleteOnImpact: 0
   DeleteDelay: 1
   damageType: 1
@@ -126,6 +126,8 @@ MonoBehaviour:
   dsPI: {fileID: 0}
   isMelee: 0
   isTurret: 0
+  instantiateVFX: {fileID: 0}
+  vfxSFX: {fileID: 0}
 --- !u!54 &7421888244588856750
 Rigidbody:
   m_ObjectHideFlags: 0
