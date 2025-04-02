@@ -296,6 +296,7 @@ public class MovementController : MonoBehaviour
     {
         numberOfAvailablePotions -= 1;
         GameObject thrownObject = Instantiate(objectToThrow, throwPoint.position, Quaternion.identity);
+        thrownObject.GetComponent<FlaskExploder>().reviverObject = this.gameObject;
         /*revivestuff.GetComponent<ReviveScript>().reviveTexts = reviveTexts;*/
         
         Rigidbody rb = thrownObject.GetComponent<Rigidbody>();

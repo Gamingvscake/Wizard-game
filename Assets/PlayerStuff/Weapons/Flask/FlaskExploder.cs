@@ -6,6 +6,7 @@ using UnityEngine;
 public class FlaskExploder : MonoBehaviour
 {
     public GameObject HealCast;
+    public GameObject reviverObject;
     /*public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
     public GameObject revivestuff;*/
@@ -14,7 +15,8 @@ public class FlaskExploder : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("LevelGeom"))
         {
-            Instantiate(HealCast, transform.position + Vector3.up * 0.25f, Quaternion.identity);
+            GameObject temp = Instantiate(HealCast, transform.position + Vector3.up * 0.25f, Quaternion.identity);
+            temp.GetComponent<ReviveScript>().reviverObject = reviverObject;
             /*revivestuff.GetComponent<ReviveScript>().reviveTexts = reviveTexts;*/
             Destroy(gameObject);
         }

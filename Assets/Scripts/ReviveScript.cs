@@ -7,6 +7,7 @@ public class ReviveScript : MonoBehaviour
 {
     public WeaponSwapControl wsc;
     public ScoreBoardManager scoreBoardManager;
+    public GameObject reviverObject;
 
     /*public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();*/
@@ -43,7 +44,7 @@ public class ReviveScript : MonoBehaviour
 
                     if (scoreBoardManager != null)
                     {
-                        scoreBoardManager.UpdateReviveCount(other.gameObject);
+                        scoreBoardManager.UpdateReviveCount(reviverObject);
                     }
 
 
