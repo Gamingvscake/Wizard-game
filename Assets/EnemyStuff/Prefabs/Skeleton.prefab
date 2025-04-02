@@ -3253,6 +3253,8 @@ MonoBehaviour:
   - {fileID: 3664035729263366966}
   - {fileID: 986586944138369305}
   statusIconsInUse: []
+  playerTag: 
+  playerID: 0
 --- !u!136 &6953899388284465753
 CapsuleCollider:
   m_ObjectHideFlags: 0

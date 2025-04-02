@@ -6,10 +6,10 @@ using UnityEngine.TextCore.Text;
 
 public class MovementController : MonoBehaviour
 {
-    public TMP_Text[] reviveTexts;
+    /*public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
     public ReviveScript revivescripts;
-    public GameObject revivestuff;
+    public GameObject revivestuff;*/
 
     [Header("DEV TOOLS")]
     public bool DevKeyboardOn;
@@ -296,7 +296,7 @@ public class MovementController : MonoBehaviour
     {
         numberOfAvailablePotions -= 1;
         GameObject thrownObject = Instantiate(objectToThrow, throwPoint.position, Quaternion.identity);
-        revivestuff.GetComponent<ReviveScript>().reviveTexts = reviveTexts;
+        /*revivestuff.GetComponent<ReviveScript>().reviveTexts = reviveTexts;*/
         
         Rigidbody rb = thrownObject.GetComponent<Rigidbody>();
         if (rb == null)

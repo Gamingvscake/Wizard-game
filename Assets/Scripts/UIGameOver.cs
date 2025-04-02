@@ -9,9 +9,7 @@ public class UIGameOver : MonoBehaviour
     public PlayerInflicts playerInflicts; // Reference to PlayerInflicts
     public Image DeathImage;
     
-    public GameObject bluePosePrefab;
-    public GameObject redwiz;
-    public GameObject pinkwiz;
+    
     public GameObject wizardPrefab;
     public Slider healthSlider;
     public GameObject manaGauge;
@@ -22,9 +20,11 @@ public class UIGameOver : MonoBehaviour
 
     public bool isPlayerDead = false;     // Flag to check if the health is zero
     public bool isGameOver = false;       // Check if all players dead
+    public bool isDead = false;
 
     private void Start()
     {
+        
         // Hide the game over image at the start
         if (DeathImage != null)
         {
@@ -63,6 +63,8 @@ public class UIGameOver : MonoBehaviour
         }
     }
 
+    
+
     private IEnumerator HandleGameOver()
     {
         if (isGameOver)
@@ -79,7 +81,7 @@ public class UIGameOver : MonoBehaviour
             yield return new WaitForSeconds(2f);
 
             // Hide the DeathImage
-           // if (DeathImage != null)
+           //if (DeathImage != null)
             {
                 DeathImage.gameObject.SetActive(false);
             }
@@ -87,28 +89,12 @@ public class UIGameOver : MonoBehaviour
             
 
             // Continue the game over handling (hide other elements, disable scripts, etc.)
-            if (bluePosePrefab != null)
-            {
-                MeshRenderer meshRenderer = bluePosePrefab.GetComponent<MeshRenderer>();
-                if (meshRenderer != null)
-                {
-                    meshRenderer.enabled = false;
-                }
-            }
+            
             if (wizardPrefab != null)
             {
                 wizardPrefab.gameObject.SetActive(false);
             }
 
-            if (redwiz != null)
-            {
-                redwiz.gameObject.SetActive(false);
-            }
-
-            if (pinkwiz != null)
-            {
-                pinkwiz.gameObject.SetActive(false);
-            }
 
             if (healthSlider != null)
             {
@@ -150,4 +136,8 @@ public class UIGameOver : MonoBehaviour
             }
         }
     }
+
+   
+
+    
 }

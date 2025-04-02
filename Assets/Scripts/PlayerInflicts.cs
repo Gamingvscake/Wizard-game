@@ -36,12 +36,23 @@ public class PlayerInflicts : MonoBehaviour
 
     public int deathCount = 0;
 
+    public int reviveCount = 0;
+
+    
+
+
     void Start()
     {
         PlayerCurrentHealth = PlayerMaxHealth;
         regenTimer = HealthRegenDelay;
         isRegenerating = false;
         DeathScreen = GetComponentInChildren<DeathScreen>();
+    }
+
+    public void IncrementReviveCount()
+    {
+        reviveCount++;
+
     }
 
     private void StartHealthRegen()
@@ -107,6 +118,13 @@ public class PlayerInflicts : MonoBehaviour
             {
                 StartHealthRegen();
             }
-            //Debug.Log(regenTimer.ToString());
+        //Debug.Log(regenTimer.ToString());
+
+        if (wasrevived)
+        {
+            IncrementReviveCount();
+            wasrevived = false;  // Reset the flag after incrementing
+        }
+
     }
 }

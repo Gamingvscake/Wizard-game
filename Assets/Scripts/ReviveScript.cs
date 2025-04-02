@@ -6,13 +6,23 @@ using TMPro;
 public class ReviveScript : MonoBehaviour
 {
     public WeaponSwapControl wsc;
-    public TMP_Text[] reviveTexts;
-    private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
+    public ScoreBoardManager scoreBoardManager;
 
+    /*public TMP_Text[] reviveTexts;
+    private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();*/
+
+    void Start()
+    {
+        if (scoreBoardManager == null)
+        {
+            scoreBoardManager = FindObjectOfType<ScoreBoardManager>();
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == ("Player"))
         {
+            
             Transform gravestoneParent = other.transform;
             print("playerrevivingtrigger");
             if (gravestoneParent != null)
@@ -26,33 +36,70 @@ public class ReviveScript : MonoBehaviour
                     playerInflicts.PlayerCurrentHealth = 75;
                     deathScreen.isDead = false;
                     deathScreen.isPlayerDead = false;
+                    deathScreen.isGameOver = false;
                     UIgameOver.isPlayerDead = false;
+                    UIgameOver.isGameOver = false;
                     playerInflicts.wasrevived = true;
 
-                    int revivingPlayerID = wsc.playerID;
-
-                    if (!reviveCounts.ContainsKey(revivingPlayerID))
+                    if (scoreBoardManager != null)
                     {
-                        reviveCounts[revivingPlayerID] = 0;
+                        scoreBoardManager.UpdateReviveCount(other.gameObject);
                     }
 
-                    reviveCounts[revivingPlayerID]++;
-                    print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");
 
                     if (UIgameOver.wizardPrefab != null)
                     {
                         UIgameOver.wizardPrefab.gameObject.SetActive(true);
                     }
-                    /*if (UIgameOver.pinkwiz != null)
+
+                    if (UIgameOver.healthSlider != null)
                     {
-                        UIgameOver.pinkwiz.gameObject.SetActive(true);
-                    }*/
+                        UIgameOver.healthSlider.gameObject.SetActive(true); 
+                    }
+
+                    if (UIgameOver.manaGauge != null)
+                    {
+                        UIgameOver.manaGauge.SetActive(true); 
+                    }
+
+                    if (UIgameOver.points != null)
+                    {
+                        UIgameOver.points.gameObject.SetActive(true); 
+                    }
+
+                    if (UIgameOver.statusicons != null)
+                    {
+                        UIgameOver.statusicons.gameObject.SetActive(true); 
+                    }
+
+                    if (UIgameOver.staffspawnpoint != null)
+                    {
+                        UIgameOver.staffspawnpoint.gameObject.SetActive(true); 
+                    }
+
+                    WeaponSwapControl weaponSwapControl = gravestoneParent.GetComponent<WeaponSwapControl>();
+                    if (weaponSwapControl != null)
+                    {
+                        weaponSwapControl.enabled = true;
+                    }
+
+                    
+                    MovementController movementController = gravestoneParent.GetComponent<MovementController>();
+                    if (movementController != null)
+                    {
+                        movementController.enabled = true;
+                    }
+
+                    
+
                 }
             }
         }
 
 
     }
+
+
 
     
 

@@ -40,8 +40,8 @@ public class WeaponSwapControl : MonoBehaviour
     private PlayerController inputActions;
     private bool canSwitchStaff = true;
     public bool inTutorialScene;
-    public TMP_Text[] reviveTexts;
-    private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();
+    /*public TMP_Text[] reviveTexts;
+    private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();*/
 
     private void Start()
     {
@@ -70,15 +70,7 @@ public class WeaponSwapControl : MonoBehaviour
         inputActions.PlayerControls.Enable();
         playerID.ToString();
 
-        /*int revivingPlayerID = playerID;
-
-        if (!reviveCounts.ContainsKey(revivingPlayerID))
-        {
-            reviveCounts[revivingPlayerID] = 0;
-        }
-
-        reviveCounts[revivingPlayerID]++;
-        print("Player " + revivingPlayerID + " has revived another player " + reviveCounts[revivingPlayerID] + " times.");*/
+        
 
     }
 
@@ -96,7 +88,7 @@ public class WeaponSwapControl : MonoBehaviour
             ScoreboardKills.text = EnemyHealthScript.playerKillCount["Player" + playerID].ToString();
         }
 
-        if (ScoreboardRevives != null)
+        /*if (ScoreboardRevives != null)
         {
             if (reviveCounts.ContainsKey(playerID)) // Check if key exists
             {
@@ -109,7 +101,7 @@ public class WeaponSwapControl : MonoBehaviour
                 ScoreboardRevives.SetText("0"); // Set the scoreboard to show 0 revives
             }
         }
-
+*/
     }
 
     private void StaffSwap()
@@ -229,7 +221,7 @@ public class WeaponSwapControl : MonoBehaviour
         
     }
 
-    private void UpdateReviveText(int playerID)
+    /*private void UpdateReviveText(int playerID)
     {
         // Make sure the playerID is valid and that the text array is initialized
         if (playerID >= 1 && playerID <= reviveTexts.Length)
@@ -241,5 +233,5 @@ public class WeaponSwapControl : MonoBehaviour
     public static int GetReviveCount(int playerID)
     {
         return reviveCounts.ContainsKey(playerID) ? reviveCounts[playerID] : 0;
-    }
+    }*/
 }

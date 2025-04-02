@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreBoardManager : MonoBehaviour
@@ -10,7 +11,10 @@ public class ScoreBoardManager : MonoBehaviour
     private int deadPlayersCount = 0;    // Count of players who are dead
     private int activePlayersCount = 0; // Count number of active players
     private bool allPlayersDead = false;
+    
 
+    public TMP_Text[] reviveCountTexts;  
+    private Dictionary<GameObject, int> reviveCounts = new Dictionary<GameObject, int>(); 
 
     private void Start()
     {
@@ -18,6 +22,11 @@ public class ScoreBoardManager : MonoBehaviour
         if (scoreboardCanvas != null)
         {
             scoreboardCanvas.SetActive(false);
+        }
+
+        foreach (GameObject player in players)
+        {
+            reviveCounts[player] = 0;
         }
     }
 
@@ -44,6 +53,7 @@ public class ScoreBoardManager : MonoBehaviour
             allPlayersDead = true;
             ShowScoreboard();
         }
+        UpdateReviveCountUI();
     }
 
     // Show the scoreboard canvas
@@ -55,4 +65,25 @@ public class ScoreBoardManager : MonoBehaviour
             Debug.Log("All players are dead. Showing scoreboard.");
         }
     }
+
+    public void UpdateReviveCount(GameObject player)
+    {
+        if (reviveCounts.ContainsKey(player))
+        {
+            reviveCounts[player]++;
+        }
+    }
+
+    private void UpdateReviveCountUI()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (reviveCountTexts.Length > i)
+            {
+                reviveCountTexts[i].text = reviveCounts[players[i]].ToString();
+            }
+        }
+    }
+
+
 }
