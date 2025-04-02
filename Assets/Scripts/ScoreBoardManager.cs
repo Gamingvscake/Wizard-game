@@ -14,8 +14,8 @@ public class ScoreBoardManager : MonoBehaviour
     
 
     public TMP_Text[] reviveCountTexts;  
-    //private Dictionary<GameObject, int> reviveCounts = new Dictionary<GameObject, int>();
-    private Dictionary<GameObject, int> revivesPerformed = new Dictionary<GameObject, int>();
+    private Dictionary<GameObject, int> reviveCounts = new Dictionary<GameObject, int>();
+    //private Dictionary<GameObject, int> revivesPerformed = new Dictionary<GameObject, int>();
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class ScoreBoardManager : MonoBehaviour
         foreach (GameObject player in players)
         {
 
-            revivesPerformed[player] = 0;
+            reviveCounts[player] = 0;
             /*killCounts[player] = 0;*/
         }
     }
@@ -69,19 +69,11 @@ public class ScoreBoardManager : MonoBehaviour
         }
     }
 
-    public void UpdateReviveCount(GameObject reviver)
+    public void UpdateReviveCount(GameObject player)
     {
-        //Debug.Log("Reviver: " + reviver.name);
-        if (revivesPerformed.ContainsKey(reviver))
+        if (reviveCounts.ContainsKey(player))
         {
-            revivesPerformed[reviver]++;
-           
-        }
-        else
-        {
-            revivesPerformed[reviver] = 1;
-            
-
+            reviveCounts[player]++;
         }
     }
 
@@ -91,18 +83,7 @@ public class ScoreBoardManager : MonoBehaviour
         {
             if (reviveCountTexts.Length > i)
             {
-                GameObject player = players[i];
-
-                if (revivesPerformed.ContainsKey(player))
-                {
-                    Debug.Log("Revive count for " + player.name + ": " + revivesPerformed[player]);
-                    reviveCountTexts[i].text = revivesPerformed[player].ToString();
-                    
-                }
-                else
-                {
-                    reviveCountTexts[i].text = "0";
-                }
+                reviveCountTexts[i].text = reviveCounts[players[i]].ToString();
             }
         }
     }

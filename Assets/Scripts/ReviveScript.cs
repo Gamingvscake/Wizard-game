@@ -44,7 +44,7 @@ public class ReviveScript : MonoBehaviour
 
                     if (scoreBoardManager != null)
                     {
-                        scoreBoardManager.UpdateReviveCount(reviverObject);
+                        scoreBoardManager.UpdateReviveCount(other.gameObject);
                     }
 
 

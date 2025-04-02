@@ -34,7 +34,13 @@ public class EnemyHealthScript : MonoBehaviour
 
 
     // Dictionary to track player kills
-    public static Dictionary<string, int> playerKillCount = new Dictionary<string, int>();
+    public static Dictionary<string, int> playerKillCount = new Dictionary<string, int>()
+    {
+         { "Player1", 0 },
+         { "Player2", 0 },
+         { "Player3", 0 },
+         { "Player4", 0 }
+    };
 
     public string playerTag;
     public int playerID;
@@ -180,7 +186,7 @@ public class EnemyHealthScript : MonoBehaviour
                 if (playerKillCount.ContainsKey(playerKey))
                 {
                     playerKillCount[playerKey]++;
-                    
+
                 }
             }
             Destroy(this.gameObject);
@@ -399,8 +405,8 @@ public class EnemyHealthScript : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
         {
-            OnDeath();  
-            
+            OnDeath();
+
         }
     }
 }
