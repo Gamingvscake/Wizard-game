@@ -2834,7 +2834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef90047c74ad9a94fa00891b717ba9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 50
+  MaxHealth: 25
   Health: 1
   HealthSlider: {fileID: 8204065448606643533}
   damageRes: 2
@@ -2861,6 +2861,8 @@ MonoBehaviour:
   - {fileID: 3664035729263366966}
   - {fileID: 5692447313586189180}
   statusIconsInUse: []
+  vfxList: []
+  vfx: {fileID: 0}
   playerTag: 
   playerID: 0
 --- !u!136 &6953899388284465753

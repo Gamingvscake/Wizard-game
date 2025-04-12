@@ -109,49 +109,56 @@ public class EnemyHealthScript : MonoBehaviour
                     damageWeak = DamageWeakness.Water;
                     EHSDS.effects = DamageSource.HostileStatus.Burn;
                     outlineMat.SetColor("_OutlineColor", new Color32(255, 0, 0, 255));
-                    vfx.visualEffectAsset = vfxList[1].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[1].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
                 case 3:
                     damageRes = DamageResistance.Water;
                     damageWeak = DamageWeakness.Earth;
                     EHSDS.effects = DamageSource.HostileStatus.Poison;
                     outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 255, 255));
-                    vfx.visualEffectAsset = vfxList[2].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[2].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
                 case 4:
                     damageRes = DamageResistance.Earth;
                     damageWeak = DamageWeakness.Air;
                     EHSDS.effects = DamageSource.HostileStatus.DamageIncrease;
                     outlineMat.SetColor("_OutlineColor", new Color32(170, 100, 0, 255));
-                    vfx.visualEffectAsset = vfxList[3].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[3].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
                 case 5:
                     damageRes = DamageResistance.Air;
                     damageWeak = DamageWeakness.Fire;
                     EHSDS.effects = DamageSource.HostileStatus.FireRateLower;
                     outlineMat.SetColor("_OutlineColor", new Color32(180, 255, 150, 255));
-                    vfx.visualEffectAsset = vfxList[4].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[4].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
                 case 6:
                     damageRes = DamageResistance.Light;
                     damageWeak = DamageWeakness.Dark;
                     EHSDS.effects = DamageSource.HostileStatus.ManaDrain;
                     outlineMat.SetColor("_OutlineColor", new Color32(255, 255, 255, 255));
-                    vfx.visualEffectAsset = vfxList[5].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[5].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
                 case 7:
                     damageRes = DamageResistance.Dark;
                     damageWeak = DamageWeakness.Light;
                     EHSDS.effects = DamageSource.HostileStatus.DarkTBD;
                     outlineMat.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
-                    vfx.visualEffectAsset = vfxList[6].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[6].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
                 case 8:
                     damageRes = DamageResistance.Ice;
                     damageWeak = DamageWeakness.Neutral;
                     EHSDS.effects = DamageSource.HostileStatus.Slow;
                     outlineMat.SetColor("_OutlineColor", new Color32(150, 230, 255, 255));
-                    vfx.visualEffectAsset = vfxList[7].visualEffectAsset;
+                    //vfx.visualEffectAsset = vfxList[7].visualEffectAsset;
+                    vfx.visualEffectAsset = vfxList[0].visualEffectAsset;
                     break;
             }
             for (int i = 0; i < statusIconsHold.Length; i++)
