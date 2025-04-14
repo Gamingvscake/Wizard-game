@@ -32,7 +32,6 @@ public class MovementController : MonoBehaviour
     [Header("Camera Settings")]
     public Transform playerCameraTransform;
     public float lookSensitivity = 1f;
-    public float smoothing = 5f; // Smoothing factor for camera rotation
 
     private Gamepad assignedController;
     private Rigidbody rb;
@@ -47,6 +46,7 @@ public class MovementController : MonoBehaviour
     private Vector2 cameraInput;
     private Vector2 velocity;
     private Vector2 frameVelocity;
+    private Vector2 rotation;
     public Animator animator;
 
     // Shooting
@@ -96,7 +96,6 @@ public class MovementController : MonoBehaviour
         HandleMovement();
         HandleCrouchHeight();
         CheckGroundStatus();
-        HandleCameraLook();
         HandleShooting();
     }
 
@@ -121,10 +120,13 @@ public class MovementController : MonoBehaviour
         Debug.Log($"Controller assigned to {gameObject.name}: {controller.name}");
     }
 
+    public void FixedUpdate()
+    {
+        HandleCameraLook();
+    }
+
     private void HandleMovement()
     {
-        if (DevKeyboardOn == false)
-        {
             // Read movement input from the assigned controller
             Vector2 moveInput = assignedController.leftStick.ReadValue();
             Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
@@ -182,101 +184,23 @@ public class MovementController : MonoBehaviour
                     playersteps.Stop();
                 }
             }
-        }
-        else
-        {
-            Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-            Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
-            if (timer >= timelimit)
-            {
-                playersteps.Play();
-                timer = 0f;
-            }
-            timer += Time.deltaTime;
-
-            // Apply velocity, keeping the y velocity (gravity and jumping) intact
-            Vector3 velocity = new Vector3(worldMoveDirection.x * currentSpeed, rb.velocity.y, worldMoveDirection.z * currentSpeed);
-            rb.velocity = velocity;
-
-            // Handle sprint input
-            if (Input.GetKey(KeyCode.LeftShift))
-                currentSpeed = sprintSpeed;
-            else
-                currentSpeed = walkSpeed;
-            if (Input.GetKeyDown(KeyCode.G) && numberOfAvailablePotions > 0)
-            {
-                Throw();
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                ToggleCrouch();
-            }
-            else if (Input.GetKeyUp(KeyCode.LeftControl))
-            {
-                ToggleCrouch();
-            }
-
-            // Stop the sound if the player stops moving
-            if (moveDirection.magnitude < 0.1f)
-            {
-                if (playersteps.isPlaying)
-                {
-                    playersteps.Stop();
-                }
-            }
-        }
     }
 
     private void HandleCameraLook()
     {
-        if (DevKeyboardOn == false)
-        {
-            // Read camera input from the right stick
-            Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
+        // Read right stick input
+        Vector2 inputDelta = assignedController.rightStick.ReadValue() * lookSensitivity;
 
-            // Apply rotation input directly to velocity
-            velocity.x += inputDelta.x;
-            velocity.y -= inputDelta.y;
+        // Accumulate input into rotation
+        rotation.x += inputDelta.x;
+        rotation.y -= inputDelta.y;
 
-            // Smooth the rotation transition before applying it
-            Vector2 smoothedVelocity = Vector2.Lerp(velocity, new Vector2(velocity.x, velocity.y), Time.deltaTime * smoothing);
+        // Clamp the vertical (pitch) rotation
+        rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
 
-            // Clamp the Y-axis (vertical look) after smoothing to prevent exceeding limits
-            smoothedVelocity.y = Mathf.Clamp(smoothedVelocity.y, -90f, 90f);
-
-            // Apply rotation to the camera (local X axis for up/down)
-            playerCameraTransform.localRotation = Quaternion.Euler(smoothedVelocity.y, 0f, 0f);
-
-            // Apply rotation to the character (Y axis for left/right)
-            transform.localRotation = Quaternion.Euler(0f, smoothedVelocity.x, 0f);
-
-            // Update velocity with the clamped/smoothed value to ensure consistent state
-            velocity = smoothedVelocity;
-        }
-        else
-        {
-            float tempx = Input.GetAxis("Mouse X");
-            float tempy = Input.GetAxis("Mouse Y");
-            cameraInput = new Vector2(tempx, tempy);
-            Vector2 inputDelta = cameraInput * (lookSensitivity * 2);
-
-            // Apply rotation to the camera immediately, without smoothing on inputDelta
-            velocity.x += inputDelta.x;
-            velocity.y -= inputDelta.y;
-
-            // Smooth the rotation transition over time
-            velocity = Vector2.Lerp(velocity, new Vector2(velocity.x, Mathf.Clamp(velocity.y, -90f, 90f)), Time.deltaTime * smoothing);
-
-            // Apply rotation to the camera (local X axis for up/down)
-            playerCameraTransform.localRotation = Quaternion.Euler(velocity.y, 0f, 0f);
-
-            // Apply rotation to the character (Y axis for left/right)
-            transform.localRotation = Quaternion.Euler(0f, velocity.x, 0f);
-        }
+        // Apply rotation to the camera (X for pitch, Y for yaw)
+        playerCameraTransform.localRotation = Quaternion.Euler(rotation.y, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(0f, rotation.x, 0f);
     }
 
     private void HandleCrouchHeight()
