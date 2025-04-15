@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using UnityEngine.ProBuilder.MeshOperations;
+using TMPro;
 
 public class LevelSelect : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class LevelSelect : MonoBehaviour
     public GameObject Tavern;
     public GameObject Mausoleum;
     public GameObject Tutorial;
+
+    public TextMeshProUGUI levelNameText;
 
     void Start()
     {
@@ -75,16 +78,19 @@ public class LevelSelect : MonoBehaviour
             if (tavernSelected)
             {
                 Tavern.transform.Rotate(0, 0.06f, 0);
+                levelNameText.text = "Tavern";
             }
 
             if (mausoleumSelected)
             {
                 Mausoleum.transform.Rotate(0, 0.06f, 0);
+                levelNameText.text = "Mausoleum";
             }
 
             if (tutorialSelected)
             {
                 Tutorial.transform.Rotate(0, 0.06f, 0);
+                levelNameText.text = "Tutorial";
             }
 
             // Load level when southern button is pressed
