@@ -98,15 +98,15 @@ PrefabInstance:
     - target: {fileID: -5994826013783514019, guid: cb7759eeeffb12344a020f462b42f53a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: efc6f4e2b90317a49bc81aa9f55f5b68, type: 2}
+      objectReference: {fileID: 2100000, guid: 88e62a6e2c0e2594c8bbba6a4148cf8e, type: 2}
     - target: {fileID: 919132149155446097, guid: cb7759eeeffb12344a020f462b42f53a, type: 3}
       propertyPath: m_Name
-      value: DefaultStaffUpgraded
+      value: DefaultStaffUltra
       objectReference: {fileID: 0}
     - target: {fileID: 5594584268990114117, guid: cb7759eeeffb12344a020f462b42f53a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 803b9e1b234f4d445be7aea7f416bf1b, type: 2}
+      objectReference: {fileID: 2100000, guid: 02e23becea367e24e96e881a748ef732, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -155,8 +155,8 @@ MonoBehaviour:
   fireballStaff: {fileID: 0}
   crystalnoise: {fileID: 0}
   fireball: {fileID: 3649621507070094755, guid: 9cdb127404a5a55419b8cb4c88e2413f, type: 3}
-  upgradedStaff: {fileID: 2045153548849148186, guid: a86f0267c18936048aa209e37a5b14f5, type: 3}
-  castForce: 20
+  upgradedStaff: {fileID: 0}
+  castForce: 35
   upwardForce: 0
   castTime: 0.1
   spread: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   castSpeed: 0.5
   hitscanRange: 0
   hitscanTrailDuration: 0
-  manaSize: 120
+  manaSize: 150
   spellsPerTap: 1
   manaPerShot: 2
   allowButtonHold: 1

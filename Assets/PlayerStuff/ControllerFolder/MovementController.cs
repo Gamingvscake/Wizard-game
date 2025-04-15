@@ -40,6 +40,7 @@ public class MovementController : MonoBehaviour
     private bool isCrouching = false;
     private float currentSpeed;
     private float currentCameraHeight;
+    private WeaponSwapControl iwsc;
 
 
     // Camera look variables
@@ -70,6 +71,7 @@ public class MovementController : MonoBehaviour
 
     private void Start()
     {
+        iwsc = GetComponentInParent<WeaponSwapControl>();
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -101,8 +103,6 @@ public class MovementController : MonoBehaviour
 
     public void HandleShooting()
     {
-        if (!DevKeyboardOn)
-        {
             if (assignedController.rightTrigger.isPressed == true)
             {
                 ShootSpell = true;
@@ -111,7 +111,11 @@ public class MovementController : MonoBehaviour
             {
                 ShootSpell = false;
             }
-        }
+            if (assignedController.leftTrigger.isPressed == true)
+            {
+                iwsc.canSwitchStaff = true;
+                iwsc.StaffSwap();
+            }
     }
 
     public void AssignController(Gamepad controller)

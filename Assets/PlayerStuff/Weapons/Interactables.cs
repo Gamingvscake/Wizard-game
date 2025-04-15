@@ -191,7 +191,7 @@ public class Interactables : MonoBehaviour
                 {
                     if (iwsc.points >= 5000 && iwsc.CurrentEquippedStaff.GetComponent<SpellController>().upgradedStaff != null)
                     {
-
+                        iwsc.canUpgrade = true;
                         iwsc.UpgradeStaff();
                         iwsc.points -= 5000;
                         anviltrack.Play();

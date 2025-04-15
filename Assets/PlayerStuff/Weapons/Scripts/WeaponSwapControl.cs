@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
 
@@ -38,8 +39,10 @@ public class WeaponSwapControl : MonoBehaviour
     public MovementController movementController;
     public Animator animator;
     private PlayerController inputActions;
-    private bool canSwitchStaff = true;
+    private Gamepad assignedController;
+    public bool canSwitchStaff = true;
     public bool inTutorialScene;
+    public bool canUpgrade;
     /*public TMP_Text[] reviveTexts;
     private static Dictionary<int, int> reviveCounts = new Dictionary<int, int>();*/
 
@@ -76,9 +79,8 @@ public class WeaponSwapControl : MonoBehaviour
 
     private void Update()
     {
-        StaffSwap();
         DisplayPoints.SetText(points.ToString());
-       
+        StaffSwap();
         if (ScoreboardPoints != null)ScoreboardPoints.SetText(points.ToString());
 
 
@@ -90,7 +92,7 @@ public class WeaponSwapControl : MonoBehaviour
 
     }
 
-    private void StaffSwap()
+    public void StaffSwap()
     {
         float switchStaffValue = 0;
         if (!movementController.DevKeyboardOn)
@@ -101,9 +103,8 @@ public class WeaponSwapControl : MonoBehaviour
         { 
              switchStaffValue = Input.mouseScrollDelta.y; 
         }
-        if (switchStaffValue > 0.5f && canSwitchStaff)
+        if (canSwitchStaff)
         {
-            canSwitchStaff = false; // Prevent continuous swapping
             if (tempstaff < MaxNumberOfStaffs - 1 && EquippedStaffs[tempstaff + 1] != null)
             {
                 changeweapon.Play();
@@ -136,11 +137,15 @@ public class WeaponSwapControl : MonoBehaviour
                     wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
                 }
             }
+            canSwitchStaff = false; // Prevent continuous swapping
         }
-        else if (switchStaffValue <= 0.5f)
-        {
-            canSwitchStaff = true; // Allow swapping again once released
-        }
+
+
+        //}
+        //else if (switchStaffValue <= 0.5f)
+        //{
+        //   canSwitchStaff = true; // Allow swapping again once released
+        // }
     }
 
     public void UpdateManaDisplay(int spellsLeft, int spellsPerTap, int manaSize)
@@ -165,15 +170,19 @@ public class WeaponSwapControl : MonoBehaviour
 
     public void UpgradeStaff()
     {
-        Destroy(tempobject);
-        EquippedStaffs[tempstaff] = tempobject.GetComponent<SpellController>().upgradedStaff;
-        CurrentEquippedStaff = EquippedStaffs[tempstaff];
+        if (canUpgrade == true)
+        {
+            Destroy(tempobject);
+            EquippedStaffs[tempstaff] = tempobject.GetComponent<SpellController>().upgradedStaff;
+            CurrentEquippedStaff = EquippedStaffs[tempstaff];
 
-        tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
-        tempobject.GetComponent<SpellController>().enabled = true;
-        tempobject.GetComponent<SpellController>().movementController = movementController;
-        tempobject.GetComponent<SpellController>().animator = animator;
-        wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
+            tempobject = Instantiate(CurrentEquippedStaff, StaffSpawnPoint);
+            tempobject.GetComponent<SpellController>().enabled = true;
+            tempobject.GetComponent<SpellController>().movementController = movementController;
+            tempobject.GetComponent<SpellController>().animator = animator;
+            wscSE.currentStaffEquipped = tempobject.GetComponent<SpellController>();
+            canUpgrade = false;
+        }
     }
 
     private void OnEnable()
