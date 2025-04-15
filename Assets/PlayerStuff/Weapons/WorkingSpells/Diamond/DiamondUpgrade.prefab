@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
       propertyPath: m_Name
-      value: Diamond
+      value: DiamondUpgrade
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
       propertyPath: m_Layer
@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 56fee5f90b013104b99d2d43bf53113d, type: 2}
+      objectReference: {fileID: 2100000, guid: ed9af35f50e93054394183b99a10986d, type: 2}
     - target: {fileID: 919132149155446097, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
       propertyPath: m_Name
       value: Diamond
@@ -211,7 +211,7 @@ PrefabInstance:
       addedObject: {fileID: 461279056145985438}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4916981783855055569}
+      addedObject: {fileID: 4868164871721309503}
   m_SourcePrefab: {fileID: 100100000, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
 --- !u!1 &6066851774722830514 stripped
 GameObject:
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732a15f240de2a54092abdc5ed0f895f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
+  Damage: 35
   DeleteOnImpact: 1
   DeleteDelay: 1
   damageType: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   isMelee: 0
   isTurret: 0
   instantiateVFX: {fileID: 6048330045781272927, guid: b105c42ad1ff9eb4e81e291afd906d38, type: 3}
-  vfxSFX: {fileID: 4916981783855055569}
+  vfxSFX: {fileID: 4868164871721309503}
 --- !u!135 &6983814801268686936
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6752524200118869328, guid: ae28a34193c96264fb54a1cb00867ffb, type: 3}
---- !u!82 &4916981783855055569
+--- !u!82 &4868164871721309503
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +325,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 10debfde15c443f4ca975c06400ffd20, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8343dd8d78cfa224f9e73bae2bd532ec, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1

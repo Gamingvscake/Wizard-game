@@ -98,10 +98,10 @@ PrefabInstance:
     - target: {fileID: -5994826013783514019, guid: cb7759eeeffb12344a020f462b42f53a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d97f6fb5e866b004592ca10b0b4ef8a7, type: 2}
+      objectReference: {fileID: 2100000, guid: efc6f4e2b90317a49bc81aa9f55f5b68, type: 2}
     - target: {fileID: 919132149155446097, guid: cb7759eeeffb12344a020f462b42f53a, type: 3}
       propertyPath: m_Name
-      value: DefaultStaff
+      value: DefaultStaffUpgraded
       objectReference: {fileID: 0}
     - target: {fileID: 5594584268990114117, guid: cb7759eeeffb12344a020f462b42f53a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -154,8 +154,8 @@ MonoBehaviour:
   defaultStaff: {fileID: 2626075031204693429}
   fireballStaff: {fileID: 0}
   crystalnoise: {fileID: 0}
-  fireball: {fileID: 3649621507070094755, guid: fe88844ae85a5b44b8ecb85735aee805, type: 3}
-  upgradedStaff: {fileID: 2045153548849148186, guid: 8b767b7c7ede9844ca50c18a054e7752, type: 3}
+  fireball: {fileID: 3649621507070094755, guid: 9cdb127404a5a55419b8cb4c88e2413f, type: 3}
+  upgradedStaff: {fileID: 0}
   castForce: 20
   upwardForce: 0
   castTime: 0.1

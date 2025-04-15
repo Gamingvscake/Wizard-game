@@ -34,8 +34,8 @@ Transform:
   m_GameObject: {fileID: 4657111126582139896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.00000041723, y: 0, z: 0}
+  m_LocalScale: {x: 7.7034, y: 7.7034, z: 7.7034}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 698623644289190983}
@@ -47,7 +47,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4657111126582139896}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 7873168862427504685, guid: ab5bb561b53f0e443bf304b89b196e35, type: 3}
 --- !u!23 &1147592139405540056
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109,8 +109,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.0737196
+  m_Center: {x: 0, y: 0, z: -0.0007755784}
 --- !u!114 &4003069929083282487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   dsPI: {fileID: 0}
   isMelee: 0
   isTurret: 0
-  instantiateVFX: {fileID: 0}
+  instantiateVFX: {fileID: 9102883464099427426, guid: 6671b1ee4ab6c234ea4ed30c87f72701, type: 3}
   vfxSFX: {fileID: 1692949803887168528}
 --- !u!54 &1078419521698714951
 Rigidbody:
