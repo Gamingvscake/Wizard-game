@@ -275,11 +275,11 @@ public class EnemyMovementScript : MonoBehaviour
         {
             metalchain.Play();
         }
-        if (x == 1)
+        if (x == 1 && walk1 != null)
         {
             walk1.Play();
         }
-        if (x == 2)
+        if (x == 2 && walk2 != null)
         {
             walk2.Play();
         }

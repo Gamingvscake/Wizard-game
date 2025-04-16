@@ -78,6 +78,7 @@ public class MovementController : MonoBehaviour
         Cursor.visible = false;
         animator = GetComponentInChildren<Animator>();
         numberOfAvailablePotions = 1;
+        iwsc.canSwitchStaff = true;
         if (playerCameraTransform == null)
         {
             Debug.LogError("Player Camera Transform is not assigned in the Inspector!");
@@ -113,8 +114,11 @@ public class MovementController : MonoBehaviour
             }
             if (assignedController.leftTrigger.isPressed == true)
             {
-                iwsc.canSwitchStaff = true;
                 iwsc.StaffSwap();
+            }
+            else
+            {
+                iwsc.canSwitchStaff = true;
             }
     }
 

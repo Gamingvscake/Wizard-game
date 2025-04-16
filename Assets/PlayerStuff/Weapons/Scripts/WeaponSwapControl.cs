@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class WeaponSwapControl : MonoBehaviour
 {
@@ -80,7 +80,7 @@ public class WeaponSwapControl : MonoBehaviour
     private void Update()
     {
         DisplayPoints.SetText(points.ToString());
-        StaffSwap();
+        //StaffSwap();
         if (ScoreboardPoints != null)ScoreboardPoints.SetText(points.ToString());
 
 
