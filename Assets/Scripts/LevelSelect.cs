@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-using UnityEngine.ProBuilder.MeshOperations;
 using TMPro;
 
 public class LevelSelect : MonoBehaviour
@@ -41,108 +40,100 @@ public class LevelSelect : MonoBehaviour
 
     void OnEnable()
     {
-        // Check for controller disconnection
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
     void OnDisable()
     {
-        // Check for controller connection?
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
     void Update()
     {
-        // Use joystick for each controller to navigate menu
+        // Restrict input to Player 1 only
         foreach (var gamepad in Gamepad.all)
         {
-            int controllerID = controllerIDs[gamepad];
+            if (!controllerIDs.TryGetValue(gamepad, out int controllerID)) continue;
 
-            if (gamepad.leftStick.right.wasPressedThisFrame)
+            // Only allow Player 1 (controllerID == 1) to control selection and scene loading
+            if (controllerID == 1)
             {
-                // Move selection to the right
-                controllerSelections[controllerID] = (controllerSelections[controllerID] + 1) % cylinders.Length;
-                Debug.Log($"Controller {controllerID} moved right, selection: {controllerSelections[controllerID]}");
-                UpdateAllOutlines();
-                MoveLevel();
-            }
-            else if (gamepad.leftStick.left.wasPressedThisFrame)
-            {
-                // Move selection to the left
-                controllerSelections[controllerID] = (controllerSelections[controllerID] - 1 + cylinders.Length) % cylinders.Length;
-                Debug.Log($"Controller {controllerID} moved left, selection: {controllerSelections[controllerID]}");
-                UpdateAllOutlines();
-                MoveLevel();
-            }
+                if (gamepad.leftStick.right.wasPressedThisFrame)
+                {
+                    controllerSelections[controllerID] = (controllerSelections[controllerID] + 1) % cylinders.Length;
+                    Debug.Log($"Player 1 moved right, selection: {controllerSelections[controllerID]}");
+                    UpdateAllOutlines();
+                    MoveLevel();
+                }
+                else if (gamepad.leftStick.left.wasPressedThisFrame)
+                {
+                    controllerSelections[controllerID] = (controllerSelections[controllerID] - 1 + cylinders.Length) % cylinders.Length;
+                    Debug.Log($"Player 1 moved left, selection: {controllerSelections[controllerID]}");
+                    UpdateAllOutlines();
+                    MoveLevel();
+                }
 
-            if (tavernSelected)
-            {
-                Tavern.transform.Rotate(0, 0.06f, 0);
-                levelNameText.text = "Tavern";
-            }
+                if (gamepad.buttonSouth.wasPressedThisFrame)
+                {
+                    Debug.Log("Player 1 confirmed selection!");
+                    int selection = controllerSelections[controllerID];
+                    if (selection == 0) SceneManager.LoadScene(5);
+                    else if (selection == 1) SceneManager.LoadScene(3);
+                    else if (selection == 2) SceneManager.LoadScene(4);
+                }
 
-            if (mausoleumSelected)
-            {
-                Mausoleum.transform.Rotate(0, 0.06f, 0);
-                levelNameText.text = "Mausoleum";
-            }
-
-            if (tutorialSelected)
-            {
-                Tutorial.transform.Rotate(0, 0.06f, 0);
-                levelNameText.text = "Tutorial";
-            }
-
-            // Load level when southern button is pressed
-            if (gamepad.buttonSouth.wasPressedThisFrame)
-            {
                 if (controllerSelections[controllerID] == 0)
                 {
-                    Debug.Log($"Controller {controllerID} confirmed selection!");
-                    SceneManager.LoadScene(5);
+                    tavernSelected = false;
+                    mausoleumSelected = false;
+                    tutorialSelected = true;
                 }
-                if (controllerSelections[controllerID] == 1)
+                else if (controllerSelections[controllerID] == 1)
                 {
-                    Debug.Log($"Controller {controllerID} confirmed selection!");
-                    SceneManager.LoadScene(3);
+                    tutorialSelected = false;
+                    tavernSelected = true;
+                    mausoleumSelected = false;
                 }
-                if (controllerSelections[controllerID] == 2)
+                else if (controllerSelections[controllerID] == 2)
                 {
-                    Debug.Log($"Controller {controllerID} confirmed selection!");
-                    SceneManager.LoadScene(4);
+                    tutorialSelected = false;
+                    mausoleumSelected = true;
+                    tavernSelected = false;
                 }
-            }
-
-            if (controllerSelections[controllerID] == 0)
-            {
-                tavernSelected = false;
-                mausoleumSelected = false;
-                tutorialSelected = true;
-            }
-            if (controllerSelections[controllerID] == 1)
-            {
-                tutorialSelected = false;
-                tavernSelected = true;
-                mausoleumSelected = false;
-            }
-            if (controllerSelections[controllerID] == 2)
-            {
-                tutorialSelected = false;
-                mausoleumSelected = true;
-                tavernSelected = false;
             }
         }
 
-        // Old keyboard input
+        // Idle animations and text updates (always run)
+        if (tavernSelected)
+        {
+            Tavern.transform.Rotate(0, 0.06f, 0);
+            levelNameText.text = "Tavern";
+        }
+
+        if (mausoleumSelected)
+        {
+            Mausoleum.transform.Rotate(0, 0.06f, 0);
+            levelNameText.text = "Mausoleum";
+        }
+
+        if (tutorialSelected)
+        {
+            Tutorial.transform.Rotate(0, 0.06f, 0);
+            levelNameText.text = "Tutorial";
+        }
+
+        // Optional: keyboard input for debugging
         if (Input.GetKeyDown(KeyCode.D))
         {
             controllerSelections[1] = (controllerSelections[1] + 1) % cylinders.Length;
             UpdateAllOutlines();
+            MoveLevel();
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             controllerSelections[1] = (controllerSelections[1] - 1 + cylinders.Length) % cylinders.Length;
             UpdateAllOutlines();
+            MoveLevel();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -156,12 +147,11 @@ public class LevelSelect : MonoBehaviour
         // Ensure Player 1's selection takes precedence
         int player1Selection = controllerSelections.ContainsKey(1) ? controllerSelections[1] : 0;
 
-        // Move levels based on Player 1's selection
         if (player1Selection == 0)
         {
             tavernSelected = false;
             mausoleumSelected = false;
-            tutorialSelected= true;
+            tutorialSelected = true;
 
             Tutorial.transform.position = new Vector3(0, 7, 0);
             Tavern.transform.position = new Vector3(-46, 7, 196);
@@ -188,7 +178,7 @@ public class LevelSelect : MonoBehaviour
             Tavern.transform.position = new Vector3(-46, 7, -196);
         }
 
-        // Reset rotation for both levels to ensure they face forward correctly
+        // Reset rotation
         Tavern.transform.rotation = Quaternion.identity;
         Mausoleum.transform.rotation = Quaternion.identity;
         Tutorial.transform.rotation = Quaternion.identity;
@@ -196,7 +186,6 @@ public class LevelSelect : MonoBehaviour
 
     void UpdateAllOutlines()
     {
-        // Select each cylinder
         for (int i = 0; i < cylinders.Length; i++)
         {
             Outline outline = cylinders[i].GetComponent<Outline>();
@@ -214,7 +203,6 @@ public class LevelSelect : MonoBehaviour
                     }
                 }
 
-                // Disable outline if not selected
                 if (!isSelected)
                 {
                     outline.enabled = false;
@@ -237,22 +225,15 @@ public class LevelSelect : MonoBehaviour
 
     Color GetControllerColor(int controllerID)
     {
-        // Assign colors based on controller ID
         switch (controllerID)
         {
-            case 1:
-                return Color.blue; // Player 1
-            case 2:
-                return Color.red;  // Player 2
-            case 3:
-                return new Color(1f, 0.41f, 0.71f); // Player 3 - Pink (RGB: 1, 0.41, 0.71)
-            case 4:
-                return new Color(1f, 0.647f, 0f); // Player 4 - Orange (RGB: 1, 0.647, 0)
-            default:
-                return Color.gray;
+            case 1: return Color.blue;
+            case 2: return Color.red;
+            case 3: return new Color(1f, 0.41f, 0.71f); // Pink
+            case 4: return new Color(1f, 0.647f, 0f);   // Orange
+            default: return Color.gray;
         }
     }
-
 
     void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
@@ -274,7 +255,7 @@ public class LevelSelect : MonoBehaviour
         if (!controllerIDs.ContainsKey(gamepad))
         {
             controllerIDs[gamepad] = nextControllerID;
-            controllerSelections[nextControllerID] = 0; // Puts outline on first cylinder
+            controllerSelections[nextControllerID] = 0;
             nextControllerID++;
         }
     }
